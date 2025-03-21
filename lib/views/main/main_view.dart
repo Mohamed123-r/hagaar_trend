@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hagaar_trend/components/app_colors.dart';
 import 'package:hagaar_trend/constant.dart';
-import '../../components/app_text_styles.dart';
 import '../../generated/assets.dart';
-import 'bottom_nav_btn.dart';
-import 'clipper.dart';
-import 'size_config.dart';
+import 'widgets/bottom_nav_btn.dart';
+import 'widgets/clipper.dart';
+import 'widgets/size_config.dart';
 
 class MainView extends StatefulWidget {
   const MainView({super.key});
@@ -159,7 +158,7 @@ class MainViewState extends State<MainView> {
                       height: AppSizes.blockSizeHorizontal * 1.0,
                       width: AppSizes.blockSizeHorizontal * 12,
                       decoration: BoxDecoration(
-                        color: Colors.orange,
+                        color: AppColors.orange,
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
@@ -189,8 +188,8 @@ class MainViewState extends State<MainView> {
 }
 
 final List<Color> gradient = [
-  Colors.orange.withOpacity(0.5),
-  Colors.orange.withOpacity(0.2),
+  AppColors.orange.withOpacity(0.5),
+  AppColors.orange.withOpacity(0.2),
   Colors.transparent,
 ];
 
