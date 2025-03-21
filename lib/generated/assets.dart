@@ -6,7 +6,12 @@ class Assets {
   static const String fontsAlmaraiExtraBold = 'assets/fonts/Almarai-ExtraBold.ttf';
   static const String fontsAlmaraiLight = 'assets/fonts/Almarai-Light.ttf';
   static const String fontsAlmaraiRegular = 'assets/fonts/Almarai-Regular.ttf';
+  static const String imagesBell = 'assets/images/Bell.svg';
+  static const String imagesHeadset = 'assets/images/Headset.svg';
+  static const String imagesHouseLine = 'assets/images/HouseLine.svg';
+  static const String imagesPlus = 'assets/images/Plus.svg';
   static const String imagesSplash = 'assets/images/splash.png';
   static const String imagesSplashAndroid12Logo = 'assets/images/splash_android12_logo.png';
+  static const String imagesUser = 'assets/images/User.svg';
 
 }

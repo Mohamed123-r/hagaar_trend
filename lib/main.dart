@@ -1,8 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:hagaar_trend/views/main/main_view.dart';
 
 import 'components/app_colors.dart';
 
 void main() {
+
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+    statusBarColor: Colors.transparent,
+    statusBarIconBrightness: Brightness.dark,
+    systemNavigationBarColor: Colors.transparent,
+    systemNavigationBarIconBrightness: Brightness.dark,
+
+  ),);
   runApp(const MyApp());
 }
 
@@ -18,9 +28,8 @@ class MyApp extends StatelessWidget {
         fontFamily: 'Almarai',
         primaryColor: AppColors.black,
         scaffoldBackgroundColor: AppColors.black,
-
       ),
-
+      home: const MainView(),
     );
   }
 }
