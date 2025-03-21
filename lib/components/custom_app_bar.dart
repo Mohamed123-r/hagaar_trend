@@ -22,7 +22,7 @@ AppBar customAppBar(BuildContext context) {
               borderRadius: BorderRadius.circular(50),
               border: Border.all(
                 width: 1,
-                color: AppColors.greenWhite,
+                color: AppColors.green,
               ),
             ),
             child: Row(
@@ -44,7 +44,7 @@ AppBar customAppBar(BuildContext context) {
                     Text(
                       "مرحبا",
                       style: AppTextStyles.style10W500(context).copyWith(
-                        color: AppColors.greenWhite,
+                        color: AppColors.middleGreen,
                       ),
                     ),
                     SizedBox(
