@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hagaar_trend/components/app_colors.dart';
+import 'package:hagaar_trend/components/custom_app_bar.dart';
 import 'package:hagaar_trend/constant.dart';
+import 'package:hagaar_trend/views/home/home_view.dart';
 import '../../generated/assets.dart';
 import 'widgets/bottom_nav_btn.dart';
 import 'widgets/clipper.dart';
@@ -42,7 +44,7 @@ class MainViewState extends State<MainView> {
   Widget build(BuildContext context) {
     AppSizes().init(context);
     return Scaffold(
-
+      //appBar: customAppBar(context),
       body: Directionality(
         textDirection: direction,
         child: Stack(
@@ -57,7 +59,7 @@ class MainViewState extends State<MainView> {
               controller: pageController,
               physics: const NeverScrollableScrollPhysics(),
               children: [
-                Container(color: Colors.red),
+                HomeView(),
                 Container(color: Colors.green),
                 Container(color: Colors.black),
                 Container(color: Colors.white),

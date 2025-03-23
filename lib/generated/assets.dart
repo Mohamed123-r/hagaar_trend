@@ -7,11 +7,15 @@ class Assets {
   static const String fontsAlmaraiLight = 'assets/fonts/Almarai-Light.ttf';
   static const String fontsAlmaraiRegular = 'assets/fonts/Almarai-Regular.ttf';
   static const String imagesBell = 'assets/images/Bell.svg';
+  static const String imagesDoor = 'assets/images/door.png';
   static const String imagesHeadset = 'assets/images/Headset.svg';
   static const String imagesHouseLine = 'assets/images/HouseLine.svg';
+  static const String imagesKey = 'assets/images/key.png';
   static const String imagesPlus = 'assets/images/Plus.svg';
+  static const String imagesSearch = 'assets/images/search.svg';
   static const String imagesSplash = 'assets/images/splash.png';
   static const String imagesSplashAndroid12Logo = 'assets/images/splash_android12_logo.png';
+  static const String imagesTest1 = 'assets/images/test1.png';
   static const String imagesUser = 'assets/images/User.svg';
 
 }

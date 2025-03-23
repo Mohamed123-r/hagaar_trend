@@ -43,7 +43,7 @@ AppBar customAppBar(BuildContext context) {
                   children: [
                     Text(
                       "مرحبا",
-                      style: AppTextStyles.style10W500(context).copyWith(
+                      style: AppTextStyles.style13W400(context).copyWith(
                         color: AppColors.middleGreen,
                       ),
                     ),
@@ -51,7 +51,7 @@ AppBar customAppBar(BuildContext context) {
                       height: 4,
                     ),
                     Text("محمد علي عبد القادر",
-                        style: AppTextStyles.style10W500(context)),
+                        style: AppTextStyles.style13W400(context)),
                   ],
                 ),
               ],
@@ -68,7 +68,7 @@ AppBar customAppBar(BuildContext context) {
             child: Center(
                 child: Text(
               "AR",
-              style: AppTextStyles.style10W500(context),
+              style: AppTextStyles.style13W400(context),
             )),
           ),
           GestureDetector(

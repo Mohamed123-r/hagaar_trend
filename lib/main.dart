@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: 'Almarai',
         primaryColor: AppColors.black,
-        scaffoldBackgroundColor: AppColors.black,
+        scaffoldBackgroundColor: AppColors.white,
       ),
       home: const MainView(),
     );

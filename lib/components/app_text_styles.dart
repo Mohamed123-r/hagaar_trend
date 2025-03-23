@@ -58,17 +58,17 @@ abstract class AppTextStyles {
     );
   }
 
-  static TextStyle style10W500(BuildContext context) {
+  static TextStyle style13W400(BuildContext context) {
     return TextStyle(
-      fontSize: getResponsiveScaleFactor(context, fontSize: 10),
-      fontWeight: FontWeight.w500,
+      fontSize: getResponsiveScaleFactor(context, fontSize: 13),
+      fontWeight: FontWeight.w400,
       color: AppColors.textPrimary,
     );
   }
 
-  static TextStyle style10W700(BuildContext context) {
+  static TextStyle style13W700(BuildContext context) {
     return TextStyle(
-      fontSize: getResponsiveScaleFactor(context, fontSize: 10),
+      fontSize: getResponsiveScaleFactor(context, fontSize: 13),
       fontWeight: FontWeight.w700,
       color: AppColors.textPrimary,
     );
