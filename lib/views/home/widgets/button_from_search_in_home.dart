@@ -25,7 +25,7 @@ class ButtonFromSearchInHome extends StatelessWidget {
       onPressed: onPressed,
       child: Text(
         title,
-        style: AppTextStyles.style13W400(
+        style: AppTextStyles.style14W400(
           context,
         ).copyWith(color: isSelect ? AppColors.white : AppColors.black),
       ),

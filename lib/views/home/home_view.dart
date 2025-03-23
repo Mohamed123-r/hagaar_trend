@@ -165,8 +165,70 @@ class _HomeViewState extends State<HomeView> {
             ),
           ),
         ),
+        Positioned(
+          bottom: 95,
+          right: 20,
+          left: 20,
+          child: Row(
+            spacing: 8,
+            children: [
+              MaterialButton(
+                height: 44,
+                minWidth: 100,
+                padding: EdgeInsets.zero,
+                color: AppColors.black,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(80),
+                ),
+                onPressed: () {},
+                child: Row(
+                  children: [
+                    SizedBox(width: 6),
+                    GestureDetector(
+                      child: CircleAvatar(
+                        radius: 16,
+                        backgroundColor: AppColors.white,
+                        child: SvgPicture.asset(Assets.imagesTextIndent),
+                      ),
+                    ),
+                    SizedBox(width: 12),
+                    Text(
+                      "عرض القائمة",
+                      style: AppTextStyles.style12W700(
+                        context,
+                      ).copyWith(color: AppColors.white),
+                    ),
+                    SizedBox(width: 16),
+                  ],
+                ),
+              ),
+              Spacer(),
+              CircleAvatar(
+                radius: 22,
+                backgroundColor: AppColors.grey.withAlpha(150),
+                child: GestureDetector(
+                  child: CircleAvatar(
+                    radius: 18,
+                    backgroundColor: AppColors.greyDarker,
+                    child: SvgPicture.asset(Assets.imagesCrosshair),
+                  ),
+                ),
+              ),
+              CircleAvatar(
+                radius: 22,
+                backgroundColor: AppColors.grey.withAlpha(150),
+                child: GestureDetector(
+                  child: CircleAvatar(
+                    radius: 18,
+                    backgroundColor: AppColors.greyDarker,
+                    child: SvgPicture.asset(Assets.imagesHeart),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
       ],
     );
   }
 }
-

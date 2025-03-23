@@ -63,7 +63,7 @@ class BottomNavBTN extends StatelessWidget {
 
                   Text(
                     title,
-                    style: TextStyle(fontSize: 12, color: Colors.white),
+                    style: TextStyle(fontSize: 12, fontWeight: FontWeight.w700,color: Colors.white),
                   )
                 ],
               ),
