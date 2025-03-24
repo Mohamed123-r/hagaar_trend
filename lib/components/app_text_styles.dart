@@ -16,7 +16,13 @@ abstract class AppTextStyles {
 
     );
   }
+  static TextStyle style18W400(BuildContext context) {
+    return TextStyle(
+      fontSize: getResponsiveScaleFactor(context, fontSize: 18),
+      fontWeight: FontWeight.w400,
 
+    );
+  }
   static TextStyle style16W400(BuildContext context) {
     return TextStyle(
       fontSize: getResponsiveScaleFactor(context, fontSize: 16),
@@ -25,10 +31,10 @@ abstract class AppTextStyles {
     );
   }
 
-  static TextStyle style16W600(BuildContext context) {
+  static TextStyle style16W800(BuildContext context) {
     return TextStyle(
       fontSize: getResponsiveScaleFactor(context, fontSize: 16),
-      fontWeight: FontWeight.w600,
+      fontWeight: FontWeight.w800,
 
     );
   }
@@ -41,10 +47,10 @@ abstract class AppTextStyles {
     );
   }
 
-  static TextStyle style12W500(BuildContext context) {
+  static TextStyle style12W400(BuildContext context) {
     return TextStyle(
       fontSize: getResponsiveScaleFactor(context, fontSize: 12),
-      fontWeight: FontWeight.w500,
+      fontWeight: FontWeight.w400,
 
     );
   }
