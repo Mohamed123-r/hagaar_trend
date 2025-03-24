@@ -8,23 +8,29 @@ class Assets {
   static const String fontsAlmaraiRegular = 'assets/fonts/Almarai-Regular.ttf';
   static const String imagesBell = 'assets/images/Bell.svg';
   static const String imagesChartPie = 'assets/images/ChartPie.svg';
+  static const String imagesCheckCircle = 'assets/images/CheckCircle.svg';
   static const String imagesCrosshair = 'assets/images/Crosshair.svg';
   static const String imagesDoor = 'assets/images/door.png';
+  static const String imagesDoorOpen = 'assets/images/DoorOpen.svg';
   static const String imagesHeadset = 'assets/images/Headset.svg';
   static const String imagesHeart = 'assets/images/Heart.svg';
   static const String imagesHouse = 'assets/images/House.svg';
   static const String imagesHouseLine = 'assets/images/HouseLine.svg';
   static const String imagesKey = 'assets/images/key.png';
   static const String imagesLogo = 'assets/images/Logo.png';
+  static const String imagesMap = 'assets/images/map.png';
   static const String imagesMapTrifold = 'assets/images/MapTrifold.svg';
+  static const String imagesNavigationArrow = 'assets/images/NavigationArrow.svg';
   static const String imagesPlus = 'assets/images/Plus.svg';
   static const String imagesSearch = 'assets/images/search.svg';
   static const String imagesShapes = 'assets/images/shapes.png';
   static const String imagesSplash = 'assets/images/splash.png';
   static const String imagesSplashAndroid12Logo = 'assets/images/splash_android12_logo.png';
   static const String imagesTest1 = 'assets/images/test1.png';
+  static const String imagesTest2 = 'assets/images/test2.png';
   static const String imagesTextIndent = 'assets/images/TextIndent.svg';
   static const String imagesUser = 'assets/images/User.svg';
   static const String imagesVectorTwo = 'assets/images/VectorTwo.svg';
+  static const String imagesWhatsappLogo = 'assets/images/WhatsappLogo.svg';
 
 }
