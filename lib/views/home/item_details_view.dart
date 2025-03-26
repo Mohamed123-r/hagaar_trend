@@ -35,10 +35,29 @@ class ItemDetailsView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Stack(
+                alignment: Alignment.bottomCenter,
                 children: <Widget>[
                   AspectRatio(
                     aspectRatio: 1,
                     child: Image.network(image, fit: BoxFit.cover),
+                  ),
+                  Positioned(
+                    bottom: 16,
+
+                    child: Container(
+                      height: 32,
+                      width: 132,
+                      decoration: BoxDecoration(
+                        color: AppColors.white,
+                        borderRadius: BorderRadius.circular(50),
+                      ),
+                      child: Center(
+                        child: Text(
+                          "5 صور للعقار",
+                          style: AppTextStyles.style10W400(context),
+                        ),
+                      ),
+                    ),
                   ),
                   Positioned(
                     top: 16,

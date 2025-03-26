@@ -9,6 +9,7 @@ import 'package:hagaar_trend/views/home/widgets/list_view_item_from_show_list.da
 import '../../components/app_colors.dart';
 import '../../components/app_text_styles.dart';
 import '../../components/custom_app_bar.dart';
+import '../favourite/favourite_view.dart';
 import 'widgets/button_from_search_in_home.dart';
 
 class HomeView extends StatefulWidget {
@@ -398,6 +399,14 @@ class _HomeViewState extends State<HomeView> {
                     radius: 22,
                     backgroundColor: AppColors.grey.withAlpha(150),
                     child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => FavouriteView(),
+                          ),
+                        );
+                      },
                       child: CircleAvatar(
                         radius: 18,
                         backgroundColor: AppColors.greyDarker,
