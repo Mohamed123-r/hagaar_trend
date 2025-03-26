@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart' show SvgPicture;
 import 'package:hagaar_trend/components/app_colors.dart';
 import 'package:hagaar_trend/components/app_text_styles.dart';
 
+import '../../../constant.dart';
 import '../../../generated/assets.dart';
 
 class ListViewItemFromShowList extends StatelessWidget {
@@ -32,12 +33,26 @@ class ListViewItemFromShowList extends StatelessWidget {
       child: Column(
         spacing: 8,
         children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(8),
-            child: AspectRatio(
-              aspectRatio: 2,
-              child: Image.network(image, fit: BoxFit.cover),
-            ),
+          Stack(
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(8),
+                child: AspectRatio(
+                  aspectRatio: 2,
+                  child: Image.network(image, fit: BoxFit.cover),
+                ),
+              ),
+              Positioned(
+                top: 8,
+                right: direction == TextDirection.rtl ? 8 : null,
+                left: direction == TextDirection.ltr ? 8 : null,
+                child: CircleAvatar(
+                  radius: 15,
+                  backgroundColor: Color(0xffADADAD),
+                  child: SvgPicture.asset(Assets.imagesHeart),
+                ),
+              ),
+            ],
           ),
           Row(
             children: [

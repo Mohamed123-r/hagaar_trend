@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:hagaar_trend/components/custom_app_bar.dart';
 import 'package:hagaar_trend/constant.dart';
+import 'package:hagaar_trend/views/home/location_view.dart';
 import 'package:hagaar_trend/views/home/widgets/data_from_item_details_view.dart';
 import 'package:hagaar_trend/views/home/widgets/features_from_item_details_view.dart';
 
@@ -27,13 +29,28 @@ class ItemDetailsView extends StatelessWidget {
     return Directionality(
       textDirection: direction,
       child: Scaffold(
+        appBar: customAppBar(context, title: "تفاصيل العقار"),
         body: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              AspectRatio(
-                aspectRatio: 1,
-                child: Image.network(image, fit: BoxFit.cover),
+              Stack(
+                children: <Widget>[
+                  AspectRatio(
+                    aspectRatio: 1,
+                    child: Image.network(image, fit: BoxFit.cover),
+                  ),
+                  Positioned(
+                    top: 16,
+                    right: direction == TextDirection.rtl ? 16 : null,
+                    left: direction == TextDirection.ltr ? 16 : null,
+                    child: CircleAvatar(
+                      radius: 15,
+                      backgroundColor: Color(0xffADADAD),
+                      child: SvgPicture.asset(Assets.imagesHeart),
+                    ),
+                  ),
+                ],
               ),
               SizedBox(height: 12),
               Padding(
@@ -151,92 +168,100 @@ class ItemDetailsView extends StatelessWidget {
               SizedBox(height: 16),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                child: Container(
-                  height: 160,
-                  decoration: BoxDecoration(
-                    color: AppColors.white,
-                    borderRadius: BorderRadius.circular(8),
-                    border: Border.all(color: AppColors.border),
-                  ),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.all(16.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              Text(
-                                "الموقع",
-                                style: AppTextStyles.style16W800(context),
-                              ),
-                              Row(
-                                children: [
-                                  Text(
-                                    "المنطقة :",
-                                    style: AppTextStyles.style12W400(
-                                      context,
-                                    ).copyWith(color: AppColors.grey),
-                                  ),
-                                  Spacer(),
-                                  Text(
-                                    "منطقة الرياض",
-                                    style: AppTextStyles.style12W400(context),
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Text(
-                                    "المدينة :",
-                                    style: AppTextStyles.style12W400(
-                                      context,
-                                    ).copyWith(color: AppColors.grey),
-                                  ),
-                                  Spacer(),
-                                  Text(
-                                    "الرياض",
-                                    style: AppTextStyles.style12W400(context),
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Text(
-                                    "الحي :",
-                                    style: AppTextStyles.style12W400(
-                                      context,
-                                    ).copyWith(color: AppColors.grey),
-                                  ),
-                                  Spacer(),
-                                  Text(
-                                    "حي الهدا",
-                                    style: AppTextStyles.style12W400(context),
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Text(
-                                    "الرمز البريدي :",
-                                    style: AppTextStyles.style12W400(
-                                      context,
-                                    ).copyWith(color: AppColors.grey),
-                                  ),
-                                  Spacer(),
-                                  Text(
-                                    "12725",
-                                    style: AppTextStyles.style12W400(context),
-                                  ),
-                                ],
-                              ),
-                            ],
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => LocationView()),
+                    );
+                  },
+                  child: Container(
+                    height: 160,
+                    decoration: BoxDecoration(
+                      color: AppColors.white,
+                      borderRadius: BorderRadius.circular(8),
+                      border: Border.all(color: AppColors.border),
+                    ),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Text(
+                                  "الموقع",
+                                  style: AppTextStyles.style16W800(context),
+                                ),
+                                Row(
+                                  children: [
+                                    Text(
+                                      "المنطقة :",
+                                      style: AppTextStyles.style12W400(
+                                        context,
+                                      ).copyWith(color: AppColors.grey),
+                                    ),
+                                    Spacer(),
+                                    Text(
+                                      "منطقة الرياض",
+                                      style: AppTextStyles.style12W400(context),
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Text(
+                                      "المدينة :",
+                                      style: AppTextStyles.style12W400(
+                                        context,
+                                      ).copyWith(color: AppColors.grey),
+                                    ),
+                                    Spacer(),
+                                    Text(
+                                      "الرياض",
+                                      style: AppTextStyles.style12W400(context),
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Text(
+                                      "الحي :",
+                                      style: AppTextStyles.style12W400(
+                                        context,
+                                      ).copyWith(color: AppColors.grey),
+                                    ),
+                                    Spacer(),
+                                    Text(
+                                      "حي الهدا",
+                                      style: AppTextStyles.style12W400(context),
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Text(
+                                      "الرمز البريدي :",
+                                      style: AppTextStyles.style12W400(
+                                        context,
+                                      ).copyWith(color: AppColors.grey),
+                                    ),
+                                    Spacer(),
+                                    Text(
+                                      "12725",
+                                      style: AppTextStyles.style12W400(context),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                      Image.asset(Assets.imagesMap),
-                    ],
+                        Image.asset(Assets.imagesMap),
+                      ],
+                    ),
                   ),
                 ),
               ),
