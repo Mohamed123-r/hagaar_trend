@@ -22,6 +22,8 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   bool isRent = true;
   bool showList = false;
+  bool showLocation = false;
+  bool showDetailsLocation = false;
   final List<Map<String, String>> properties = [
     {
       "imageUrl":
@@ -111,315 +113,450 @@ class _HomeViewState extends State<HomeView> {
               )
               : null,
 
-      body: Stack(
-        children: [
-          Visibility(
-            visible: showList,
-            child: ListView.separated(
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding:
-                      index == 0
-                          ? const EdgeInsets.only(top: 150)
-                          : index == properties.length - 1
-                          ? const EdgeInsets.only(bottom: 150)
-                          : EdgeInsets.zero,
-                  child: GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder:
-                              (context) => ItemDetailsView(
-                                image: properties[index]['imageUrl']!,
-                                name: properties[index]['name']!,
-                                location: properties[index]['location']!,
-                                price: properties[index]['price']!,
-                              ),
-                        ),
-                      );
-                    },
-                    child: ListViewItemFromShowList(
-                      image: properties[index]['imageUrl']!,
-                      name: properties[index]['name']!,
-                      location: properties[index]['location']!,
-                      price: properties[index]['price']!,
-                      type: properties[index]['type']!,
-                      area: properties[index]['area']!,
-                      status: properties[index]['status']!,
-                    ),
-                  ),
-                );
-              },
-              separatorBuilder: (context, index) => SizedBox(height: 24),
-              itemCount: properties.length,
-            ),
-          ),
-          Visibility(
-            visible: !showList,
-            child: Image.asset(
-              Assets.imagesTest1,
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height,
-              fit: BoxFit.cover,
-            ),
-          ),
-          Positioned(
-            right: 20,
-            left: 20,
-            top: 16,
-            child: SafeArea(
-              child: Container(
-                height: 64,
-                decoration: BoxDecoration(
-                  color: AppColors.white,
-                  borderRadius: BorderRadius.circular(16),
-                  border: showList ? Border.all(color: AppColors.border) : null,
-                ),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: MaterialButton(
-                        height: 60,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(
-                              direction == TextDirection.ltr ? 16 : 0,
-                            ),
-                            bottomLeft: Radius.circular(
-                              direction == TextDirection.ltr ? 16 : 0,
-                            ),
-                            topRight: Radius.circular(
-                              direction == TextDirection.ltr ? 0 : 16,
-                            ),
-                            bottomRight: Radius.circular(
-                              direction == TextDirection.ltr ? 0 : 16,
-                            ),
-                          ),
-                        ),
-                        onPressed: () {
-                          setState(() {
-                            isRent = false;
-                          });
-                        },
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image.asset(
-                              Assets.imagesKey,
-                              width: 24,
-                              height: 24,
-                            ),
-                            SizedBox(width: 4),
-                            Text(
-                              "للبيع",
-                              style: AppTextStyles.style13W400(
-                                context,
-                              ).copyWith(
-                                color:
-                                    isRent ? AppColors.grey : AppColors.black,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Container(width: 1, height: 40, color: AppColors.border),
-                    Expanded(
-                      child: MaterialButton(
-                        height: 60,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(
-                              direction == TextDirection.rtl ? 16 : 0,
-                            ),
-                            bottomLeft: Radius.circular(
-                              direction == TextDirection.rtl ? 16 : 0,
-                            ),
-                            topRight: Radius.circular(
-                              direction == TextDirection.rtl ? 0 : 16,
-                            ),
-                            bottomRight: Radius.circular(
-                              direction == TextDirection.rtl ? 0 : 16,
-                            ),
-                          ),
-                        ),
-                        onPressed: () {
-                          setState(() {
-                            isRent = true;
-                          });
-                        },
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image.asset(
-                              Assets.imagesDoor,
-                              width: 24,
-                              height: 24,
-                            ),
-                            Text(
-                              "للإيجار",
-                              style: AppTextStyles.style13W400(
-                                context,
-                              ).copyWith(
-                                color:
-                                    isRent ? AppColors.black : AppColors.grey,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-          Positioned(
-            top: 90,
-            child: SafeArea(
-              child: SizedBox(
-                height: 45,
-                width: MediaQuery.of(context).size.width,
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    spacing: 8,
-                    children: [
-                      SizedBox(width: 12),
-                      GestureDetector(
-                        child: CircleAvatar(
-                          radius: 20,
-                          backgroundColor: AppColors.green,
-                          child: SvgPicture.asset(Assets.imagesSearch),
-                        ),
-                      ),
-                      SizedBox(),
-                      ButtonFromSearchInHome(
-                        isSelect: true,
-                        title: "الكل",
-                        onPressed: () {},
-                      ),
-                      ButtonFromSearchInHome(
-                        isSelect: false,
-                        title: "فلل وقصور",
-                        onPressed: () {},
-                      ),
-                      ButtonFromSearchInHome(
-                        isSelect: false,
-                        title: "دور سكني",
-                        onPressed: () {},
-                      ),
-                      SizedBox(width: 12),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ),
-          Visibility(
-            visible: showList,
-            child: Positioned(
-              bottom: 95,
-              right: direction == TextDirection.ltr ? null : 20,
-              left: direction == TextDirection.rtl ? null : 20,
-              child: InkWell(
-                borderRadius: BorderRadius.circular(80),
-                onTap: () {
-                  setState(() {
-                    showList = false;
-                  });
-                },
-                child: CircleAvatar(
-                  radius: 22,
-                  backgroundColor: AppColors.greyDarker,
-                  child: GestureDetector(
-                    child: SvgPicture.asset(Assets.imagesMapTrifold),
-                  ),
-                ),
-              ),
-            ),
-          ),
-          Visibility(
-            visible: !showList,
-            child: Positioned(
-              bottom: 95,
-              right: 20,
-              left: 20,
-              child: Row(
-                spacing: 8,
+      body:
+          showLocation
+              ? Stack(
+                alignment: Alignment.topCenter,
                 children: [
-                  MaterialButton(
-                    height: 44,
-                    minWidth: 100,
-                    padding: EdgeInsets.zero,
-                    color: AppColors.black,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(80),
+                  showDetailsLocation
+                      ? Image.asset(
+                        Assets.imagesTest4,
+
+                        width: double.infinity,
+                        height: double.infinity,
+                        fit: BoxFit.cover,
+                      )
+                      : Image.asset(
+                        Assets.imagesTest3,
+                        width: double.infinity,
+                        height: double.infinity,
+                        fit: BoxFit.cover,
+                      ),
+
+                  Positioned(
+                    top: 56,
+
+                    child: Container(
+                      height: 48,
+                      width: 230,
+                      decoration: BoxDecoration(
+                        color: AppColors.white,
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                      child: Center(
+                        child: Row(
+                          children: [
+                            IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  showLocation = false;
+                                });
+                              },
+                              icon: Icon(
+                                Icons.close,
+                                color: Colors.red,
+                                size: 18,
+                              ),
+                            ),
+                            Spacer(),
+                            Text(
+                              "تحديد موقعك",
+                              style: AppTextStyles.style16W400(context),
+                            ),
+                            Spacer(),
+                            Spacer(),
+                          ],
+                        ),
+                      ),
                     ),
-                    onPressed: () {
-                      setState(() {
-                        showList = true;
-                      });
-                    },
+                  ),
+                  Positioned(
+                    bottom: 95,
+                    right: 20,
+                    left: 20,
                     child: Row(
+                      spacing: 8,
                       children: [
-                        SizedBox(width: 6),
-                        GestureDetector(
-                          child: CircleAvatar(
-                            radius: 16,
-                            backgroundColor: AppColors.white,
-                            child: SvgPicture.asset(Assets.imagesTextIndent),
+                        Visibility(
+                          visible: !showDetailsLocation,
+                          child: MaterialButton(
+                            height: 44,
+                            minWidth: 100,
+                            padding: EdgeInsets.zero,
+                            color: AppColors.black,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(80),
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                showDetailsLocation = true;
+                              });
+                            },
+                            child: Text(
+                              "موافق",
+                              style: AppTextStyles.style12W700(
+                                context,
+                              ).copyWith(color: AppColors.white),
+                            ),
                           ),
                         ),
-                        SizedBox(width: 12),
-                        Text(
-                          "عرض القائمة",
-                          style: AppTextStyles.style12W700(
-                            context,
-                          ).copyWith(color: AppColors.white),
+                        Spacer(),
+                        Visibility(
+                          visible: showDetailsLocation,
+                          child: CircleAvatar(
+                            radius: 22,
+                            backgroundColor: AppColors.grey.withAlpha(150),
+                            child: GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  showDetailsLocation = false;
+                                });
+                              },
+                              child: CircleAvatar(
+                                radius: 18,
+                                backgroundColor: AppColors.greyDarker,
+                                child: SvgPicture.asset(
+                                  Assets.imagesCrosshair,
+                                  color: AppColors.orange,
+                                ),
+                              ),
+                            ),
+                          ),
                         ),
-                        SizedBox(width: 16),
                       ],
                     ),
                   ),
-                  Spacer(),
-                  CircleAvatar(
-                    radius: 22,
-                    backgroundColor: AppColors.grey.withAlpha(150),
-                    child: GestureDetector(
-                      child: CircleAvatar(
-                        radius: 18,
-                        backgroundColor: AppColors.greyDarker,
-                        child: SvgPicture.asset(Assets.imagesCrosshair),
-                      ),
-                    ),
-                  ),
-                  CircleAvatar(
-                    radius: 22,
-                    backgroundColor: AppColors.grey.withAlpha(150),
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => FavouriteView(),
+                ],
+              )
+              : Stack(
+                children: [
+                  Visibility(
+                    visible: showList,
+                    child: ListView.separated(
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding:
+                              index == 0
+                                  ? const EdgeInsets.only(top: 150)
+                                  : index == properties.length - 1
+                                  ? const EdgeInsets.only(bottom: 150)
+                                  : EdgeInsets.zero,
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder:
+                                      (context) => ItemDetailsView(
+                                        image: properties[index]['imageUrl']!,
+                                        name: properties[index]['name']!,
+                                        location:
+                                            properties[index]['location']!,
+                                        price: properties[index]['price']!,
+                                      ),
+                                ),
+                              );
+                            },
+                            child: ListViewItemFromShowList(
+                              image: properties[index]['imageUrl']!,
+                              name: properties[index]['name']!,
+                              location: properties[index]['location']!,
+                              price: properties[index]['price']!,
+                              type: properties[index]['type']!,
+                              area: properties[index]['area']!,
+                              status: properties[index]['status']!,
+                            ),
                           ),
                         );
                       },
-                      child: CircleAvatar(
-                        radius: 18,
-                        backgroundColor: AppColors.greyDarker,
-                        child: SvgPicture.asset(Assets.imagesHeart),
+                      separatorBuilder:
+                          (context, index) => SizedBox(height: 24),
+                      itemCount: properties.length,
+                    ),
+                  ),
+                  Visibility(
+                    visible: !showList,
+                    child: Image.asset(
+                      Assets.imagesTest1,
+                      width: MediaQuery.of(context).size.width,
+                      height: MediaQuery.of(context).size.height,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  Positioned(
+                    right: 20,
+                    left: 20,
+                    top: 16,
+                    child: SafeArea(
+                      child: Container(
+                        height: 64,
+                        decoration: BoxDecoration(
+                          color: AppColors.white,
+                          borderRadius: BorderRadius.circular(16),
+                          border:
+                              showList
+                                  ? Border.all(color: AppColors.border)
+                                  : null,
+                        ),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: MaterialButton(
+                                height: 60,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(
+                                      direction == TextDirection.ltr ? 16 : 0,
+                                    ),
+                                    bottomLeft: Radius.circular(
+                                      direction == TextDirection.ltr ? 16 : 0,
+                                    ),
+                                    topRight: Radius.circular(
+                                      direction == TextDirection.ltr ? 0 : 16,
+                                    ),
+                                    bottomRight: Radius.circular(
+                                      direction == TextDirection.ltr ? 0 : 16,
+                                    ),
+                                  ),
+                                ),
+                                onPressed: () {
+                                  setState(() {
+                                    isRent = false;
+                                  });
+                                },
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Image.asset(
+                                      Assets.imagesKey,
+                                      width: 24,
+                                      height: 24,
+                                    ),
+                                    SizedBox(width: 4),
+                                    Text(
+                                      "للبيع",
+                                      style: AppTextStyles.style13W400(
+                                        context,
+                                      ).copyWith(
+                                        color:
+                                            isRent
+                                                ? AppColors.grey
+                                                : AppColors.black,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Container(
+                              width: 1,
+                              height: 40,
+                              color: AppColors.border,
+                            ),
+                            Expanded(
+                              child: MaterialButton(
+                                height: 60,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(
+                                      direction == TextDirection.rtl ? 16 : 0,
+                                    ),
+                                    bottomLeft: Radius.circular(
+                                      direction == TextDirection.rtl ? 16 : 0,
+                                    ),
+                                    topRight: Radius.circular(
+                                      direction == TextDirection.rtl ? 0 : 16,
+                                    ),
+                                    bottomRight: Radius.circular(
+                                      direction == TextDirection.rtl ? 0 : 16,
+                                    ),
+                                  ),
+                                ),
+                                onPressed: () {
+                                  setState(() {
+                                    isRent = true;
+                                  });
+                                },
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Image.asset(
+                                      Assets.imagesDoor,
+                                      width: 24,
+                                      height: 24,
+                                    ),
+                                    Text(
+                                      "للإيجار",
+                                      style: AppTextStyles.style13W400(
+                                        context,
+                                      ).copyWith(
+                                        color:
+                                            isRent
+                                                ? AppColors.black
+                                                : AppColors.grey,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    top: 90,
+                    child: SafeArea(
+                      child: SizedBox(
+                        height: 45,
+                        width: MediaQuery.of(context).size.width,
+                        child: SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            spacing: 8,
+                            children: [
+                              SizedBox(width: 12),
+                              GestureDetector(
+                                child: CircleAvatar(
+                                  radius: 20,
+                                  backgroundColor: AppColors.green,
+                                  child: SvgPicture.asset(Assets.imagesSearch),
+                                ),
+                              ),
+                              SizedBox(),
+                              ButtonFromSearchInHome(
+                                isSelect: true,
+                                title: "الكل",
+                                onPressed: () {},
+                              ),
+                              ButtonFromSearchInHome(
+                                isSelect: false,
+                                title: "فلل وقصور",
+                                onPressed: () {},
+                              ),
+                              ButtonFromSearchInHome(
+                                isSelect: false,
+                                title: "دور سكني",
+                                onPressed: () {},
+                              ),
+                              SizedBox(width: 12),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Visibility(
+                    visible: showList,
+                    child: Positioned(
+                      bottom: 95,
+                      right: direction == TextDirection.ltr ? null : 20,
+                      left: direction == TextDirection.rtl ? null : 20,
+                      child: InkWell(
+                        borderRadius: BorderRadius.circular(80),
+                        onTap: () {
+                          setState(() {
+                            showList = false;
+                          });
+                        },
+                        child: CircleAvatar(
+                          radius: 22,
+                          backgroundColor: AppColors.greyDarker,
+                          child: GestureDetector(
+                            child: SvgPicture.asset(Assets.imagesMapTrifold),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Visibility(
+                    visible: !showList,
+                    child: Positioned(
+                      bottom: 95,
+                      right: 20,
+                      left: 20,
+                      child: Row(
+                        spacing: 8,
+                        children: [
+                          MaterialButton(
+                            height: 44,
+                            minWidth: 100,
+                            padding: EdgeInsets.zero,
+                            color: AppColors.black,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(80),
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                showList = true;
+                              });
+                            },
+                            child: Row(
+                              children: [
+                                SizedBox(width: 6),
+                                GestureDetector(
+                                  child: CircleAvatar(
+                                    radius: 16,
+                                    backgroundColor: AppColors.white,
+                                    child: SvgPicture.asset(
+                                      Assets.imagesTextIndent,
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(width: 12),
+                                Text(
+                                  "عرض القائمة",
+                                  style: AppTextStyles.style12W700(
+                                    context,
+                                  ).copyWith(color: AppColors.white),
+                                ),
+                                SizedBox(width: 16),
+                              ],
+                            ),
+                          ),
+                          Spacer(),
+                          CircleAvatar(
+                            radius: 22,
+                            backgroundColor: AppColors.grey.withAlpha(150),
+                            child: GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  showLocation = true;
+                                });
+                              },
+                              child: CircleAvatar(
+                                radius: 18,
+                                backgroundColor: AppColors.greyDarker,
+                                child: SvgPicture.asset(Assets.imagesCrosshair),
+                              ),
+                            ),
+                          ),
+                          CircleAvatar(
+                            radius: 22,
+                            backgroundColor: AppColors.grey.withAlpha(150),
+                            child: GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => FavouriteView(),
+                                  ),
+                                );
+                              },
+                              child: CircleAvatar(
+                                radius: 18,
+                                backgroundColor: AppColors.greyDarker,
+                                child: SvgPicture.asset(Assets.imagesHeart),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
                 ],
               ),
-            ),
-          ),
-        ],
-      ),
     );
   }
 }
