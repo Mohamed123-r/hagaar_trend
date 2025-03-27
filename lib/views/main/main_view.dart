@@ -5,6 +5,7 @@ import 'package:hagaar_trend/components/custom_app_bar.dart';
 import 'package:hagaar_trend/constant.dart';
 import 'package:hagaar_trend/views/home/home_view.dart';
 import '../../generated/assets.dart';
+import '../profile/profile_view.dart';
 import 'widgets/bottom_nav_btn.dart';
 import 'widgets/clipper.dart';
 import 'widgets/size_config.dart';
@@ -60,7 +61,7 @@ class MainViewState extends State<MainView> {
               physics: const NeverScrollableScrollPhysics(),
               children: [
                 HomeView(),
-                Container(color: Colors.green),
+                ProfileView(),
                 Container(color: Colors.black),
                 Container(color: Colors.white),
                 Container(color: Colors.green),
