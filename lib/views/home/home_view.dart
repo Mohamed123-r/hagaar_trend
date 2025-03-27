@@ -25,6 +25,7 @@ class _HomeViewState extends State<HomeView> {
   bool isRent = true;
   bool showList = false;
   bool showLocation = false;
+  bool showSearch = false;
   bool showDetailsLocation = false;
   final List<Map<String, String>> properties = [
     {
@@ -231,6 +232,7 @@ class _HomeViewState extends State<HomeView> {
                 ],
               )
               : Stack(
+                alignment: Alignment.topCenter,
                 children: [
                   Visibility(
                     visible: showList,
@@ -279,179 +281,233 @@ class _HomeViewState extends State<HomeView> {
                   Visibility(
                     visible: !showList,
                     child: Image.asset(
-                      Assets.imagesTest1,
+                      showSearch ? Assets.imagesTest5 : Assets.imagesTest1,
                       width: MediaQuery.of(context).size.width,
                       height: MediaQuery.of(context).size.height,
                       fit: BoxFit.cover,
                     ),
                   ),
-                  Positioned(
-                    right: 20,
-                    left: 20,
-                    top: 16,
-                    child: SafeArea(
-                      child: Container(
-                        height: 64,
-                        decoration: BoxDecoration(
-                          color: AppColors.white,
-                          borderRadius: BorderRadius.circular(16),
-                          border:
-                              showList
-                                  ? Border.all(color: AppColors.border)
-                                  : null,
-                        ),
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: MaterialButton(
-                                height: 60,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(
-                                      direction == TextDirection.ltr ? 16 : 0,
-                                    ),
-                                    bottomLeft: Radius.circular(
-                                      direction == TextDirection.ltr ? 16 : 0,
-                                    ),
-                                    topRight: Radius.circular(
-                                      direction == TextDirection.ltr ? 0 : 16,
-                                    ),
-                                    bottomRight: Radius.circular(
-                                      direction == TextDirection.ltr ? 0 : 16,
-                                    ),
-                                  ),
-                                ),
-                                onPressed: () {
-                                  setState(() {
-                                    isRent = false;
-                                  });
-                                },
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Image.asset(
-                                      Assets.imagesKey,
-                                      width: 24,
-                                      height: 24,
-                                    ),
-                                    SizedBox(width: 4),
-                                    Text(
-                                      "للبيع",
-                                      style: AppTextStyles.style13W400(
-                                        context,
-                                      ).copyWith(
-                                        color:
-                                            isRent
-                                                ? AppColors.grey
-                                                : AppColors.black,
+                  Visibility(
+                    visible: !showSearch,
+                    child: Positioned(
+                      right: 20,
+                      left: 20,
+                      top: 16,
+                      child: SafeArea(
+                        child: Container(
+                          height: 64,
+                          decoration: BoxDecoration(
+                            color: AppColors.white,
+                            borderRadius: BorderRadius.circular(16),
+                            border:
+                                showList
+                                    ? Border.all(color: AppColors.border)
+                                    : null,
+                          ),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: MaterialButton(
+                                  height: 60,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(
+                                        direction == TextDirection.ltr ? 16 : 0,
+                                      ),
+                                      bottomLeft: Radius.circular(
+                                        direction == TextDirection.ltr ? 16 : 0,
+                                      ),
+                                      topRight: Radius.circular(
+                                        direction == TextDirection.ltr ? 0 : 16,
+                                      ),
+                                      bottomRight: Radius.circular(
+                                        direction == TextDirection.ltr ? 0 : 16,
                                       ),
                                     ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            Container(
-                              width: 1,
-                              height: 40,
-                              color: AppColors.border,
-                            ),
-                            Expanded(
-                              child: MaterialButton(
-                                height: 60,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(
-                                      direction == TextDirection.rtl ? 16 : 0,
-                                    ),
-                                    bottomLeft: Radius.circular(
-                                      direction == TextDirection.rtl ? 16 : 0,
-                                    ),
-                                    topRight: Radius.circular(
-                                      direction == TextDirection.rtl ? 0 : 16,
-                                    ),
-                                    bottomRight: Radius.circular(
-                                      direction == TextDirection.rtl ? 0 : 16,
-                                    ),
+                                  ),
+                                  onPressed: () {
+                                    setState(() {
+                                      isRent = false;
+                                    });
+                                  },
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Image.asset(
+                                        Assets.imagesKey,
+                                        width: 24,
+                                        height: 24,
+                                      ),
+                                      SizedBox(width: 4),
+                                      Text(
+                                        "للبيع",
+                                        style: AppTextStyles.style13W400(
+                                          context,
+                                        ).copyWith(
+                                          color:
+                                              isRent
+                                                  ? AppColors.grey
+                                                  : AppColors.black,
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
-                                onPressed: () {
-                                  setState(() {
-                                    isRent = true;
-                                  });
-                                },
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Image.asset(
-                                      Assets.imagesDoor,
-                                      width: 24,
-                                      height: 24,
-                                    ),
-                                    Text(
-                                      "للإيجار",
-                                      style: AppTextStyles.style13W400(
-                                        context,
-                                      ).copyWith(
-                                        color:
-                                            isRent
-                                                ? AppColors.black
-                                                : AppColors.grey,
+                              ),
+                              Container(
+                                width: 1,
+                                height: 40,
+                                color: AppColors.border,
+                              ),
+                              Expanded(
+                                child: MaterialButton(
+                                  height: 60,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(
+                                        direction == TextDirection.rtl ? 16 : 0,
+                                      ),
+                                      bottomLeft: Radius.circular(
+                                        direction == TextDirection.rtl ? 16 : 0,
+                                      ),
+                                      topRight: Radius.circular(
+                                        direction == TextDirection.rtl ? 0 : 16,
+                                      ),
+                                      bottomRight: Radius.circular(
+                                        direction == TextDirection.rtl ? 0 : 16,
                                       ),
                                     ),
-                                  ],
+                                  ),
+                                  onPressed: () {
+                                    setState(() {
+                                      isRent = true;
+                                    });
+                                  },
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Image.asset(
+                                        Assets.imagesDoor,
+                                        width: 24,
+                                        height: 24,
+                                      ),
+                                      Text(
+                                        "للإيجار",
+                                        style: AppTextStyles.style13W400(
+                                          context,
+                                        ).copyWith(
+                                          color:
+                                              isRent
+                                                  ? AppColors.black
+                                                  : AppColors.grey,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ),
                   ),
-                  Positioned(
-                    top: 90,
-                    child: SafeArea(
-                      child: SizedBox(
-                        height: 45,
-                        width: MediaQuery.of(context).size.width,
-                        child: SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: Row(
-                            spacing: 8,
-                            children: [
-                              SizedBox(width: 12),
-                              GestureDetector(
-                                onTap: () {
-                                  showDialog(
-                                    context: context,
-                                    builder: (context) {
-                                      return SearchAlertDialog();
-                                    },
-                                  );
+                  Visibility(
+                    visible: !showSearch,
+                    child: Positioned(
+                      top: 90,
+                      child: SafeArea(
+                        child: SizedBox(
+                          height: 45,
+                          width: MediaQuery.of(context).size.width,
+                          child: SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                              spacing: 8,
+                              children: [
+                                SizedBox(width: 12),
+                                GestureDetector(
+                                  onTap: () {
+                                    showDialog(
+                                      context: context,
+                                      builder: (context) {
+                                        return SearchAlertDialog(
+                                          onPressedSearch: () {
+                                            setState(() {
+                                              showSearch = !showSearch;
+                                              Navigator.pop(context);
+                                            });
+                                          },
+                                        );
+                                      },
+                                    );
+                                  },
+                                  child: CircleAvatar(
+                                    radius: 20,
+                                    backgroundColor: AppColors.green,
+                                    child: SvgPicture.asset(
+                                      Assets.imagesSearch,
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(),
+                                ButtonFromSearchInHome(
+                                  isSelect: true,
+                                  title: "الكل",
+                                  onPressed: () {},
+                                ),
+                                ButtonFromSearchInHome(
+                                  isSelect: false,
+                                  title: "فلل وقصور",
+                                  onPressed: () {},
+                                ),
+                                ButtonFromSearchInHome(
+                                  isSelect: false,
+                                  title: "دور سكني",
+                                  onPressed: () {},
+                                ),
+                                SizedBox(width: 12),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Visibility(
+                    visible: showSearch,
+                    child: Positioned(
+                      top: 56,
 
+                      child: Container(
+                        height: 48,
+                        width: 230,
+                        decoration: BoxDecoration(
+                          color: AppColors.white,
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        child: Center(
+                          child: Row(
+                            children: [
+                              IconButton(
+                                onPressed: () {
+                                  setState(() {
+                                    showSearch = false;
+                                  });
                                 },
-                                child: CircleAvatar(
-                                  radius: 20,
-                                  backgroundColor: AppColors.green,
-                                  child: SvgPicture.asset(Assets.imagesSearch),
+                                icon: Icon(
+                                  Icons.close,
+                                  color: Colors.red,
+                                  size: 18,
                                 ),
                               ),
-                              SizedBox(),
-                              ButtonFromSearchInHome(
-                                isSelect: true,
-                                title: "الكل",
-                                onPressed: () {},
+                              Spacer(),
+                              Text(
+                                "نتيجة البحث",
+                                style: AppTextStyles.style16W400(context),
                               ),
-                              ButtonFromSearchInHome(
-                                isSelect: false,
-                                title: "فلل وقصور",
-                                onPressed: () {},
-                              ),
-                              ButtonFromSearchInHome(
-                                isSelect: false,
-                                title: "دور سكني",
-                                onPressed: () {},
-                              ),
-                              SizedBox(width: 12),
+                              Spacer(),
+                              Spacer(),
                             ],
                           ),
                         ),
@@ -571,6 +627,3 @@ class _HomeViewState extends State<HomeView> {
     );
   }
 }
-
-
-
