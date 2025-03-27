@@ -23,6 +23,8 @@ class Assets {
   static const String imagesNavigationArrow = 'assets/images/NavigationArrow.svg';
   static const String imagesPlus = 'assets/images/Plus.svg';
   static const String imagesSearch = 'assets/images/search.svg';
+  static const String imagesShap1 = 'assets/images/shap1.png';
+  static const String imagesShap2 = 'assets/images/shap2.png';
   static const String imagesShapes = 'assets/images/shapes.png';
   static const String imagesSplash = 'assets/images/splash.png';
   static const String imagesSplashAndroid12Logo = 'assets/images/splash_android12_logo.png';
