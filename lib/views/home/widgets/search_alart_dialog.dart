@@ -3,9 +3,12 @@ import 'package:hagaar_trend/components/app_text_styles.dart';
 import 'package:hagaar_trend/constant.dart';
 
 import '../../../components/app_colors.dart';
+import 'button_from_search_in_home.dart';
 
 class SearchAlertDialog extends StatefulWidget {
-  const SearchAlertDialog({super.key});
+  const SearchAlertDialog({super.key, required this.onPressedSearch});
+
+  final Function() onPressedSearch;
 
   @override
   State<StatefulWidget> createState() {
@@ -14,6 +17,8 @@ class SearchAlertDialog extends StatefulWidget {
 }
 
 class _SearchAlertDialogState extends State<SearchAlertDialog> {
+  bool isSelect = true;
+
   String? selectedCity = 'الرياض';
   String? selectedCategory = 'للبيع';
   String? selectedType = 'شقة';
@@ -46,38 +51,89 @@ class _SearchAlertDialogState extends State<SearchAlertDialog> {
               mainAxisSize: MainAxisSize.min,
               spacing: 12,
               children: [
-                buildDropdown("المدينة", selectedCity, ["الرياض", "جدة", "مكة"]),
-                buildDropdown("قسم العقار", selectedCategory, [
-                  "للبيع",
-                  "للايجار",
-                ]),
-                buildDropdown("نوع العقار", selectedType, ["شقة", "فيلا", "أرض"]),
-                buildDropdown("عمر العقار", selectedAge, [
-                  "أقل من 2 سنة",
-                  "أقل من 5 سنوات",
-                  "أكثر من 10 سنوات",
-                ]),
-
                 Row(
+                  spacing: 8,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Expanded(
-                      child: buildTextField(hint: "السعر الأدنى", label: 'السعر'),
+                    ButtonFromSearchInHome(
+                      isSelect: isSelect,
+                      title: "نوع العقار",
+                      onPressed: () {
+                        setState(() {
+                          isSelect = true;
+                        });
+                      },
                     ),
-                    SizedBox(width: 10),
-                    Expanded(child: buildTextField(hint: "السعر الأعلى")),
+                    ButtonFromSearchInHome(
+                      isSelect: isSelect == false,
+                      title: "معلن",
+                      onPressed: () {
+                        setState(() {
+                          isSelect = false;
+                        });
+                      },
+                    ),
                   ],
                 ),
+                Visibility(
+                  visible: isSelect == true,
+                  child: Column(
+                    children: [
+                      buildDropdown("المدينة", selectedCity, [
+                        "الرياض",
+                        "جدة",
+                        "مكة",
+                      ]),
+                      buildDropdown("قسم العقار", selectedCategory, [
+                        "للبيع",
+                        "للايجار",
+                      ]),
+                      buildDropdown("نوع العقار", selectedType, [
+                        "شقة",
+                        "فيلا",
+                        "أرض",
+                      ]),
+                      buildDropdown("عمر العقار", selectedAge, [
+                        "أقل من 2 سنة",
+                        "أقل من 5 سنوات",
+                        "أكثر من 10 سنوات",
+                      ]),
 
-                Row(
-                  children: [
-                    Expanded(
-                      child: buildTextField(hint: "أقل مساحة", label: 'المساحة'),
-                    ),
-                    SizedBox(width: 10),
-                    Expanded(child: buildTextField(hint: "أعلى مساحة")),
-                  ],
+                      Row(
+                        children: [
+                          Expanded(
+                            child: buildTextField(
+                              hint: "السعر الأدنى",
+                              label: 'السعر',
+                            ),
+                          ),
+                          SizedBox(width: 10),
+                          Expanded(child: buildTextField(hint: "السعر الأعلى")),
+                        ],
+                      ),
+
+                      Row(
+                        children: [
+                          Expanded(
+                            child: buildTextField(
+                              hint: "أقل مساحة",
+                              label: 'المساحة',
+                            ),
+                          ),
+                          SizedBox(width: 10),
+                          Expanded(child: buildTextField(hint: "أعلى مساحة")),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
-
+                Visibility(
+                  visible: isSelect == false,
+                  child: buildTextField(
+                    hint: "رقم الهاتف",
+                    label: 'رقم هاتف المعلن',
+                  ),
+                ),
                 SizedBox(width: 500),
                 MaterialButton(
                   height: 44,
@@ -87,7 +143,7 @@ class _SearchAlertDialogState extends State<SearchAlertDialog> {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(80),
                   ),
-                  onPressed: () {},
+                  onPressed: widget.onPressedSearch,
                   child: Text(
                     "بحث",
                     style: AppTextStyles.style12W700(
@@ -95,6 +151,7 @@ class _SearchAlertDialogState extends State<SearchAlertDialog> {
                     ).copyWith(color: AppColors.white),
                   ),
                 ),
+                SizedBox(height: 12),
               ],
             ),
           ),
@@ -115,7 +172,6 @@ class _SearchAlertDialogState extends State<SearchAlertDialog> {
           dropdownColor: AppColors.white,
           icon: Icon(Icons.keyboard_arrow_down_rounded),
           decoration: InputDecoration(
-
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(18),
               borderSide: BorderSide(color: AppColors.border, width: 1),
@@ -175,9 +231,9 @@ class _SearchAlertDialogState extends State<SearchAlertDialog> {
               borderSide: BorderSide(color: AppColors.border, width: 1),
             ),
             hintText: hint,
-            hintStyle: AppTextStyles.style14W400(context).copyWith(
-              color: AppColors.grey
-            ),
+            hintStyle: AppTextStyles.style14W400(
+              context,
+            ).copyWith(color: AppColors.grey),
           ),
           keyboardType: TextInputType.number,
         ),
