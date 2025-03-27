@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:hagaar_trend/components/app_alert_dialog.dart';
 import 'package:hagaar_trend/constant.dart';
 import 'package:hagaar_trend/generated/assets.dart';
 import 'package:hagaar_trend/views/home/item_details_view.dart';
 import 'package:hagaar_trend/views/home/widgets/list_view_item_from_show_list.dart'
     show ListViewItemFromShowList;
+import 'package:hagaar_trend/views/home/widgets/search_alart_dialog.dart';
 
 import '../../components/app_colors.dart';
 import '../../components/app_text_styles.dart';
@@ -418,6 +420,15 @@ class _HomeViewState extends State<HomeView> {
                             children: [
                               SizedBox(width: 12),
                               GestureDetector(
+                                onTap: () {
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) {
+                                      return SearchAlertDialog();
+                                    },
+                                  );
+
+                                },
                                 child: CircleAvatar(
                                   radius: 20,
                                   backgroundColor: AppColors.green,
@@ -560,3 +571,6 @@ class _HomeViewState extends State<HomeView> {
     );
   }
 }
+
+
+
