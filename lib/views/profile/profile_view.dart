@@ -36,7 +36,7 @@ class ProfileView extends StatelessWidget {
                           borderRadius: BorderRadius.circular(500),
                           child: Image.network(
                             "https://images.pexels.com/photos/323705/pexels-photo-323705.jpeg",
-                         width: 170,
+                            width: 170,
                             height: 170,
                             fit: BoxFit.cover,
                           ),
@@ -45,12 +45,12 @@ class ProfileView extends StatelessWidget {
                       const SizedBox(height: 16),
                       Text(
                         "محمد علي عبد القادر",
-                        style: AppTextStyles.style16W800(context)
+                        style: AppTextStyles.style16W800(context),
                       ),
                       const SizedBox(height: 8),
-                       Text(
+                      Text(
                         "+20 0109282735242",
-                        style:AppTextStyles.style12W400(context)
+                        style: AppTextStyles.style12W400(context),
                       ),
                     ],
                   ),
@@ -58,6 +58,42 @@ class ProfileView extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 20),
+            Row(
+              spacing: 24,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                MaterialButton(
+                  height: 40,
+                  minWidth: 132,
+                  padding: EdgeInsets.zero,
+                  color: AppColors.black,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  onPressed: () {},
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        "عرض القائمة",
+                        style: AppTextStyles.style12W700(
+                          context,
+                        ).copyWith(color: AppColors.white),
+                      ),
+                      SizedBox(width: 12),
+                      SvgPicture.asset(Assets.imagesHeart2),
+                    ],
+                  ),
+                ),
+                Container(
+                  width: 1,
+                  height: 35,
+                  color: AppColors.border,
+                ),
+                SwitchProfileButton(),
+              ],
+            ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Column(
@@ -134,6 +170,41 @@ class ProfileView extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class SwitchProfileButton extends StatelessWidget {
+  const SwitchProfileButton({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialButton(
+      height: 40,
+      minWidth: 132,
+      padding: EdgeInsets.zero,
+      color: AppColors.black,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12),
+      ),
+      onPressed: () {},
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            "عرض القائمة",
+            style: AppTextStyles.style12W700(
+              context,
+            ).copyWith(color: AppColors.white),
+          ),
+          SizedBox(width: 12),
+          SvgPicture.asset(Assets.imagesUser,
+          width: 12,),
+        ],
       ),
     );
   }
