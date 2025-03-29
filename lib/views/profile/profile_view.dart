@@ -9,6 +9,7 @@ import 'package:hagaar_trend/views/profile/widgets/switch_profile_button.dart';
 import '../../components/app_colors.dart';
 import '../../generated/assets.dart';
 import '../home/item_details_view.dart';
+import 'change_password_view.dart';
 
 class ProfileView extends StatefulWidget {
   const ProfileView({super.key});
@@ -178,7 +179,15 @@ class _ProfileViewState extends State<ProfileView> {
                 children: [
                   SizedBox(height: 16),
                   EditDataButton(title: 'تحديث معلوماتي', onPressed: () {}),
-                  EditDataButton(title: 'تغير كلمة المرور', onPressed: () {}),
+                  EditDataButton(
+                    title: 'تغير كلمة المرور',
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (_) => ChangePasswordView()),
+                      );
+                    },
+                  ),
                   EditDataButton(
                     title: 'تسجيل الخروج',
                     isDisabled: true,
@@ -194,10 +203,7 @@ class _ProfileViewState extends State<ProfileView> {
                                   builder:
                                       (_) => CustomSuccessAlertDialog(
                                         title: "تم تسجيل الخروج بنجاح",
-                                        onPressedOk: () {
-
-
-                                        },
+                                        onPressedOk: () {},
                                       ),
                                 );
                               },
