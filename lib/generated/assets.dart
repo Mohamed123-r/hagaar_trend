@@ -35,6 +35,7 @@ class Assets {
   static const String imagesTest4 = 'assets/images/test4.png';
   static const String imagesTest5 = 'assets/images/test5.png';
   static const String imagesTextIndent = 'assets/images/TextIndent.svg';
+  static const String imagesTrash = 'assets/images/Trash.svg';
   static const String imagesUser = 'assets/images/User.svg';
   static const String imagesVectorTwo = 'assets/images/VectorTwo.svg';
   static const String imagesWhatsappLogo = 'assets/images/WhatsappLogo.svg';
