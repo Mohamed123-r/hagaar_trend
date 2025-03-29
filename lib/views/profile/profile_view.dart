@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hagaar_trend/components/app_alert_dialog.dart';
 import 'package:hagaar_trend/components/app_text_styles.dart';
+import 'package:hagaar_trend/components/custom_success_alert_dialog.dart';
 import 'package:hagaar_trend/views/profile/widgets/edit_data_button.dart';
 import 'package:hagaar_trend/views/profile/widgets/profile_item.dart';
 import 'package:hagaar_trend/views/profile/widgets/switch_profile_button.dart';
@@ -180,7 +182,28 @@ class _ProfileViewState extends State<ProfileView> {
                   EditDataButton(
                     title: 'تسجيل الخروج',
                     isDisabled: true,
-                    onPressed: () {},
+                    onPressed: () {
+                      showDialog(
+                        context: context,
+                        builder:
+                            (_) => AppAlertDialog2(
+                              title: "هل تريد تسجيل الخروج من حسابك ؟!",
+                              onPressedOk: () {
+                                showDialog(
+                                  context: context,
+                                  builder:
+                                      (_) => CustomSuccessAlertDialog(
+                                        title: "تم تسجيل الخروج بنجاح",
+                                        onPressedOk: () {
+
+
+                                        },
+                                      ),
+                                );
+                              },
+                            ),
+                      );
+                    },
                   ),
                 ],
               ),

@@ -79,7 +79,7 @@ class AppAlertDialog2 extends StatelessWidget {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         titlePadding: EdgeInsets.zero,
         title: Align(
-          alignment: Alignment.topLeft,
+          alignment: direction == TextDirection.rtl ? Alignment.topRight : Alignment.topLeft,
           child: IconButton(
             onPressed: () => Navigator.pop(context),
             icon: const Icon(
@@ -87,38 +87,35 @@ class AppAlertDialog2 extends StatelessWidget {
             ),
           ),
         ),
-        content: Padding(
-          padding: const EdgeInsets.all(44.0),
-          child: SizedBox(
-            height: 120,
-            width: 250,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  title,
-                  textAlign: TextAlign.center,
-                  style: AppTextStyles.style20W400(context),
+        content: SizedBox(
+          height: 120,
+          width: 300,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                title,
+                textAlign: TextAlign.center,
+                style: AppTextStyles.style14W400(context),
+              ),
+              MaterialButton(
+                height: 44,
+                minWidth: 100,
+                padding: EdgeInsets.zero,
+                color: AppColors.black,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(80),
                 ),
-                MaterialButton(
-                  height: 44,
-                  minWidth: 100,
-                  padding: EdgeInsets.zero,
-                  color: AppColors.black,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(80),
-                  ),
-                  onPressed: onPressedOk,
-                  child: Text(
-                    "موافق",
-                    style: AppTextStyles.style12W700(
-                      context,
-                    ).copyWith(color: AppColors.white),
-                  ),
+                onPressed: onPressedOk,
+                child: Text(
+                  "موافق",
+                  style: AppTextStyles.style12W700(
+                    context,
+                  ).copyWith(color: AppColors.white),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
