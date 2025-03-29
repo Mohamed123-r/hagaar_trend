@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:hagaar_trend/components/app_text_styles.dart';
+import 'package:hagaar_trend/views/profile/widgets/edit_data_button.dart';
 import 'package:hagaar_trend/views/profile/widgets/profile_item.dart';
 import 'package:hagaar_trend/views/profile/widgets/switch_profile_button.dart';
 
@@ -8,12 +8,18 @@ import '../../components/app_colors.dart';
 import '../../generated/assets.dart';
 import '../home/item_details_view.dart';
 
-class ProfileView extends StatelessWidget {
-   ProfileView({super.key});
+class ProfileView extends StatefulWidget {
+  const ProfileView({super.key});
+
+  @override
+  State<ProfileView> createState() => _ProfileViewState();
+}
+
+class _ProfileViewState extends State<ProfileView> {
   final List<Map<String, String>> properties = [
     {
       "imageUrl":
-      "https://images.pexels.com/photos/7031400/pexels-photo-7031400.jpeg",
+          "https://images.pexels.com/photos/7031400/pexels-photo-7031400.jpeg",
       "name": "فيلا فاخرة بإطلالة بحرية",
       "location": "جدة، السعودية",
       "price": "1,500,000 ريال",
@@ -23,7 +29,7 @@ class ProfileView extends StatelessWidget {
     },
     {
       "imageUrl":
-      "https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg",
+          "https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg",
       "name": "شقة راقية في برج سكني",
       "location": "الرياض، السعودية",
       "price": "750,000 ريال",
@@ -33,7 +39,7 @@ class ProfileView extends StatelessWidget {
     },
     {
       "imageUrl":
-      "https://images.pexels.com/photos/2089698/pexels-photo-2089698.jpeg",
+          "https://images.pexels.com/photos/2089698/pexels-photo-2089698.jpeg",
       "name": "دور مستقل مع حديقة",
       "location": "الدمام، السعودية",
       "price": "1,200,000 ريال",
@@ -43,7 +49,7 @@ class ProfileView extends StatelessWidget {
     },
     {
       "imageUrl":
-      "https://images.pexels.com/photos/210617/pexels-photo-210617.jpeg",
+          "https://images.pexels.com/photos/210617/pexels-photo-210617.jpeg",
       "name": "فيلا حديثة بتصميم عصري",
       "location": "المدينة المنورة، السعودية",
       "price": "1,800,000 ريال",
@@ -53,7 +59,7 @@ class ProfileView extends StatelessWidget {
     },
     {
       "imageUrl":
-      "https://images.pexels.com/photos/323705/pexels-photo-323705.jpeg",
+          "https://images.pexels.com/photos/323705/pexels-photo-323705.jpeg",
       "name": "شقة فندقية بإطلالة بانورامية",
       "location": "مكة المكرمة، السعودية",
       "price": "950,000 ريال",
@@ -63,7 +69,7 @@ class ProfileView extends StatelessWidget {
     },
     {
       "imageUrl":
-      "https://images.pexels.com/photos/1643389/pexels-photo-1643389.jpeg",
+          "https://images.pexels.com/photos/1643389/pexels-photo-1643389.jpeg",
       "name": "شقة مفروشة بالكامل",
       "location": "الخبر، السعودية",
       "price": "500,000 ريال",
@@ -73,7 +79,7 @@ class ProfileView extends StatelessWidget {
     },
     {
       "imageUrl":
-      "https://images.pexels.com/photos/259588/pexels-photo-259588.jpeg",
+          "https://images.pexels.com/photos/259588/pexels-photo-259588.jpeg",
       "name": "فيلا بتصميم أوروبي",
       "location": "الطائف، السعودية",
       "price": "2,000,000 ريال",
@@ -82,6 +88,9 @@ class ProfileView extends StatelessWidget {
       "status": "متاح للبيع",
     },
   ];
+
+  bool showMyItems = true;
+
   @override
   Widget build(BuildContext context) {
     return Directionality(
@@ -138,25 +147,55 @@ class ProfileView extends StatelessWidget {
               SwitchProfileButton(
                 title: "عرض القائمة",
                 image: Assets.imagesHeart2,
-                onPressed: () {},
+                isBlack: showMyItems,
+                onPressed: () {
+                  setState(() {
+                    showMyItems = true;
+                  });
+                },
               ),
               Container(width: 1, height: 35, color: AppColors.border),
               SwitchProfileButton(
                 title: 'تعديل بياناتي',
                 image: Assets.imagesUser,
-                isBlack: false,
-                onPressed: () {},
+                isBlack: !showMyItems,
+                onPressed: () {
+                  setState(() {
+                    showMyItems = false;
+                  });
+                },
               ),
             ],
           ),
+          Visibility(
+            visible: !showMyItems,
+            child: Padding(
+              padding: const EdgeInsets.all(32.0),
+              child: Column(
+                spacing: 16,
+                children: [
+                  SizedBox(height: 16),
+                  EditDataButton(title: 'تحديث معلوماتي', onPressed: () {}),
+                  EditDataButton(title: 'تغير كلمة المرور', onPressed: () {}),
+                  EditDataButton(
+                    title: 'تسجيل الخروج',
+                    isDisabled: true,
+                    onPressed: () {},
+                  ),
+                ],
+              ),
+            ),
+          ),
           Expanded(
-            child: ListView.separated(
+            child: Visibility(
+              visible: showMyItems,
+              child: ListView.separated(
                 itemBuilder: (context, index) {
                   return Padding(
                     padding:
-                 index == properties.length - 1
-                        ? const EdgeInsets.only(bottom: 100)
-                        : EdgeInsets.zero,
+                        index == properties.length - 1
+                            ? const EdgeInsets.only(bottom: 100)
+                            : EdgeInsets.zero,
                     child: GestureDetector(
                       onTap: () {
                         Navigator.push(
@@ -164,12 +203,11 @@ class ProfileView extends StatelessWidget {
                           MaterialPageRoute(
                             builder:
                                 (context) => ItemDetailsView(
-                              image: properties[index]['imageUrl']!,
-                              name: properties[index]['name']!,
-                              location:
-                              properties[index]['location']!,
-                              price: properties[index]['price']!,
-                            ),
+                                  image: properties[index]['imageUrl']!,
+                                  name: properties[index]['name']!,
+                                  location: properties[index]['location']!,
+                                  price: properties[index]['price']!,
+                                ),
                           ),
                         );
                       },
@@ -185,12 +223,11 @@ class ProfileView extends StatelessWidget {
                     ),
                   );
                 },
-                separatorBuilder:
-                    (context, index) => SizedBox(height: 24),
+                separatorBuilder: (context, index) => SizedBox(height: 24),
                 itemCount: properties.length,
               ),
+            ),
           ),
-          
         ],
       ),
     );
