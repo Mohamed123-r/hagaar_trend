@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hagaar_trend/components/app_alert_dialog.dart';
 import 'package:hagaar_trend/components/app_text_styles.dart';
 import 'package:hagaar_trend/components/custom_success_alert_dialog.dart';
+import 'package:hagaar_trend/views/profile/edit_profile_view.dart';
 import 'package:hagaar_trend/views/profile/widgets/edit_data_button.dart';
 import 'package:hagaar_trend/views/profile/widgets/profile_item.dart';
 import 'package:hagaar_trend/views/profile/widgets/switch_profile_button.dart';
@@ -178,7 +179,15 @@ class _ProfileViewState extends State<ProfileView> {
                 spacing: 16,
                 children: [
                   SizedBox(height: 16),
-                  EditDataButton(title: 'تحديث معلوماتي', onPressed: () {}),
+                  EditDataButton(
+                    title: 'تحديث معلوماتي',
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (_) => EditProfileView()),
+                      );
+                    },
+                  ),
                   EditDataButton(
                     title: 'تغير كلمة المرور',
                     onPressed: () {

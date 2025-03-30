@@ -12,7 +12,7 @@ class ChangePasswordView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Directionality(
-        textDirection: TextDirection.rtl,
+        textDirection: direction,
         child: Column(
           children: [
             Stack(

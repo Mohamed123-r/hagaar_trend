@@ -7,6 +7,7 @@ class Assets {
   static const String fontsAlmaraiLight = 'assets/fonts/Almarai-Light.ttf';
   static const String fontsAlmaraiRegular = 'assets/fonts/Almarai-Regular.ttf';
   static const String imagesBell = 'assets/images/Bell.svg';
+  static const String imagesCamera = 'assets/images/Camera.svg';
   static const String imagesChartPie = 'assets/images/ChartPie.svg';
   static const String imagesCheckCircle = 'assets/images/CheckCircle.svg';
   static const String imagesCrosshair = 'assets/images/Crosshair.svg';
