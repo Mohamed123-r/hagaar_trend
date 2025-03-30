@@ -4,15 +4,12 @@ import '../constant.dart';
 import 'app_colors.dart';
 import 'app_text_styles.dart';
 
-
 class AppAlertDialog extends StatelessWidget {
   const AppAlertDialog({
     super.key,
-    required this.body, required this.onPressedOk,
-
+    required this.body,
+    required this.onPressedOk,
   });
-
-
 
   final Widget body;
   final Function() onPressedOk;
@@ -23,20 +20,26 @@ class AppAlertDialog extends StatelessWidget {
       textDirection: direction,
       child: AlertDialog(
         backgroundColor: AppColors.white,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16),
-        ),
-        title: IconButton(
-          onPressed: () => Navigator.pop(context),
-          icon: const Icon(
-            Icons.close,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        title: Align(
+          alignment:
+              direction == TextDirection.rtl
+                  ? Alignment.topRight
+                  : Alignment.topLeft,
+
+          child: IconButton(
+            onPressed: () => Navigator.pop(context),
+            icon: const Icon(Icons.close),
           ),
         ),
         titlePadding: EdgeInsets.zero,
-        contentPadding: EdgeInsets.zero,
         content: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             body,
+            SizedBox(
+              height: 16,
+            ),
             MaterialButton(
               height: 44,
               minWidth: 100,
@@ -79,12 +82,13 @@ class AppAlertDialog2 extends StatelessWidget {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         titlePadding: EdgeInsets.zero,
         title: Align(
-          alignment: direction == TextDirection.rtl ? Alignment.topRight : Alignment.topLeft,
+          alignment:
+              direction == TextDirection.rtl
+                  ? Alignment.topRight
+                  : Alignment.topLeft,
           child: IconButton(
             onPressed: () => Navigator.pop(context),
-            icon: const Icon(
-              Icons.close,
-            ),
+            icon: const Icon(Icons.close),
           ),
         ),
         content: SizedBox(

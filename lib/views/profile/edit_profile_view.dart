@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:hagaar_trend/components/app_alert_dialog.dart';
 import 'package:hagaar_trend/components/app_text_styles.dart';
 
 import '../../components/app_colors.dart';
@@ -84,55 +85,54 @@ class _EditProfileViewState extends State<EditProfileView> {
                 child: Column(
                   spacing: 16,
                   children: [
-
-                Stack(
-                children: [
-                Container(
-                  width: 164,
-                  height: 164,
-                  decoration: BoxDecoration(
-                      color: Color(0xffEEEEEE),
-                      borderRadius: BorderRadius.circular(240),),
-                  child: Center(
-                    child:  SvgPicture.asset(
-                      Assets.imagesUser,
-                      color: AppColors.black,
-                      width: 24,
+                    Stack(
+                      children: [
+                        Container(
+                          width: 164,
+                          height: 164,
+                          decoration: BoxDecoration(
+                            color: Color(0xffEEEEEE),
+                            borderRadius: BorderRadius.circular(240),
+                          ),
+                          child: Center(
+                            child: SvgPicture.asset(
+                              Assets.imagesUser,
+                              color: AppColors.black,
+                              width: 24,
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          bottom: 4,
+                          right: direction == TextDirection.rtl ? 12 : null,
+                          left: direction == TextDirection.ltr ? 12 : null,
+                          child: Container(
+                            width: 32,
+                            height: 32,
+                            decoration: BoxDecoration(
+                              color: AppColors.white,
+                              borderRadius: BorderRadius.circular(240),
+                              border: Border.all(
+                                width: 1,
+                                color: AppColors.border,
+                              ),
+                            ),
+                            child: Center(
+                              child: SvgPicture.asset(
+                                Assets.imagesCamera,
+                                width: 16,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                  ),
-                ),
-                Positioned(
-                  bottom: 4,
-                  right:
-                  direction == TextDirection.rtl ? 12 : null,
-                  left:
-                  direction == TextDirection.ltr ? 12 : null,
-                  child: Container(
-                    width: 32,
-                    height: 32,
-                    decoration: BoxDecoration(
-                        color: AppColors.white,
-                        borderRadius: BorderRadius.circular(240),
-                        border: Border.all(
-                          width: 1,
-                          color: AppColors.border,
-                        )),
-                    child: Center(
-                      child: SvgPicture.asset(
-                        Assets.imagesCamera,
-                        width: 16,
-                      ),
-                    ),
-                  ),
-                ),
-                ],
-              ),
                     AppInputTextFormField(
                       labelText: "الاسم",
                       controller: nameController,
                       keyboardType: TextInputType.name,
                     ),
-              
+
                     AppInputTextFormField(
                       labelText: "رقم الهاتف",
                       controller: phoneController,
@@ -145,10 +145,13 @@ class _EditProfileViewState extends State<EditProfileView> {
                       suffixIcon: SizedBox(
                         width: 100,
                         child: Center(
-                          child: Text("تغير الموقع",style: AppTextStyles.style12W400(context).copyWith(
-                            color: AppColors.green,
-                            decoration:  TextDecoration.underline,
-                          ),),
+                          child: Text(
+                            "تغير الموقع",
+                            style: AppTextStyles.style12W400(context).copyWith(
+                              color: AppColors.green,
+                              decoration: TextDecoration.underline,
+                            ),
+                          ),
                         ),
                       ),
                     ),
@@ -158,17 +161,56 @@ class _EditProfileViewState extends State<EditProfileView> {
                       keyboardType: TextInputType.phone,
                       suffixIcon: SizedBox(
                         width: 100,
-                          child: Center(
-                          child: Text("تغير العضوية",style: AppTextStyles.style12W400(context).copyWith(
-                            color: AppColors.green,
-                            decoration:  TextDecoration.underline,
-                          ),),
+                        child: Center(
+                          child: GestureDetector(
+                            onTap: () {
+                              showDialog(
+                                context: context,
+                                builder:
+                                    (context) => AppAlertDialog(
+                                      body: Wrap(
+                                        spacing: 16,
+                                        runSpacing: 16,
+                                        alignment: WrapAlignment.center,
+                                        children: [
+                                          _membershipItem(
+                                            Assets.imagesMembership1,
+                                            "باحث عن عقار",
+                                          ),
+                                          _membershipItem(
+                                            Assets.imagesMembership2,
+                                            "مالك",
+                                          ),
+                                          _membershipItem(
+                                            Assets.imagesMembership3,
+                                            "مسوق",
+                                          ),
+                                          _membershipItem(
+                                            Assets.imagesMembership4,
+                                            "شركة عقارية",
+                                          ),
+                                        ],
+                                      ),
+                                      onPressedOk: () {},
+                                    ),
+                              );
+                            },
+                            child: Text(
+                              "تغير العضوية",
+                              style: AppTextStyles.style12W400(
+                                context,
+                              ).copyWith(
+                                color: AppColors.green,
+                                decoration: TextDecoration.underline,
+                              ),
+                            ),
+                          ),
                         ),
                       ),
                     ),
-              
+
                     const SizedBox(height: 50),
-              
+
                     const SizedBox(height: 20),
                   ],
                 ),
@@ -176,6 +218,25 @@ class _EditProfileViewState extends State<EditProfileView> {
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Container _membershipItem(String img, String title) {
+    return Container(
+      width: 120,
+      height: 100,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(18),
+        border: Border.all(color: AppColors.border),
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image.asset(img, width: 32),
+          SizedBox(height: 16),
+          Text(title, style: AppTextStyles.style12W400(context)),
+        ],
       ),
     );
   }

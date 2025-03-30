@@ -22,6 +22,10 @@ class Assets {
   static const String imagesLogo = 'assets/images/Logo.png';
   static const String imagesMap = 'assets/images/map.png';
   static const String imagesMapTrifold = 'assets/images/MapTrifold.svg';
+  static const String imagesMembership1 = 'assets/images/membership1.png';
+  static const String imagesMembership2 = 'assets/images/membership2.png';
+  static const String imagesMembership3 = 'assets/images/membership3.png';
+  static const String imagesMembership4 = 'assets/images/membership4.png';
   static const String imagesNavigationArrow = 'assets/images/NavigationArrow.svg';
   static const String imagesPlus = 'assets/images/Plus.svg';
   static const String imagesSearch = 'assets/images/search.svg';
