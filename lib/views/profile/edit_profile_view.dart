@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hagaar_trend/components/app_alert_dialog.dart';
 import 'package:hagaar_trend/components/app_text_styles.dart';
+import 'package:hagaar_trend/views/profile/change_location.dart';
 
 import '../../components/app_colors.dart';
 import '../../components/app_form_filed.dart';
@@ -145,11 +146,19 @@ class _EditProfileViewState extends State<EditProfileView> {
                       suffixIcon: SizedBox(
                         width: 100,
                         child: Center(
-                          child: Text(
-                            "تغير الموقع",
-                            style: AppTextStyles.style12W400(context).copyWith(
-                              color: AppColors.green,
-                              decoration: TextDecoration.underline,
+                          child: GestureDetector(
+                            onTap: (){
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (_) => ChangeLocation()),
+                              );
+                            },
+                            child: Text(
+                              "تغير الموقع",
+                              style: AppTextStyles.style12W400(context).copyWith(
+                                color: AppColors.green,
+                                decoration: TextDecoration.underline,
+                              ),
                             ),
                           ),
                         ),
