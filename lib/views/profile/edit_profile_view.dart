@@ -129,18 +129,18 @@ class _EditProfileViewState extends State<EditProfileView> {
                       ],
                     ),
                     AppInputTextFormField(
-                      labelText: "الاسم",
+                      title: "الاسم",
                       controller: nameController,
                       keyboardType: TextInputType.name,
                     ),
 
                     AppInputTextFormField(
-                      labelText: "رقم الهاتف",
+                      title: "رقم الهاتف",
                       controller: phoneController,
                       keyboardType: TextInputType.phone,
                     ),
                     AppInputTextFormField(
-                      labelText: "العنوان",
+                      title: "العنوان",
                       controller: locationController,
                       keyboardType: TextInputType.name,
                       suffixIcon: SizedBox(
@@ -165,7 +165,7 @@ class _EditProfileViewState extends State<EditProfileView> {
                       ),
                     ),
                     AppInputTextFormField(
-                      labelText: "العضوية",
+                      title: "العضوية",
                       controller: membershipController,
                       keyboardType: TextInputType.phone,
                       suffixIcon: SizedBox(

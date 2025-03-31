@@ -4,18 +4,20 @@ import 'app_colors.dart';
 import 'app_text_styles.dart';
 
 class AppInputTextFormField extends StatelessWidget {
-  const AppInputTextFormField(
-      {super.key,
-      required this.labelText,
-      this.prefixIcon,
-      this.suffixIcon,
-      this.onChanged,
-      this.obscureText,
-      this.validator,
-      this.keyboardType,
-      this.controller});
+  const AppInputTextFormField({
+    super.key,
+     this.labelText,
+    this.prefixIcon,
+    this.suffixIcon,
+    this.onChanged,
+    this.obscureText,
+    this.validator,
+    this.keyboardType,
+    this.controller,  this.title,
+  });
 
-  final String labelText;
+  final String? labelText;
+  final String? title;
   final Widget? prefixIcon;
   final Widget? suffixIcon;
   final void Function(String?)? onChanged;
@@ -28,22 +30,29 @@ class AppInputTextFormField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Directionality(
       textDirection: TextDirection.rtl,
-      child: Column(  crossAxisAlignment: CrossAxisAlignment.start,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text( labelText, style: AppTextStyles.style14W700(context)),
+          Text(title ?? "", style: AppTextStyles.style14W700(context)),
           SizedBox(height: 12),
           TextFormField(
-
             controller: controller,
             obscureText: obscureText ?? false,
             keyboardType: keyboardType ?? TextInputType.text,
             onChanged: onChanged,
             validator: validator,
             decoration: InputDecoration(
-              contentPadding:
-                  const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+              contentPadding: const EdgeInsets.symmetric(
+                horizontal: 16,
+                vertical: 16,
+              ),
               filled: true,
               fillColor: AppColors.white,
+              label:
+                  labelText != null ? Text(labelText!, style: AppTextStyles.style12W400(
+                      context).copyWith(
+                    color: AppColors.grey
+                  )) : null,
               prefixIcon: prefixIcon,
               prefixIconColor: AppColors.border,
               suffixIcon: suffixIcon,
@@ -64,20 +73,18 @@ class AppInputTextFormField extends StatelessWidget {
 OutlineInputBorder buildOutlineInputBorder() {
   return OutlineInputBorder(
     borderRadius: BorderRadius.circular(18),
-    borderSide: BorderSide(
-      width: 1,
-      color: AppColors.border,
-    ),
+    borderSide: BorderSide(width: 1, color: AppColors.border),
   );
 }
 
 class AppPassInputTextFormField extends StatefulWidget {
-  const AppPassInputTextFormField(
-      {super.key,
-      this.validator,
-      required this.labelText,
-      this.onChanged,
-      this.controller});
+  const AppPassInputTextFormField({
+    super.key,
+    this.validator,
+    required this.labelText,
+    this.onChanged,
+    this.controller,
+  });
 
   final String? Function(String?)? validator;
   final String labelText;
@@ -107,9 +114,10 @@ class _AppPassInputTextFormFieldState extends State<AppPassInputTextFormField> {
             isHidden = !isHidden;
           });
         },
-        icon: isHidden
-            ? const Icon(Icons.visibility_off_outlined)
-            : const Icon(Icons.visibility_outlined),
+        icon:
+            isHidden
+                ? const Icon(Icons.visibility_off_outlined)
+                : const Icon(Icons.visibility_outlined),
       ),
     );
   }

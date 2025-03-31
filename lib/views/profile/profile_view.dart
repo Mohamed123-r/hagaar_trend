@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hagaar_trend/components/app_alert_dialog.dart';
 import 'package:hagaar_trend/components/app_text_styles.dart';
 import 'package:hagaar_trend/components/custom_success_alert_dialog.dart';
+import 'package:hagaar_trend/views/auth/auth_view.dart';
 import 'package:hagaar_trend/views/profile/edit_profile_view.dart';
 import 'package:hagaar_trend/views/profile/widgets/edit_data_button.dart';
 import 'package:hagaar_trend/views/profile/widgets/profile_item.dart';
@@ -116,15 +117,25 @@ class _ProfileViewState extends State<ProfileView> {
                 padding: const EdgeInsets.only(top: 64.0),
                 child: Column(
                   children: [
-                    CircleAvatar(
-                      radius: 85,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(500),
-                        child: Image.network(
-                          "https://images.pexels.com/photos/323705/pexels-photo-323705.jpeg",
-                          width: 170,
-                          height: 170,
-                          fit: BoxFit.cover,
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => AuthView(),
+                          ),
+                        );
+                      },
+                      child: CircleAvatar(
+                        radius: 85,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(500),
+                          child: Image.network(
+                            "https://images.pexels.com/photos/323705/pexels-photo-323705.jpeg",
+                            width: 170,
+                            height: 170,
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
                     ),
