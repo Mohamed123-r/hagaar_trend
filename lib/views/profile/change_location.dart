@@ -68,60 +68,145 @@ class ChangeLocation extends StatelessWidget {
                 onPressed: () {
                   showModalBottomSheet(
                     context: context,
+                    isScrollControlled: true,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.vertical(
                         top: Radius.circular(16),
                       ),
                     ),
                     builder:
-                        (context) => Container(
-                          decoration: BoxDecoration(
-                            color: AppColors.white,
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(16),
-                              topRight: Radius.circular(16),
-                            ),
+                        (context) => Padding(
+                          padding: EdgeInsets.only(
+                            bottom: MediaQuery.of(context).viewInsets.bottom,
                           ),
-                          width: double.infinity,
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Align(
-                                alignment:
-                                    direction == TextDirection.rtl
-                                        ? Alignment.topRight
-                                        : Alignment.topLeft,
-
-                                child: IconButton(
-                                  onPressed: () => Navigator.pop(context),
-                                  icon: const Icon(Icons.close),
-                                ),
+                          child: Container(
+                            padding: EdgeInsets.all(16),
+                            decoration: BoxDecoration(
+                              color: AppColors.white,
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(16),
+                                topRight: Radius.circular(16),
                               ),
-                              SizedBox(height: 16),
+                            ),
+                            width: double.infinity,
 
-                              Text(
-                                "",
-                                style: AppTextStyles.style14W700(context),
-                              ),
-                              SizedBox(height: 12),
+                            child: Directionality(
+                              textDirection: direction,
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Align(
+                                    alignment:
+                                        direction == TextDirection.rtl
+                                            ? Alignment.topRight
+                                            : Alignment.topLeft,
 
-                              MaterialButton(
-                                height: 44,
-                                minWidth: 100,
-                                padding: EdgeInsets.zero,
-                                color: AppColors.black,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(80),
-                                ),
-                                onPressed: () {},
-                                child: Text(
-                                  "موافق",
-                                  style: AppTextStyles.style12W700(
-                                    context,
-                                  ).copyWith(color: AppColors.white),
-                                ),
+                                    child: GestureDetector(
+                                      onTap: () => Navigator.pop(context),
+
+                                      child: const Icon(Icons.close),
+                                    ),
+                                  ),
+                                  SizedBox(height: 16),
+
+                                  Text(
+                                    "الدولة",
+                                    style: AppTextStyles.style14W700(context),
+                                  ),
+                                  SizedBox(height: 8),
+                                  TextField(
+                                    readOnly: true,
+                                    decoration: InputDecoration(
+                                      hintText: "المملكة العربية السعودية",
+                                      hintStyle: AppTextStyles.style12W400(
+                                        context,
+                                      ),
+                                      filled: true,
+                                      fillColor: AppColors.white,
+                                      border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(16),
+                                        borderSide: BorderSide(
+                                          color: AppColors.border,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(height: 16),
+
+                                  // المدينة
+                                  Text(
+                                    "المدينة",
+                                    style: AppTextStyles.style14W700(context),
+                                  ),
+                                  SizedBox(height: 8),
+                                  TextField(
+                                    readOnly: true,
+                                    decoration: InputDecoration(
+                                      hintText: "الرياض",
+                                      hintStyle: AppTextStyles.style12W400(
+                                        context,
+                                      ),
+                                      filled: true,
+                                      fillColor: AppColors.white,
+                                      border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(16),
+                                        borderSide: BorderSide(
+                                          color: AppColors.border,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(height: 16),
+
+                                  // الحي
+                                  Text(
+                                    "الحي",
+                                    style: AppTextStyles.style14W700(context),
+                                  ),
+                                  SizedBox(height: 8),
+                                  TextField(
+                                    readOnly: true,
+                                    decoration: InputDecoration(
+                                      hintText: "حي الشرفه",
+                                      hintStyle: AppTextStyles.style12W400(
+                                        context,
+                                      ),
+                                      filled: true,
+                                      fillColor: AppColors.white,
+                                      border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(16),
+                                        borderSide: BorderSide(
+                                          color: AppColors.border,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(height: 24),
+
+                                  // زر موافق
+                                  Center(
+                                    child: MaterialButton(
+                                      height: 44,
+                                      minWidth: 100,
+                                      padding: EdgeInsets.zero,
+                                      color: AppColors.black,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(80),
+                                      ),
+                                      onPressed: () {},
+                                      child: Text(
+                                        "موافق",
+                                        style: AppTextStyles.style12W700(
+                                          context,
+                                        ).copyWith(color: AppColors.white),
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(height: 12),
+                                ],
                               ),
-                            ],
+                            ),
                           ),
                         ),
                   );
