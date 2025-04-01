@@ -13,7 +13,7 @@ class AppInputTextFormField extends StatelessWidget {
     this.obscureText,
     this.validator,
     this.keyboardType,
-    this.controller,  this.title,
+    this.controller,  this.title, this.maxLines =1,
   });
 
   final String? labelText;
@@ -25,7 +25,7 @@ class AppInputTextFormField extends StatelessWidget {
   final String? Function(String?)? validator;
   final TextInputType? keyboardType;
   final TextEditingController? controller;
-
+final int? maxLines;
   @override
   Widget build(BuildContext context) {
     return Directionality(
@@ -36,6 +36,7 @@ class AppInputTextFormField extends StatelessWidget {
           Text(title ?? "", style: AppTextStyles.style14W700(context)),
           SizedBox(height: 12),
           TextFormField(
+            maxLines:maxLines ,
             controller: controller,
             obscureText: obscureText ?? false,
             keyboardType: keyboardType ?? TextInputType.text,

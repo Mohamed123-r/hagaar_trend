@@ -11,6 +11,7 @@ class Assets {
   static const String imagesChartPie = 'assets/images/ChartPie.svg';
   static const String imagesCheckCircle = 'assets/images/CheckCircle.svg';
   static const String imagesCrosshair = 'assets/images/Crosshair.svg';
+  static const String imagesCustomerService = 'assets/images/CustomerService.png';
   static const String imagesDoor = 'assets/images/door.png';
   static const String imagesDoorOpen = 'assets/images/DoorOpen.svg';
   static const String imagesHeadset = 'assets/images/Headset.svg';
