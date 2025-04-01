@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hagaar_trend/components/app_form_filed.dart';
+import 'package:hagaar_trend/views/auth/confirm_auth.dart';
 
 import '../../components/app_alert_dialog.dart';
 import '../../components/app_colors.dart';
@@ -74,6 +75,21 @@ class NewAuthView extends StatelessWidget {
                         "أدخل بياناتك لتبدء",
                         style: AppTextStyles.style16W400(context),
                       ),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: AppInputTextFormField(
+                              labelText: "الاسم الأول",
+                            ),
+                          ),
+                          SizedBox(width: 24),
+                          Expanded(
+                            child: AppInputTextFormField(
+                              labelText: "الاسم الثاني",
+                            ),
+                          ),
+                        ],
+                      ),
                       AppInputTextFormField(
                         labelText: "رقم الهاتف",
                         suffixIcon: Icon(Icons.phone_outlined, size: 20),
@@ -86,8 +102,8 @@ class NewAuthView extends StatelessWidget {
                         suffixIcon: SizedBox(
                           width: 100,
                           child: Center(
-                            child: GestureDetector(
-                              onTap: () {
+                            child: TextButton(
+                              onPressed: () {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
@@ -114,40 +130,62 @@ class NewAuthView extends StatelessWidget {
                         suffixIcon: SizedBox(
                           width: 100,
                           child: Center(
-                            child: GestureDetector(
-                              onTap: () {
+                            child: TextButton(
+                              onPressed: () {
                                 showDialog(
                                   context: context,
                                   builder:
                                       (context) => AppAlertDialog(
-                                        body: Wrap(
-                                          spacing: 16,
-                                          runSpacing: 16,
-                                          alignment: WrapAlignment.center,
+                                        body: Column(
                                           children: [
-                                            _membershipItem(
-                                              context: context,
-                                              Assets.imagesMembership1,
-                                              "باحث عن عقار",
+                                            Text(
+                                              'حدد نوع عقارك',
+                                              style: AppTextStyles.style12W400(
+                                                context,
+                                              ).copyWith(
+                                                color: AppColors.green,
+                                              ),
                                             ),
-                                            _membershipItem(
-                                              context: context,
-                                              Assets.imagesMembership2,
-                                              "مالك",
-                                            ),
-                                            _membershipItem(
-                                              context: context,
-                                              Assets.imagesMembership3,
-                                              "مسوق",
-                                            ),
-                                            _membershipItem(
-                                              context: context,
-                                              Assets.imagesMembership4,
-                                              "شركة عقارية",
+                                            const SizedBox(height: 16),
+
+                                            Wrap(
+                                              spacing: 16,
+                                              runSpacing: 16,
+                                              alignment: WrapAlignment.center,
+                                              children: [
+                                                _membershipItem(
+                                                  context: context,
+                                                  Assets.imagesMembership1,
+                                                  "باحث عن عقار",
+                                                ),
+                                                _membershipItem(
+                                                  context: context,
+                                                  Assets.imagesMembership2,
+                                                  "مالك",
+                                                ),
+                                                _membershipItem(
+                                                  context: context,
+                                                  Assets.imagesMembership3,
+                                                  "مسوق",
+                                                ),
+                                                _membershipItem(
+                                                  context: context,
+                                                  Assets.imagesMembership4,
+                                                  "شركة عقارية",
+                                                ),
+                                              ],
                                             ),
                                           ],
                                         ),
-                                        onPressedOk: () {},
+                                        onPressedOk: () {
+                                          Navigator.pop(context);
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) => ConfirmAuth(),
+                                            ),
+                                          );
+                                        },
                                       ),
                                 );
                               },
@@ -158,6 +196,7 @@ class NewAuthView extends StatelessWidget {
                                 ).copyWith(
                                   color: AppColors.green,
                                   decoration: TextDecoration.underline,
+                                  decorationColor: AppColors.green,
                                 ),
                               ),
                             ),
