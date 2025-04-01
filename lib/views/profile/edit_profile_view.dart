@@ -147,17 +147,22 @@ class _EditProfileViewState extends State<EditProfileView> {
                         width: 100,
                         child: Center(
                           child: GestureDetector(
-                            onTap: (){
+                            onTap: () {
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (_) => ChangeLocation()),
+                                MaterialPageRoute(
+                                  builder: (_) => ChangeLocation(),
+                                ),
                               );
                             },
                             child: Text(
                               "تغير الموقع",
-                              style: AppTextStyles.style12W400(context).copyWith(
+                              style: AppTextStyles.style12W400(
+                                context,
+                              ).copyWith(
                                 color: AppColors.green,
                                 decoration: TextDecoration.underline,
+                                decorationColor: AppColors.green,
                               ),
                             ),
                           ),
@@ -185,16 +190,20 @@ class _EditProfileViewState extends State<EditProfileView> {
                                           _membershipItem(
                                             Assets.imagesMembership1,
                                             "باحث عن عقار",
+                                            context: context,
                                           ),
                                           _membershipItem(
+                                            context: context,
                                             Assets.imagesMembership2,
                                             "مالك",
                                           ),
                                           _membershipItem(
+                                            context: context,
                                             Assets.imagesMembership3,
                                             "مسوق",
                                           ),
                                           _membershipItem(
+                                            context: context,
                                             Assets.imagesMembership4,
                                             "شركة عقارية",
                                           ),
@@ -211,6 +220,7 @@ class _EditProfileViewState extends State<EditProfileView> {
                               ).copyWith(
                                 color: AppColors.green,
                                 decoration: TextDecoration.underline,
+                                decorationColor: AppColors.green,
                               ),
                             ),
                           ),
@@ -230,23 +240,27 @@ class _EditProfileViewState extends State<EditProfileView> {
       ),
     );
   }
+}
 
-  Container _membershipItem(String img, String title) {
-    return Container(
-      width: 120,
-      height: 100,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(18),
-        border: Border.all(color: AppColors.border),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Image.asset(img, width: 32),
-          SizedBox(height: 16),
-          Text(title, style: AppTextStyles.style12W400(context)),
-        ],
-      ),
-    );
-  }
+Container _membershipItem(
+  String img,
+  String title, {
+  required BuildContext context,
+}) {
+  return Container(
+    width: 120,
+    height: 100,
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(18),
+      border: Border.all(color: AppColors.border),
+    ),
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Image.asset(img, width: 32),
+        SizedBox(height: 16),
+        Text(title, style: AppTextStyles.style12W400(context)),
+      ],
+    ),
+  );
 }

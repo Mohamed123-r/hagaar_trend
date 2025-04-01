@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hagaar_trend/components/app_form_filed.dart';
+import 'package:hagaar_trend/views/auth/new_auth_view.dart';
 
 import '../../components/app_colors.dart';
 import '../../components/app_text_styles.dart';
@@ -127,7 +128,14 @@ class AuthView extends StatelessWidget {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(16),
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => NewAuthView(),
+                            ),
+                          );
+                        },
                         child: Text(
                           "إنشاء حساب جديد",
                           style: AppTextStyles.style12W700(
