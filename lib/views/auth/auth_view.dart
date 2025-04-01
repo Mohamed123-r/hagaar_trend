@@ -5,6 +5,7 @@ import '../../components/app_colors.dart';
 import '../../components/app_text_styles.dart';
 import '../../constant.dart';
 import '../../generated/assets.dart';
+import 'forget_password_view.dart';
 
 class AuthView extends StatelessWidget {
   const AuthView({super.key});
@@ -78,7 +79,14 @@ class AuthView extends StatelessWidget {
 
                       AppPassInputTextFormField(labelText: "كلمة المرور"),
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ForgetPasswordView(),
+                            ),
+                          );
+                        },
                         child: Text(
                           "هل نسيت كلمة المرور",
                           style: AppTextStyles.style12W400(context).copyWith(
