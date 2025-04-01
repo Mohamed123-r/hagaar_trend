@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:hagaar_trend/components/custom_app_bar.dart';
 import 'package:hagaar_trend/constant.dart';
 
-import '../home/item_details_view.dart';
-import '../home/widgets/list_view_item_from_show_list.dart';
+import 'item_details_view.dart';
+import 'widgets/list_view_item_from_show_list.dart';
 
 
 class FavouriteView extends StatelessWidget {

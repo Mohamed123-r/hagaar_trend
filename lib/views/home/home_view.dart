@@ -11,7 +11,7 @@ import 'package:hagaar_trend/views/home/widgets/search_alart_dialog.dart';
 import '../../components/app_colors.dart';
 import '../../components/app_text_styles.dart';
 import '../../components/custom_app_bar.dart';
-import '../favourite/favourite_view.dart';
+import 'favourite_view.dart';
 import 'widgets/button_from_search_in_home.dart';
 
 class HomeView extends StatefulWidget {
