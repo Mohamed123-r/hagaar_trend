@@ -64,7 +64,6 @@ class MainViewState extends State<MainView> {
               children: [
                 HomeView(),
                 ProfileView(),
-                Container(color: Colors.black),
                 NotificationView(),
                 CustomerServiceView(),
               ],
@@ -122,15 +121,7 @@ class MainViewState extends State<MainView> {
                       currentIndex: _currentIndex,
                       index: 1,
                     ),
-                    BottomNavBTN(
-                      title: "إضافة",
-                      onPressed: (val) {
-                        animateToPage(val);
-                      },
-                      icon: Assets.imagesPlus,
-                      currentIndex: _currentIndex,
-                      index: 2,
-                    ),
+
                     BottomNavBTN(
                       title: "الإشعارات",
                       onPressed: (val) {
@@ -138,7 +129,7 @@ class MainViewState extends State<MainView> {
                       },
                       icon: Assets.imagesBell,
                       currentIndex: _currentIndex,
-                      index: 3,
+                      index: 2,
                     ),
                     BottomNavBTN(
                       title: "الخدمات",
@@ -147,7 +138,7 @@ class MainViewState extends State<MainView> {
                       },
                       icon: Assets.imagesHeadset,
                       currentIndex: _currentIndex,
-                      index: 4,
+                      index: 3,
                     ),
                   ],
                 ),
@@ -202,23 +193,19 @@ double animatedPositionedLeftValue(int currentIndex) {
   switch (currentIndex) {
     case 0:
       return direction == TextDirection.ltr
-          ? AppSizes.blockSizeHorizontal * 5.5
-          : AppSizes.blockSizeHorizontal * 74;
+          ? AppSizes.blockSizeHorizontal * 7.5
+          : AppSizes.blockSizeHorizontal * 72;
     case 1:
       return direction == TextDirection.ltr
-          ? AppSizes.blockSizeHorizontal * 23
-          : AppSizes.blockSizeHorizontal * 57;
+          ? AppSizes.blockSizeHorizontal * 29
+          : AppSizes.blockSizeHorizontal * 50.5;
     case 2:
       return direction == TextDirection.ltr
-          ? AppSizes.blockSizeHorizontal * 40
-          : AppSizes.blockSizeHorizontal * 40;
-    case 3:
-      return direction == TextDirection.ltr
-          ? AppSizes.blockSizeHorizontal * 57
-          : AppSizes.blockSizeHorizontal * 23;
+          ? AppSizes.blockSizeHorizontal * 50.5
+          : AppSizes.blockSizeHorizontal * 29;
     default:
       return direction == TextDirection.ltr
-          ? AppSizes.blockSizeHorizontal * 74
-          : AppSizes.blockSizeHorizontal * 5.5;
+          ? AppSizes.blockSizeHorizontal * 72
+          : AppSizes.blockSizeHorizontal * 7.5;
   }
 }
