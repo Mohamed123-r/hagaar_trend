@@ -18,7 +18,7 @@ class NotificationView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: customAppBar(context, title: "إشعارات"),
+      appBar: customAppBar(context, title: "إشعارات",showBack: false),
       body: ListView.separated(
         itemCount: registrations.length,
         separatorBuilder: (context, index) => Divider(color: Colors.grey[300]),

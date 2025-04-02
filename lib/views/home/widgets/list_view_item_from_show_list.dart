@@ -49,7 +49,7 @@ class ListViewItemFromShowList extends StatelessWidget {
                 child: CircleAvatar(
                   radius: 15,
                   backgroundColor: Color(0xffADADAD),
-                  child: SvgPicture.asset(Assets.imagesHeart),
+                  child: SvgPicture.asset(Assets.imagesHeart2),
                 ),
               ),
             ],

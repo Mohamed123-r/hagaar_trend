@@ -12,7 +12,7 @@ class CustomerServiceView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: customAppBar(context, title: "خدمة العملاء"),
+      appBar: customAppBar(context, title: "خدمة العملاء", showBack: false),
       body: Padding(
         padding: const EdgeInsets.all(24.0),
         child: Column(

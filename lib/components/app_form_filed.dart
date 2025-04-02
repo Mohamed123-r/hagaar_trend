@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hagaar_trend/constant.dart';
 
 import 'app_colors.dart';
 import 'app_text_styles.dart';
@@ -29,7 +30,7 @@ final int? maxLines;
   @override
   Widget build(BuildContext context) {
     return Directionality(
-      textDirection: TextDirection.rtl,
+      textDirection: direction,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

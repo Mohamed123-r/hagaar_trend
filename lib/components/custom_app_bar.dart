@@ -9,6 +9,7 @@ AppBar customAppBar(
   BuildContext context, {
   required String title,
   VoidCallback? onCleckBack,
+      bool showBack = true,
 }) {
   return AppBar(
     leadingWidth: 0,
@@ -28,16 +29,19 @@ AppBar customAppBar(
           Row(
             spacing: 16,
             children: [
-              InkWell(
-                borderRadius: BorderRadius.circular(80),
-                onTap: onCleckBack ?? () {
-                  Navigator.pop(context);
-                },
-                child: CircleAvatar(
-                  radius: 18,
-                  backgroundColor: AppColors.white,
-                  child: GestureDetector(
-                    child: Icon(Icons.arrow_back_ios_new, size: 16),
+              Visibility(
+                visible: showBack,
+                child: InkWell(
+                  borderRadius: BorderRadius.circular(80),
+                  onTap: onCleckBack ?? () {
+                    Navigator.pop(context);
+                  },
+                  child: CircleAvatar(
+                    radius: 18,
+                    backgroundColor: AppColors.white,
+                    child: GestureDetector(
+                      child: Icon(Icons.arrow_back_ios_new, size: 16),
+                    ),
                   ),
                 ),
               ),
