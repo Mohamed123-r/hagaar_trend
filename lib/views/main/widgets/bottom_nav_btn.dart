@@ -36,23 +36,7 @@ class BottomNavBTN extends StatelessWidget {
         child: Stack(
           alignment: Alignment.center,
           children: [
-            (currentIndex == index)
-                ? Positioned(
-                    left: AppSizes.blockSizeHorizontal * 4,
-                    bottom: AppSizes.blockSizeHorizontal * 5,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        // Icon(
-                        //   icon,
-                        //   color: Colors.black,
-                        //   size: AppSizes.blockSizeHorizontal * 7,
-                        // ),
 
-                      ],
-                    ),
-                  )
-                : Container(),
             AnimatedOpacity(
               opacity: (currentIndex == index) ? 1 : 0.2,
               duration: const Duration(milliseconds: 300),

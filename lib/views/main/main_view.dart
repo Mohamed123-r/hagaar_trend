@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hagaar_trend/components/app_colors.dart';
@@ -64,6 +65,7 @@ class MainViewState extends State<MainView> {
               children: [
                 HomeView(),
                 ProfileView(),
+                Container(color: Colors.white),
                 NotificationView(),
                 CustomerServiceView(),
               ],
@@ -89,7 +91,7 @@ class MainViewState extends State<MainView> {
           height: AppSizes.blockSizeHorizontal * 18,
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
-            color: Colors.grey[900],
+            color: AppColors.black,
             borderRadius: BorderRadius.circular(30),
           ),
           child: Stack(
@@ -121,7 +123,15 @@ class MainViewState extends State<MainView> {
                       currentIndex: _currentIndex,
                       index: 1,
                     ),
-
+                    BottomNavBTN(
+                      title: "م. العقارية",
+                      onPressed: (val) {
+                        animateToPage(val);
+                      },
+                      icon: Assets.imagesBuildings,
+                      currentIndex: _currentIndex,
+                      index: 2,
+                    ),
                     BottomNavBTN(
                       title: "الإشعارات",
                       onPressed: (val) {
@@ -129,7 +139,7 @@ class MainViewState extends State<MainView> {
                       },
                       icon: Assets.imagesBell,
                       currentIndex: _currentIndex,
-                      index: 2,
+                      index: 3,
                     ),
                     BottomNavBTN(
                       title: "الخدمات",
@@ -138,7 +148,7 @@ class MainViewState extends State<MainView> {
                       },
                       icon: Assets.imagesHeadset,
                       currentIndex: _currentIndex,
-                      index: 3,
+                      index: 4,
                     ),
                   ],
                 ),
@@ -151,25 +161,11 @@ class MainViewState extends State<MainView> {
                 child: Column(
                   children: [
                     Container(
-                      height: AppSizes.blockSizeHorizontal * 1.0,
+                      height: AppSizes.blockSizeHorizontal * 1,
                       width: AppSizes.blockSizeHorizontal * 12,
                       decoration: BoxDecoration(
                         color: AppColors.orange,
                         borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                    ClipPath(
-                      clipper: MyCustomClipper(),
-                      child: Container(
-                        height: AppSizes.blockSizeHorizontal * 15,
-                        width: AppSizes.blockSizeHorizontal * 12,
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            begin: Alignment.topCenter,
-                            end: Alignment.bottomCenter,
-                            colors: gradient,
-                          ),
-                        ),
                       ),
                     ),
                   ],
@@ -183,29 +179,28 @@ class MainViewState extends State<MainView> {
   }
 }
 
-final List<Color> gradient = [
-  AppColors.orange.withOpacity(0.5),
-  AppColors.orange.withOpacity(0.2),
-  Colors.transparent,
-];
 
 double animatedPositionedLeftValue(int currentIndex) {
   switch (currentIndex) {
     case 0:
       return direction == TextDirection.ltr
-          ? AppSizes.blockSizeHorizontal * 7.5
-          : AppSizes.blockSizeHorizontal * 72;
+          ? AppSizes.blockSizeHorizontal * 5.5
+          : AppSizes.blockSizeHorizontal * 74;
     case 1:
       return direction == TextDirection.ltr
-          ? AppSizes.blockSizeHorizontal * 29
-          : AppSizes.blockSizeHorizontal * 50.5;
+          ? AppSizes.blockSizeHorizontal * 23
+          : AppSizes.blockSizeHorizontal * 57;
     case 2:
       return direction == TextDirection.ltr
-          ? AppSizes.blockSizeHorizontal * 50.5
-          : AppSizes.blockSizeHorizontal * 29;
+          ? AppSizes.blockSizeHorizontal * 40
+          : AppSizes.blockSizeHorizontal * 40;
+    case 3:
+      return direction == TextDirection.ltr
+          ? AppSizes.blockSizeHorizontal * 57
+          : AppSizes.blockSizeHorizontal * 23;
     default:
       return direction == TextDirection.ltr
-          ? AppSizes.blockSizeHorizontal * 72
-          : AppSizes.blockSizeHorizontal * 7.5;
+          ? AppSizes.blockSizeHorizontal * 74
+          : AppSizes.blockSizeHorizontal * 5.5;
   }
 }
