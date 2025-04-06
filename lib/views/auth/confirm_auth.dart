@@ -38,15 +38,18 @@ class ConfirmAuth extends StatelessWidget {
                       Navigator.pop(context);
                     },
                     child: Container(
-                      width: 40,
-                      height: 40,
+                      width: 32,
+                      height: 32,
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(80),
-                        color: AppColors.white,
-                        border: Border.all(color: AppColors.border, width: 1),
+                        borderRadius: BorderRadius.circular(8),
+                        color: AppColors.middleGreen,
                       ),
                       child: GestureDetector(
-                        child: Icon(Icons.arrow_back_ios_new, size: 16),
+                        child: Icon(
+                          Icons.arrow_back_ios_new,
+                          color: AppColors.white,
+                          size: 16,
+                        ),
                       ),
                     ),
                   ),
@@ -84,7 +87,9 @@ class ConfirmAuth extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 PinInputStyles.buildPinInput(
+                                  length: 4,
                                   onCompleted: (pin) {
+
                                     //  print("User entered PIN: $pin");
                                   },
                                 ),
