@@ -11,52 +11,74 @@ class NotificationView extends StatelessWidget {
   NotificationView({super.key});
 
   final List<String> registrations = List.generate(
-    4,
+    12,
     (index) => "تم التسجيل لحسابكم في يوم 24 / 3 / 2025 ...",
   );
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true ,
       appBar: customAppBar(context, title: "إشعارات",showBack: false),
-      body: ListView.separated(
-        itemCount: registrations.length,
-        separatorBuilder: (context, index) => Divider(color: Colors.grey[300]),
-        itemBuilder: (context, index) {
-          return InkWell(
-            onTap: (){
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => NotificationDetailsView(),
-                ),
-              );
-            },
+      body: Stack(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(top: 44.0),
+            child: ListView.separated(
+              itemCount: registrations.length,
+              separatorBuilder: (context, index) => Divider(color: Colors.grey[300]),
+              itemBuilder: (context, index) {
+                return InkWell(
+                  onTap: (){
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => NotificationDetailsView(),
+                      ),
+                    );
+                  },
 
-            child: ListTile(
-              leading:Container(
-                width: 40,
-                height: 40,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(80),
-                  color: AppColors.white,
-                  border: Border.all(color: AppColors.border, width: 1),
-                ),
-                child: Image.asset(Assets.imagesLogo),
-              ),
-              title: Text(
-                "تطبيق زد العقار",
-                style: AppTextStyles.style12W400(context),
-              ),
-              subtitle: Text(
-                registrations[index],
-                style: AppTextStyles.style12W400(context).copyWith(
-                  color: AppColors.grey
-                ),
+                  child: ListTile(
+                    leading:Container(
+                      width: 40,
+                      height: 40,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(80),
+                        color: AppColors.white,
+                        border: Border.all(color: AppColors.border, width: 1),
+                      ),
+                      child: Image.asset(Assets.imagesLogo),
+                    ),
+                    title: Text(
+                      "تطبيق زد العقار",
+                      style: AppTextStyles.style12W400(context),
+                    ),
+                    subtitle: Text(
+                      registrations[index],
+                      style: AppTextStyles.style12W400(context).copyWith(
+                        color: AppColors.grey
+                      ),
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+          Positioned(
+            right: 0,
+            left: 0,
+            child: Container(
+              color: Colors.white,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Image.asset(Assets.imagesShapes2),
+                  Image.asset(Assets.imagesShap1),
+                ],
               ),
             ),
-          );
-        },
+          ),
+        ],
       ),
     );
   }

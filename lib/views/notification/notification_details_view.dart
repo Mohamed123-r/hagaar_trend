@@ -14,20 +14,68 @@ class NotificationDetailsView extends StatelessWidget {
     return Directionality(
       textDirection: direction,
       child: Scaffold(
-        appBar: customAppBar(context, title: "تطبيق ترند العقار"),
-        body: ListView(
-          padding: const EdgeInsets.all(16),
+        extendBodyBehindAppBar: true,
+        appBar: customAppBar(context, title: "إشعاراتك"),
+        body: Stack(
           children: [
-            NotificationBubble(
-              date: "24 / 3 / 2025",
-              message:
-                  "مرحباً بك في تطبيق زد العقار\nيمكنك إيجاد عقارك المطلوب ببحث منظم ودقيق معنا في زد العقارات",
+            ListView(
+              padding: const EdgeInsets.only(
+                left: 16,
+                right: 16,
+                bottom: 16,
+                top: 150,
+              ),
+              children: [
+                NotificationBubble(
+                  date: "24 / 3 / 2025",
+                  message:
+                      "مرحباً بك في تطبيق زد العقار\nيمكنك إيجاد عقارك المطلوب ببحث منظم ودقيق معنا في زد العقارات",
+                ),
+                const SizedBox(height: 16),
+                NotificationBubble(
+                  date: "24 / 3 / 2025",
+                  message:
+                      "مرحباً بك في تطبيق زد العقار\nيمكنك إيجاد عقارك المطلوب ببحث منظم ودقيق معنا في زد العقارات",
+                ),
+                const SizedBox(height: 16),
+                NotificationBubble(
+                  date: "24 / 3 / 2025",
+                  message:
+                      "مرحباً بك في تطبيق زد العقار\nيمكنك إيجاد عقارك المطلوب ببحث منظم ودقيق معنا في زد العقارات",
+                ),
+                const SizedBox(height: 16),
+                NotificationBubble(
+                  date: "24 / 3 / 2025",
+                  message:
+                      "مرحباً بك في تطبيق زد العقار\nيمكنك إيجاد عقارك المطلوب ببحث منظم ودقيق معنا في زد العقارات",
+                ),
+                const SizedBox(height: 16),
+                NotificationBubble(
+                  date: "24 / 3 / 2025",
+                  message:
+                      "مرحباً بك في تطبيق زد العقار\nيمكنك إيجاد عقارك المطلوب ببحث منظم ودقيق معنا في زد العقارات",
+                ),
+                const SizedBox(height: 16),
+                NotificationBubble(
+                  date: "24 / 3 / 2025",
+                  message:
+                      "تم التسجيل لحسابكم في يوم 24 / 3 / 2025\nيرجى الإبلاغ في حال وجود أي مشكلة",
+                ),
+              ],
             ),
-            const SizedBox(height: 16),
-            NotificationBubble(
-              date: "24 / 3 / 2025",
-              message:
-                  "تم التسجيل لحسابكم في يوم 24 / 3 / 2025\nيرجى الإبلاغ في حال وجود أي مشكلة",
+            Positioned(
+              right: 0,
+              left: 0,
+              child: Container(
+                color: Colors.white,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Image.asset(Assets.imagesShapes2),
+                    Image.asset(Assets.imagesShap1),
+                  ],
+                ),
+              ),
             ),
           ],
         ),
