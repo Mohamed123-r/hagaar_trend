@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:hagaar_trend/constant.dart';
 import 'package:hagaar_trend/generated/assets.dart';
 
@@ -9,53 +10,51 @@ AppBar customAppBar(
   BuildContext context, {
   required String title,
   VoidCallback? onCleckBack,
-      bool showBack = true,
+  bool showBack = true,
 }) {
   return AppBar(
-    leadingWidth: 0,
     elevation: 0,
-    backgroundColor: AppColors.black,
-    surfaceTintColor: AppColors.black,
+    leadingWidth: showBack ? 50 : 0,
+    backgroundColor: Colors.transparent,
+    surfaceTintColor: Colors.white,
+
+    systemOverlayStyle: SystemUiOverlayStyle.dark,
+    centerTitle: true,
+    leading: Visibility(
+      visible: showBack,
+      child: Center(
+        child: InkWell(
+          borderRadius: BorderRadius.circular(8),
+          onTap:
+              onCleckBack ??
+              () {
+                Navigator.pop(context);
+              },
+          child: Container(
+            width: 32,
+            height: 32,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8),
+              color: AppColors.middleGreen,
+            ),
+            child: GestureDetector(
+              child: Icon(
+                Icons.arrow_back_ios_new,
+                color: AppColors.white,
+                size: 16,
+              ),
+            ),
+          ),
+        ),
+      ),
+    ),
     title: Directionality(
       textDirection: direction,
-      child: Stack(
-        clipBehavior: Clip.none,
-        children: [
-          Positioned(
-            right: -20,
-            top: -20,
-            child: Image.asset(Assets.imagesShapes, width: 100),
-          ),
-          Row(
-            spacing: 16,
-            children: [
-              Visibility(
-                visible: showBack,
-                child: InkWell(
-                  borderRadius: BorderRadius.circular(80),
-                  onTap: onCleckBack ?? () {
-                    Navigator.pop(context);
-                  },
-                  child: CircleAvatar(
-                    radius: 18,
-                    backgroundColor: AppColors.white,
-                    child: GestureDetector(
-                      child: Icon(Icons.arrow_back_ios_new, size: 16),
-                    ),
-                  ),
-                ),
-              ),
-              Text(
-                title,
-                style: AppTextStyles.style20W400(
-                  context,
-                ).copyWith(color: AppColors.white),
-              ),
-              Spacer(),
-              Image.asset(Assets.imagesLogo, height: 54, width: 64),
-            ],
-          ),
-        ],
+      child: Text(
+        title,
+        style: AppTextStyles.style24W800(
+          context,
+        ).copyWith(color: AppColors.green),
       ),
     ),
   );

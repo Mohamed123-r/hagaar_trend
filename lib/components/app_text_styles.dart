@@ -30,6 +30,13 @@ abstract class AppTextStyles {
 
     );
   }
+  static TextStyle style18W800(BuildContext context) {
+    return TextStyle(
+      fontSize: getResponsiveScaleFactor(context, fontSize: 18),
+      fontWeight: FontWeight.w800,
+
+    );
+  }
   static TextStyle style16W400(BuildContext context) {
     return TextStyle(
       fontSize: getResponsiveScaleFactor(context, fontSize: 16),
