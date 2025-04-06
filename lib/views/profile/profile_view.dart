@@ -162,8 +162,8 @@ class _ProfileViewState extends State<ProfileView> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SwitchProfileButton(
-                title: "عرض القائمة",
-                image: Assets.imagesHeart2,
+                title: "صفقاتي",
+                image: Assets.imagesBuildings,
                 isBlack: showMyItems,
                 onPressed: () {
                   setState(() {

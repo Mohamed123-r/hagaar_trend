@@ -96,7 +96,7 @@ class ProfileItem extends StatelessWidget {
                     ),
                     Text(
                       price,
-                      style: AppTextStyles.style13W400(
+                      style: AppTextStyles.style14W700(
                         context,
                       ).copyWith(color: AppColors.green),
                     ),
