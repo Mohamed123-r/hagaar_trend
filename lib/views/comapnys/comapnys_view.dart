@@ -6,6 +6,7 @@ import 'package:hagaar_trend/constant.dart';
 import '../../components/app_colors.dart';
 import '../../components/custom_app_bar.dart';
 import '../../generated/assets.dart';
+import 'comapnys_details_view.dart';
 
 class ComapnysView extends StatelessWidget {
   ComapnysView({super.key});
@@ -71,75 +72,88 @@ class ComapnysView extends StatelessWidget {
                           : index == companies.length - 1
                           ? const EdgeInsets.only(bottom: 100)
                           : EdgeInsets.zero,
-                  child: Container(
-                    padding: const EdgeInsets.all(12),
-                    margin: EdgeInsets.symmetric(horizontal: 16),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(16),
-                      border: Border.all(color: AppColors.border),
-                    ),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment:
-                                direction == TextDirection.ltr
-                                    ? CrossAxisAlignment.end
-                                    : CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                company['name']!,
-                                style: AppTextStyles.style12W400(context),
-                              ),
-                              const SizedBox(height: 4),
-                              Text(
-                                company['location']!,
-                                style: AppTextStyles.style12W400(context),
-                              ),
-                              const SizedBox(height: 8),
-                              Row(
-                                mainAxisAlignment:
-                                    direction == TextDirection.ltr
-                                        ? MainAxisAlignment.end
-                                        : MainAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    company['phone']!,
-                                    style: AppTextStyles.style14W700(
-                                      context,
-                                    ).copyWith(color: Color(0xff29A71A)),
-                                  ),
-                                  const SizedBox(width: 6),
-                                  SvgPicture.asset(
-                                    Assets.imagesWhatsappLogo,
-                                    color: Color(0xff29A71A),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
+                  child: InkWell(
+                    borderRadius: BorderRadius.circular(16),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ComapnysDetailsView(),
                         ),
-                        const SizedBox(width: 12),
+                      );
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.all(12),
+                      margin: EdgeInsets.symmetric(horizontal: 16),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(16),
+                        border: Border.all(color: AppColors.border),
+                      ),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment:
+                                  direction == TextDirection.ltr
+                                      ? CrossAxisAlignment.end
+                                      : CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  company['name']!,
+                                  style: AppTextStyles.style12W400(context),
+                                ),
+                                const SizedBox(height: 4),
+                                Text(
+                                  company['location']!,
+                                  style: AppTextStyles.style12W400(context),
+                                ),
+                                const SizedBox(height: 8),
+                                Row(
+                                  mainAxisAlignment:
+                                      direction == TextDirection.ltr
+                                          ? MainAxisAlignment.end
+                                          : MainAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      company['phone']!,
+                                      style: AppTextStyles.style14W700(
+                                        context,
+                                      ).copyWith(color: Color(0xff29A71A)),
+                                    ),
+                                    const SizedBox(width: 6),
+                                    SvgPicture.asset(
+                                      Assets.imagesWhatsappLogo,
+                                      color: Color(0xff29A71A),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(width: 12),
 
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(50),
-                            child: CircleAvatar(
-                              radius: 32,
-                              backgroundColor: AppColors.green,
-                              child: Image.network(
-                                company['image']!,
-                                width: 64,
-                                height: 64,
-                                fit: BoxFit.cover,
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 24.0,
+                            ),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(50),
+                              child: CircleAvatar(
+                                radius: 32,
+                                backgroundColor: AppColors.green,
+                                child: Image.network(
+                                  company['image']!,
+                                  width: 64,
+                                  height: 64,
+                                  fit: BoxFit.cover,
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 );
