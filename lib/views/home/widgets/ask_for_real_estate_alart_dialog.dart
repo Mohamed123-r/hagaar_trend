@@ -5,18 +5,19 @@ import 'package:hagaar_trend/constant.dart';
 import '../../../components/app_colors.dart';
 import 'button_from_search_in_home.dart';
 
-class SearchAlertDialog extends StatefulWidget {
-  const SearchAlertDialog({super.key, required this.onPressedSearch});
+class AskForRealEstateAlartDialog extends StatefulWidget {
+  const AskForRealEstateAlartDialog({super.key, required this.onPressedSearch});
 
   final Function() onPressedSearch;
 
   @override
   State<StatefulWidget> createState() {
-    return _SearchAlertDialogState();
+    return _AskForRealEstateAlartDialogDialogState();
   }
 }
 
-class _SearchAlertDialogState extends State<SearchAlertDialog> {
+class _AskForRealEstateAlartDialogDialogState
+    extends State<AskForRealEstateAlartDialog> {
   bool isSelect = true;
 
   String? selectedCity = 'الرياض';
@@ -51,104 +52,68 @@ class _SearchAlertDialogState extends State<SearchAlertDialog> {
               mainAxisSize: MainAxisSize.min,
               spacing: 12,
               children: [
-                Row(
-                  spacing: 8,
-                  mainAxisAlignment: MainAxisAlignment.center,
+                Column(
                   children: [
-                    ButtonFromSearchInHome(
-                      isSelect: isSelect,
-                      title: "نوع العقار",
-                      onPressed: () {
-                        setState(() {
-                          isSelect = true;
-                        });
-                      },
+                    buildDropdown("المدينة", selectedCity, [
+                      "الرياض",
+                      "جدة",
+                      "مكة",
+                    ]),
+                    buildDropdown("قسم العقار", selectedCategory, [
+                      "للبيع",
+                      "للايجار",
+                    ]),
+                    buildDropdown("نوع العقار", selectedType, [
+                      "شقة",
+                      "فيلا",
+                      "أرض",
+                    ]),
+                    buildDropdown("عمر العقار", selectedAge, [
+                      "أقل من 2 سنة",
+                      "أقل من 5 سنوات",
+                      "أكثر من 10 سنوات",
+                    ]),
+
+                    Row(
+                      children: [
+                        Expanded(
+                          child: buildTextField(
+                            hint: "السعر الأدنى",
+                            label: 'السعر',
+                          ),
+                        ),
+                        SizedBox(width: 10),
+                        Expanded(child: buildTextField(hint: "السعر الأعلى")),
+                      ],
                     ),
-                    ButtonFromSearchInHome(
-                      isSelect: isSelect == false,
-                      title: "معلن",
-                      onPressed: () {
-                        setState(() {
-                          isSelect = false;
-                        });
-                      },
+                    SizedBox(height: 8),
+
+                    Row(
+                      children: [
+                        Expanded(
+                          child: buildTextField(
+                            hint: "أقل مساحة",
+                            label: 'المساحة',
+                          ),
+                        ),
+                        SizedBox(width: 10),
+                        Expanded(child: buildTextField(hint: "أعلى مساحة")),
+                      ],
                     ),
                   ],
                 ),
-                Visibility(
-                  visible: isSelect == true,
-                  child: Column(
-                    children: [
-                      buildDropdown("المدينة", selectedCity, [
-                        "الرياض",
-                        "جدة",
-                        "مكة",
-                      ]),
-                      buildDropdown("قسم العقار", selectedCategory, [
-                        "للبيع",
-                        "للايجار",
-                      ]),
-                      buildDropdown("نوع العقار", selectedType, [
-                        "شقة",
-                        "فيلا",
-                        "أرض",
-                      ]),
-                      buildDropdown("عمر العقار", selectedAge, [
-                        "أقل من 2 سنة",
-                        "أقل من 5 سنوات",
-                        "أكثر من 10 سنوات",
-                      ]),
-
-                      Row(
-                        children: [
-                          Expanded(
-                            child: buildTextField(
-                              hint: "السعر الأدنى",
-                              label: 'السعر',
-                            ),
-                          ),
-                          SizedBox(width: 10),
-                          Expanded(child: buildTextField(hint: "السعر الأعلى")),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 8,
-                      ),
-
-                      Row(
-                        children: [
-                          Expanded(
-                            child: buildTextField(
-                              hint: "أقل مساحة",
-                              label: 'المساحة',
-                            ),
-                          ),
-                          SizedBox(width: 10),
-                          Expanded(child: buildTextField(hint: "أعلى مساحة")),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-                Visibility(
-                  visible: isSelect == false,
-                  child: buildTextField(
-                    hint: "رقم الهاتف",
-                    label: 'رقم هاتف المعلن',
-                  ),
-                ),
+                buildTextField(hint: "رقم الهاتف", label: 'رقم هاتف المعلن'),
                 SizedBox(width: 500),
                 MaterialButton(
                   height: 44,
                   minWidth: 100,
-                  padding: EdgeInsets.zero,
                   color: AppColors.black,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(80),
                   ),
                   onPressed: widget.onPressedSearch,
                   child: Text(
-                    "بحث",
+                    "إنشاء طلب البحث",
                     style: AppTextStyles.style12W700(
                       context,
                     ).copyWith(color: AppColors.white),

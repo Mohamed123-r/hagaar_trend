@@ -4,6 +4,7 @@ import 'package:hagaar_trend/components/app_alert_dialog.dart';
 import 'package:hagaar_trend/constant.dart';
 import 'package:hagaar_trend/generated/assets.dart';
 import 'package:hagaar_trend/views/home/item_details_view.dart';
+import 'package:hagaar_trend/views/home/widgets/ask_for_real_estate_alart_dialog.dart';
 import 'package:hagaar_trend/views/home/widgets/list_view_item_from_show_list.dart'
     show ListViewItemFromShowList;
 import 'package:hagaar_trend/views/home/widgets/search_alart_dialog.dart';
@@ -664,37 +665,39 @@ class _HomeViewState extends State<HomeView> {
                               MaterialButton(
                                 height: 44,
                                 minWidth: 100,
-                                padding: EdgeInsets.zero,
+
                                 color: AppColors.black,
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(80),
                                 ),
                                 onPressed: () {
                                   setState(() {
-                                    showList = true;
+                                    showDialog(
+                                      context: context,
+                                      builder:
+                                          (context) => AskForRealEstateAlartDialog(
+                                            onPressedSearch: () {
+                                              showDialog(
+                                                context: context,
+                                                builder:
+                                                    (
+                                                      context,
+                                                    ) => AppAlertDialog2(
+                                                      title:
+                                                          "سيتم إبلاغك فور توفر عقار بنفس المواصفات",
+                                                      onPressedOk: () {},
+                                                    ),
+                                              );
+                                            },
+                                          ),
+                                    );
                                   });
                                 },
-                                child: Row(
-                                  children: [
-                                    SizedBox(width: 6),
-                                    GestureDetector(
-                                      child: CircleAvatar(
-                                        radius: 16,
-                                        backgroundColor: AppColors.white,
-                                        child: SvgPicture.asset(
-                                          Assets.imagesTextIndent,
-                                        ),
-                                      ),
-                                    ),
-                                    SizedBox(width: 12),
-                                    Text(
-                                      "عرض القائمة",
-                                      style: AppTextStyles.style12W700(
-                                        context,
-                                      ).copyWith(color: AppColors.white),
-                                    ),
-                                    SizedBox(width: 16),
-                                  ],
+                                child: Text(
+                                  "طلب بحث عن عقار",
+                                  style: AppTextStyles.style12W700(
+                                    context,
+                                  ).copyWith(color: AppColors.white),
                                 ),
                               ),
                             ],
