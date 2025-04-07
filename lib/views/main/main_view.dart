@@ -7,6 +7,7 @@ import 'package:hagaar_trend/constant.dart';
 import 'package:hagaar_trend/views/home/home_view.dart';
 import 'package:hagaar_trend/views/notification/notification_view.dart';
 import '../../generated/assets.dart';
+import '../comapnys/comapnys_view.dart';
 import '../customer_service/customer_service_view.dart';
 import '../profile/profile_view.dart';
 import 'widgets/bottom_nav_btn.dart';
@@ -65,7 +66,7 @@ class MainViewState extends State<MainView> {
               children: [
                 HomeView(),
                 ProfileView(),
-                Container(color: Colors.white),
+                ComapnysView(),
                 NotificationView(),
                 CustomerServiceView(),
               ],

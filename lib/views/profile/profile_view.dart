@@ -184,59 +184,57 @@ class _ProfileViewState extends State<ProfileView> {
               ),
             ],
           ),
-          Expanded(
-            child: SingleChildScrollView(
-              child: Visibility(
-                visible: !showMyItems,
-                child: Padding(
-                  padding: const EdgeInsets.all(32.0),
-                  child: Column(
-                    spacing: 16,
-                    children: [
-                      SizedBox(height: 16),
-                      EditDataButton(
-                        title: 'تحديث معلوماتي',
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (_) => EditProfileView()),
-                          );
-                        },
-                      ),
-                      EditDataButton(
-                        title: 'تغير كلمة المرور',
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (_) => ChangePasswordView()),
-                          );
-                        },
-                      ),
-                      EditDataButton(
-                        title: 'تسجيل الخروج',
-                        isDisabled: true,
-                        onPressed: () {
-                          showDialog(
-                            context: context,
-                            builder:
-                                (_) => AppAlertDialog2(
-                                  title: "هل تريد تسجيل الخروج من حسابك ؟!",
-                                  onPressedOk: () {
-                                    showDialog(
-                                      context: context,
-                                      builder:
-                                          (_) => CustomSuccessAlertDialog(
-                                            title: "تم تسجيل الخروج بنجاح",
-                                            onPressedOk: () {},
-                                          ),
-                                    );
-                                  },
-                                ),
-                          );
-                        },
-                      ),
-                    ],
-                  ),
+          SingleChildScrollView(
+            child: Visibility(
+              visible: !showMyItems,
+              child: Padding(
+                padding: const EdgeInsets.all(32.0),
+                child: Column(
+                  spacing: 16,
+                  children: [
+                    SizedBox(height: 16),
+                    EditDataButton(
+                      title: 'تحديث معلوماتي',
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (_) => EditProfileView()),
+                        );
+                      },
+                    ),
+                    EditDataButton(
+                      title: 'تغير كلمة المرور',
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (_) => ChangePasswordView()),
+                        );
+                      },
+                    ),
+                    EditDataButton(
+                      title: 'تسجيل الخروج',
+                      isDisabled: true,
+                      onPressed: () {
+                        showDialog(
+                          context: context,
+                          builder:
+                              (_) => AppAlertDialog2(
+                                title: "هل تريد تسجيل الخروج من حسابك ؟!",
+                                onPressedOk: () {
+                                  showDialog(
+                                    context: context,
+                                    builder:
+                                        (_) => CustomSuccessAlertDialog(
+                                          title: "تم تسجيل الخروج بنجاح",
+                                          onPressedOk: () {},
+                                        ),
+                                  );
+                                },
+                              ),
+                        );
+                      },
+                    ),
+                  ],
                 ),
               ),
             ),

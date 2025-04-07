@@ -53,6 +53,15 @@ class ChangePasswordView extends StatelessWidget {
                     ),
                   ),
                 ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 80.0),
+                  child: Text(
+                    "إعادة تعيين كلمة المرور",
+                    style: AppTextStyles.style24W800(
+                      context,
+                    ).copyWith(color: AppColors.green),
+                  ),
+                ),
               ],
             ),
             Expanded(
