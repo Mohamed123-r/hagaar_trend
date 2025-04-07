@@ -14,6 +14,7 @@ import 'package:hagaar_trend/views/profile/widgets/switch_profile_button.dart';
 import '../../components/app_colors.dart';
 import '../../generated/assets.dart';
 import '../home/item_details_view.dart';
+import 'location_from_comany.dart';
 
 class ComapnysDetailsView extends StatefulWidget {
   const ComapnysDetailsView({super.key});
@@ -220,7 +221,14 @@ class _comapnysDetailsView extends State<ComapnysDetailsView> {
 
                       textButton: TextButton(
 
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => LocationFromComapny(),
+                            ),
+                          );
+                        },
                         child: Text(
                           "المملكة العربية السعودية - الرياض",
                           style: AppTextStyles.style12W400(context).copyWith(
