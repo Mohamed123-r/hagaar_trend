@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hagaar_trend/components/custom_app_bar.dart';
 import 'package:hagaar_trend/constant.dart';
 
+import '../../generated/assets.dart';
 import 'item_details_view.dart';
 import 'widgets/list_view_item_from_show_list.dart';
 
@@ -90,45 +91,64 @@ class FavouriteView extends StatelessWidget {
     return Directionality(
       textDirection: direction,
       child: Scaffold(
+        extendBodyBehindAppBar: true,
         appBar: customAppBar(context, title: "العقارات المفضلة"),
-        body:ListView.separated(
-          itemBuilder: (context, index) {
-            return Padding(
-              padding:
-              index == 0
-                  ? const EdgeInsets.only(top: 16)
-                  : index == properties.length - 1
-                  ? const EdgeInsets.only(bottom: 16)
-                  : EdgeInsets.zero,
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder:
-                          (context) => ItemDetailsView(
-                        image: properties[index]['imageUrl']!,
-                        name: properties[index]['name']!,
-                        location: properties[index]['location']!,
-                        price: properties[index]['price']!,
-                      ),
+        body:Stack(
+          children: [
+            ListView.separated(
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding:
+                  index == 0
+                      ? const EdgeInsets.only(top: 70)
+                      : index == properties.length - 1
+                      ? const EdgeInsets.only(bottom: 16)
+                      : EdgeInsets.zero,
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder:
+                              (context) => ItemDetailsView(
+                            image: properties[index]['imageUrl']!,
+                            name: properties[index]['name']!,
+                            location: properties[index]['location']!,
+                            price: properties[index]['price']!,
+                          ),
+                        ),
+                      );
+                    },
+                    child: ListViewItemFromShowList(
+                      image: properties[index]['imageUrl']!,
+                      name: properties[index]['name']!,
+                      location: properties[index]['location']!,
+                      price: properties[index]['price']!,
+                      type: properties[index]['type']!,
+                      area: properties[index]['area']!,
+                      status: properties[index]['status']!,
                     ),
-                  );
-                },
-                child: ListViewItemFromShowList(
-                  image: properties[index]['imageUrl']!,
-                  name: properties[index]['name']!,
-                  location: properties[index]['location']!,
-                  price: properties[index]['price']!,
-                  type: properties[index]['type']!,
-                  area: properties[index]['area']!,
-                  status: properties[index]['status']!,
+                  ),
+                );
+              },
+              separatorBuilder: (context, index) => SizedBox(height: 24),
+              itemCount: properties.length,
+            ),
+            Positioned(
+              right: 0,
+              left: 0,
+              child: Container(
+                color: Colors.white,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Image.asset(Assets.imagesShapes2),
+                    Image.asset(Assets.imagesShap1),
+                  ],
                 ),
               ),
-            );
-          },
-          separatorBuilder: (context, index) => SizedBox(height: 24),
-          itemCount: properties.length,
+            ),
+          ],
         )
       ),
     );

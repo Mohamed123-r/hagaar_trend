@@ -205,25 +205,49 @@ class _HomeViewState extends State<HomeView> {
                         ),
                         Spacer(),
                         Visibility(
-                          visible: showDetailsLocation,
-                          child: CircleAvatar(
-                            radius: 22,
-                            backgroundColor: AppColors.grey.withAlpha(150),
-                            child: GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  showDetailsLocation = false;
-                                });
-                              },
-                              child: CircleAvatar(
-                                radius: 18,
-                                backgroundColor: AppColors.greyDarker,
-                                child: SvgPicture.asset(
-                                  Assets.imagesCrosshair,
-                                  color: AppColors.orange,
+                          visible: showDetailsLocation || !showDetailsLocation,
+                          child: Row(
+                            children: [
+                              CircleAvatar(
+                                radius: 22,
+                                backgroundColor: AppColors.grey.withAlpha(150),
+                                child: GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      showDetailsLocation = false;
+                                    });
+                                  },
+                                  child: CircleAvatar(
+                                    radius: 18,
+                                    backgroundColor: AppColors.greyDarker,
+                                    child: SvgPicture.asset(
+                                      Assets.imagesCrosshair,
+                                      color: AppColors.orange,
+                                    ),
+                                  ),
                                 ),
                               ),
-                            ),
+                              SizedBox(width: 16),
+                              CircleAvatar(
+                                radius: 22,
+                                backgroundColor: AppColors.grey.withAlpha(150),
+                                child: GestureDetector(
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => FavouriteView(),
+                                      ),
+                                    );
+                                  },
+                                  child: CircleAvatar(
+                                    radius: 18,
+                                    backgroundColor: AppColors.greyDarker,
+                                    child: SvgPicture.asset(Assets.imagesHeart),
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ],
@@ -545,6 +569,7 @@ class _HomeViewState extends State<HomeView> {
                       left: 20,
                       child: Row(
                         spacing: 8,
+                        crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           MaterialButton(
                             height: 44,
@@ -583,40 +608,96 @@ class _HomeViewState extends State<HomeView> {
                             ),
                           ),
                           Spacer(),
-                          CircleAvatar(
-                            radius: 22,
-                            backgroundColor: AppColors.grey.withAlpha(150),
-                            child: GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  showLocation = true;
-                                });
-                              },
-                              child: CircleAvatar(
-                                radius: 18,
-                                backgroundColor: AppColors.greyDarker,
-                                child: SvgPicture.asset(Assets.imagesCrosshair),
-                              ),
-                            ),
-                          ),
-                          CircleAvatar(
-                            radius: 22,
-                            backgroundColor: AppColors.grey.withAlpha(150),
-                            child: GestureDetector(
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => FavouriteView(),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            spacing: 8,
+                            children: [
+                              Row(
+                                children: [
+                                  CircleAvatar(
+                                    radius: 22,
+                                    backgroundColor: AppColors.grey.withAlpha(
+                                      150,
+                                    ),
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        setState(() {
+                                          showLocation = true;
+                                        });
+                                      },
+                                      child: CircleAvatar(
+                                        radius: 18,
+                                        backgroundColor: AppColors.greyDarker,
+                                        child: SvgPicture.asset(
+                                          Assets.imagesCrosshair,
+                                        ),
+                                      ),
+                                    ),
                                   ),
-                                );
-                              },
-                              child: CircleAvatar(
-                                radius: 18,
-                                backgroundColor: AppColors.greyDarker,
-                                child: SvgPicture.asset(Assets.imagesHeart),
+                                  SizedBox(width: 16),
+                                  CircleAvatar(
+                                    radius: 22,
+                                    backgroundColor: AppColors.grey.withAlpha(
+                                      150,
+                                    ),
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder:
+                                                (context) => FavouriteView(),
+                                          ),
+                                        );
+                                      },
+                                      child: CircleAvatar(
+                                        radius: 18,
+                                        backgroundColor: AppColors.greyDarker,
+                                        child: SvgPicture.asset(
+                                          Assets.imagesHeart,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
-                            ),
+                              MaterialButton(
+                                height: 44,
+                                minWidth: 100,
+                                padding: EdgeInsets.zero,
+                                color: AppColors.black,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(80),
+                                ),
+                                onPressed: () {
+                                  setState(() {
+                                    showList = true;
+                                  });
+                                },
+                                child: Row(
+                                  children: [
+                                    SizedBox(width: 6),
+                                    GestureDetector(
+                                      child: CircleAvatar(
+                                        radius: 16,
+                                        backgroundColor: AppColors.white,
+                                        child: SvgPicture.asset(
+                                          Assets.imagesTextIndent,
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(width: 12),
+                                    Text(
+                                      "عرض القائمة",
+                                      style: AppTextStyles.style12W700(
+                                        context,
+                                      ).copyWith(color: AppColors.white),
+                                    ),
+                                    SizedBox(width: 16),
+                                  ],
+                                ),
+                              ),
+                            ],
                           ),
                         ],
                       ),
