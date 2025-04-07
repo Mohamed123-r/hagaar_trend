@@ -43,199 +43,202 @@ class _EditProfileViewState extends State<EditProfileView> {
     return Scaffold(
       body: Directionality(
         textDirection: direction,
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Stack(
-                alignment: Alignment.topCenter,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Image.asset(Assets.imagesShap2),
-                      Image.asset(Assets.imagesShap1),
-                    ],
-                  ),
-                  Positioned(
-                    top: 32,
-                    right: direction == TextDirection.rtl ? 16 : null,
-                    left: direction == TextDirection.ltr ? 16 : null,
-                    child: InkWell(
-                      borderRadius: BorderRadius.circular(80),
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                      child: Container(
-                        width: 40,
-                        height: 40,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(80),
+        child: Column(
+          children: [
+            Stack(
+              alignment: Alignment.topCenter,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Image.asset(Assets.imagesShap2),
+                    Image.asset(Assets.imagesShap1),
+                  ],
+                ),
+                Positioned(
+                  top: 32,
+                  right: direction == TextDirection.rtl ? 16 : null,
+                  left: direction == TextDirection.ltr ? 16 : null,
+                  child: InkWell(
+                    borderRadius: BorderRadius.circular(8),
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child: Container(
+                      width: 32,
+                      height: 32,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        color: AppColors.middleGreen,
+                      ),
+                      child: GestureDetector(
+                        child: Icon(
+                          Icons.arrow_back_ios_new,
                           color: AppColors.white,
-                          border: Border.all(color: AppColors.border, width: 1),
-                        ),
-                        child: GestureDetector(
-                          child: Icon(Icons.arrow_back_ios_new, size: 16),
+                          size: 16,
                         ),
                       ),
                     ),
                   ),
-                ],
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24),
-                child: Column(
-                  spacing: 16,
-                  children: [
-                    Stack(
-                      children: [
-                        Container(
-                          width: 164,
-                          height: 164,
-                          decoration: BoxDecoration(
-                            color: Color(0xffEEEEEE),
-                            borderRadius: BorderRadius.circular(240),
-                          ),
-                          child: Center(
-                            child: SvgPicture.asset(
-                              Assets.imagesUser,
-                              color: AppColors.black,
-                              width: 24,
-                            ),
-                          ),
-                        ),
-                        Positioned(
-                          bottom: 4,
-                          right: direction == TextDirection.rtl ? 12 : null,
-                          left: direction == TextDirection.ltr ? 12 : null,
-                          child: Container(
-                            width: 32,
-                            height: 32,
+                ),
+              ],
+            ),
+            Expanded(
+              child: SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24),
+                  child: Column(
+                    spacing: 16,
+                    children: [
+                      Stack(
+                        children: [
+                          Container(
+                            width: 164,
+                            height: 164,
                             decoration: BoxDecoration(
-                              color: AppColors.white,
+                              color: Color(0xffEEEEEE),
                               borderRadius: BorderRadius.circular(240),
-                              border: Border.all(
-                                width: 1,
-                                color: AppColors.border,
-                              ),
                             ),
                             child: Center(
                               child: SvgPicture.asset(
-                                Assets.imagesCamera,
-                                width: 16,
+                                Assets.imagesUser,
+                                color: AppColors.black,
+                                width: 24,
                               ),
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                    AppInputTextFormField(
-                      title: "الاسم",
-                      controller: nameController,
-                      keyboardType: TextInputType.name,
-                    ),
-
-                    AppInputTextFormField(
-                      title: "رقم الهاتف",
-                      controller: phoneController,
-                      keyboardType: TextInputType.phone,
-                    ),
-                    AppInputTextFormField(
-                      title: "العنوان",
-                      controller: locationController,
-                      keyboardType: TextInputType.name,
-                      suffixIcon: SizedBox(
-                        width: 100,
-                        child: Center(
-                          child: GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (_) => ChangeLocation(),
+                          Positioned(
+                            bottom: 4,
+                            right: direction == TextDirection.rtl ? 12 : null,
+                            left: direction == TextDirection.ltr ? 12 : null,
+                            child: Container(
+                              width: 32,
+                              height: 32,
+                              decoration: BoxDecoration(
+                                color: AppColors.white,
+                                borderRadius: BorderRadius.circular(240),
+                                border: Border.all(
+                                  width: 1,
+                                  color: AppColors.border,
                                 ),
-                              );
-                            },
-                            child: Text(
-                              "تغير الموقع",
-                              style: AppTextStyles.style12W400(
-                                context,
-                              ).copyWith(
-                                color: AppColors.green,
-                                decoration: TextDecoration.underline,
-                                decorationColor: AppColors.green,
+                              ),
+                              child: Center(
+                                child: SvgPicture.asset(
+                                  Assets.imagesCamera,
+                                  width: 16,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      AppInputTextFormField(
+                        title: "الاسم",
+                        controller: nameController,
+                        keyboardType: TextInputType.name,
+                      ),
+
+                      AppInputTextFormField(
+                        title: "رقم الهاتف",
+                        controller: phoneController,
+                        keyboardType: TextInputType.phone,
+                      ),
+                      AppInputTextFormField(
+                        title: "العنوان",
+                        controller: locationController,
+                        keyboardType: TextInputType.name,
+                        suffixIcon: SizedBox(
+                          width: 100,
+                          child: Center(
+                            child: TextButton(
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (_) => ChangeLocation(),
+                                  ),
+                                );
+                              },
+                              child: Text(
+                                "تغير الموقع",
+                                style: AppTextStyles.style12W400(
+                                  context,
+                                ).copyWith(
+                                  color: AppColors.green,
+                                  decoration: TextDecoration.underline,
+                                  decorationColor: AppColors.green,
+                                ),
                               ),
                             ),
                           ),
                         ),
                       ),
-                    ),
-                    AppInputTextFormField(
-                      title: "العضوية",
-                      controller: membershipController,
-                      keyboardType: TextInputType.phone,
-                      suffixIcon: SizedBox(
-                        width: 100,
-                        child: Center(
-                          child: GestureDetector(
-                            onTap: () {
-                              showDialog(
-                                context: context,
-                                builder:
-                                    (context) => AppAlertDialog(
-                                      body: Wrap(
-                                        spacing: 16,
-                                        runSpacing: 16,
-                                        alignment: WrapAlignment.center,
-                                        children: [
-                                          _membershipItem(
-                                            Assets.imagesMembership1,
-                                            "باحث عن عقار",
-                                            context: context,
-                                          ),
-                                          _membershipItem(
-                                            context: context,
-                                            Assets.imagesMembership2,
-                                            "مالك",
-                                          ),
-                                          _membershipItem(
-                                            context: context,
-                                            Assets.imagesMembership3,
-                                            "مسوق",
-                                          ),
-                                          _membershipItem(
-                                            context: context,
-                                            Assets.imagesMembership4,
-                                            "شركة عقارية",
-                                          ),
-                                        ],
-                                      ),
-                                      onPressedOk: () {},
-                                    ),
-                              );
-                            },
-                            child: Text(
-                              "تغير العضوية",
-                              style: AppTextStyles.style12W400(
-                                context,
-                              ).copyWith(
-                                color: AppColors.green,
-                                decoration: TextDecoration.underline,
-                                decorationColor: AppColors.green,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
+                      // AppInputTextFormField(
+                      //   title: "العضوية",
+                      //   controller: membershipController,
+                      //   keyboardType: TextInputType.phone,
+                      //   suffixIcon: SizedBox(
+                      //     width: 100,
+                      //     child: Center(
+                      //       child: GestureDetector(
+                      //         onTap: () {
+                      //           showDialog(
+                      //             context: context,
+                      //             builder:
+                      //                 (context) => AppAlertDialog(
+                      //                   body: Wrap(
+                      //                     spacing: 16,
+                      //                     runSpacing: 16,
+                      //                     alignment: WrapAlignment.center,
+                      //                     children: [
+                      //                       _membershipItem(
+                      //                         Assets.imagesMembership1,
+                      //                         "باحث عن عقار",
+                      //                         context: context,
+                      //                       ),
+                      //                       _membershipItem(
+                      //                         context: context,
+                      //                         Assets.imagesMembership2,
+                      //                         "مالك",
+                      //                       ),
+                      //                       _membershipItem(
+                      //                         context: context,
+                      //                         Assets.imagesMembership3,
+                      //                         "مسوق",
+                      //                       ),
+                      //                       _membershipItem(
+                      //                         context: context,
+                      //                         Assets.imagesMembership4,
+                      //                         "شركة عقارية",
+                      //                       ),
+                      //                     ],
+                      //                   ),
+                      //                   onPressedOk: () {},
+                      //                 ),
+                      //           );
+                      //         },
+                      //         child: Text(
+                      //           "تغير العضوية",
+                      //           style: AppTextStyles.style12W400(
+                      //             context,
+                      //           ).copyWith(
+                      //             color: AppColors.green,
+                      //             decoration: TextDecoration.underline,
+                      //             decorationColor: AppColors.green,
+                      //           ),
+                      //         ),
+                      //       ),
+                      //     ),
+                      //   ),
+                      // ),
 
-                    const SizedBox(height: 50),
-
-                    const SizedBox(height: 20),
-                  ],
+                      const SizedBox(height: 16),
+                    ],
+                  ),
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
