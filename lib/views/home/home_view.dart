@@ -4,6 +4,7 @@ import 'package:hagaar_trend/components/app_alert_dialog.dart';
 import 'package:hagaar_trend/constant.dart';
 import 'package:hagaar_trend/generated/assets.dart';
 import 'package:hagaar_trend/views/home/item_details_view.dart';
+import 'package:hagaar_trend/views/home/show_search_view.dart';
 import 'package:hagaar_trend/views/home/widgets/ask_for_real_estate_alart_dialog.dart';
 import 'package:hagaar_trend/views/home/widgets/list_view_item_from_show_list.dart'
     show ListViewItemFromShowList;
@@ -166,78 +167,53 @@ class _HomeViewState extends State<HomeView> {
                     right: 20,
                     left: 20,
                     child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       spacing: 8,
                       children: [
-                        Visibility(
-                          visible: !showDetailsLocation,
-                          child: MaterialButton(
-                            height: 44,
-                            minWidth: 100,
-                            padding: EdgeInsets.zero,
-                            color: AppColors.black,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(80),
-                            ),
-                            onPressed: () {
-                              setState(() {
-                                showDetailsLocation = true;
-                              });
-                            },
-                            child: Text(
-                              "موافق",
-                              style: AppTextStyles.style12W700(
-                                context,
-                              ).copyWith(color: AppColors.white),
-                            ),
-                          ),
-                        ),
-                        Spacer(),
-                        Visibility(
-                          visible: showDetailsLocation || !showDetailsLocation,
-                          child: Row(
-                            children: [
-                              CircleAvatar(
-                                radius: 22,
-                                backgroundColor: AppColors.grey.withAlpha(150),
-                                child: GestureDetector(
-                                  onTap: () {
-                                    setState(() {
-                                      showDetailsLocation = false;
-                                    });
-                                  },
-                                  child: CircleAvatar(
-                                    radius: 18,
-                                    backgroundColor: AppColors.greyDarker,
-                                    child: SvgPicture.asset(
-                                      Assets.imagesCrosshair,
-                                      color: AppColors.orange,
-                                    ),
-                                  ),
-                                ),
+                        !showDetailsLocation
+                            ? MaterialButton(
+                              height: 44,
+                              minWidth: 100,
+                              padding: EdgeInsets.zero,
+                              color: AppColors.black,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(80),
                               ),
-                              SizedBox(width: 16),
-                              CircleAvatar(
-                                radius: 22,
-                                backgroundColor: AppColors.grey.withAlpha(150),
-                                child: GestureDetector(
-                                  onTap: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => FavouriteView(),
-                                      ),
-                                    );
-                                  },
-                                  child: CircleAvatar(
-                                    radius: 18,
-                                    backgroundColor: AppColors.greyDarker,
-                                    child: SvgPicture.asset(Assets.imagesHeart),
-                                  ),
-                                ),
+                              onPressed: () {
+                                setState(() {
+                                  showDetailsLocation = true;
+                                });
+                              },
+                              child: Text(
+                                "موافق",
+                                style: AppTextStyles.style12W700(
+                                  context,
+                                ).copyWith(color: AppColors.white),
                               ),
-                            ],
-                          ),
-                        ),
+                            )
+                            : MaterialButton(
+                              height: 44,
+                              minWidth: 140,
+                              padding: EdgeInsets.zero,
+                              color: AppColors.black,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(80),
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (_) => ShowSearchView()),
+                                  );
+                                });
+                              },
+                              child: Text(
+                                "عرض قائمة العقارات",
+                                style: AppTextStyles.style12W700(
+                                  context,
+                                ).copyWith(color: AppColors.white),
+                              ),
+                            ),
                       ],
                     ),
                   ),
@@ -617,15 +593,14 @@ class _HomeViewState extends State<HomeView> {
                                 radius: 16,
                                 backgroundColor: AppColors.white,
                                 child:
-
-                                showList == false
-                                    ?
-                                SvgPicture.asset(
-                                  Assets.imagesTextIndent,
-                                ) :   SvgPicture.asset(
-                                  Assets.imagesMapTrifold,
-                                  color: AppColors.green,
-                                ),
+                                    showList == false
+                                        ? SvgPicture.asset(
+                                          Assets.imagesTextIndent,
+                                        )
+                                        : SvgPicture.asset(
+                                          Assets.imagesMapTrifold,
+                                          color: AppColors.green,
+                                        ),
                               ),
                               SizedBox(width: 12),
                               Text(
