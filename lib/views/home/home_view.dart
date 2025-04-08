@@ -23,7 +23,7 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  bool isRent = true;
+  int isRent = 0;
   bool showList = false;
   bool showLocation = false;
   bool showSearch = false;
@@ -352,7 +352,7 @@ class _HomeViewState extends State<HomeView> {
                                   ),
                                   onPressed: () {
                                     setState(() {
-                                      isRent = false;
+                                      isRent = 0;
                                     });
                                   },
                                   child: Row(
@@ -370,9 +370,45 @@ class _HomeViewState extends State<HomeView> {
                                           context,
                                         ).copyWith(
                                           color:
-                                              isRent
-                                                  ? AppColors.grey
-                                                  : AppColors.black,
+                                              isRent==0
+                                                  ? AppColors.black
+                                                  : AppColors.grey,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                width: 1,
+                                height: 40,
+                                color: AppColors.border,
+                              ),
+                              Expanded(
+                                child: MaterialButton(
+                                  height: 60,
+                                  onPressed: () {
+                                    setState(() {
+                                      isRent = 1;
+                                    });
+                                  },
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Image.asset(
+                                        Assets.imagesDoor,
+                                        width: 24,
+                                        height: 24,
+                                      ),
+                                      Text(
+                                        "للإيجار",
+                                        style: AppTextStyles.style13W400(
+                                          context,
+                                        ).copyWith(
+                                          color:
+                                              isRent ==1
+                                                  ? AppColors.black
+                                                  : AppColors.grey,
                                         ),
                                       ),
                                     ],
@@ -405,26 +441,26 @@ class _HomeViewState extends State<HomeView> {
                                   ),
                                   onPressed: () {
                                     setState(() {
-                                      isRent = true;
+                                      isRent = 2;
                                     });
                                   },
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Image.asset(
-                                        Assets.imagesDoor,
+                                        Assets.imagesFilter,
                                         width: 24,
                                         height: 24,
                                       ),
                                       Text(
-                                        "للإيجار",
+                                        "فلترتك",
                                         style: AppTextStyles.style13W400(
                                           context,
                                         ).copyWith(
                                           color:
-                                              isRent
-                                                  ? AppColors.black
-                                                  : AppColors.grey,
+                                          isRent ==2
+                                              ? AppColors.black
+                                              : AppColors.grey,
                                         ),
                                       ),
                                     ],
@@ -533,6 +569,33 @@ class _HomeViewState extends State<HomeView> {
                               ),
                               Spacer(),
                               Spacer(),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Visibility(
+                    visible: showSearch,
+                    child: Positioned(
+                      top: 256,
+
+                      child: Container(
+                        height: 48,
+
+                        decoration: BoxDecoration(
+                          color: AppColors.accentColor,
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        child: Center(
+                          child: Row(
+                            children: [
+
+                              Text(
+                                "في حاله المعلن غير شكل البتوع الاخضر دول",
+                                style: AppTextStyles.style16W400(context),
+                              ),
+
                             ],
                           ),
                         ),

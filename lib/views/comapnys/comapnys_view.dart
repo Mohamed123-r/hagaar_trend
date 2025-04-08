@@ -55,24 +55,18 @@ class ComapnysView extends StatelessWidget {
     return Directionality(
       textDirection: direction,
       child: Scaffold(
-        extendBodyBehindAppBar: true,
         appBar: customAppBar(context, title: "المكاتب العقارية"),
         body: Stack(
           children: [
-            ListView.separated(
-              separatorBuilder: (context, index) => SizedBox(height: 16),
-              itemCount: companies.length,
+            Padding(
+              padding: const EdgeInsets.only(top: 16.0),
+              child: ListView.separated(
+                separatorBuilder: (context, index) => SizedBox(height: 16),
+                itemCount: companies.length,
 
-              itemBuilder: (context, index) {
-                final company = companies[index];
-                return Padding(
-                  padding:
-                      index == 0
-                          ? const EdgeInsets.only(top: 70)
-                          : index == companies.length - 1
-                          ? const EdgeInsets.only(bottom: 100)
-                          : EdgeInsets.zero,
-                  child: InkWell(
+                itemBuilder: (context, index) {
+                  final company = companies[index];
+                  return InkWell(
                     borderRadius: BorderRadius.circular(16),
                     onTap: () {
                       Navigator.push(
@@ -155,22 +149,8 @@ class ComapnysView extends StatelessWidget {
                         ],
                       ),
                     ),
-                  ),
-                );
-              },
-            ),
-            Positioned(
-              right: 0,
-              left: 0,
-              child: Container(
-                color: Colors.white,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Image.asset(Assets.imagesShapes2),
-                    Image.asset(Assets.imagesShap1),
-                  ],
-                ),
+                  );
+                },
               ),
             ),
           ],

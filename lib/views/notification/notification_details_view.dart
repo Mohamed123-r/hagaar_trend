@@ -14,16 +14,12 @@ class NotificationDetailsView extends StatelessWidget {
     return Directionality(
       textDirection: direction,
       child: Scaffold(
-        extendBodyBehindAppBar: true,
-        appBar: customAppBar(context, title: "إشعاراتك"),
+        appBar: customAppBar(context, title: "إشعاراتك" ,showBack: true),
         body: Stack(
           children: [
             ListView(
-              padding: const EdgeInsets.only(
-                left: 16,
-                right: 16,
-                bottom: 16,
-                top: 150,
+              padding: const EdgeInsets.all(
+                16
               ),
               children: [
                 NotificationBubble(
@@ -63,20 +59,8 @@ class NotificationDetailsView extends StatelessWidget {
                 ),
               ],
             ),
-            Positioned(
-              right: 0,
-              left: 0,
-              child: Container(
-                color: Colors.white,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Image.asset(Assets.imagesShapes2),
-                    Image.asset(Assets.imagesShap1),
-                  ],
-                ),
-              ),
-            ),
+
+
           ],
         ),
       ),

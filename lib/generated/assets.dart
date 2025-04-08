@@ -15,6 +15,7 @@ class Assets {
   static const String imagesCrosshair = 'assets/images/Crosshair.svg';
   static const String imagesDoor = 'assets/images/door.png';
   static const String imagesDoorOpen = 'assets/images/DoorOpen.svg';
+  static const String imagesFilter = 'assets/images/filter.png';
   static const String imagesHand = 'assets/images/hand.png';
   static const String imagesHeadset = 'assets/images/Headset.svg';
   static const String imagesHeart = 'assets/images/Heart.svg';

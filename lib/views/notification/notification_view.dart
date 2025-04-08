@@ -23,7 +23,7 @@ class NotificationView extends StatelessWidget {
       body: Stack(
         children: [
           Padding(
-            padding: const EdgeInsets.only(top: 44.0),
+            padding: const EdgeInsets.only(top: 2.0),
             child: ListView.separated(
               itemCount: registrations.length,
               separatorBuilder: (context, index) => Divider(color: Colors.grey[300]),
@@ -67,8 +67,10 @@ class NotificationView extends StatelessWidget {
           Positioned(
             right: 0,
             left: 0,
+             top: -50 ,
             child: Container(
               color: Colors.white,
+              width: double.infinity,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [

@@ -22,7 +22,7 @@ class CustomerServiceView extends StatelessWidget {
                 padding: const EdgeInsets.all(24.0),
                 child: Column(
                   children: [
-                    SizedBox(height: 140),
+                    SizedBox(height: 100),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -66,20 +66,6 @@ class CustomerServiceView extends StatelessWidget {
                     ),
                   ],
                 ),
-              ),
-            ),
-          ),
-          Positioned(
-            right: 0,
-            left: 0,
-            child: Container(
-              color: Colors.white,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Image.asset(Assets.imagesShapes2),
-                  Image.asset(Assets.imagesShap1),
-                ],
               ),
             ),
           ),
