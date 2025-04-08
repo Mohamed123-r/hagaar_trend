@@ -31,7 +31,7 @@ class NewAuthView extends StatelessWidget {
                   ],
                 ),
                 Positioned(
-                  top: 32,
+                  top: 40,
                   right: direction == TextDirection.rtl ? 16 : null,
                   left: direction == TextDirection.ltr ? 16 : null,
                   child: InkWell(
@@ -206,7 +206,7 @@ class NewAuthView extends StatelessWidget {
                           ),
                         ),
                       ),
-                      SizedBox(height: 56),
+                      SizedBox(height: 32),
                       MaterialButton(
                         height: 44,
                         minWidth: double.infinity,
@@ -228,7 +228,7 @@ class NewAuthView extends StatelessWidget {
                         "تسجيل الدخول",
                         style: AppTextStyles.style16W400(context),
                       ),
-                      SizedBox(height: 24),
+                      SizedBox(height: 16),
                       MaterialButton(
                         height: 44,
                         minWidth: double.infinity,

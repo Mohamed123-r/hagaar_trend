@@ -48,6 +48,19 @@ class ComapnysView extends StatelessWidget {
       'location': 'مدينة الرياض - حي الشارقة',
       'phone': '+20 010928736354',
     },
+
+    {
+      'image': 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d',
+      'name': 'شركة الإشراق للعقارات',
+      'location': 'مدينة الرياض - حي الشارقة',
+      'phone': '+20 010928736354',
+    },
+    {
+      'image': 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d',
+      'name': 'شركة الإشراق للعقارات',
+      'location': 'مدينة الرياض - حي الشارقة',
+      'phone': '+20 010928736354',
+    },
   ];
 
   @override
@@ -58,15 +71,20 @@ class ComapnysView extends StatelessWidget {
         appBar: customAppBar(context, title: "المكاتب العقارية"),
         body: Stack(
           children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 16.0),
-              child: ListView.separated(
-                separatorBuilder: (context, index) => SizedBox(height: 16),
-                itemCount: companies.length,
+            ListView.separated(
+              separatorBuilder: (context, index) => SizedBox(height: 16),
+              itemCount: companies.length,
 
-                itemBuilder: (context, index) {
-                  final company = companies[index];
-                  return InkWell(
+              itemBuilder: (context, index) {
+                final company = companies[index];
+                return Padding(
+                  padding:
+                      index == 0
+                          ? const EdgeInsets.only(top: 16)
+                          : index == companies.length - 1
+                          ? const EdgeInsets.only(bottom: 90)
+                          : EdgeInsets.zero,
+                  child: InkWell(
                     borderRadius: BorderRadius.circular(16),
                     onTap: () {
                       Navigator.push(
@@ -103,7 +121,7 @@ class ComapnysView extends StatelessWidget {
                                   company['location']!,
                                   style: AppTextStyles.style12W400(context),
                                 ),
-                                const SizedBox(height: 8),
+                                const SizedBox(height: 12),
                                 Row(
                                   mainAxisAlignment:
                                       direction == TextDirection.ltr
@@ -130,13 +148,13 @@ class ComapnysView extends StatelessWidget {
 
                           Padding(
                             padding: const EdgeInsets.symmetric(
-                              horizontal: 24.0,
+                              horizontal: 8.0,
                             ),
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(50),
                               child: CircleAvatar(
                                 radius: 32,
-                                backgroundColor: AppColors.green,
+                                backgroundColor: AppColors.grey,
                                 child: Image.network(
                                   company['image']!,
                                   width: 64,
@@ -149,9 +167,9 @@ class ComapnysView extends StatelessWidget {
                         ],
                       ),
                     ),
-                  );
-                },
-              ),
+                  ),
+                );
+              },
             ),
           ],
         ),

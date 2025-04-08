@@ -22,6 +22,7 @@ class Assets {
   static const String imagesHeart2 = 'assets/images/Heart2.svg';
   static const String imagesHouse = 'assets/images/House.svg';
   static const String imagesHouseLine = 'assets/images/HouseLine.svg';
+  static const String imagesImage = 'assets/images/Image.svg';
   static const String imagesKey = 'assets/images/key.png';
   static const String imagesLogo = 'assets/images/Logo.png';
   static const String imagesMap = 'assets/images/map.png';

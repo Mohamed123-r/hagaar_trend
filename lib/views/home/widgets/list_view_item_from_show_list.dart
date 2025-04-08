@@ -29,7 +29,7 @@ class ListViewItemFromShowList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 12.0),
+      padding: const EdgeInsets.all( 12),
       child: Column(
         spacing: 8,
         children: [

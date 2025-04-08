@@ -26,7 +26,7 @@ class ChangePasswordView extends StatelessWidget {
                   ],
                 ),
                 Positioned(
-                  top: 32,
+                  top: 40,
                   right: direction == TextDirection.rtl ? 16 : null,
                   left: direction == TextDirection.ltr ? 16 : null,
                   child: InkWell(
@@ -54,7 +54,7 @@ class ChangePasswordView extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 80.0),
+                  padding: const EdgeInsets.only(top: 100.0),
                   child: Text(
                     "إعادة تعيين كلمة المرور",
                     style: AppTextStyles.style24W800(
@@ -71,6 +71,9 @@ class ChangePasswordView extends StatelessWidget {
                   child: Column(
                     spacing: 24,
                     children: [
+                      SizedBox(
+                        height: 8,
+                      ),
                       PasswordTextForm(title: 'كلمة المرور الحالية',),
                       PasswordTextForm(title: 'كلمة المرور الجديدة',),
                       PasswordTextForm(title: 'تأكيد كلمة المرور الجديدة',),

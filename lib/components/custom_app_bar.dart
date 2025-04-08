@@ -34,11 +34,19 @@ AppBar customAppBar(
                 onTap: onCleckBack ?? () {
                   Navigator.pop(context);
                 },
-                child: CircleAvatar(
-                  radius: 18,
-                  backgroundColor: AppColors.white,
+                child: Container(
+                  width: 32,
+                  height: 32,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    color: AppColors.middleGreen,
+                  ),
                   child: GestureDetector(
-                    child: Icon(Icons.arrow_back_ios_new, size: 14),
+                    child: Icon(
+                      Icons.arrow_back_ios_new,
+                      color: AppColors.white,
+                      size: 16,
+                    ),
                   ),
                 ),
               ) : SizedBox(),

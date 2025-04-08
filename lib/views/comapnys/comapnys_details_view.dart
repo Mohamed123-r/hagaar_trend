@@ -118,7 +118,7 @@ class _comapnysDetailsView extends State<ComapnysDetailsView> {
                   ],
                 ),
                 Positioned(
-                  top: 32,
+                  top: 40,
                   right: direction == TextDirection.rtl ? 16 : null,
                   left: direction == TextDirection.ltr ? 16 : null,
                   child: InkWell(
@@ -220,7 +220,6 @@ class _comapnysDetailsView extends State<ComapnysDetailsView> {
                       title: "موقع الشركة :",
 
                       textButton: TextButton(
-
                         onPressed: () {
                           Navigator.push(
                             context,
@@ -232,7 +231,9 @@ class _comapnysDetailsView extends State<ComapnysDetailsView> {
                         child: Text(
                           "المملكة العربية السعودية - الرياض",
                           style: AppTextStyles.style12W400(context).copyWith(
-                            color: AppColors.green
+                            color: AppColors.green,
+                            decoration: TextDecoration.underline,
+                            decorationColor: AppColors.green,
                           ),
                         ),
                       ),

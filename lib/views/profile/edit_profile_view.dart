@@ -23,6 +23,9 @@ class _EditProfileViewState extends State<EditProfileView> {
   final TextEditingController phoneController = TextEditingController(
     text: "+20 0108376546221",
   );
+  final TextEditingController emailController = TextEditingController(
+    text: "kh@led5367gyedv@gmail.com",
+  );
   final TextEditingController locationController = TextEditingController(
     text: "السعودية - الرياض - حي الشارقة",
   );
@@ -56,7 +59,7 @@ class _EditProfileViewState extends State<EditProfileView> {
                   ],
                 ),
                 Positioned(
-                  top: 32,
+                  top: 40,
                   right: direction == TextDirection.rtl ? 16 : null,
                   left: direction == TextDirection.ltr ? 16 : null,
                   child: InkWell(
@@ -141,6 +144,11 @@ class _EditProfileViewState extends State<EditProfileView> {
                       AppInputTextFormField(
                         title: "رقم الهاتف",
                         controller: phoneController,
+                        keyboardType: TextInputType.phone,
+                      ),
+                      AppInputTextFormField(
+                        title: "البريد الإلكتروني",
+                        controller: emailController,
                         keyboardType: TextInputType.phone,
                       ),
                       AppInputTextFormField(

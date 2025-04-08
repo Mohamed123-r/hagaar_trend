@@ -42,7 +42,7 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
                   ],
                 ),
                 Positioned(
-                  top: 32,
+                  top: 40,
                   right: direction == TextDirection.rtl ? 16 : null,
                   left: direction == TextDirection.ltr ? 16 : null,
                   child: InkWell(

@@ -20,67 +20,50 @@ class NotificationView extends StatelessWidget {
     return Scaffold(
       extendBodyBehindAppBar: true ,
       appBar: customAppBar(context, title: "إشعارات",showBack: false),
-      body: Stack(
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 2.0),
-            child: ListView.separated(
-              itemCount: registrations.length,
-              separatorBuilder: (context, index) => Divider(color: Colors.grey[300]),
-              itemBuilder: (context, index) {
-                return InkWell(
-                  onTap: (){
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => NotificationDetailsView(),
-                      ),
-                    );
-                  },
-
-                  child: ListTile(
-                    leading:Container(
-                      width: 40,
-                      height: 40,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(80),
-                        color: AppColors.white,
-                        border: Border.all(color: AppColors.border, width: 1),
-                      ),
-                      child: Image.asset(Assets.imagesLogo),
-                    ),
-                    title: Text(
-                      "تطبيق زد العقار",
-                      style: AppTextStyles.style12W400(context),
-                    ),
-                    subtitle: Text(
-                      registrations[index],
-                      style: AppTextStyles.style12W400(context).copyWith(
-                        color: AppColors.grey
-                      ),
-                    ),
+      body: ListView.separated(
+        itemCount: registrations.length,
+        separatorBuilder: (context, index) => Divider(color: Colors.grey[300]),
+        itemBuilder: (context, index) {
+          return Padding(
+            padding:
+            index == registrations.length - 1
+                ? const EdgeInsets.only(bottom: 90)
+                : EdgeInsets.zero,
+            child: InkWell(
+              onTap: (){
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => NotificationDetailsView(),
                   ),
                 );
               },
-            ),
-          ),
-          Positioned(
-            right: 0,
-            left: 0,
-             top: -50 ,
-            child: Container(
-              color: Colors.white,
-              width: double.infinity,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Image.asset(Assets.imagesShapes2),
-                  Image.asset(Assets.imagesShap1),
-                ],
+
+              child: ListTile(
+                leading:Container(
+                  width: 40,
+                  height: 40,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(80),
+                    color: AppColors.white,
+                    border: Border.all(color: AppColors.border, width: 1),
+                  ),
+                  child: Image.asset(Assets.imagesLogo),
+                ),
+                title: Text(
+                  "تطبيق زد العقار",
+                  style: AppTextStyles.style12W400(context),
+                ),
+                subtitle: Text(
+                  registrations[index],
+                  style: AppTextStyles.style12W400(context).copyWith(
+                    color: AppColors.grey
+                  ),
+                ),
               ),
             ),
-          ),
-        ],
+          );
+        },
       ),
     );
   }
