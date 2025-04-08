@@ -104,19 +104,6 @@ class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:
-          showList
-              ? customAppBar(
-                context,
-                title: 'قائمة العقارات',
-                onCleckBack: () {
-                  setState(() {
-                    showList = false;
-                  });
-                },
-              )
-              : null,
-
       body:
           showLocation
               ? Stack(
@@ -277,6 +264,7 @@ class _HomeViewState extends State<HomeView> {
                                 MaterialPageRoute(
                                   builder:
                                       (context) => ItemDetailsView(
+                                        showFavourite: true,
                                         image: properties[index]['imageUrl']!,
                                         name: properties[index]['name']!,
                                         location:
@@ -370,7 +358,7 @@ class _HomeViewState extends State<HomeView> {
                                           context,
                                         ).copyWith(
                                           color:
-                                              isRent==0
+                                              isRent == 0
                                                   ? AppColors.black
                                                   : AppColors.grey,
                                         ),
@@ -406,7 +394,7 @@ class _HomeViewState extends State<HomeView> {
                                           context,
                                         ).copyWith(
                                           color:
-                                              isRent ==1
+                                              isRent == 1
                                                   ? AppColors.black
                                                   : AppColors.grey,
                                         ),
@@ -458,9 +446,9 @@ class _HomeViewState extends State<HomeView> {
                                           context,
                                         ).copyWith(
                                           color:
-                                          isRent ==2
-                                              ? AppColors.black
-                                              : AppColors.grey,
+                                              isRent == 2
+                                                  ? AppColors.black
+                                                  : AppColors.grey,
                                         ),
                                       ),
                                     ],
@@ -590,183 +578,112 @@ class _HomeViewState extends State<HomeView> {
                         child: Center(
                           child: Row(
                             children: [
-
                               Text(
                                 "في حاله المعلن غير شكل البتوع الاخضر دول",
                                 style: AppTextStyles.style16W400(context),
                               ),
-
                             ],
                           ),
                         ),
                       ),
                     ),
                   ),
-                  Visibility(
-                    visible: showList,
-                    child: Positioned(
-                      bottom: 95,
-                      right: direction == TextDirection.ltr ? null : 20,
-                      left: direction == TextDirection.rtl ? null : 20,
-                      child: InkWell(
-                        borderRadius: BorderRadius.circular(80),
-                        onTap: () {
-                          setState(() {
-                            showList = false;
-                          });
-                        },
-                        child: CircleAvatar(
-                          radius: 22,
-                          backgroundColor: AppColors.greyDarker,
-                          child: GestureDetector(
-                            child: SvgPicture.asset(Assets.imagesMapTrifold),
+
+                  Positioned(
+                    bottom: 95,
+                    right: 20,
+                    left: 20,
+                    child: Row(
+                      spacing: 8,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        MaterialButton(
+                          height: 44,
+                          minWidth: 120,
+                          padding: EdgeInsets.zero,
+                          color: AppColors.black,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(80),
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              showList = !showList;
+                            });
+                          },
+                          child: Row(
+                            children: [
+                              SizedBox(width: 6),
+                              CircleAvatar(
+                                radius: 16,
+                                backgroundColor: AppColors.white,
+                                child:
+
+                                showList == false
+                                    ?
+                                SvgPicture.asset(
+                                  Assets.imagesTextIndent,
+                                ) :   SvgPicture.asset(
+                                  Assets.imagesMapTrifold,
+                                  color: AppColors.green,
+                                ),
+                              ),
+                              SizedBox(width: 12),
+                              Text(
+                                showList == false
+                                    ? "عرض القائمة"
+                                    : "عرض الخريطة",
+                                style: AppTextStyles.style12W700(
+                                  context,
+                                ).copyWith(color: AppColors.white),
+                              ),
+                              SizedBox(width: 16),
+                            ],
                           ),
                         ),
-                      ),
-                    ),
-                  ),
-                  Visibility(
-                    visible: !showList,
-                    child: Positioned(
-                      bottom: 95,
-                      right: 20,
-                      left: 20,
-                      child: Row(
-                        spacing: 8,
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          MaterialButton(
-                            height: 44,
-                            minWidth: 100,
-                            padding: EdgeInsets.zero,
-                            color: AppColors.black,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(80),
-                            ),
-                            onPressed: () {
-                              setState(() {
-                                showList = true;
-                              });
-                            },
-                            child: Row(
-                              children: [
-                                SizedBox(width: 6),
-                                GestureDetector(
-                                  child: CircleAvatar(
-                                    radius: 16,
-                                    backgroundColor: AppColors.white,
-                                    child: SvgPicture.asset(
-                                      Assets.imagesTextIndent,
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(width: 12),
-                                Text(
-                                  "عرض القائمة",
-                                  style: AppTextStyles.style12W700(
-                                    context,
-                                  ).copyWith(color: AppColors.white),
-                                ),
-                                SizedBox(width: 16),
-                              ],
-                            ),
-                          ),
-                          Spacer(),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            spacing: 8,
-                            children: [
-                              Row(
-                                children: [
-                                  CircleAvatar(
-                                    radius: 22,
-                                    backgroundColor: AppColors.grey.withAlpha(
-                                      150,
-                                    ),
-                                    child: GestureDetector(
-                                      onTap: () {
-                                        setState(() {
-                                          showLocation = true;
-                                        });
-                                      },
-                                      child: CircleAvatar(
-                                        radius: 18,
-                                        backgroundColor: AppColors.greyDarker,
-                                        child: SvgPicture.asset(
-                                          Assets.imagesCrosshair,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(width: 16),
-                                  CircleAvatar(
-                                    radius: 22,
-                                    backgroundColor: AppColors.grey.withAlpha(
-                                      150,
-                                    ),
-                                    child: GestureDetector(
-                                      onTap: () {
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder:
-                                                (context) => FavouriteView(),
-                                          ),
-                                        );
-                                      },
-                                      child: CircleAvatar(
-                                        radius: 18,
-                                        backgroundColor: AppColors.greyDarker,
-                                        child: SvgPicture.asset(
-                                          Assets.imagesHeart,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              MaterialButton(
-                                height: 44,
-                                minWidth: 100,
-
-                                color: AppColors.black,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(80),
-                                ),
-                                onPressed: () {
+                        Spacer(),
+                        Row(
+                          children: [
+                            CircleAvatar(
+                              radius: 22,
+                              backgroundColor: AppColors.grey.withAlpha(150),
+                              child: GestureDetector(
+                                onTap: () {
                                   setState(() {
-                                    showDialog(
-                                      context: context,
-                                      builder:
-                                          (context) => AskForRealEstateAlartDialog(
-                                            onPressedSearch: () {
-                                              showDialog(
-                                                context: context,
-                                                builder:
-                                                    (
-                                                      context,
-                                                    ) => AppAlertDialog2(
-                                                      title:
-                                                          "سيتم إبلاغك فور توفر عقار بنفس المواصفات",
-                                                      onPressedOk: () {},
-                                                    ),
-                                              );
-                                            },
-                                          ),
-                                    );
+                                    showLocation = true;
                                   });
                                 },
-                                child: Text(
-                                  "طلب بحث عن عقار",
-                                  style: AppTextStyles.style12W700(
-                                    context,
-                                  ).copyWith(color: AppColors.white),
+                                child: CircleAvatar(
+                                  radius: 18,
+                                  backgroundColor: AppColors.greyDarker,
+                                  child: SvgPicture.asset(
+                                    Assets.imagesCrosshair,
+                                  ),
                                 ),
                               ),
-                            ],
-                          ),
-                        ],
-                      ),
+                            ),
+                            SizedBox(width: 16),
+                            CircleAvatar(
+                              radius: 22,
+                              backgroundColor: AppColors.grey.withAlpha(150),
+                              child: GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => FavouriteView(),
+                                    ),
+                                  );
+                                },
+                                child: CircleAvatar(
+                                  radius: 18,
+                                  backgroundColor: AppColors.greyDarker,
+                                  child: SvgPicture.asset(Assets.imagesHeart),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
                   ),
                 ],

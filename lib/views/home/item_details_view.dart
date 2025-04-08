@@ -3,9 +3,11 @@ import 'package:flutter_svg/svg.dart';
 import 'package:hagaar_trend/components/custom_app_bar.dart';
 import 'package:hagaar_trend/constant.dart';
 import 'package:hagaar_trend/views/home/location_view.dart';
+import 'package:hagaar_trend/views/home/widgets/ask_for_real_estate_alart_dialog.dart';
 import 'package:hagaar_trend/views/home/widgets/data_from_item_details_view.dart';
 import 'package:hagaar_trend/views/home/widgets/features_from_item_details_view.dart';
 
+import '../../components/app_alert_dialog.dart';
 import '../../components/app_colors.dart';
 import '../../components/app_form_filed.dart';
 import '../../components/app_text_styles.dart';
@@ -18,8 +20,10 @@ class ItemDetailsView extends StatelessWidget {
     required this.name,
     required this.price,
     required this.location,
+    this.showFavourite = false,
   });
 
+  final bool showFavourite;
   final String image;
   final String name;
   final String price;
@@ -39,7 +43,6 @@ class ItemDetailsView extends StatelessWidget {
           leading: SizedBox(),
           title: Row(
             spacing: 16,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               InkWell(
                 borderRadius: BorderRadius.circular(8),
@@ -62,10 +65,29 @@ class ItemDetailsView extends StatelessWidget {
                   ),
                 ),
               ),
+              Spacer(),
               InkWell(
                 borderRadius: BorderRadius.circular(8),
                 onTap: () {
-                  Navigator.pop(context);
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AskForRealEstateAlartDialog(
+                        onPressedSearch: () {
+                          showDialog(
+                            context: context,
+                            builder:
+                                (_) => AppAlertDialog2(
+                                  title: "سيتم إبلاغك فور توفر عقار بنفس المواصفات",
+                                  onPressedOk: () {
+
+                                  },
+                                ),
+                          );
+                        },
+                      );
+                    },
+                  );
                 },
                 child: Container(
                   width: 140,
@@ -80,6 +102,28 @@ class ItemDetailsView extends StatelessWidget {
                       style: AppTextStyles.style12W400(
                         context,
                       ).copyWith(color: AppColors.white),
+                    ),
+                  ),
+                ),
+              ),
+              Visibility(
+                visible: showFavourite,
+                child: InkWell(
+                  borderRadius: BorderRadius.circular(8),
+                  onTap: () {},
+                  child: Container(
+                    width: 32,
+                    height: 32,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      color: AppColors.middleGreen,
+                    ),
+                    child: Center(
+                      child: SvgPicture.asset(
+                        Assets.imagesHeart2,
+                        width: 20,
+                        height: 20,
+                      ),
                     ),
                   ),
                 ),
@@ -232,13 +276,13 @@ class ItemDetailsView extends StatelessWidget {
                 value2: "3 حمام للدور",
                 isGreen: true,
               ),
-              FeaturesFromItemDetailsView(value1: "مسبح", value2: "غرفة خادمة",),
+              FeaturesFromItemDetailsView(value1: "مسبح", value2: "غرفة خادمة"),
               FeaturesFromItemDetailsView(
                 value1: "مدخل سيارة",
                 value2: "غرفة سائق",
                 isGreen: true,
               ),
-              FeaturesFromItemDetailsView(value1: "حديقة خاصة",),
+              FeaturesFromItemDetailsView(value1: "حديقة خاصة"),
               SizedBox(height: 16),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 12.0),
@@ -275,11 +319,7 @@ class ItemDetailsView extends StatelessWidget {
                       MaterialPageRoute(builder: (_) => LocationView()),
                     );
                   },
-                  child:
-
-
-
-                  Container(
+                  child: Container(
                     height: 160,
                     decoration: BoxDecoration(
                       color: AppColors.white,
@@ -384,9 +424,9 @@ class ItemDetailsView extends StatelessWidget {
                     Expanded(
                       child: Column(
                         crossAxisAlignment:
-                        direction == TextDirection.ltr
-                            ? CrossAxisAlignment.end
-                            : CrossAxisAlignment.start,
+                            direction == TextDirection.ltr
+                                ? CrossAxisAlignment.end
+                                : CrossAxisAlignment.start,
                         children: [
                           Text(
                             "المسوق العقاري :",
@@ -400,9 +440,9 @@ class ItemDetailsView extends StatelessWidget {
                           const SizedBox(height: 12),
                           Row(
                             mainAxisAlignment:
-                            direction == TextDirection.ltr
-                                ? MainAxisAlignment.end
-                                : MainAxisAlignment.start,
+                                direction == TextDirection.ltr
+                                    ? MainAxisAlignment.end
+                                    : MainAxisAlignment.start,
                             children: [
                               Text(
                                 "+20 0109287363542",
@@ -423,9 +463,7 @@ class ItemDetailsView extends StatelessWidget {
                     const SizedBox(width: 12),
 
                     Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 8.0,
-                      ),
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(50),
                         child: CircleAvatar(
@@ -458,9 +496,9 @@ class ItemDetailsView extends StatelessWidget {
                     Expanded(
                       child: Column(
                         crossAxisAlignment:
-                        direction == TextDirection.ltr
-                            ? CrossAxisAlignment.end
-                            : CrossAxisAlignment.start,
+                            direction == TextDirection.ltr
+                                ? CrossAxisAlignment.end
+                                : CrossAxisAlignment.start,
                         children: [
                           Text(
                             "مالك العقارات :",
@@ -471,16 +509,13 @@ class ItemDetailsView extends StatelessWidget {
                             "أ / خالد أحمد عبد الظاهر",
                             style: AppTextStyles.style12W400(context),
                           ),
-
                         ],
                       ),
                     ),
                     const SizedBox(width: 12),
 
                     Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 8.0,
-                      ),
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(50),
                         child: CircleAvatar(
