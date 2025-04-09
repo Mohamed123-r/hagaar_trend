@@ -203,7 +203,9 @@ class _HomeViewState extends State<HomeView> {
                                 setState(() {
                                   Navigator.push(
                                     context,
-                                    MaterialPageRoute(builder: (_) => ShowSearchView()),
+                                    MaterialPageRoute(
+                                      builder: (_) => ShowSearchView(),
+                                    ),
                                   );
                                 });
                               },
@@ -564,101 +566,169 @@ class _HomeViewState extends State<HomeView> {
                       ),
                     ),
                   ),
-
-                  Positioned(
-                    bottom: 95,
-                    right: 20,
-                    left: 20,
-                    child: Row(
-                      spacing: 8,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        MaterialButton(
-                          height: 44,
-                          minWidth: 120,
-                          padding: EdgeInsets.zero,
-                          color: AppColors.black,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(80),
+                  Visibility(
+                    visible: showSearch,
+                    child: Positioned(
+                      bottom: 95,
+                      right: 20,
+                      left: 20,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        spacing: 8,
+                        children: [
+                          MaterialButton(
+                            height: 44,
+                            minWidth: 140,
+                            padding: EdgeInsets.zero,
+                            color: AppColors.green,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(80),
+                            ),
+                            onPressed: () {
+                              showDialog(
+                                context: context,
+                                builder:
+                                    (context) => AppAlertDialog2(
+                                      title: "تم حفظ الفلترة في فلترتك",
+                                      onPressedOk: () {},
+                                    ),
+                              );
+                            },
+                            child: Text(
+                              "حفظ نتيجة الفلترة",
+                              style: AppTextStyles.style12W700(
+                                context,
+                              ).copyWith(color: AppColors.white),
+                            ),
                           ),
-                          onPressed: () {
-                            setState(() {
-                              showList = !showList;
-                            });
-                          },
-                          child: Row(
-                            children: [
-                              SizedBox(width: 6),
-                              CircleAvatar(
-                                radius: 16,
-                                backgroundColor: AppColors.white,
-                                child:
-                                    showList == false
-                                        ? SvgPicture.asset(
-                                          Assets.imagesTextIndent,
-                                        )
-                                        : SvgPicture.asset(
-                                          Assets.imagesMapTrifold,
-                                          color: AppColors.green,
-                                        ),
-                              ),
-                              SizedBox(width: 12),
-                              Text(
-                                showList == false
-                                    ? "عرض القائمة"
-                                    : "عرض الخريطة",
-                                style: AppTextStyles.style12W700(
+                          MaterialButton(
+                            height: 44,
+                            minWidth: 140,
+                            padding: EdgeInsets.zero,
+                            color: AppColors.black,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(80),
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                Navigator.push(
                                   context,
-                                ).copyWith(color: AppColors.white),
-                              ),
-                              SizedBox(width: 16),
-                            ],
+                                  MaterialPageRoute(
+                                    builder:
+                                        (_) => ShowSearchView(isSearch: true),
+                                  ),
+                                );
+                              });
+                            },
+                            child: Text(
+                              "عرض قائمة العقارات",
+                              style: AppTextStyles.style12W700(
+                                context,
+                              ).copyWith(color: AppColors.white),
+                            ),
                           ),
-                        ),
-                        Spacer(),
-                        Row(
-                          children: [
-                            CircleAvatar(
-                              radius: 22,
-                              backgroundColor: AppColors.grey.withAlpha(150),
-                              child: GestureDetector(
-                                onTap: () {
-                                  setState(() {
-                                    showLocation = true;
-                                  });
-                                },
-                                child: CircleAvatar(
-                                  radius: 18,
-                                  backgroundColor: AppColors.greyDarker,
-                                  child: SvgPicture.asset(
-                                    Assets.imagesCrosshair,
+                        ],
+                      ),
+                    ),
+                  ),
+
+                  Visibility(
+                    visible: !showSearch,
+                    child: Positioned(
+                      bottom: 95,
+                      right: 20,
+                      left: 20,
+                      child: Row(
+                        spacing: 8,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          MaterialButton(
+                            height: 44,
+                            minWidth: 120,
+                            padding: EdgeInsets.zero,
+                            color: AppColors.black,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(80),
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                showList = !showList;
+                              });
+                            },
+                            child: Row(
+                              children: [
+                                SizedBox(width: 6),
+                                CircleAvatar(
+                                  radius: 16,
+                                  backgroundColor: AppColors.white,
+                                  child:
+                                      showList == false
+                                          ? SvgPicture.asset(
+                                            Assets.imagesTextIndent,
+                                          )
+                                          : SvgPicture.asset(
+                                            Assets.imagesMapTrifold,
+                                            color: AppColors.green,
+                                          ),
+                                ),
+                                SizedBox(width: 12),
+                                Text(
+                                  showList == false
+                                      ? "عرض القائمة"
+                                      : "عرض الخريطة",
+                                  style: AppTextStyles.style12W700(
+                                    context,
+                                  ).copyWith(color: AppColors.white),
+                                ),
+                                SizedBox(width: 16),
+                              ],
+                            ),
+                          ),
+                          Spacer(),
+                          Row(
+                            children: [
+                              CircleAvatar(
+                                radius: 22,
+                                backgroundColor: AppColors.grey.withAlpha(150),
+                                child: GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      showLocation = true;
+                                    });
+                                  },
+                                  child: CircleAvatar(
+                                    radius: 18,
+                                    backgroundColor: AppColors.greyDarker,
+                                    child: SvgPicture.asset(
+                                      Assets.imagesCrosshair,
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-                            SizedBox(width: 16),
-                            CircleAvatar(
-                              radius: 22,
-                              backgroundColor: AppColors.grey.withAlpha(150),
-                              child: GestureDetector(
-                                onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => FavouriteView(),
-                                    ),
-                                  );
-                                },
-                                child: CircleAvatar(
-                                  radius: 18,
-                                  backgroundColor: AppColors.greyDarker,
-                                  child: SvgPicture.asset(Assets.imagesHeart),
+                              SizedBox(width: 16),
+                              CircleAvatar(
+                                radius: 22,
+                                backgroundColor: AppColors.grey.withAlpha(150),
+                                child: GestureDetector(
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => FavouriteView(),
+                                      ),
+                                    );
+                                  },
+                                  child: CircleAvatar(
+                                    radius: 18,
+                                    backgroundColor: AppColors.greyDarker,
+                                    child: SvgPicture.asset(Assets.imagesHeart),
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
-                      ],
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ],
