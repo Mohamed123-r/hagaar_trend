@@ -34,7 +34,7 @@ class DataFromCompanyView extends StatelessWidget {
                 spacing: 8,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(title, style: AppTextStyles.style12W400(context)),
+                  Text(title, style: AppTextStyles.style14W700(context)),
 
                   Text(value!, style: AppTextStyles.style12W400(context)),
                 ],
@@ -42,9 +42,9 @@ class DataFromCompanyView extends StatelessWidget {
               : Row(
                 spacing: 8,
                 children: [
-                  Text(title, style: AppTextStyles.style12W400(context)),
+                  Text(title, style: AppTextStyles.style14W400(context)),
                   Spacer(),
-                  textButton ??  Text(value!, style: AppTextStyles.style12W400(context)),
+                  textButton ??  Text(value!, style: AppTextStyles.style14W400(context)),
                 ],
               ),
     );
