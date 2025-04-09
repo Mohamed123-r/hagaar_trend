@@ -125,7 +125,7 @@ class MainViewState extends State<MainView> {
                       index: 1,
                     ),
                     BottomNavBTN(
-                      title: "م. العقارية",
+                      title: "المسوقين",
                       onPressed: (val) {
                         animateToPage(val);
                       },
