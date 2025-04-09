@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:hagaar_trend/components/app_alert_dialog.dart';
 import 'package:hagaar_trend/components/custom_app_bar.dart';
 import 'package:hagaar_trend/constant.dart';
 
+import '../../components/app_colors.dart';
+import '../../components/app_text_styles.dart';
 import '../../generated/assets.dart';
 import 'item_details_view.dart';
 import 'widgets/list_view_item_from_show_list.dart';
 
 class ShowSearchView extends StatelessWidget {
-  ShowSearchView({super.key});
+  ShowSearchView({super.key, this.isSearch = false});
 
   final List<Map<String, String>> properties = [
     {
@@ -81,6 +84,7 @@ class ShowSearchView extends StatelessWidget {
       "status": "متاح للبيع",
     },
   ];
+  final bool isSearch;
 
   @override
   Widget build(BuildContext context) {
@@ -88,42 +92,98 @@ class ShowSearchView extends StatelessWidget {
       textDirection: direction,
       child: Scaffold(
         extendBodyBehindAppBar: true,
-        appBar: customAppBar(
-          context,
-          title: "نتيجة البحث",
-          showBack: true,
-
-        ),
-        body: ListView.builder(
-          itemBuilder: (context, index) {
-            return GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder:
-                        (context) => ItemDetailsView(
-                          showFavourite: true,
-                          image: properties[index]['imageUrl']!,
-                          name: properties[index]['name']!,
-                          location: properties[index]['location']!,
-                          price: properties[index]['price']!,
-                        ),
+        appBar: customAppBar(context, title: "نتيجة البحث", showBack: true),
+        body: Stack(
+          children: [
+            ListView.builder(
+              itemBuilder: (context, index) {
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder:
+                            (context) => ItemDetailsView(
+                              showFavourite: true,
+                              image: properties[index]['imageUrl']!,
+                              name: properties[index]['name']!,
+                              location: properties[index]['location']!,
+                              price: properties[index]['price']!,
+                            ),
+                      ),
+                    );
+                  },
+                  child: ListViewItemFromShowList(
+                    image: properties[index]['imageUrl']!,
+                    name: properties[index]['name']!,
+                    location: properties[index]['location']!,
+                    price: properties[index]['price']!,
+                    type: properties[index]['type']!,
+                    area: properties[index]['area']!,
+                    status: properties[index]['status']!,
                   ),
                 );
               },
-              child: ListViewItemFromShowList(
-                image: properties[index]['imageUrl']!,
-                name: properties[index]['name']!,
-                location: properties[index]['location']!,
-                price: properties[index]['price']!,
-                type: properties[index]['type']!,
-                area: properties[index]['area']!,
-                status: properties[index]['status']!,
+              itemCount: properties.length,
+            ),
+            Visibility(
+              visible: isSearch,
+              child: Positioned(
+                bottom: 16,
+                right: 20,
+                left: 20,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  spacing: 8,
+                  children: [
+                    MaterialButton(
+                      height: 44,
+                      minWidth: 140,
+                      padding: EdgeInsets.zero,
+                      color: AppColors.green,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(80),
+                      ),
+                      onPressed: () {
+                        showDialog(
+                          context: context,
+                          builder:
+                              (context) => AppAlertDialog2(
+                                title: "تم حفظ الفلترة في فلترتك",
+                                onPressedOk: () {},
+                              ),
+                        );
+                      },
+                      child: Text(
+                        "حفظ نتيجة الفلترة",
+                        style: AppTextStyles.style12W700(
+                          context,
+                        ).copyWith(color: AppColors.white),
+                      ),
+                    ),
+                    MaterialButton(
+                      height: 44,
+                      minWidth: 140,
+                      padding: EdgeInsets.zero,
+                      color: AppColors.black,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(80),
+                      ),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: Text(
+                        "عرض خريطة العقارات",
+                        style: AppTextStyles.style12W700(
+                          context,
+                        ).copyWith(color: AppColors.white),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            );
-          },
-          itemCount: properties.length,
+            ),
+          ],
         ),
       ),
     );
