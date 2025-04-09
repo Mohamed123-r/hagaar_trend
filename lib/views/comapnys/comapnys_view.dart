@@ -13,52 +13,52 @@ class ComapnysView extends StatelessWidget {
 
   final List<Map<String, String>> companies = [
     {
-      'image': 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d',
+      'image': 'https://s3-alpha-sig.figma.com/img/7146/3292/72e8a69b3731e5fd462b356dc3c443b9?Expires=1745193600&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=ZbREgz9x~FmqrQLVXjPZFEHCaj5XK8AmdMzkFSvT6HIOz7istH-yrycmMImc-yD06rCRu2ea929oXDLwfOKzND97qaq8JMMswbNXFzIzBnjHmiKF1VXwHFIWvdXd~NDBnQsKLqaaXQdLOYb9pxwEx3IElMvIEX6cXvZV2CluA1hr59YT-Yigk6deFpOKq0vJJfThpst9ooxtlG~B1XqHEAHphqnceU~Cx4GrRZc8AD7-r2kZqIlOpafBHIpGJOZ2LZzmLJM2fFk3cUwmdiDmTALgtlPJHuAl5Z4bG4caH56sJFB8tfir4aCPeDof93TWmbrsI~caN3MtqgXpf09mWA__',
       'name': 'شركة الإشراق للعقارات',
-      'location': 'مدينة الرياض - حي الشارقة',
+      'location': 'أ / محمد علي عبد القادر',
       'phone': '+20 010928736354',
     },
     {
       'image': 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d',
       'name': 'شركة الإشراق للعقارات',
-      'location': 'مدينة الرياض - حي الشارقة',
+      'location': 'أ / محمد علي عبد القادر',
+      'phone': '+20 010928736354',
+    },
+    {
+      'image': 'https://s3-alpha-sig.figma.com/img/b542/34b5/42f8f349d0bb1fd8c76cc7601bc4fc96?Expires=1745193600&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=EyxTDKL4n6HXzpVz1tPZr65hWEw7OB15JMBSxwsPn2e4P~loyFtvQutWwJFzSYsZrYO9nPbDoSRlpLXfyp6KlWFpDAYPcb8SUXrPNUT4TBZdur6V2n4VsGnk1Qkee4PMYLb9KoEGvCkSmBW2Rg0-ipZhPSwYz98OK0cEruijUxN19v9TBJ8oXQVz-V1IzgwvPQM3wNELK593hWYHum6pEl8wJO0dHphLf2F~8QnGy-KWneytmAT716E1FF7~seuyXfOZ1paNHOdf1DHjPfbhXH6QEdtCjsytFybCBIuemMqp2eHte~LfcZDsYqg3OaK5Qb-AnQSE1sFcGpZp7FTbVg__',
+      'name': 'شركة الإشراق للعقارات',
+      'location': 'أ / محمد علي عبد القادر',
       'phone': '+20 010928736354',
     },
     {
       'image': 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d',
       'name': 'شركة الإشراق للعقارات',
-      'location': 'مدينة الرياض - حي الشارقة',
+      'location': 'أ / محمد علي عبد القادر',
       'phone': '+20 010928736354',
     },
     {
       'image': 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d',
       'name': 'شركة الإشراق للعقارات',
-      'location': 'مدينة الرياض - حي الشارقة',
+      'location': 'أ / محمد علي عبد القادر',
       'phone': '+20 010928736354',
     },
     {
       'image': 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d',
       'name': 'شركة الإشراق للعقارات',
-      'location': 'مدينة الرياض - حي الشارقة',
-      'phone': '+20 010928736354',
-    },
-    {
-      'image': 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d',
-      'name': 'شركة الإشراق للعقارات',
-      'location': 'مدينة الرياض - حي الشارقة',
+      'location':'أ / محمد علي عبد القادر',
       'phone': '+20 010928736354',
     },
 
     {
       'image': 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d',
       'name': 'شركة الإشراق للعقارات',
-      'location': 'مدينة الرياض - حي الشارقة',
+      'location': 'أ / محمد علي عبد القادر',
       'phone': '+20 010928736354',
     },
     {
       'image': 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d',
       'name': 'شركة الإشراق للعقارات',
-      'location': 'مدينة الرياض - حي الشارقة',
+      'location': 'أ / محمد علي عبد القادر',
       'phone': '+20 010928736354',
     },
   ];
@@ -113,8 +113,8 @@ class ComapnysView extends StatelessWidget {
                                       : CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  company['name']!,
-                                  style: AppTextStyles.style12W400(context),
+                                  "المسوق العقاري :",
+                                  style: AppTextStyles.style16W800(context),
                                 ),
                                 const SizedBox(height: 4),
                                 Text(
