@@ -39,7 +39,13 @@ class CustomerServiceView extends StatelessWidget {
                   context,
                 ).copyWith(color: AppColors.green),
               ),
-              SizedBox(height: 12),
+              SizedBox(height: 56),
+              Text(
+                "نرد عليك في خلال 24 ساعة !",
+                style: AppTextStyles.style14W400(
+                  context,
+                ).copyWith(color: AppColors.green),
+              ),
               AppInputTextFormField(
                 maxLines: 5,
                 labelText: "أدخل الشكوي",
