@@ -264,22 +264,22 @@ class ItemDetailsView extends StatelessWidget {
               SizedBox(height: 12),
               FeaturesFromItemDetailsView(
                 value1: "دوبلكس",
-                value2: "درج الصالة",
+
                 isGreen: true,
               ),
               FeaturesFromItemDetailsView(
                 value1: "8 غرفة للدور",
-                value2: "تابع لمؤثثة",
+
               ),
               FeaturesFromItemDetailsView(
                 value1: "قبو",
-                value2: "3 حمام للدور",
+
                 isGreen: true,
               ),
-              FeaturesFromItemDetailsView(value1: "مسبح", value2: "غرفة خادمة"),
+              FeaturesFromItemDetailsView(value1: "مسبح", ),
               FeaturesFromItemDetailsView(
                 value1: "مدخل سيارة",
-                value2: "غرفة سائق",
+
                 isGreen: true,
               ),
               FeaturesFromItemDetailsView(value1: "حديقة خاصة"),

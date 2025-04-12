@@ -9,11 +9,11 @@ class FeaturesFromItemDetailsView extends StatelessWidget {
     super.key,
     this.isGreen = false,
     required this.value1,
-    this.value2,
+
   });
 
   final String value1;
-  final String? value2;
+
   final bool isGreen;
 
   @override
@@ -38,21 +38,6 @@ class FeaturesFromItemDetailsView extends StatelessWidget {
                 ),
                 Text(value1, style: AppTextStyles.style12W400(context)),
               ],
-            ),
-          ),
-          Visibility(
-            visible: value2 != null,
-            child: SvgPicture.asset(
-              Assets.imagesCheckCircle,
-              width: 16,
-              height: 16,
-            ),
-          ),
-          Visibility(
-            visible: value2 != null,
-            child: Text(
-              value2 ?? "",
-              style: AppTextStyles.style12W400(context),
             ),
           ),
         ],
