@@ -81,17 +81,6 @@ class ListViewItemFromShowList extends StatelessWidget {
               Row(
                 spacing: 3,
                 children: [
-                  Text(status, style: AppTextStyles.style10W400(context)),
-                  SvgPicture.asset(
-                    Assets.imagesChartPie,
-                    width: 16,
-                    height: 16,
-                  ),
-                ],
-              ),
-              Row(
-                spacing: 3,
-                children: [
                   Text(area, style: AppTextStyles.style10W400(context)),
                   SvgPicture.asset(
                     Assets.imagesVectorTwo,

@@ -192,7 +192,7 @@ class _comapnysDetailsView extends State<ComapnysDetailsView> {
                 ),
                 Container(width: 1, height: 35, color: AppColors.border),
                 SwitchProfileButton(
-                  title: 'بيانات الشركة',
+                  title: 'بيانات المسوق',
                   image: Assets.imagesChartLine,
                   isBlack: !showMyItems,
                   onPressed: () {
@@ -209,52 +209,64 @@ class _comapnysDetailsView extends State<ComapnysDetailsView> {
                 child: Column(
                   children: [
                     SizedBox(height: 44),
+                    DataFromCompanyView(
+                      title: "الإسم :",
 
+                      value: "خالد مصطفي عبد القادر",
+                      isGreen: true,
+                    ),
                     DataFromCompanyView(
                       title: "رقم الهاتف :",
 
                       value: "+20 010038366545",
-                      isGreen: true,
-                    ),
-                    DataFromCompanyView(
-                      title: "موقع الشركة :",
 
-                      textButton: TextButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => LocationFromComapny(),
-                            ),
-                          );
-                        },
-                        child: Text(
-                          "المملكة العربية السعودية - الرياض",
-                          style: AppTextStyles.style12W400(context).copyWith(
-                            color: AppColors.green,
-                            decoration: TextDecoration.underline,
-                            decorationColor: AppColors.green,
-                          ),
-                        ),
-                      ),
                     ),
                     DataFromCompanyView(
-                      title: "الموقع الإلكتروني :",
-                      isGreen: true,
-                      value: "lkjhyewrui@gmail.com",
-                    ),
-                    DataFromCompanyView(
-                      title: "السجل التجاري :",
+                      title: "الإيميل :",
 
-                      value: "12345678901",
-                    ),
-                    DataFromCompanyView(
-                      title: "نبذة عن الشركة :",
+                      value: "hg2df675672@gmail.com",
                       isGreen: true,
-                      isColum: true,
-                      value:
-                          "تأسست شركة دار المعمار في عام 1985 كمؤسسة صغيرة متخصصة في بناء المنازل السكنية بالرياض، ثم توسعت خلال التسعينيات لتشمل تطوير المشاريع التجارية والمجمعات السكنية الكبيرة، وفي العقد الأول من القرن الحادي والعشرين تخصصت في تطوير المشاريع الفاخرة والمستدامة، لتصبح اليوم واحدة من الشركات الرائد في مجال التطوير العقاري في المنطقة، وتسعى إلى التوسع في أسواق جديدة وتبني أحدث التقنيات في مشاريعها.",
                     ),
+
+                    // DataFromCompanyView(
+                    //   title: "موقع الشركة :",
+                    //
+                    //   textButton: TextButton(
+                    //     onPressed: () {
+                    //       Navigator.push(
+                    //         context,
+                    //         MaterialPageRoute(
+                    //           builder: (context) => LocationFromComapny(),
+                    //         ),
+                    //       );
+                    //     },
+                    //     child: Text(
+                    //       "المملكة العربية السعودية - الرياض",
+                    //       style: AppTextStyles.style12W400(context).copyWith(
+                    //         color: AppColors.green,
+                    //         decoration: TextDecoration.underline,
+                    //         decorationColor: AppColors.green,
+                    //       ),
+                    //     ),
+                    //   ),
+                    // ),
+                    // DataFromCompanyView(
+                    //   title: "الموقع الإلكتروني :",
+                    //   isGreen: true,
+                    //   value: "lkjhyewrui@gmail.com",
+                    // ),
+                    // DataFromCompanyView(
+                    //   title: "السجل التجاري :",
+                    //
+                    //   value: "12345678901",
+                    // ),
+                    // DataFromCompanyView(
+                    //   title: "نبذة عن الشركة :",
+                    //   isGreen: true,
+                    //   isColum: true,
+                    //   value:
+                    //       "تأسست شركة دار المعمار في عام 1985 كمؤسسة صغيرة متخصصة في بناء المنازل السكنية بالرياض، ثم توسعت خلال التسعينيات لتشمل تطوير المشاريع التجارية والمجمعات السكنية الكبيرة، وفي العقد الأول من القرن الحادي والعشرين تخصصت في تطوير المشاريع الفاخرة والمستدامة، لتصبح اليوم واحدة من الشركات الرائد في مجال التطوير العقاري في المنطقة، وتسعى إلى التوسع في أسواق جديدة وتبني أحدث التقنيات في مشاريعها.",
+                    // ),
                   ],
                 ),
               ),
