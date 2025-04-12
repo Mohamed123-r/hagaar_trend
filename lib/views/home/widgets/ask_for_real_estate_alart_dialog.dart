@@ -68,11 +68,11 @@ class _AskForRealEstateAlartDialogDialogState
                       "فيلا",
                       "أرض",
                     ]),
-                    buildDropdown("عمر العقار", selectedAge, [
-                      "أقل من 2 سنة",
-                      "أقل من 5 سنوات",
-                      "أكثر من 10 سنوات",
-                    ]),
+                    // buildDropdown("عمر العقار", selectedAge, [
+                    //   "أقل من 2 سنة",
+                    //   "أقل من 5 سنوات",
+                    //   "أكثر من 10 سنوات",
+                    // ]),
 
                     Row(
                       children: [

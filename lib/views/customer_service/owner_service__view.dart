@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hagaar_trend/components/app_form_filed.dart';
 import 'package:hagaar_trend/components/custom_app_bar.dart';
 import 'package:hagaar_trend/generated/assets.dart';
+import 'package:hagaar_trend/views/customer_service/widgets/owner_service_item.dart';
+import 'package:hagaar_trend/views/customer_service/widgets/owner_top_service_card.dart';
 
 import '../../components/app_colors.dart';
 import '../../components/app_text_styles.dart';
@@ -12,61 +15,71 @@ class OwnerServiceView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBodyBehindAppBar: true,
-      appBar: customAppBar(context, title: "خدمات مالك العقار", showBack: false),
+      appBar: customAppBar(
+        context,
+        title: "خدمات مالك العقار",
+        showBack: false,
+      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(24.0),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 100),
+              Container(
+                padding: EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8),
+                  border: Border.all(color: AppColors.middleGreen),
+                ),
+                child: Row(
+                  spacing: 12,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SvgPicture.asset(
+                      Assets.imagesHeadset,
+                      width: 18,
+                      height: 18,
+                      color: AppColors.green,
+                    ),
+                    Text(
+                      "أكتب لنا شكوتك",
+                      style: AppTextStyles.style14W400(
+                        context,
+                      ).copyWith(color: AppColors.green),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 8),
               Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+                spacing: 8,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    "مرحبا بك",
-                    style: AppTextStyles.style18W800(
-                      context,
-                    ).copyWith(color: AppColors.green),
+                  OwnerTopServiceCard(
+                    title: 'إضافة عقار',
+                    image: Assets.imagesOwnerServiceAdd,
                   ),
-                  SizedBox(width: 8),
-                  Image.asset(Assets.imagesHand, width: 32, height: 32),
+                  OwnerTopServiceCard(
+                    title: 'طلب شراء أرض',
+                    image: Assets.imagesOwnerServiceRecust,
+                  ),
+                  OwnerTopServiceCard(
+                    title: 'متابعة عقاراتي',
+                    image: Assets.imagesOwnerServiceFollow,
+                    onTap: (){},
+                  ),
                 ],
               ),
-              Text(
-                "كيف نقدر نساعدك ؟!",
-                style: AppTextStyles.style18W800(
-                  context,
-                ).copyWith(color: AppColors.green),
-              ),
-              SizedBox(height: 56),
-              Text(
-                "نرد عليك في خلال 24 ساعة !",
-                style: AppTextStyles.style14W400(
-                  context,
-                ).copyWith(color: AppColors.green),
-              ),
-              AppInputTextFormField(
-                maxLines: 5,
-                labelText: "أدخل الشكوي",
-              ),
-              SizedBox(height: 32),
-              MaterialButton(
-                height: 44,
-                minWidth: 140,
-                padding: EdgeInsets.zero,
-                color: AppColors.black,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(80),
-                ),
-                onPressed: () {},
-                child: Text(
-                  "إرسال الشكوي",
-                  style: AppTextStyles.style12W700(
-                    context,
-                  ).copyWith(color: AppColors.white),
-                ),
-              ),
+              const SizedBox(height: 32),
+              Text("خدماتي :", style: AppTextStyles.style16W800(context)),
+              const SizedBox(height: 16),
+              const OwnerServiceItem(title: 'طلبات الشراء'),
+              const SizedBox(height: 12),
+              const OwnerServiceItem(title: 'عقد إلكتروني'),
+              const SizedBox(height: 12),
+               OwnerServiceItem(title: 'إستفسارات العملاء',onTap: (){},),
+
             ],
           ),
         ),
@@ -74,3 +87,5 @@ class OwnerServiceView extends StatelessWidget {
     );
   }
 }
+
+

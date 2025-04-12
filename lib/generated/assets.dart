@@ -32,6 +32,9 @@ class Assets {
   static const String imagesMembership3 = 'assets/images/membership3.png';
   static const String imagesMembership4 = 'assets/images/membership4.png';
   static const String imagesNavigationArrow = 'assets/images/NavigationArrow.svg';
+  static const String imagesOwnerServiceAdd = 'assets/images/ownerServiceAdd.png';
+  static const String imagesOwnerServiceFollow = 'assets/images/ownerServiceFollow.png';
+  static const String imagesOwnerServiceRecust = 'assets/images/ownerServiceRecust.png';
   static const String imagesPlus = 'assets/images/Plus.svg';
   static const String imagesSearch = 'assets/images/search.svg';
   static const String imagesShap1 = 'assets/images/shap1.png';
