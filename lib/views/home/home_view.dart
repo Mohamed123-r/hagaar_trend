@@ -26,6 +26,7 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   int isRent = 0;
   bool showList = false;
+  bool showFilter = false;
   bool showLocation = false;
   bool showSearch = false;
   bool showDetailsLocation = false;
@@ -101,12 +102,187 @@ class _HomeViewState extends State<HomeView> {
       "status": "متاح للبيع",
     },
   ];
+  final List<Map<String, String>> filters = [
+    {
+      "type": "فيل",
+      "price": "1,500,000 ريال",
+      "area": "350 م²",
+      "status": "متاح للبيع",
+    },
+
+    {
+      "type": "شقة",
+      "price": "750,000 ريال",
+      "area": "180 م²",
+      "status": "متاح للإيجار",
+    },
+
+    {
+      "type": "دور سكني",
+      "price": "1,200,000 ريال",
+      "area": "300 م²",
+      "status": "متاح للبيع",
+    },
+    {
+      "type": "فيل",
+      "price": "1,500,000 ريال",
+      "area": "350 م²",
+      "status": "متاح للبيع",
+    },
+    {
+      "type": "فيل",
+      "price": "1,500,000 ريال",
+      "area": "350 م²",
+      "status": "متاح للبيع",
+    },
+    {
+      "type": "فيل",
+      "price": "1,500,000 ريال",
+      "area": "350 م²",
+      "status": "متاح للبيع",
+    },
+    {
+      "type": "فيل",
+      "price": "1,500,000 ريال",
+      "area": "350 م²",
+      "status": "متاح للبيع",
+    },
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar:
+          showFilter
+              ? customAppBar(
+                context,
+                title: "فلترتك",
+                showBack: true,
+                onCleckBack: () {
+                  showFilter = false;
+                  setState(() {});
+                },
+              )
+              : null,
       body:
-          showLocation
+          showFilter
+              ? ListView.separated(
+                itemCount: filters.length,
+                separatorBuilder: (context, index) => SizedBox(height: 12),
+                itemBuilder:
+                    (context, index) => Padding(
+                      padding:
+                          index == 0
+                              ? const EdgeInsets.only(top: 16)
+                              : index == filters.length - 1
+                              ? const EdgeInsets.only(bottom: 90)
+                              : EdgeInsets.zero,
+                      child: InkWell(
+                        borderRadius: BorderRadius.circular(16),
+                        onTap: () {
+                          showFilter = false;
+                          showLocation =true;
+                          setState(() {});
+                        },
+                        child: Stack(
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.all(12),
+                              margin: EdgeInsets.symmetric(horizontal: 16),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(16),
+                                border: Border.all(color: AppColors.border),
+                              ),
+                              child: Column(
+                                spacing: 8,
+                                children: [
+                                  Row(
+                                    spacing: 8,
+                                    children: <Widget>[
+                                      SizedBox(
+                                        width:
+                                            MediaQuery.of(context).size.width / 2.5,
+                                        child: Row(
+                                          spacing: 8,
+                                          children: [
+                                            SvgPicture.asset(
+                                              Assets.imagesCheckCircle,
+                                              width: 16,
+                                              height: 16,
+                                            ),
+                                            Text(
+                                              " نوع العقار : ${filters[index]['type']}",
+                                              style: AppTextStyles.style12W400(
+                                                context,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      SvgPicture.asset(
+                                        Assets.imagesCheckCircle,
+                                        width: 16,
+                                        height: 16,
+                                      ),
+                                      Text(
+                                        "مساحة :  ${filters[index]['area']}",
+                                        style: AppTextStyles.style12W400(context),
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    spacing: 8,
+                                    children: <Widget>[
+                                      SizedBox(
+                                        width:
+                                            MediaQuery.of(context).size.width / 2.5,
+                                        child: Row(
+                                          spacing: 8,
+                                          children: [
+                                            SvgPicture.asset(
+                                              Assets.imagesCheckCircle,
+                                              width: 16,
+                                              height: 16,
+                                            ),
+                                            Text(
+                                              " سعر :  ${filters[index]['price']}",
+                                              style: AppTextStyles.style12W400(
+                                                context,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      SvgPicture.asset(
+                                        Assets.imagesCheckCircle,
+                                        width: 16,
+                                        height: 16,
+                                      ),
+                                      Text(
+                                        " قسم العقار :  ${filters[index]['status']}",
+                                        style: AppTextStyles.style12W400(context),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Positioned(
+                              top: 12,
+                              right: direction == TextDirection.ltr ? 24 : null,
+                              left: direction == TextDirection.rtl ? 24 : null,
+                              child: SvgPicture.asset(
+                                Assets.imagesTrash,
+                                color: Colors.red,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+              )
+              : showLocation
               ? Stack(
                 alignment: Alignment.topCenter,
                 children: [
@@ -408,6 +584,7 @@ class _HomeViewState extends State<HomeView> {
                                   onPressed: () {
                                     setState(() {
                                       isRent = 2;
+                                      showFilter = true;
                                     });
                                   },
                                   child: Row(
