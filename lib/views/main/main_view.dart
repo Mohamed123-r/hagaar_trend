@@ -1,9 +1,9 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hagaar_trend/components/app_colors.dart';
 import 'package:hagaar_trend/components/custom_app_bar.dart';
 import 'package:hagaar_trend/constant.dart';
+import 'package:hagaar_trend/views/customer_service/owner_service__view.dart';
 import 'package:hagaar_trend/views/home/home_view.dart';
 import 'package:hagaar_trend/views/notification/notification_view.dart';
 import '../../generated/assets.dart';
@@ -68,7 +68,9 @@ class MainViewState extends State<MainView> {
                 ProfileView(),
                 ComapnysView(),
                 NotificationView(),
-                CustomerServiceView(),
+                service == 'customer'
+                    ? CustomerServiceView()
+                    : OwnerServiceView(),
               ],
             ),
             Padding(
@@ -179,7 +181,6 @@ class MainViewState extends State<MainView> {
     );
   }
 }
-
 
 double animatedPositionedLeftValue(int currentIndex) {
   switch (currentIndex) {
