@@ -8,6 +8,7 @@ import 'package:hagaar_trend/views/customer_service/widgets/owner_top_service_ca
 
 import '../../components/app_colors.dart';
 import '../../components/app_text_styles.dart';
+import 'customer_service_view.dart';
 
 class OwnerServiceView extends StatelessWidget {
   const OwnerServiceView({super.key});
@@ -26,29 +27,41 @@ class OwnerServiceView extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                padding: EdgeInsets.all(12),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  border: Border.all(color: AppColors.middleGreen),
-                ),
-                child: Row(
-                  spacing: 12,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SvgPicture.asset(
-                      Assets.imagesHeadset,
-                      width: 18,
-                      height: 18,
-                      color: AppColors.green,
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => CustomerServiceView(
+                        isSendComplaints: true,
+                      ),
                     ),
-                    Text(
-                      "أكتب لنا شكوتك",
-                      style: AppTextStyles.style14W400(
-                        context,
-                      ).copyWith(color: AppColors.green),
-                    ),
-                  ],
+                  );
+                },
+                child: Container(
+                  padding: EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    border: Border.all(color: AppColors.middleGreen),
+                  ),
+                  child: Row(
+                    spacing: 12,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SvgPicture.asset(
+                        Assets.imagesHeadset,
+                        width: 18,
+                        height: 18,
+                        color: AppColors.green,
+                      ),
+                      Text(
+                        "أكتب لنا شكوتك",
+                        style: AppTextStyles.style14W400(
+                          context,
+                        ).copyWith(color: AppColors.green),
+                      ),
+                    ],
+                  ),
                 ),
               ),
               SizedBox(height: 8),
@@ -67,7 +80,7 @@ class OwnerServiceView extends StatelessWidget {
                   OwnerTopServiceCard(
                     title: 'متابعة عقاراتي',
                     image: Assets.imagesOwnerServiceFollow,
-                    onTap: (){},
+                    onTap: () {},
                   ),
                 ],
               ),
@@ -78,8 +91,7 @@ class OwnerServiceView extends StatelessWidget {
               const SizedBox(height: 12),
               const OwnerServiceItem(title: 'عقد إلكتروني'),
               const SizedBox(height: 12),
-               OwnerServiceItem(title: 'إستفسارات العملاء',onTap: (){},),
-
+              OwnerServiceItem(title: 'إستفسارات العملاء', onTap: () {}),
             ],
           ),
         ),
@@ -87,5 +99,3 @@ class OwnerServiceView extends StatelessWidget {
     );
   }
 }
-
-
