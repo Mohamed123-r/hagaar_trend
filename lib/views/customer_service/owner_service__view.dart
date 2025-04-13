@@ -4,6 +4,7 @@ import 'package:hagaar_trend/components/app_form_filed.dart';
 import 'package:hagaar_trend/components/custom_app_bar.dart';
 import 'package:hagaar_trend/generated/assets.dart';
 import 'package:hagaar_trend/views/customer_service/owner_add_service_view.dart';
+import 'package:hagaar_trend/views/customer_service/owner_service_request_view.dart';
 import 'package:hagaar_trend/views/customer_service/widgets/owner_service_item.dart';
 import 'package:hagaar_trend/views/customer_service/widgets/owner_top_service_card.dart';
 
@@ -24,7 +25,7 @@ class OwnerServiceView extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(24.0),
+          padding: const EdgeInsets.all(16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -85,6 +86,14 @@ class OwnerServiceView extends StatelessWidget {
                     image: Assets.imagesOwnerServiceAdd,
                   ),
                   OwnerTopServiceCard(
+                    onTap: (){
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => OwnerServiceRequestView(                          ),
+                        ),
+                      );
+                    },
                     title: 'طلب شراء أرض',
                     image: Assets.imagesOwnerServiceRecust,
                   ),
