@@ -113,16 +113,16 @@ class ProfileItem extends StatelessWidget {
                       child: Image.network(image, fit: BoxFit.cover),
                     ),
                   ),
-                  Positioned(
-                    top: 8,
-                    right: direction == TextDirection.ltr ? 8 : null,
-                    left: direction == TextDirection.rtl ? 8 : null,
-                    child: CircleAvatar(
-                      radius: 15,
-                      backgroundColor: AppColors.black,
-                      child: SvgPicture.asset(Assets.imagesTrash),
-                    ),
-                  ),
+                  // Positioned(
+                  //   top: 8,
+                  //   right: direction == TextDirection.ltr ? 8 : null,
+                  //   left: direction == TextDirection.rtl ? 8 : null,
+                  //   child: CircleAvatar(
+                  //     radius: 15,
+                  //     backgroundColor: AppColors.black,
+                  //     child: SvgPicture.asset(Assets.imagesTrash),
+                  //   ),
+                  // ),
                 ],
               ),
             ],
