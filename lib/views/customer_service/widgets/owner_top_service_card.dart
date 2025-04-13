@@ -4,12 +4,13 @@ import 'package:hagaar_trend/components/app_text_styles.dart';
 
 class OwnerTopServiceCard extends StatelessWidget {
   final String title;
-  final String image;
+  final String? image;
+  final  bool? showImage;
   final VoidCallback? onTap;
   const OwnerTopServiceCard({
     super.key,
     required this.title,
-    required this.image, this.onTap,
+     this.image, this.onTap, this.showImage =true,
   });
 
   @override
@@ -27,10 +28,13 @@ class OwnerTopServiceCard extends StatelessWidget {
           ),
           child: Column(
             children: [
-              CircleAvatar(
-                radius: 32,
-                backgroundColor: Colors.white,
-                child: Image.asset(image,width:24 ,height: 24,),
+              Visibility(
+                visible: showImage!,
+                child: CircleAvatar(
+                  radius: 32,
+                  backgroundColor: Colors.white,
+                  child: Image.asset(image?? "",width:24 ,height: 24,),
+                ),
               ),
               const SizedBox(height: 24),
               Text(

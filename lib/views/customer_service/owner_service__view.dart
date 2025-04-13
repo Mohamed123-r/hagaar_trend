@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hagaar_trend/components/app_form_filed.dart';
 import 'package:hagaar_trend/components/custom_app_bar.dart';
 import 'package:hagaar_trend/generated/assets.dart';
+import 'package:hagaar_trend/views/customer_service/owner_add_service_view.dart';
 import 'package:hagaar_trend/views/customer_service/widgets/owner_service_item.dart';
 import 'package:hagaar_trend/views/customer_service/widgets/owner_top_service_card.dart';
 
@@ -70,6 +71,16 @@ class OwnerServiceView extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   OwnerTopServiceCard(
+                    onTap: (){
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => OwnerServiceAddPropertyView(
+
+                          ),
+                        ),
+                      );
+                    },
                     title: 'إضافة عقار',
                     image: Assets.imagesOwnerServiceAdd,
                   ),
