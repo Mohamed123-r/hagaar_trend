@@ -15,12 +15,13 @@ class ListViewItemFromShowList extends StatelessWidget {
     required this.location,
     required this.type,
     required this.area,
-    required this.status,
+    required this.status, required this.commission,
   });
 
   final String image;
   final String name;
   final String price;
+  final String commission ;
   final String location;
   final String type;
   final String area;
@@ -58,19 +59,6 @@ class ListViewItemFromShowList extends StatelessWidget {
             children: [
               Text(name, style: AppTextStyles.style13W400(context)),
               Spacer(),
-              Text(
-                price,
-                style: AppTextStyles.style13W400(
-                  context,
-                ).copyWith(color: AppColors.green),
-              ),
-            ],
-          ),
-          Row(
-            spacing: 12,
-            children: [
-              Text(location, style: AppTextStyles.style13W400(context)),
-              Spacer(),
               Row(
                 spacing: 3,
                 children: [
@@ -88,6 +76,25 @@ class ListViewItemFromShowList extends StatelessWidget {
                     height: 16,
                   ),
                 ],
+              ),
+
+            ],
+          ),
+          Row(
+            spacing: 12,
+            children: [
+              Text(
+                 "السعر :  $price",
+                style: AppTextStyles.style13W400(
+                  context,
+                ).copyWith(color: AppColors.green),
+              ),
+              Spacer(),
+              Text(
+                "العمولة :  $commission",
+                style: AppTextStyles.style13W400(
+                  context,
+                ).copyWith(color: AppColors.green),
               ),
             ],
           ),
