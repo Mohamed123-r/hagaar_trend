@@ -2,4 +2,4 @@ import 'package:flutter/material.dart';
 
 
 TextDirection direction = TextDirection.rtl;
-const String service = 'owner';
+const String service = 'customer';

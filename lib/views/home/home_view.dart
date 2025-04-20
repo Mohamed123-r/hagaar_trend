@@ -103,45 +103,46 @@ class _HomeViewState extends State<HomeView> {
     },
   ];
   final List<Map<String, String>> filters = [
-    {
+    {"date" : "24 / 3 / 2025",
       "type": "فيل",
       "price": "1,500,000 ريال",
       "area": "350 م²",
       "status": "متاح للبيع",
     },
 
-    {
+    {"date" : "24 / 3 / 2025",
       "type": "شقة",
       "price": "750,000 ريال",
       "area": "180 م²",
       "status": "متاح للإيجار",
     },
 
-    {
+    {"date" : "24 / 3 / 2025",
       "type": "دور سكني",
       "price": "1,200,000 ريال",
       "area": "300 م²",
       "status": "متاح للبيع",
     },
     {
+      "date" : "24 / 3 / 2025",
       "type": "فيل",
       "price": "1,500,000 ريال",
       "area": "350 م²",
       "status": "متاح للبيع",
     },
-    {
+    {"date" : "24 / 3 / 2025",
       "type": "فيل",
       "price": "1,500,000 ريال",
       "area": "350 م²",
       "status": "متاح للبيع",
     },
-    {
+    {"date" : "24 / 3 / 2025",
       "type": "فيل",
       "price": "1,500,000 ريال",
       "area": "350 م²",
       "status": "متاح للبيع",
     },
-    {
+    {"date" : "24 / 3 / 2025",
       "type": "فيل",
       "price": "1,500,000 ريال",
       "area": "350 م²",
@@ -182,6 +183,7 @@ class _HomeViewState extends State<HomeView> {
                         onTap: () {
                           showFilter = false;
                           showLocation =true;
+                          showDetailsLocation =true;
                           setState(() {});
                         },
                         child: Stack(
@@ -197,29 +199,12 @@ class _HomeViewState extends State<HomeView> {
                               child: Column(
                                 spacing: 8,
                                 children: [
+                                  SizedBox(
+                                    height: 24,
+                                  ),
                                   Row(
                                     spacing: 8,
                                     children: <Widget>[
-                                      SizedBox(
-                                        width:
-                                            MediaQuery.of(context).size.width / 2.5,
-                                        child: Row(
-                                          spacing: 8,
-                                          children: [
-                                            SvgPicture.asset(
-                                              Assets.imagesCheckCircle,
-                                              width: 16,
-                                              height: 16,
-                                            ),
-                                            Text(
-                                              " نوع العقار : ${filters[index]['type']}",
-                                              style: AppTextStyles.style12W400(
-                                                context,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
                                       SvgPicture.asset(
                                         Assets.imagesCheckCircle,
                                         width: 16,
@@ -234,26 +219,6 @@ class _HomeViewState extends State<HomeView> {
                                   Row(
                                     spacing: 8,
                                     children: <Widget>[
-                                      SizedBox(
-                                        width:
-                                            MediaQuery.of(context).size.width / 2.5,
-                                        child: Row(
-                                          spacing: 8,
-                                          children: [
-                                            SvgPicture.asset(
-                                              Assets.imagesCheckCircle,
-                                              width: 16,
-                                              height: 16,
-                                            ),
-                                            Text(
-                                              " سعر :  ${filters[index]['price']}",
-                                              style: AppTextStyles.style12W400(
-                                                context,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
                                       SvgPicture.asset(
                                         Assets.imagesCheckCircle,
                                         width: 16,
@@ -265,16 +230,64 @@ class _HomeViewState extends State<HomeView> {
                                       ),
                                     ],
                                   ),
+
+                                  Row(
+                                    spacing: 8,
+                                    children: [
+                                      SvgPicture.asset(
+                                        Assets.imagesCheckCircle,
+                                        width: 16,
+                                        height: 16,
+                                      ),
+                                      Text(
+                                        " نوع العقار : ${filters[index]['type']}",
+                                        style: AppTextStyles.style12W400(
+                                          context,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+
+
+                                  Row(
+                                    spacing: 8,
+                                    children: [
+                                      SvgPicture.asset(
+                                        Assets.imagesCheckCircle,
+                                        width: 16,
+                                        height: 16,
+                                      ),
+                                      Text(
+                                        " سعر :  ${filters[index]['price']}",
+                                        style: AppTextStyles.style12W400(
+                                          context,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+
                                 ],
                               ),
                             ),
                             Positioned(
                               top: 12,
-                              right: direction == TextDirection.ltr ? 24 : null,
-                              left: direction == TextDirection.rtl ? 24 : null,
-                              child: SvgPicture.asset(
-                                Assets.imagesTrash,
-                                color: Colors.red,
+
+                              right:  24 ,
+                              left: 32,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "${filters[index]['date']}",
+                                    style: AppTextStyles.style14W700(context).copyWith(
+                                      color: Color(0xFF50B548),
+                                    )
+                                  ),
+                                  SvgPicture.asset(
+                                    Assets.imagesTrash,
+                                    color: Colors.red,
+                                  ),
+                                ],
                               ),
                             ),
                           ],
