@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hagaar_trend/components/app_form_filed.dart';
 import 'package:hagaar_trend/views/auth/confirm_auth.dart';
+import 'package:hagaar_trend/views/auth/new_auth_owner_view1.dart';
 import 'package:hagaar_trend/views/auth/new_auth_view.dart';
 
 import '../../components/app_alert_dialog.dart';
@@ -119,12 +120,18 @@ class MembershipView extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(160),
                       ),
-                      onPressed: () {    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => NewAuthView(),
-                        ),
-                      );},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return service == "customer"
+                                  ? NewAuthView()
+                                  : NewAuthOwnerView1();
+                            },
+                          ),
+                        );
+                      },
                       child: Text(
                         "التالي",
                         style: AppTextStyles.style12W700(
@@ -133,7 +140,6 @@ class MembershipView extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: 32),
-
                   ],
                 ),
               ),
