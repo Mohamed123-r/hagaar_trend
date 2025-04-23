@@ -10,6 +10,7 @@ import 'package:hagaar_trend/views/customer_service/widgets/owner_top_service_ca
 
 import '../../components/app_colors.dart';
 import '../../components/app_text_styles.dart';
+import '../../constant.dart';
 import 'customer_service_view.dart';
 import 'owner_service_follow_view.dart';
 
@@ -35,9 +36,9 @@ class OwnerServiceView extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => CustomerServiceView(
-                        isSendComplaints: true,
-                      ),
+                      builder:
+                          (context) =>
+                              CustomerServiceView(isSendComplaints: true),
                     ),
                   );
                 },
@@ -73,13 +74,11 @@ class OwnerServiceView extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   OwnerTopServiceCard(
-                    onTap: (){
+                    onTap: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => OwnerServiceAddPropertyView(
-
-                          ),
+                          builder: (context) => OwnerServiceAddPropertyView(),
                         ),
                       );
                     },
@@ -87,11 +86,11 @@ class OwnerServiceView extends StatelessWidget {
                     image: Assets.imagesOwnerServiceAdd,
                   ),
                   OwnerTopServiceCard(
-                    onTap: (){
+                    onTap: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => OwnerServiceRequestView(                          ),
+                          builder: (context) => OwnerServiceRequestView(),
                         ),
                       );
                     },
@@ -99,27 +98,31 @@ class OwnerServiceView extends StatelessWidget {
                     image: Assets.imagesOwnerServiceRecust,
                   ),
                   OwnerTopServiceCard(
-
-                      onTap: (){
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => OwnerServiceFollowView(                          ),
-                          ),
-                        );
-                      },
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => OwnerServiceFollowView(),
+                        ),
+                      );
+                    },
                     title: 'متابعة عقاراتي',
                     image: Assets.imagesOwnerServiceFollow,
-
                   ),
                 ],
               ),
               const SizedBox(height: 32),
               Text("خدماتي :", style: AppTextStyles.style16W800(context)),
               const SizedBox(height: 16),
-              const OwnerServiceItem(title: 'طلبات الشراء'),
-              const SizedBox(height: 12),
-              OwnerServiceItem(title: 'إستفسارات العملاء', onTap: () {}),
+              Visibility(
+                visible: service == 'owner',
+                child: OwnerServiceItem(title: 'الإتفاقات', onTap: () {}),
+              ),
+
+              Visibility(
+                visible: service != 'owner',
+                child: OwnerServiceItem(title: 'الإشتراكات', onTap: () {}),
+              ),
             ],
           ),
         ),

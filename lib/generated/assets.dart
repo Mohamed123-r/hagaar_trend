@@ -20,6 +20,7 @@ class Assets {
   static const String imagesHeadset = 'assets/images/Headset.svg';
   static const String imagesHeart = 'assets/images/Heart.svg';
   static const String imagesHeart2 = 'assets/images/Heart2.svg';
+  static const String imagesHomeBackground = 'assets/images/home_background.png';
   static const String imagesHouse = 'assets/images/House.svg';
   static const String imagesHouseLine = 'assets/images/HouseLine.svg';
   static const String imagesImage = 'assets/images/Image.svg';

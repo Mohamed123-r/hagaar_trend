@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:hagaar_trend/views/home/home_owner_view.dart';
 import 'package:hagaar_trend/views/main/main_view.dart';
 
 import 'components/app_colors.dart';
+import 'constant.dart';
 
 void main() {
-
-  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-    statusBarColor: Colors.transparent,
-    statusBarIconBrightness: Brightness.dark,
-    systemNavigationBarColor: Colors.transparent,
-    systemNavigationBarIconBrightness: Brightness.dark,
-
-  ),);
+  SystemChrome.setSystemUIOverlayStyle(
+    const SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+      statusBarIconBrightness: Brightness.dark,
+      systemNavigationBarColor: Colors.transparent,
+      systemNavigationBarIconBrightness: Brightness.dark,
+    ),
+  );
   runApp(const MyApp());
 }
 
@@ -29,7 +31,7 @@ class MyApp extends StatelessWidget {
         primaryColor: AppColors.black,
         scaffoldBackgroundColor: AppColors.white,
       ),
-      home: const MainView(),
+      home: service == 'owner' ? HomeOwnerView() : MainView(),
     );
   }
 }
