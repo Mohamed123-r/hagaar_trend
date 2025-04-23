@@ -8,8 +8,7 @@ import 'button_from_search_in_home.dart';
 class SearchAlertDialog extends StatefulWidget {
   const SearchAlertDialog({super.key, required this.onPressedSearch});
 
-  final Function() onPressedSearch;
-
+  final Function(bool isAdvertiser) onPressedSearch;
   @override
   State<StatefulWidget> createState() {
     return _SearchAlertDialogState();
@@ -17,12 +16,12 @@ class SearchAlertDialog extends StatefulWidget {
 }
 
 class _SearchAlertDialogState extends State<SearchAlertDialog> {
+
   bool isSelect = true;
 
   String? selectedCity = 'الرياض';
   String? selectedCategory = 'للبيع';
   String? selectedType = 'شقة';
-  String? selectedAge = 'أقل من 2 سنة';
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +64,7 @@ class _SearchAlertDialogState extends State<SearchAlertDialog> {
                       },
                     ),
                     ButtonFromSearchInHome(
-                      isSelect: isSelect == false,
+                      isSelect: isSelect== false,
                       title: "معلن",
                       onPressed: () {
                         setState(() {
@@ -93,11 +92,6 @@ class _SearchAlertDialogState extends State<SearchAlertDialog> {
                         "فيلا",
                         "أرض",
                       ]),
-                      buildDropdown("عمر العقار", selectedAge, [
-                        "أقل من 2 سنة",
-                        "أقل من 5 سنوات",
-                        "أكثر من 10 سنوات",
-                      ]),
 
                       Row(
                         children: [
@@ -111,9 +105,7 @@ class _SearchAlertDialogState extends State<SearchAlertDialog> {
                           Expanded(child: buildTextField(hint: "السعر الأعلى")),
                         ],
                       ),
-                      SizedBox(
-                        height: 8,
-                      ),
+                      SizedBox(height: 8),
 
                       Row(
                         children: [
@@ -131,6 +123,10 @@ class _SearchAlertDialogState extends State<SearchAlertDialog> {
                   ),
                 ),
                 Visibility(
+                  visible: isSelect== false,
+                  child: buildTextField(hint: 'إسم ', label: "إسم المعلن"),
+                ),
+                Visibility(
                   visible: isSelect == false,
                   child: buildTextField(
                     hint: "رقم الهاتف",
@@ -146,7 +142,10 @@ class _SearchAlertDialogState extends State<SearchAlertDialog> {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(80),
                   ),
-                  onPressed: widget.onPressedSearch,
+                  onPressed: () {
+                    widget.onPressedSearch(isSelect == false);
+                    Navigator.pop(context);
+                  },
                   child: Text(
                     "بحث",
                     style: AppTextStyles.style12W700(

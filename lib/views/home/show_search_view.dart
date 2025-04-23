@@ -10,7 +10,7 @@ import 'item_details_view.dart';
 import 'widgets/list_view_item_from_show_list.dart';
 
 class ShowSearchView extends StatelessWidget {
-  ShowSearchView({super.key, this.isSearch = false});
+  ShowSearchView({super.key, this.isSearch = false,  this.isMarketersSearch=false});
 
   final List<Map<String, String>> properties = [
     {
@@ -92,6 +92,7 @@ class ShowSearchView extends StatelessWidget {
     },
   ];
   final bool isSearch;
+  final bool isMarketersSearch;
 
   @override
   Widget build(BuildContext context) {
@@ -145,29 +146,32 @@ class ShowSearchView extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   spacing: 8,
                   children: [
-                    MaterialButton(
-                      height: 44,
-                      minWidth: 140,
-                      padding: EdgeInsets.zero,
-                      color: AppColors.green,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(80),
-                      ),
-                      onPressed: () {
-                        showDialog(
-                          context: context,
-                          builder:
-                              (context) => AppAlertDialog2(
-                                title: "تم حفظ الفلترة في فلترتك",
-                                onPressedOk: () {},
-                              ),
-                        );
-                      },
-                      child: Text(
-                        "حفظ نتيجة الفلترة",
-                        style: AppTextStyles.style12W700(
-                          context,
-                        ).copyWith(color: AppColors.white),
+                    Visibility(
+                      visible: !isMarketersSearch,
+                      child: MaterialButton(
+                        height: 44,
+                        minWidth: 140,
+                        padding: EdgeInsets.zero,
+                        color: AppColors.green,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(80),
+                        ),
+                        onPressed: () {
+                          showDialog(
+                            context: context,
+                            builder:
+                                (context) => AppAlertDialog2(
+                                  title: "تم حفظ الفلترة في فلترتك",
+                                  onPressedOk: () {},
+                                ),
+                          );
+                        },
+                        child: Text(
+                          "حفظ نتيجة الفلترة",
+                          style: AppTextStyles.style12W700(
+                            context,
+                          ).copyWith(color: AppColors.white),
+                        ),
                       ),
                     ),
                     MaterialButton(

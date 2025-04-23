@@ -29,6 +29,7 @@ class _HomeViewState extends State<HomeView> {
   bool showFilter = false;
   bool showLocation = false;
   bool showSearch = false;
+  bool showMarketersSearch = false;
   bool showDetailsLocation = false;
   final List<Map<String, String>> properties = [
     {
@@ -476,16 +477,16 @@ class _HomeViewState extends State<HomeView> {
                     ),
                   ),
                   Visibility(
-                    visible: !showList,
+                    visible: !showList ,
                     child: Image.asset(
-                      showSearch ? Assets.imagesTest5 : Assets.imagesTest1,
+                      showMarketersSearch ? Assets.imagesTest5 :  showSearch ? Assets.imagesTest5 : Assets.imagesTest1,
                       width: MediaQuery.of(context).size.width,
                       height: MediaQuery.of(context).size.height,
                       fit: BoxFit.cover,
                     ),
                   ),
                   Visibility(
-                    visible: !showSearch,
+                    visible: !showMarketersSearch && !showSearch,
                     child: Positioned(
                       right: 20,
                       left: 20,
@@ -647,7 +648,7 @@ class _HomeViewState extends State<HomeView> {
                     ),
                   ),
                   Visibility(
-                    visible: !showSearch,
+                    visible: !showMarketersSearch && !showSearch,
                     child: Positioned(
                       top: 90,
                       child: SafeArea(
@@ -666,12 +667,20 @@ class _HomeViewState extends State<HomeView> {
                                       context: context,
                                       builder: (context) {
                                         return SearchAlertDialog(
-                                          onPressedSearch: () {
-                                            setState(() {
-                                              showSearch = !showSearch;
-                                              Navigator.pop(context);
+                                          onPressedSearch: (isAdvertiser) {
+                                            if (isAdvertiser) {  setState(() {
+                                              showMarketersSearch = !showMarketersSearch;
+
                                             });
+                                              // نفّذ عملياتك هنا
+                                            } else {
+                                              setState(() {
+                                                showSearch = !showSearch;
+
+                                              });
+                                            }
                                           },
+
                                         );
                                       },
                                     );
@@ -709,7 +718,7 @@ class _HomeViewState extends State<HomeView> {
                     ),
                   ),
                   Visibility(
-                    visible: showSearch,
+                    visible: showSearch || showMarketersSearch,
                     child: Positioned(
                       top: 56,
 
@@ -727,6 +736,7 @@ class _HomeViewState extends State<HomeView> {
                                 onPressed: () {
                                   setState(() {
                                     showSearch = false;
+                                    showMarketersSearch =false;
                                   });
                                 },
                                 icon: Icon(
@@ -749,32 +759,7 @@ class _HomeViewState extends State<HomeView> {
                     ),
                   ),
                   Visibility(
-                    visible: showSearch,
-                    child: Positioned(
-                      top: 256,
-
-                      child: Container(
-                        height: 48,
-
-                        decoration: BoxDecoration(
-                          color: AppColors.accentColor,
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                        child: Center(
-                          child: Row(
-                            children: [
-                              Text(
-                                "في حاله المعلن غير شكل البتوع الاخضر دول",
-                                style: AppTextStyles.style16W400(context),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Visibility(
-                    visible: showSearch,
+                    visible: showSearch ||showMarketersSearch,
                     child: Positioned(
                       bottom: 95,
                       right: 20,
@@ -783,29 +768,32 @@ class _HomeViewState extends State<HomeView> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         spacing: 8,
                         children: [
-                          MaterialButton(
-                            height: 44,
-                            minWidth: 140,
-                            padding: EdgeInsets.zero,
-                            color: AppColors.green,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(80),
-                            ),
-                            onPressed: () {
-                              showDialog(
-                                context: context,
-                                builder:
-                                    (context) => AppAlertDialog2(
-                                      title: "تم حفظ الفلترة في فلترتك",
-                                      onPressedOk: () {},
-                                    ),
-                              );
-                            },
-                            child: Text(
-                              "حفظ نتيجة الفلترة",
-                              style: AppTextStyles.style12W700(
-                                context,
-                              ).copyWith(color: AppColors.white),
+                          Visibility(
+                            visible: !showMarketersSearch,
+                            child: MaterialButton(
+                              height: 44,
+                              minWidth: 140,
+                              padding: EdgeInsets.zero,
+                              color: AppColors.green,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(80),
+                              ),
+                              onPressed: () {
+                                showDialog(
+                                  context: context,
+                                  builder:
+                                      (context) => AppAlertDialog2(
+                                        title: "تم حفظ الفلترة في فلترتك",
+                                        onPressedOk: () {},
+                                      ),
+                                );
+                              },
+                              child: Text(
+                                "حفظ نتيجة الفلترة",
+                                style: AppTextStyles.style12W700(
+                                  context,
+                                ).copyWith(color: AppColors.white),
+                              ),
                             ),
                           ),
                           MaterialButton(
@@ -822,7 +810,9 @@ class _HomeViewState extends State<HomeView> {
                                   context,
                                   MaterialPageRoute(
                                     builder:
-                                        (_) => ShowSearchView(isSearch: true),
+                                        (_) => ShowSearchView(isSearch: true,
+                                        isMarketersSearch: showMarketersSearch,
+                                        ),
                                   ),
                                 );
                               });
@@ -838,9 +828,8 @@ class _HomeViewState extends State<HomeView> {
                       ),
                     ),
                   ),
-
                   Visibility(
-                    visible: !showSearch,
+                    visible: !showMarketersSearch && !showSearch  ,
                     child: Positioned(
                       bottom: 95,
                       right: 20,
@@ -860,6 +849,7 @@ class _HomeViewState extends State<HomeView> {
                             onPressed: () {
                               setState(() {
                                 showList = !showList;
+                                showMarketersSearch =!showMarketersSearch;
                               });
                             },
                             child: Row(
