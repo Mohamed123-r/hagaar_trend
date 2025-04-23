@@ -78,173 +78,45 @@ class NewAuthView extends StatelessWidget {
                         "أدخل بياناتك لتبدء",
                         style: AppTextStyles.style16W400(context),
                       ),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: AppInputTextFormField(
-                              labelText: "الاسم الأول",
-                            ),
-                          ),
-                          SizedBox(width: 24),
-                          Expanded(
-                            child: AppInputTextFormField(
-                              labelText: "الاسم الثاني",
-                            ),
-                          ),
-                        ],
+                      AppInputTextFormField(
+                        labelText: "الاسم ",
                       ),
                       AppInputTextFormField(
                         labelText: "رقم الهاتف",
                         suffixIcon: Icon(Icons.phone_outlined, size: 20),
                       ),
-
+                      AppInputTextFormField(
+                        labelText: "أدخل المدينة ",
+                      ),AppInputTextFormField(
+                        labelText: "أدخل المنطقة ",
+                      ),
                       AppPassInputTextFormField(labelText: "كلمة المرور"),
                       AppPassInputTextFormField(labelText: "تأكيد كلمة المرور"),
-                      AppInputTextFormField(
-                        labelText: "موقعك",
-                        suffixIcon: SizedBox(
-                          width: 100,
-                          child: Center(
-                            child: TextButton(
-                              onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (_) => ChangeLocation(),
-                                  ),
-                                );
-                              },
-                              child: Text(
-                                "تغير الموقع",
-                                style: AppTextStyles.style12W400(
-                                  context,
-                                ).copyWith(
-                                  color: AppColors.green,
-                                  decoration: TextDecoration.underline,
-                                  decorationColor: AppColors.green,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      AppInputTextFormField(
-                        labelText: "عضويتك",
-                        suffixIcon: SizedBox(
-                          width: 100,
-                          child: Center(
-                            child: TextButton(
-                              onPressed: () {
-                                showDialog(
-                                  context: context,
-                                  builder:
-                                      (context) => AppAlertDialog(
-                                        body: Column(
-                                          children: [
-                                            Text(
-                                              'حدد نوع عقارك',
-                                              style: AppTextStyles.style12W400(
-                                                context,
-                                              ).copyWith(
-                                                color: AppColors.green,
-                                              ),
-                                            ),
-                                            const SizedBox(height: 16),
 
-                                            Wrap(
-                                              spacing: 16,
-                                              runSpacing: 16,
-                                              alignment: WrapAlignment.center,
-                                              children: [
-                                                _membershipItem(
-                                                  context: context,
-                                                  Assets.imagesMembership1,
-                                                  "باحث عن عقار",
-                                                ),
-                                                _membershipItem(
-                                                  context: context,
-                                                  Assets.imagesMembership2,
-                                                  "مالك",
-                                                ),
-                                                _membershipItem(
-                                                  context: context,
-                                                  Assets.imagesMembership3,
-                                                  "مسوق",
-                                                ),
-                                                _membershipItem(
-                                                  context: context,
-                                                  Assets.imagesMembership4,
-                                                  "شركة عقارية",
-                                                ),
-                                              ],
-                                            ),
-                                          ],
-                                        ),
-                                        onPressedOk: () {
-                                          Navigator.pop(context);
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) => ConfirmAuth(),
-                                            ),
-                                          );
-                                        },
-                                      ),
-                                );
-                              },
-                              child: Text(
-                                "تغير العضوية",
-                                style: AppTextStyles.style12W400(
-                                  context,
-                                ).copyWith(
-                                  color: AppColors.green,
-                                  decoration: TextDecoration.underline,
-                                  decorationColor: AppColors.green,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
+
                       SizedBox(height: 32),
                       MaterialButton(
                         height: 44,
-                        minWidth: double.infinity,
-                        padding: EdgeInsets.zero,
-                        color: AppColors.green,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                        onPressed: () {},
-                        child: Text(
-                          "إنشاء الحساب",
-                          style: AppTextStyles.style12W700(
-                            context,
-                          ).copyWith(color: AppColors.white),
-                        ),
-                      ),
-                      SizedBox(height: 32),
-                      Text(
-                        "تسجيل الدخول",
-                        style: AppTextStyles.style16W400(context),
-                      ),
-                      SizedBox(height: 16),
-                      MaterialButton(
-                        height: 44,
-                        minWidth: double.infinity,
                         padding: EdgeInsets.zero,
                         color: AppColors.black,
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16),
+                          borderRadius: BorderRadius.circular(160),
                         ),
-                        onPressed: () {},
+                        onPressed: () {    Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ConfirmAuth(),
+                          ),
+                        );},
                         child: Text(
-                          "تسجيل الدخول",
+                          "التالي",
                           style: AppTextStyles.style12W700(
                             context,
                           ).copyWith(color: AppColors.white),
                         ),
                       ),
+                      SizedBox(height: 32),
+
                     ],
                   ),
                 ),
@@ -257,25 +129,3 @@ class NewAuthView extends StatelessWidget {
   }
 }
 
-Container _membershipItem(
-  String img,
-  String title, {
-  required BuildContext context,
-}) {
-  return Container(
-    width: 120,
-    height: 100,
-    decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(18),
-      border: Border.all(color: AppColors.border),
-    ),
-    child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Image.asset(img, width: 32),
-        SizedBox(height: 16),
-        Text(title, style: AppTextStyles.style12W400(context)),
-      ],
-    ),
-  );
-}

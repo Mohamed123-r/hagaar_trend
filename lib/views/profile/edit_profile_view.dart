@@ -147,11 +147,6 @@ class _EditProfileViewState extends State<EditProfileView> {
                         keyboardType: TextInputType.phone,
                       ),
                       AppInputTextFormField(
-                        title: "البريد الإلكتروني",
-                        controller: emailController,
-                        keyboardType: TextInputType.phone,
-                      ),
-                      AppInputTextFormField(
                         title: "العنوان",
                         controller: locationController,
                         keyboardType: TextInputType.name,

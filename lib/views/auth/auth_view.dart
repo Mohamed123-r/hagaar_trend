@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hagaar_trend/components/app_form_filed.dart';
+import 'package:hagaar_trend/views/auth/membership_view.dart';
 import 'package:hagaar_trend/views/auth/new_auth_view.dart';
 
 import '../../components/app_colors.dart';
@@ -135,7 +136,7 @@ class AuthView extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => NewAuthView(),
+                              builder: (context) => MembershipView(),
                             ),
                           );
                         },

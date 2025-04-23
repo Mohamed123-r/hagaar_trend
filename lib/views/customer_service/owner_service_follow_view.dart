@@ -28,7 +28,7 @@ class OwnerServiceFollowView extends StatelessWidget {
       "price": "1,500,000 ريال",
       "type": "فيلا",
       "area": "350 م²",
-      "status": "متاح للبيع",
+      "status": "متاح للبيع",   "commission": "500 ريال",
     },
     {
       "imageUrl":
@@ -38,7 +38,7 @@ class OwnerServiceFollowView extends StatelessWidget {
       "price": "750,000 ريال",
       "type": "شقة",
       "area": "180 م²",
-      "status": "متاح للإيجار",
+      "status": "متاح للإيجار", "commission": "500 ريال",
     },
     {
       "imageUrl":
@@ -48,7 +48,7 @@ class OwnerServiceFollowView extends StatelessWidget {
       "price": "1,200,000 ريال",
       "type": "دور سكني",
       "area": "300 م²",
-      "status": "متاح للبيع",
+      "status": "متاح للبيع", "commission": "500 ريال",
     },
     {
       "imageUrl":
@@ -58,7 +58,7 @@ class OwnerServiceFollowView extends StatelessWidget {
       "price": "1,800,000 ريال",
       "type": "فيلا",
       "area": "400 م²",
-      "status": "متاح للبيع",
+      "status": "متاح للبيع", "commission": "500 ريال",
     },
     {
       "imageUrl":
@@ -68,7 +68,7 @@ class OwnerServiceFollowView extends StatelessWidget {
       "price": "950,000 ريال",
       "type": "شقة",
       "area": "160 م²",
-      "status": "متاح للإيجار",
+      "status": "متاح للإيجار", "commission": "500 ريال",
     },
     {
       "imageUrl":
@@ -78,7 +78,7 @@ class OwnerServiceFollowView extends StatelessWidget {
       "price": "500,000 ريال",
       "type": "شقة",
       "area": "140 م²",
-      "status": "متاح للإيجار",
+      "status": "متاح للإيجار", "commission": "500 ريال",
     },
     {
       "imageUrl":
@@ -88,7 +88,7 @@ class OwnerServiceFollowView extends StatelessWidget {
       "price": "2,000,000 ريال",
       "type": "فيلا",
       "area": "450 م²",
-      "status": "متاح للبيع",
+      "status": "متاح للبيع", "commission": "500 ريال",
     },
   ];
 
@@ -226,7 +226,7 @@ class OwnerServiceFollowView extends StatelessWidget {
                         price: properties[index]['price']!,
                         type: properties[index]['type']!,
                         area: properties[index]['area']!,
-                        status: properties[index]['status']!,
+                        status: properties[index]['status']!, commission: properties[index]['commission']!,
                       ),
                     ),
                   );

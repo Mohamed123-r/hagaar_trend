@@ -29,11 +29,11 @@ class ConfirmAuth extends StatelessWidget {
                   ],
                 ),
                 Positioned(
-                  top: 32,
+                  top: 40,
                   right: direction == TextDirection.rtl ? 16 : null,
                   left: direction == TextDirection.ltr ? 16 : null,
                   child: InkWell(
-                    borderRadius: BorderRadius.circular(80),
+                    borderRadius: BorderRadius.circular(8),
                     onTap: () {
                       Navigator.pop(context);
                     },

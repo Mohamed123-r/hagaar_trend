@@ -32,6 +32,7 @@ class _ProfileViewState extends State<ProfileView> {
       "type": "فيلا",
       "area": "350 م²",
       "status": "متاح للبيع",
+      "commission": "500 ريال",
     },
     {
       "imageUrl":
@@ -41,7 +42,7 @@ class _ProfileViewState extends State<ProfileView> {
       "price": "750,000 ريال",
       "type": "شقة",
       "area": "180 م²",
-      "status": "متاح للإيجار",
+      "status": "متاح للإيجار",   "commission": "500 ريال",
     },
     {
       "imageUrl":
@@ -51,7 +52,7 @@ class _ProfileViewState extends State<ProfileView> {
       "price": "1,200,000 ريال",
       "type": "دور سكني",
       "area": "300 م²",
-      "status": "متاح للبيع",
+      "status": "متاح للبيع",   "commission": "500 ريال",
     },
     {
       "imageUrl":
@@ -61,7 +62,7 @@ class _ProfileViewState extends State<ProfileView> {
       "price": "1,800,000 ريال",
       "type": "فيلا",
       "area": "400 م²",
-      "status": "متاح للبيع",
+      "status": "متاح للبيع",   "commission": "500 ريال",
     },
     {
       "imageUrl":
@@ -71,7 +72,7 @@ class _ProfileViewState extends State<ProfileView> {
       "price": "950,000 ريال",
       "type": "شقة",
       "area": "160 م²",
-      "status": "متاح للإيجار",
+      "status": "متاح للإيجار",   "commission": "500 ريال",
     },
     {
       "imageUrl":
@@ -81,7 +82,7 @@ class _ProfileViewState extends State<ProfileView> {
       "price": "500,000 ريال",
       "type": "شقة",
       "area": "140 م²",
-      "status": "متاح للإيجار",
+      "status": "متاح للإيجار",   "commission": "500 ريال",
     },
     {
       "imageUrl":
@@ -91,7 +92,7 @@ class _ProfileViewState extends State<ProfileView> {
       "price": "2,000,000 ريال",
       "type": "فيلا",
       "area": "450 م²",
-      "status": "متاح للبيع",
+      "status": "متاح للبيع",   "commission": "500 ريال",
     },
   ];
 
@@ -131,7 +132,7 @@ class _ProfileViewState extends State<ProfileView> {
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(500),
                           child: Image.network(
-                            "https://s3-alpha-sig.figma.com/img/4bd6/eab2/f03426a5e015cd5bd37007c9ae0dd5fc?Expires=1744588800&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=RsKApffc1YgH-4cfaw88sD21DRT3Zcf3GeQYSbwJKhbUJpaIYSPjatwL3A79Y9mNu0RTSg5~nt5cjccdqX~ZM7lyBROr2Gs3ZTN3XMs83TPeSqCojy2SWZz9L2PcZ7~QF0uLHvN6fDaVBXB0cOil0e8ftimJ9l1tu6vWBlZxXOOr7w1VmZrSEZQ-Xl~nGUJOVSKDaOxbkRxzypqUoy9YdK3NH-4A98XpAlugaLQ3EJhouRQDLVaBfLSC3J2B8N2o0Fw~03HhYbwvutUWyX~EkYw-8-eawQqd6Q3DgtF1GMumroxvYgcaRw2RYKR0WRd0MBPgDTzngMlV8c2XC64~4w__",
+                            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkAJEkJQ1WumU0hXNpXdgBt9NUKc0QDVIiaw&s",
                             width: 170,
                             height: 170,
                             fit: BoxFit.cover,
@@ -272,12 +273,12 @@ class _ProfileViewState extends State<ProfileView> {
                         price: properties[index]['price']!,
                         type: properties[index]['type']!,
                         area: properties[index]['area']!,
-                        status: properties[index]['status']!,
+                        status: properties[index]['status']!, commission:properties[index]['commission']! ,
                       ),
                     ),
                   );
                 },
-                separatorBuilder: (context, index) => SizedBox(height: 24),
+                separatorBuilder: (context, index) => SizedBox(height: 16),
                 itemCount: properties.length,
               ),
             ),

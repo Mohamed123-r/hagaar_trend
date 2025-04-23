@@ -16,6 +16,7 @@ class ProfileItem extends StatelessWidget {
     required this.type,
     required this.area,
     required this.status,
+    required this.commission,
   });
 
   final String image;
@@ -25,6 +26,7 @@ class ProfileItem extends StatelessWidget {
   final String type;
   final String area;
   final String status;
+  final String commission;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +35,7 @@ class ProfileItem extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12.0),
         child: Container(
-          height: 165,
+          height: 170,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16),
             color: AppColors.white,
@@ -71,34 +73,51 @@ class ProfileItem extends StatelessWidget {
                           spacing: 3,
                           children: [
                             SvgPicture.asset(
-                              Assets.imagesChartPie,
+                              Assets.imagesVectorTwo,
                               width: 16,
                               height: 16,
                             ),
                             Text(
-                              status,
+                              area,
                               style: AppTextStyles.style10W400(context),
                             ),
                           ],
                         ),
+
+                      ],
+                    ),
+                    Spacer(),
+                    Row(
+                      children: [
+
+
+                        Text(
+                          "السعر :  ",
+                          style: AppTextStyles.style13W400(context),
+                        ),
+                        Text(
+                          price,
+                          style: AppTextStyles.style13W400(
+                            context,
+                          ).copyWith(color: AppColors.green),
+                        ),
                       ],
                     ),
                     Row(
-                      spacing: 3,
                       children: [
-                        SvgPicture.asset(
-                          Assets.imagesVectorTwo,
-                          width: 16,
-                          height: 16,
+
+
+                        Text(
+                          "العمولة :  ",
+                          style: AppTextStyles.style13W400(context),
                         ),
-                        Text(area, style: AppTextStyles.style10W400(context)),
+                        Text(
+                          commission,
+                          style: AppTextStyles.style13W400(
+                            context,
+                          ).copyWith(color: AppColors.green),
+                        ),
                       ],
-                    ),
-                    Text(
-                      price,
-                      style: AppTextStyles.style14W700(
-                        context,
-                      ).copyWith(color: AppColors.green),
                     ),
                   ],
                 ),
