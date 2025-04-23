@@ -6,8 +6,8 @@ import 'package:hagaar_trend/components/app_text_styles.dart';
 import '../../../constant.dart';
 import '../../../generated/assets.dart';
 
-class ListViewItemFromShowList extends StatelessWidget {
-  const ListViewItemFromShowList({
+class ListViewItemFromFavourite extends StatelessWidget {
+  const ListViewItemFromFavourite({
     super.key,
     required this.image,
     required this.name,
@@ -50,7 +50,7 @@ class ListViewItemFromShowList extends StatelessWidget {
                 child: CircleAvatar(
                   radius: 15,
                   backgroundColor: Color(0xffADADAD),
-                  child: SvgPicture.asset(Assets.imagesHeart2),
+                  child: SvgPicture.asset(Assets.imagesTrash),
                 ),
               ),
             ],

@@ -54,55 +54,16 @@ class _AskForRealEstateAlartDialogDialogState
               children: [
                 Column(
                   children: [
-                    buildDropdown("المدينة", selectedCity, [
-                      "الرياض",
-                      "جدة",
-                      "مكة",
-                    ]),
-                    buildDropdown("قسم العقار", selectedCategory, [
-                      "للبيع",
-                      "للايجار",
-                    ]),
-                    buildDropdown("نوع العقار", selectedType, [
-                      "شقة",
-                      "فيلا",
-                      "أرض",
-                    ]),
-                    // buildDropdown("عمر العقار", selectedAge, [
-                    //   "أقل من 2 سنة",
-                    //   "أقل من 5 سنوات",
-                    //   "أكثر من 10 سنوات",
-                    // ]),
-
-                    Row(
-                      children: [
-                        Expanded(
-                          child: buildTextField(
-                            hint: "السعر الأدنى",
-                            label: 'السعر',
-                          ),
-                        ),
-                        SizedBox(width: 10),
-                        Expanded(child: buildTextField(hint: "السعر الأعلى")),
-                      ],
+                    Text(
+                      "إنشاء طلب الشراء",
+                      style: AppTextStyles.style14W700(context),
                     ),
-                    SizedBox(height: 8),
-
-                    Row(
-                      children: [
-                        Expanded(
-                          child: buildTextField(
-                            hint: "أقل مساحة",
-                            label: 'المساحة',
-                          ),
-                        ),
-                        SizedBox(width: 10),
-                        Expanded(child: buildTextField(hint: "أعلى مساحة")),
-                      ],
-                    ),
+                    buildTextField(hint: "أدخل إسمك الثلاثي"),
+                    buildTextField(hint: "أدخل رقم هاتفك"),
+                    buildTextField(hint: "المدينة"),
+                    buildTextField(hint: "المنطقة"),
                   ],
                 ),
-                buildTextField(hint: "رقم الهاتف", label: 'رقم هاتف المعلن'),
                 SizedBox(width: 500),
                 MaterialButton(
                   height: 44,
@@ -113,7 +74,7 @@ class _AskForRealEstateAlartDialogDialogState
                   ),
                   onPressed: widget.onPressedSearch,
                   child: Text(
-                    "إنشاء طلب البحث",
+                    "إنشاء الطلب",
                     style: AppTextStyles.style12W700(
                       context,
                     ).copyWith(color: AppColors.white),

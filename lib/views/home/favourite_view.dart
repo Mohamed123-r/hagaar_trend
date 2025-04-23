@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hagaar_trend/components/custom_app_bar.dart';
 import 'package:hagaar_trend/constant.dart';
+import 'package:hagaar_trend/views/home/widgets/list_view_item_from_favourite.dart';
 
 import '../../generated/assets.dart';
 import 'item_details_view.dart';
@@ -41,6 +42,7 @@ class FavouriteView extends StatelessWidget {
       "type": "دور سكني",
       "area": "300 م²",
       "status": "متاح للبيع",
+      "commission": "500 ريال",
     },
     {
       "imageUrl":
@@ -117,7 +119,7 @@ class FavouriteView extends StatelessWidget {
                   ),
                 );
               },
-              child: ListViewItemFromShowList(
+              child: ListViewItemFromFavourite(
                 image: properties[index]['imageUrl']!,
                 name: properties[index]['name']!,
                 location: properties[index]['location']!,

@@ -82,7 +82,7 @@ class ItemDetailsView extends StatelessWidget {
                             builder:
                                 (_) => AppAlertDialog2(
                                   title:
-                                      "سيتم إبلاغك فور توفر عقار بنفس المواصفات",
+                                      "تم إرسال طلبك بنجاح",
                                   onPressedOk: () {},
                                 ),
                           );
