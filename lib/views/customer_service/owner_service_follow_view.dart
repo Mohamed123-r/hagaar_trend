@@ -123,7 +123,7 @@ class OwnerServiceFollowView extends StatelessWidget {
                             "عقارات متاحة",
                             style: AppTextStyles.style14W400(
                               context,
-                            ).copyWith(color: Color(0xFFeeeeee),),
+                            ).copyWith(color: Color(0xFFeeeeee)),
                           ),
                         ),
                       ),
@@ -146,7 +146,8 @@ class OwnerServiceFollowView extends StatelessWidget {
                         ),
                       ),
                       Expanded(
-                        child: MaterialButton(padding: EdgeInsets.zero,
+                        child: MaterialButton(
+                          padding: EdgeInsets.zero,
                           elevation: 0,
                           height: 44,
                           onPressed: () {},
@@ -164,16 +165,13 @@ class OwnerServiceFollowView extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(
-                    height: 12,
-                  ),
+                  SizedBox(height: 12),
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 24),
-                    height: 44 ,
+                    height: 44,
                     decoration: BoxDecoration(
-                        color: Color(0xFFeeeeee) ,
-                        borderRadius: BorderRadius.circular(8),
-
+                      color: Color(0xFFeeeeee),
+                      borderRadius: BorderRadius.circular(8),
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -196,9 +194,7 @@ class OwnerServiceFollowView extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(
-              height: 12,
-            ),
+            SizedBox(height: 12),
             Expanded(
               child: ListView.separated(
                 itemBuilder: (context, index) {
@@ -218,6 +214,7 @@ class OwnerServiceFollowView extends StatelessWidget {
                                   name: properties[index]['name']!,
                                   location: properties[index]['location']!,
                                   price: properties[index]['price']!,
+                                  commission: properties[index]['commission']!,
                                 ),
                           ),
                         );

@@ -21,12 +21,15 @@ class ItemDetailsView extends StatelessWidget {
     required this.price,
     required this.location,
     this.showFavourite = false,
+    required this.commission,
   });
 
   final bool showFavourite;
   final String image;
   final String name;
   final String price;
+  final String commission;
+
   final String location;
 
   @override
@@ -78,10 +81,9 @@ class ItemDetailsView extends StatelessWidget {
                             context: context,
                             builder:
                                 (_) => AppAlertDialog2(
-                                  title: "سيتم إبلاغك فور توفر عقار بنفس المواصفات",
-                                  onPressedOk: () {
-
-                                  },
+                                  title:
+                                      "سيتم إبلاغك فور توفر عقار بنفس المواصفات",
+                                  onPressedOk: () {},
                                 ),
                           );
                         },
@@ -146,37 +148,27 @@ class ItemDetailsView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Stack(
-                alignment: Alignment.bottomCenter,
+                alignment: Alignment.bottomRight,
                 children: <Widget>[
                   AspectRatio(
                     aspectRatio: 1,
                     child: Image.network(image, fit: BoxFit.cover),
                   ),
                   Positioned(
-                    bottom: 16,
-
-                    child: Container(
-                      height: 32,
-                      width: 80,
-                      decoration: BoxDecoration(
-                        color: AppColors.white,
-                        borderRadius: BorderRadius.circular(50),
-                      ),
-                      child: Center(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          spacing: 8,
-                          children: [
-                            Text(
-                              "1 / 5",
-                              style: AppTextStyles.style10W400(context),
-                            ),
-                            SvgPicture.asset(
-                              Assets.imagesImage,
-                              width: 16,
-                              height: 16,
-                            ),
-                          ],
+                    bottom: 20,
+                    right: -50,
+                    child: Transform.rotate(
+                      angle: -0.785398,
+                      child: Container(
+                        width: 160,
+                        padding: EdgeInsets.symmetric(vertical: 5),
+                        color: Colors.orange,
+                        alignment: Alignment.center,
+                        child: Text(
+                          "قابل للبيع",
+                          style: AppTextStyles.style12W400(
+                            context,
+                          ).copyWith(color: AppColors.white),
                         ),
                       ),
                     ),
@@ -195,18 +187,37 @@ class ItemDetailsView extends StatelessWidget {
                         Text(name, style: AppTextStyles.style16W400(context)),
                         Spacer(),
                         Text(
+                          "السعر :  ",
+                          style: AppTextStyles.style13W400(context),
+                        ),
+                        Text(
                           price,
-                          style: AppTextStyles.style18W400(
+                          style: AppTextStyles.style13W400(
                             context,
                           ).copyWith(color: AppColors.green),
                         ),
                       ],
                     ),
-                    Text(
-                      location,
-                      style: AppTextStyles.style14W400(
-                        context,
-                      ).copyWith(color: AppColors.grey),
+                    Row(
+                      children: [
+                        Text(
+                          location,
+                          style: AppTextStyles.style14W400(
+                            context,
+                          ).copyWith(color: AppColors.grey),
+                        ),
+                        Spacer(),
+                        Text(
+                          "العمولة :  ",
+                          style: AppTextStyles.style13W400(context),
+                        ),
+                        Text(
+                          commission,
+                          style: AppTextStyles.style13W400(
+                            context,
+                          ).copyWith(color: AppColors.green),
+                        ),
+                      ],
                     ),
                   ],
                 ),
@@ -232,26 +243,21 @@ class ItemDetailsView extends StatelessWidget {
                 value: "فيلا",
               ),
               DataFromItemDetailsView(
-                title: "إتجاه العقار :",
-                image: Assets.imagesNavigationArrow,
-                value: "شرق الرياض",
-                isGreen: true,
-              ),
-              DataFromItemDetailsView(
                 title: "مساحة العقار :",
                 image: Assets.imagesVectorTwo,
                 value: "312 متر مربع",
-              ),
-              DataFromItemDetailsView(
-                title: "عمر العقار :",
-                image: Assets.imagesChartPie,
-                value: "جديد",
                 isGreen: true,
               ),
               DataFromItemDetailsView(
                 title: "السعر :",
                 image: Assets.imagesVectorTwo,
                 value: "890 ألف ريال / غير قابل للتفاوض",
+              ),
+              DataFromItemDetailsView(
+                title: "ال  id للعقار :",
+                image: Assets.imagesChartPie,
+                value: "873562143",
+                isGreen: true,
               ),
               SizedBox(height: 32),
               Padding(
@@ -262,26 +268,11 @@ class ItemDetailsView extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 12),
-              FeaturesFromItemDetailsView(
-                value1: "دوبلكس",
-
-                isGreen: true,
-              ),
-              FeaturesFromItemDetailsView(
-                value1: "8 غرفة للدور",
-
-              ),
-              FeaturesFromItemDetailsView(
-                value1: "قبو",
-
-                isGreen: true,
-              ),
-              FeaturesFromItemDetailsView(value1: "مسبح", ),
-              FeaturesFromItemDetailsView(
-                value1: "مدخل سيارة",
-
-                isGreen: true,
-              ),
+              FeaturesFromItemDetailsView(value1: "دوبلكس", isGreen: true),
+              FeaturesFromItemDetailsView(value1: "8 غرفة للدور"),
+              FeaturesFromItemDetailsView(value1: "قبو", isGreen: true),
+              FeaturesFromItemDetailsView(value1: "مسبح"),
+              FeaturesFromItemDetailsView(value1: "مدخل سيارة", isGreen: true),
               FeaturesFromItemDetailsView(value1: "حديقة خاصة"),
               SizedBox(height: 16),
               Padding(
@@ -422,6 +413,42 @@ class ItemDetailsView extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Expanded(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "العقد الإلكتروني :",
+                            style: AppTextStyles.style14W400(context),
+                          ),
+
+                          TextButton(
+                            onPressed: () {},
+                            child: Text(
+                              "negotate.pdf",
+                              style: AppTextStyles.style14W400(
+                                context,
+                              ).copyWith(color: AppColors.middleGreen),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 16),
+              Container(
+                padding: const EdgeInsets.all(12),
+                margin: EdgeInsets.symmetric(horizontal: 16),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(16),
+                  border: Border.all(color: AppColors.border),
+                ),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(
                       child: Column(
                         crossAxisAlignment:
                             direction == TextDirection.ltr
@@ -470,59 +497,7 @@ class ItemDetailsView extends StatelessWidget {
                           radius: 32,
                           backgroundColor: AppColors.grey,
                           child: Image.network(
-                            "https://s3-alpha-sig.figma.com/img/4bd6/eab2/f03426a5e015cd5bd37007c9ae0dd5fc?Expires=1745193600&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=HY-Cs08WI5JV6Ez~Hcx0Z7odtC9QrWOF6mGNiV5p36Uf-1hTtidMZ-Fmd37YN9DIjjHBYvIT~1z1V-o8HiGKNDaweH0j6nIV4TJ4h-ebYO8Oi1~Snq3A1TmGbTKxDn0RrGZqXrzVA-b8LUSb8YujAj-1~yMKpG4ZfiBhaXubIoEhvPizZDXo7dWrxZ6i3ja-blVvhxfsZPvCnIskzmsQb87EVI3RwPuJdCXXpT4gNo35tDw78RZkk28YtApcY~rNQVgQfESqTdFbdD9iOdehq-a4OWAMZn4t2AbRRT2YpQSmswqOg6PsW9t72uTzOeWTeirbvW64T5BNtk56yxs81g__",
-                            width: 64,
-                            height: 64,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(height: 16),
-              Container(
-                padding: const EdgeInsets.all(12),
-                margin: EdgeInsets.symmetric(horizontal: 16),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(16),
-                  border: Border.all(color: AppColors.border),
-                ),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment:
-                            direction == TextDirection.ltr
-                                ? CrossAxisAlignment.end
-                                : CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "مالك العقارات :",
-                            style: AppTextStyles.style16W800(context),
-                          ),
-                          const SizedBox(height: 4),
-                          Text(
-                            "أ / خالد أحمد عبد الظاهر",
-                            style: AppTextStyles.style12W400(context),
-                          ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(width: 12),
-
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(50),
-                        child: CircleAvatar(
-                          radius: 32,
-                          backgroundColor: AppColors.grey,
-                          child: Image.network(
-                            "https://s3-alpha-sig.figma.com/img/3aed/d79e/6594a5bb1857e48aa0783ba903b24094?Expires=1745193600&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=mvmoKwJQbCFM25az7xxX42jIGnO6y7IsKzGfe3VGr7wzEz~T-lCgtjFoeZUVU2tIq5rSCJT~M0zeANah0KMjEBI-hW7rC58VMqiNSisKV9vezZFTIkyK5GTrhnPCBAoma07HjhJ9qHcuHajjtfNiRSOYT81XJCnNoxPVb4nI5oYFK0BAcXa48v~SFhFRE1UDUaxgaV14AJPck2kX7Q6iXLzfrFx3jxwgocmGyxjW7cLT8Dqil6TtmZu8yKqPqx7uqwX1HfCxuH8iGjOcLKgmPUxk6ceFXEpfhWDkNKVbGK7Qi7FOeRj-YkxIFQMPDgPI8fTRhorJK2jzsAzJ8bW-qA__",
+                            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkAJEkJQ1WumU0hXNpXdgBt9NUKc0QDVIiaw&s",
                             width: 64,
                             height: 64,
                             fit: BoxFit.cover,

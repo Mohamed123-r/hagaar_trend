@@ -18,7 +18,8 @@ class FavouriteView extends StatelessWidget {
       "price": "1,500,000 ريال",
       "type": "فيلا",
       "area": "350 م²",
-      "status": "متاح للبيع",  "commission" : "500 ريال"
+      "status": "متاح للبيع",
+      "commission": "500 ريال",
     },
     {
       "imageUrl":
@@ -28,7 +29,8 @@ class FavouriteView extends StatelessWidget {
       "price": "750,000 ريال",
       "type": "شقة",
       "area": "180 م²",
-      "status": "متاح للإيجار",  "commission" : "500 ريال"
+      "status": "متاح للإيجار",
+      "commission": "500 ريال",
     },
     {
       "imageUrl":
@@ -48,7 +50,8 @@ class FavouriteView extends StatelessWidget {
       "price": "1,800,000 ريال",
       "type": "فيلا",
       "area": "400 م²",
-      "status": "متاح للبيع",  "commission" : "500 ريال"
+      "status": "متاح للبيع",
+      "commission": "500 ريال",
     },
     {
       "imageUrl":
@@ -58,7 +61,8 @@ class FavouriteView extends StatelessWidget {
       "price": "950,000 ريال",
       "type": "شقة",
       "area": "160 م²",
-      "status": "متاح للإيجار",  "commission" : "500 ريال"
+      "status": "متاح للإيجار",
+      "commission": "500 ريال",
     },
     {
       "imageUrl":
@@ -68,7 +72,8 @@ class FavouriteView extends StatelessWidget {
       "price": "500,000 ريال",
       "type": "شقة",
       "area": "140 م²",
-      "status": "متاح للإيجار",  "commission" : "500 ريال"
+      "status": "متاح للإيجار",
+      "commission": "500 ريال",
     },
     {
       "imageUrl":
@@ -78,7 +83,8 @@ class FavouriteView extends StatelessWidget {
       "price": "2,000,000 ريال",
       "type": "فيلا",
       "area": "450 م²",
-      "status": "متاح للبيع",  "commission" : "500 ريال"
+      "status": "متاح للبيع",
+      "commission": "500 ريال",
     },
   ];
 
@@ -106,6 +112,7 @@ class FavouriteView extends StatelessWidget {
                           name: properties[index]['name']!,
                           location: properties[index]['location']!,
                           price: properties[index]['price']!,
+                          commission: properties[index]['commission']!,
                         ),
                   ),
                 );
@@ -117,7 +124,8 @@ class FavouriteView extends StatelessWidget {
                 price: properties[index]['price']!,
                 type: properties[index]['type']!,
                 area: properties[index]['area']!,
-                status: properties[index]['status']!, commission: properties[index]['commission']!,
+                status: properties[index]['status']!,
+                commission: properties[index]['commission']!,
               ),
             );
           },

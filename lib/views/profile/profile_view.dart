@@ -122,9 +122,7 @@ class _ProfileViewState extends State<ProfileView> {
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(
-                            builder: (context) => AuthView(),
-                          ),
+                          MaterialPageRoute(builder: (context) => AuthView()),
                         );
                       },
                       child: CircleAvatar(
@@ -207,7 +205,9 @@ class _ProfileViewState extends State<ProfileView> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (_) => ChangePasswordView()),
+                          MaterialPageRoute(
+                            builder: (_) => ChangePasswordView(),
+                          ),
                         );
                       },
                     ),
@@ -260,6 +260,7 @@ class _ProfileViewState extends State<ProfileView> {
                                   name: properties[index]['name']!,
                                   location: properties[index]['location']!,
                                   price: properties[index]['price']!,
+                                  commission: properties[index]['commission']!,
                                 ),
                           ),
                         );

@@ -219,7 +219,6 @@ class _comapnysDetailsView extends State<ComapnysDetailsView> {
                       title: "رقم الهاتف :",
 
                       value: "+20 010038366545",
-
                     ),
                     DataFromCompanyView(
                       title: "الإيميل :",
@@ -292,6 +291,8 @@ class _comapnysDetailsView extends State<ComapnysDetailsView> {
                                     name: properties[index]['name']!,
                                     location: properties[index]['location']!,
                                     price: properties[index]['price']!,
+                                    commission:
+                                        properties[index]['commission']!,
                                   ),
                             ),
                           );
