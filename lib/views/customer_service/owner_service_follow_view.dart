@@ -16,6 +16,7 @@ import '../home/widgets/list_view_item_from_show_list.dart';
 import '../profile/change_location.dart';
 import '../profile/widgets/profile_item.dart';
 import 'customer_service_view.dart';
+import 'owner_service_follow_item_details_view.dart';
 
 class OwnerServiceFollowView extends StatelessWidget {
   OwnerServiceFollowView({super.key});
@@ -29,7 +30,8 @@ class OwnerServiceFollowView extends StatelessWidget {
       "price": "1,500,000 ريال",
       "type": "فيلا",
       "area": "350 م²",
-      "status": "متاح للبيع",   "commission": "500 ريال",
+      "status": "متاح للبيع",
+      "commission": "500 ريال",
     },
     {
       "imageUrl":
@@ -39,7 +41,8 @@ class OwnerServiceFollowView extends StatelessWidget {
       "price": "750,000 ريال",
       "type": "شقة",
       "area": "180 م²",
-      "status": "متاح للإيجار", "commission": "500 ريال",
+      "status": "متاح للإيجار",
+      "commission": "500 ريال",
     },
     {
       "imageUrl":
@@ -49,7 +52,8 @@ class OwnerServiceFollowView extends StatelessWidget {
       "price": "1,200,000 ريال",
       "type": "دور سكني",
       "area": "300 م²",
-      "status": "متاح للبيع", "commission": "500 ريال",
+      "status": "متاح للبيع",
+      "commission": "500 ريال",
     },
     {
       "imageUrl":
@@ -59,7 +63,8 @@ class OwnerServiceFollowView extends StatelessWidget {
       "price": "1,800,000 ريال",
       "type": "فيلا",
       "area": "400 م²",
-      "status": "متاح للبيع", "commission": "500 ريال",
+      "status": "متاح للبيع",
+      "commission": "500 ريال",
     },
     {
       "imageUrl":
@@ -69,7 +74,8 @@ class OwnerServiceFollowView extends StatelessWidget {
       "price": "950,000 ريال",
       "type": "شقة",
       "area": "160 م²",
-      "status": "متاح للإيجار", "commission": "500 ريال",
+      "status": "متاح للإيجار",
+      "commission": "500 ريال",
     },
     {
       "imageUrl":
@@ -79,7 +85,8 @@ class OwnerServiceFollowView extends StatelessWidget {
       "price": "500,000 ريال",
       "type": "شقة",
       "area": "140 م²",
-      "status": "متاح للإيجار", "commission": "500 ريال",
+      "status": "متاح للإيجار",
+      "commission": "500 ريال",
     },
     {
       "imageUrl":
@@ -89,7 +96,8 @@ class OwnerServiceFollowView extends StatelessWidget {
       "price": "2,000,000 ريال",
       "type": "فيلا",
       "area": "450 م²",
-      "status": "متاح للبيع", "commission": "500 ريال",
+      "status": "متاح للبيع",
+      "commission": "500 ريال",
     },
   ];
 
@@ -210,7 +218,8 @@ class OwnerServiceFollowView extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                             builder:
-                                (context) => ItemDetailsView(
+                                (context) => OwnerServiceFollowItemDetailsView(
+                                  isFollow: true,
                                   image: properties[index]['imageUrl']!,
                                   name: properties[index]['name']!,
                                   location: properties[index]['location']!,
@@ -228,7 +237,8 @@ class OwnerServiceFollowView extends StatelessWidget {
                         price: properties[index]['price']!,
                         type: properties[index]['type']!,
                         area: properties[index]['area']!,
-                        status: properties[index]['status']!, commission: properties[index]['commission']!,
+                        status: properties[index]['status']!,
+                        commission: properties[index]['commission']!,
                       ),
                     ),
                   );

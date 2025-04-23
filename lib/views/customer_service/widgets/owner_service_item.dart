@@ -5,9 +5,10 @@ import '../../../components/app_text_styles.dart';
 
 class OwnerServiceItem extends StatelessWidget {
   final String title;
+  final String? value;
   final VoidCallback? onTap;
 
-  const OwnerServiceItem({super.key, required this.title, this.onTap});
+  const OwnerServiceItem({super.key, required this.title, this.onTap, this.value});
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +31,13 @@ class OwnerServiceItem extends StatelessWidget {
                 ).copyWith(color: AppColors.green),
               ),
             ),
+            Text(
+              value ??"",
+              style: AppTextStyles.style14W400(
+                context,
+              )
+            ),
+            SizedBox(width: 12,),
             const Icon(
               Icons.arrow_forward_ios_outlined,
               color: AppColors.green,

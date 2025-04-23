@@ -4,6 +4,7 @@ import 'package:hagaar_trend/components/app_text_styles.dart';
 import 'package:hagaar_trend/generated/assets.dart';
 import 'package:hagaar_trend/views/home/widgets/home_owner_details_item_view.dart';
 
+import '../customer_service/owner_service_follow_item_details_view.dart';
 import '../main/main_view.dart';
 import '../profile/widgets/profile_item.dart';
 import 'item_details_view.dart';
@@ -143,7 +144,7 @@ class HomeOwnerDetailsView extends StatelessWidget {
                             context,
                             MaterialPageRoute(
                               builder:
-                                  (context) => ItemDetailsView(
+                                  (context) => OwnerServiceFollowItemDetailsView(
                                     image: properties[index]['imageUrl']!,
                                     name: properties[index]['name']!,
                                     location: properties[index]['location']!,
