@@ -14,7 +14,10 @@ class HomeOwnerDetailsItemView extends StatelessWidget {
     required this.area,
     required this.status,
     required this.commission,
+    this.isFollow = false,
   });
+
+  final bool isFollow;
 
   final String image;
   final String name;
@@ -32,7 +35,7 @@ class HomeOwnerDetailsItemView extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12.0),
         child: Container(
-          height: 225,
+          height: isFollow ? 185 : 225,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16),
             color: AppColors.white,
@@ -137,6 +140,8 @@ class HomeOwnerDetailsItemView extends StatelessWidget {
                     ClipRRect(
                       borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(8),
+                        bottomLeft:
+                            isFollow ? Radius.circular(8) : Radius.circular(0),
                       ),
                       child: AspectRatio(
                         aspectRatio: 1,
@@ -146,16 +151,19 @@ class HomeOwnerDetailsItemView extends StatelessWidget {
                   ],
                 ),
               ),
-              Container(
-                height: 40,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(16),
-                    bottomRight: Radius.circular(16),
+              Visibility(
+                visible: !isFollow,
+                child: Container(
+                  height: 40,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(16),
+                      bottomRight: Radius.circular(16),
+                    ),
+                    color: Color(0xffeeeeee),
                   ),
-                  color: Color(0xffeeeeee),
+                  child: StatusSelector(),
                 ),
-                child: StatusSelector(),
               ),
             ],
           ),

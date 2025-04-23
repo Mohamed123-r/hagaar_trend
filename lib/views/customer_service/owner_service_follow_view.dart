@@ -11,6 +11,7 @@ import '../../components/app_colors.dart';
 import '../../components/app_text_styles.dart';
 import '../../constant.dart';
 import '../home/item_details_view.dart';
+import '../home/widgets/home_owner_details_item_view.dart';
 import '../home/widgets/list_view_item_from_show_list.dart';
 import '../profile/change_location.dart';
 import '../profile/widgets/profile_item.dart';
@@ -219,7 +220,8 @@ class OwnerServiceFollowView extends StatelessWidget {
                           ),
                         );
                       },
-                      child: ProfileItem(
+                      child: HomeOwnerDetailsItemView(
+                        isFollow: true,
                         image: properties[index]['imageUrl']!,
                         name: properties[index]['name']!,
                         location: properties[index]['location']!,
