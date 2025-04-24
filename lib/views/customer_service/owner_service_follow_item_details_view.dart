@@ -14,6 +14,7 @@ import '../../components/app_form_filed.dart';
 import '../../components/app_text_styles.dart';
 import '../../generated/assets.dart';
 import '../home/widgets/home_owner_details_item_view.dart';
+import 'inquiries_view.dart';
 
 class OwnerServiceFollowItemDetailsView extends StatelessWidget {
   const OwnerServiceFollowItemDetailsView({
@@ -54,7 +55,14 @@ class OwnerServiceFollowItemDetailsView extends StatelessWidget {
                   children: [
                     OwnerServiceItem(title: 'عدد الزيارات :',value:  "324",),
 
-                    OwnerServiceItem(title: 'عدد الإستفسارات :',value:  "24", onTap: () {}),
+                    OwnerServiceItem(title: 'عدد الإستفسارات :',value:  "24", onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => InquiriesView(),
+                        ),
+                      );
+                    }),
 
                     OwnerServiceItem(title: 'عدد طلبات الشراء الجاد :',value:  "4", onTap: () {}),
                     Visibility(

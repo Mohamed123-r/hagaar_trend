@@ -849,7 +849,7 @@ class _HomeViewState extends State<HomeView> {
                             onPressed: () {
                               setState(() {
                                 showList = !showList;
-                                showMarketersSearch =!showMarketersSearch;
+                                
                               });
                             },
                             child: Row(
