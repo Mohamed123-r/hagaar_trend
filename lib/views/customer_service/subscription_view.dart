@@ -14,7 +14,7 @@ class SubscriptionView extends StatelessWidget {
     return Directionality(
       textDirection: direction,
       child: Scaffold(
-        appBar: customAppBar(context, title: "الإشتراكات", showBack: false),
+        appBar: customAppBar(context, title: "الإشتراكات", showBack: true),
         body: Column(
           children: [
             SizedBox(height: 24),

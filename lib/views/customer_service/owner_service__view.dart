@@ -12,6 +12,7 @@ import 'package:hagaar_trend/views/customer_service/widgets/owner_top_service_ca
 import '../../components/app_colors.dart';
 import '../../components/app_text_styles.dart';
 import '../../constant.dart';
+import 'agreement_view.dart';
 import 'customer_service_view.dart';
 import 'owner_service_follow_view.dart';
 
@@ -117,7 +118,14 @@ class OwnerServiceView extends StatelessWidget {
               const SizedBox(height: 16),
               Visibility(
                 visible: service == 'owner',
-                child: OwnerServiceItem(title: 'الإتفاقات', onTap: () {}),
+                child: OwnerServiceItem(title: 'الإتفاقات', onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => AgreementView(),
+                    ),
+                  );
+                }),
               ),
 
               Visibility(
