@@ -157,7 +157,7 @@ Container _membershipItem(
   required BuildContext context,
 }) {
   return Container(
-    width: 160,
+    width: 150,
     height: 130,
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(18),

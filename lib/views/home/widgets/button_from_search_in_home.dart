@@ -19,7 +19,7 @@ class ButtonFromSearchInHome extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialButton(
       height: 40,
-      minWidth: 128,
+      minWidth: 120,
       color: isSelect ? AppColors.middleGreen : AppColors.white,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       onPressed: onPressed,

@@ -80,7 +80,7 @@ class NewAuthOwnerView1 extends StatelessWidget {
                         style: AppTextStyles.style16W400(context),
                       ),
                       AppInputTextFormField(
-                        labelText: "إسم الشكة / المكتب العقاري",
+                        labelText: "إسم الشركة / المكتب العقاري",
                       ),
                       AppInputTextFormField(
                         labelText: "إسم مالك المكتب / الشركة",

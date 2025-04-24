@@ -67,7 +67,7 @@ class _ProfileViewState extends State<ProfileView> {
     {
       "imageUrl":
           "https://images.pexels.com/photos/323705/pexels-photo-323705.jpeg",
-      "name": "شقة فندقية بإطلالة بانورامية",
+      "name": "شقة فندقية  ",
       "location": "مكة المكرمة، السعودية",
       "price": "950,000 ريال",
       "type": "شقة",

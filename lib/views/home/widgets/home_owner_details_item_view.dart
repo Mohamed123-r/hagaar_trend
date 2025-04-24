@@ -144,7 +144,7 @@ class HomeOwnerDetailsItemView extends StatelessWidget {
                             isFollow ? Radius.circular(8) : Radius.circular(0),
                       ),
                       child: AspectRatio(
-                        aspectRatio: 1,
+                        aspectRatio: 0.80,
                         child: Image.network(image, fit: BoxFit.cover),
                       ),
                     ),

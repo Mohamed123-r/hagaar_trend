@@ -69,7 +69,7 @@ class OwnerServiceFollowView extends StatelessWidget {
     {
       "imageUrl":
           "https://images.pexels.com/photos/323705/pexels-photo-323705.jpeg",
-      "name": "شقة فندقية بإطلالة بانورامية",
+      "name": "شقة فندقية ",
       "location": "مكة المكرمة، السعودية",
       "price": "950,000 ريال",
       "type": "شقة",
@@ -207,39 +207,33 @@ class OwnerServiceFollowView extends StatelessWidget {
             Expanded(
               child: ListView.separated(
                 itemBuilder: (context, index) {
-                  return Padding(
-                    padding:
-                        index == properties.length - 1
-                            ? const EdgeInsets.only(bottom: 100)
-                            : EdgeInsets.zero,
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder:
-                                (context) => OwnerServiceFollowItemDetailsView(
-                                  isFollow: true,
-                                  image: properties[index]['imageUrl']!,
-                                  name: properties[index]['name']!,
-                                  location: properties[index]['location']!,
-                                  price: properties[index]['price']!,
-                                  commission: properties[index]['commission']!,
-                                ),
-                          ),
-                        );
-                      },
-                      child: HomeOwnerDetailsItemView(
-                        isFollow: true,
-                        image: properties[index]['imageUrl']!,
-                        name: properties[index]['name']!,
-                        location: properties[index]['location']!,
-                        price: properties[index]['price']!,
-                        type: properties[index]['type']!,
-                        area: properties[index]['area']!,
-                        status: properties[index]['status']!,
-                        commission: properties[index]['commission']!,
-                      ),
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder:
+                              (context) => OwnerServiceFollowItemDetailsView(
+                                isFollow: true,
+                                image: properties[index]['imageUrl']!,
+                                name: properties[index]['name']!,
+                                location: properties[index]['location']!,
+                                price: properties[index]['price']!,
+                                commission: properties[index]['commission']!,
+                              ),
+                        ),
+                      );
+                    },
+                    child: HomeOwnerDetailsItemView(
+                      isFollow: true,
+                      image: properties[index]['imageUrl']!,
+                      name: properties[index]['name']!,
+                      location: properties[index]['location']!,
+                      price: properties[index]['price']!,
+                      type: properties[index]['type']!,
+                      area: properties[index]['area']!,
+                      status: properties[index]['status']!,
+                      commission: properties[index]['commission']!,
                     ),
                   );
                 },
