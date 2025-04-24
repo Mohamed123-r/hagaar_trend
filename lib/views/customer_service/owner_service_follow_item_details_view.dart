@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hagaar_trend/components/custom_app_bar.dart';
 import 'package:hagaar_trend/constant.dart';
+import 'package:hagaar_trend/views/customer_service/serious_purchase%20_inquiries_view.dart';
 import 'package:hagaar_trend/views/customer_service/widgets/owner_service_item.dart';
 import 'package:hagaar_trend/views/home/location_view.dart';
 import 'package:hagaar_trend/views/home/widgets/ask_for_real_estate_alart_dialog.dart';
@@ -64,7 +65,14 @@ class OwnerServiceFollowItemDetailsView extends StatelessWidget {
                       );
                     }),
 
-                    OwnerServiceItem(title: 'عدد طلبات الشراء الجاد :',value:  "4", onTap: () {}),
+                    OwnerServiceItem(title: 'عدد طلبات الشراء الجاد :',value:  "4", onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => SeriousPurchaseInquiriesView(),
+                        ),
+                      );
+                    }),
                     Visibility(
                       visible: !isFollow,
                       child: Container(
