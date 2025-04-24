@@ -5,6 +5,7 @@ import 'package:hagaar_trend/components/custom_app_bar.dart';
 import 'package:hagaar_trend/generated/assets.dart';
 import 'package:hagaar_trend/views/customer_service/owner_service_add_view.dart';
 import 'package:hagaar_trend/views/customer_service/owner_service_request_view.dart';
+import 'package:hagaar_trend/views/customer_service/subscription_view.dart';
 import 'package:hagaar_trend/views/customer_service/widgets/owner_service_item.dart';
 import 'package:hagaar_trend/views/customer_service/widgets/owner_top_service_card.dart';
 
@@ -121,7 +122,14 @@ class OwnerServiceView extends StatelessWidget {
 
               Visibility(
                 visible: service != 'owner',
-                child: OwnerServiceItem(title: 'الإشتراكات', onTap: () {}),
+                child: OwnerServiceItem(title: 'الإشتراكات', onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => SubscriptionView(),
+                    ),
+                  );
+                }),
               ),
             ],
           ),
