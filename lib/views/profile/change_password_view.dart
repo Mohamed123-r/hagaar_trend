@@ -33,9 +33,9 @@ class ChangePasswordView extends StatelessWidget {
                     borderRadius: BorderRadius.circular(8),
                     onTap:
 
-                            () {
-                          Navigator.pop(context);
-                        },
+                        () {
+                      Navigator.pop(context);
+                    },
                     child: Container(
                       width: 32,
                       height: 32,
@@ -77,7 +77,7 @@ class ChangePasswordView extends StatelessWidget {
                       PasswordTextForm(title: 'كلمة المرور الحالية',),
                       PasswordTextForm(title: 'كلمة المرور الجديدة',),
                       PasswordTextForm(title: 'تأكيد كلمة المرور الجديدة',),
-                      
+
                     ],
                   ),
                 ),
@@ -94,13 +94,15 @@ class PasswordTextForm extends StatelessWidget {
   const PasswordTextForm({
     super.key, required this.title,
   });
-final String title ;
+
+  final String title;
+
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text( title, style: AppTextStyles.style14W700(context)),
+        Text(title, style: AppTextStyles.style14W700(context)),
         SizedBox(height: 12),
         TextField(
           decoration: InputDecoration(

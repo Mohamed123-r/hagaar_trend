@@ -144,14 +144,16 @@ class HomeOwnerDetailsView extends StatelessWidget {
                             context,
                             MaterialPageRoute(
                               builder:
-                                  (context) => OwnerServiceFollowItemDetailsView(
-                                    image: properties[index]['imageUrl']!,
-                                    name: properties[index]['name']!,
-                                    location: properties[index]['location']!,
-                                    price: properties[index]['price']!,
-                                    commission:
-                                        properties[index]['commission']!,
-                                  ),
+                                  (context) =>
+                                      OwnerServiceFollowItemDetailsView(
+                                        image: properties[index]['imageUrl']!,
+                                        name: properties[index]['name']!,
+                                        location:
+                                            properties[index]['location']!,
+                                        price: properties[index]['price']!,
+                                        commission:
+                                            properties[index]['commission']!,
+                                      ),
                             ),
                           );
                         },

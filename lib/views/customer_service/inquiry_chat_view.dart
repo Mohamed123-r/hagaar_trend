@@ -26,7 +26,8 @@ class InquiryChatView extends StatelessWidget {
                 padding: const EdgeInsets.all(16),
                 children: const [
                   _MessageBubble(
-                    message: "أريد عرض وصيانة النخبة بنفسي قبل الشراء إن أمكن ذلك.\nوشكرًا لوقتك يا فندم",
+                    message:
+                        "أريد عرض وصيانة النخبة بنفسي قبل الشراء إن أمكن ذلك.\nوشكرًا لوقتك يا فندم",
                     isFromUser: true,
                     avatarUrl: "https://i.pravatar.cc/300?img=3",
                   ),
@@ -67,20 +68,17 @@ class _MessageBubble extends StatelessWidget {
   Widget build(BuildContext context) {
     final bgColor = isFromUser ? Colors.white : const Color(0xffC3E5CF);
     final alignment =
-    isFromUser ? CrossAxisAlignment.end : CrossAxisAlignment.start;
+        isFromUser ? CrossAxisAlignment.end : CrossAxisAlignment.start;
 
     return Column(
       crossAxisAlignment: alignment,
       children: [
         Row(
           mainAxisAlignment:
-          isFromUser ? MainAxisAlignment.end : MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start ,
+              isFromUser ? MainAxisAlignment.end : MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            if (!isFromUser)
-              _avatar(avatarUrl)
-            else
-              const SizedBox(width: 40),
+            if (!isFromUser) _avatar(avatarUrl) else const SizedBox(width: 40),
             const SizedBox(width: 8),
             Flexible(
               child: Container(
@@ -89,19 +87,13 @@ class _MessageBubble extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: bgColor,
                   borderRadius: BorderRadius.circular(12),
-                  border: Border.all(color: AppColors.border)
+                  border: Border.all(color: AppColors.border),
                 ),
-                child: Text(
-                  message,
-                  style: const TextStyle(fontSize: 14),
-                ),
+                child: Text(message, style: const TextStyle(fontSize: 14)),
               ),
             ),
             const SizedBox(width: 8),
-            if (isFromUser)
-              _avatar(avatarUrl)
-            else
-              const SizedBox(width: 40),
+            if (isFromUser) _avatar(avatarUrl) else const SizedBox(width: 40),
           ],
         ),
       ],
@@ -109,11 +101,6 @@ class _MessageBubble extends StatelessWidget {
   }
 
   Widget _avatar(String url) {
-    return CircleAvatar(
-      radius: 18,
-      backgroundImage: NetworkImage(url),
-    );
+    return CircleAvatar(radius: 18, backgroundImage: NetworkImage(url));
   }
 }
-
-

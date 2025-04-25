@@ -9,7 +9,6 @@ class FeaturesFromItemDetailsView extends StatelessWidget {
     super.key,
     this.isGreen = false,
     required this.value1,
-
   });
 
   final String value1;

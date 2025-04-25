@@ -31,11 +31,11 @@ class EditDataButton extends StatelessWidget {
           Text(
             title,
             style:
-            isDisabled
-                ? AppTextStyles.style14W700(
-              context,
-            ).copyWith(color: Color(0xFFD95440))
-                : AppTextStyles.style14W400(context),
+                isDisabled
+                    ? AppTextStyles.style14W700(
+                      context,
+                    ).copyWith(color: Color(0xFFD95440))
+                    : AppTextStyles.style14W400(context),
           ),
           Spacer(),
           Icon(Icons.arrow_forward_ios, size: 16),

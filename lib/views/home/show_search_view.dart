@@ -10,7 +10,11 @@ import 'item_details_view.dart';
 import 'widgets/list_view_item_from_show_list.dart';
 
 class ShowSearchView extends StatelessWidget {
-  ShowSearchView({super.key, this.isSearch = false,  this.isMarketersSearch=false});
+  ShowSearchView({
+    super.key,
+    this.isSearch = false,
+    this.isMarketersSearch = false,
+  });
 
   final List<Map<String, String>> properties = [
     {

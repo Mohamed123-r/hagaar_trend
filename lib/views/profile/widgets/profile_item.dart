@@ -83,14 +83,11 @@ class ProfileItem extends StatelessWidget {
                             ),
                           ],
                         ),
-
                       ],
                     ),
                     Spacer(),
                     Row(
                       children: [
-
-
                         Text(
                           "السعر :  ",
                           style: AppTextStyles.style13W400(context),
@@ -105,8 +102,6 @@ class ProfileItem extends StatelessWidget {
                     ),
                     Row(
                       children: [
-
-
                         Text(
                           "العمولة :  ",
                           style: AppTextStyles.style13W400(context),

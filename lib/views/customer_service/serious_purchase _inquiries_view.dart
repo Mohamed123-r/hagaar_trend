@@ -45,36 +45,39 @@ class SeriousPurchaseInquiriesView extends StatelessWidget {
                   context: context,
                   builder:
                       (_) => AppAlertDialog(
-                    body: Column(
-                      children: [
-                        CircleAvatar(
-                          radius: 40,
-                          backgroundColor: AppColors.grey,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(500),
-                            child: Image.network(
-                              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkAJEkJQ1WumU0hXNpXdgBt9NUKc0QDVIiaw&s",
-                              width: 170,
-                              height: 170,
-                              fit: BoxFit.cover,
+                        body: Column(
+                          children: [
+                            CircleAvatar(
+                              radius: 40,
+                              backgroundColor: AppColors.grey,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(500),
+                                child: Image.network(
+                                  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkAJEkJQ1WumU0hXNpXdgBt9NUKc0QDVIiaw&s",
+                                  width: 170,
+                                  height: 170,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
                             ),
-                          ),
+                            const SizedBox(height: 16, width: 500),
+                            InfoTile(
+                              label: "الإسم",
+                              value: "محمد علي عبد القادر",
+                            ),
+                            SizedBox(height: 12),
+                            InfoTile(
+                              label: "رقم الهاتف",
+                              value: "+20 0108363542892",
+                            ),
+                            SizedBox(height: 12),
+                            InfoTile(label: "المدينة", value: "مكة المكرمة"),
+                            SizedBox(height: 12),
+                            InfoTile(label: "المنطقة", value: "الشارقة"),
+                          ],
                         ),
-                        const SizedBox(height: 16,
-                        width: 500,),
-                       InfoTile(label: "الإسم", value: "محمد علي عبد القادر"),
-                        SizedBox(height: 12),
-                        InfoTile(label: "رقم الهاتف", value: "+20 0108363542892"),
-                        SizedBox(height: 12),
-                        InfoTile(label: "المدينة", value: "مكة المكرمة"),
-                        SizedBox(height: 12),
-                        InfoTile(label: "المنطقة", value: "الشارقة"),
-                      ],
-                    ),
-                    onPressedOk: () {
-
-                    },
-                  ),
+                        onPressedOk: () {},
+                      ),
                 );
               },
               child: ListTile(
@@ -107,6 +110,7 @@ class SeriousPurchaseInquiriesView extends StatelessWidget {
     );
   }
 }
+
 class InfoTile extends StatelessWidget {
   final String label;
   final String value;
@@ -125,15 +129,12 @@ class InfoTile extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(
-            "$label :",
-            style: AppTextStyles.style12W400(context)
-          ),
+          Text("$label :", style: AppTextStyles.style12W400(context)),
           Flexible(
             child: Text(
               value,
               textAlign: TextAlign.left,
-              style: AppTextStyles.style12W400(context)
+              style: AppTextStyles.style12W400(context),
             ),
           ),
         ],

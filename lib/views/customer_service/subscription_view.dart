@@ -158,9 +158,11 @@ class SubscriptionView extends StatelessWidget {
                       MaterialButton(
                         height: 40,
                         padding: EdgeInsets.zero,
-                        color:  AppColors.middleGreen,
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                        onPressed: (){},
+                        color: AppColors.middleGreen,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        onPressed: () {},
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           mainAxisSize: MainAxisSize.min,
@@ -171,7 +173,6 @@ class SubscriptionView extends StatelessWidget {
                                 context,
                               ).copyWith(color: AppColors.white),
                             ),
-
                           ],
                         ),
                       ),

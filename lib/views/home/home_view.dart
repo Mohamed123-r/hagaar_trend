@@ -477,9 +477,13 @@ class _HomeViewState extends State<HomeView> {
                     ),
                   ),
                   Visibility(
-                    visible: !showList ,
+                    visible: !showList,
                     child: Image.asset(
-                      showMarketersSearch ? Assets.imagesTest5 :  showSearch ? Assets.imagesTest5 : Assets.imagesTest1,
+                      showMarketersSearch
+                          ? Assets.imagesTest5
+                          : showSearch
+                          ? Assets.imagesTest5
+                          : Assets.imagesTest1,
                       width: MediaQuery.of(context).size.width,
                       height: MediaQuery.of(context).size.height,
                       fit: BoxFit.cover,
@@ -668,19 +672,18 @@ class _HomeViewState extends State<HomeView> {
                                       builder: (context) {
                                         return SearchAlertDialog(
                                           onPressedSearch: (isAdvertiser) {
-                                            if (isAdvertiser) {  setState(() {
-                                              showMarketersSearch = !showMarketersSearch;
-
-                                            });
+                                            if (isAdvertiser) {
+                                              setState(() {
+                                                showMarketersSearch =
+                                                    !showMarketersSearch;
+                                              });
                                               // نفّذ عملياتك هنا
                                             } else {
                                               setState(() {
                                                 showSearch = !showSearch;
-
                                               });
                                             }
                                           },
-
                                         );
                                       },
                                     );
@@ -736,7 +739,7 @@ class _HomeViewState extends State<HomeView> {
                                 onPressed: () {
                                   setState(() {
                                     showSearch = false;
-                                    showMarketersSearch =false;
+                                    showMarketersSearch = false;
                                   });
                                 },
                                 icon: Icon(
@@ -759,7 +762,7 @@ class _HomeViewState extends State<HomeView> {
                     ),
                   ),
                   Visibility(
-                    visible: showSearch ||showMarketersSearch,
+                    visible: showSearch || showMarketersSearch,
                     child: Positioned(
                       bottom: 95,
                       right: 20,
@@ -810,8 +813,10 @@ class _HomeViewState extends State<HomeView> {
                                   context,
                                   MaterialPageRoute(
                                     builder:
-                                        (_) => ShowSearchView(isSearch: true,
-                                        isMarketersSearch: showMarketersSearch,
+                                        (_) => ShowSearchView(
+                                          isSearch: true,
+                                          isMarketersSearch:
+                                              showMarketersSearch,
                                         ),
                                   ),
                                 );
@@ -829,7 +834,7 @@ class _HomeViewState extends State<HomeView> {
                     ),
                   ),
                   Visibility(
-                    visible: !showMarketersSearch && !showSearch  ,
+                    visible: !showMarketersSearch && !showSearch,
                     child: Positioned(
                       bottom: 95,
                       right: 20,
@@ -849,7 +854,6 @@ class _HomeViewState extends State<HomeView> {
                             onPressed: () {
                               setState(() {
                                 showList = !showList;
-                                
                               });
                             },
                             child: Row(

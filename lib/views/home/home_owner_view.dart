@@ -24,14 +24,12 @@ class HomeOwnerView extends StatelessWidget {
                 MaterialButton(
                   color: AppColors.green,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(200)
+                    borderRadius: BorderRadius.circular(200),
                   ),
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(
-                        builder: (context) => MainView(),
-                      ),
+                      MaterialPageRoute(builder: (context) => MainView()),
                     );
                   },
                   child: Text(
@@ -44,9 +42,7 @@ class HomeOwnerView extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(
-            height: 150,
-          ),
+          SizedBox(height: 150),
           Text(
             "مرحبا بك في",
             style: AppTextStyles.style32W400(
@@ -59,21 +55,17 @@ class HomeOwnerView extends StatelessWidget {
               context,
             ).copyWith(color: Color(0xff1E1E1E1F)),
           ),
-          SizedBox(
-            height: 80,
-          ),
+          SizedBox(height: 80),
           MaterialButton(
             height: 44,
             color: AppColors.black,
             shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(200)
+              borderRadius: BorderRadius.circular(200),
             ),
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(
-                  builder: (context) => HomeOwnerDetailsView(),
-                ),
+                MaterialPageRoute(builder: (context) => HomeOwnerDetailsView()),
               );
             },
             child: Text(

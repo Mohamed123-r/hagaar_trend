@@ -9,6 +9,7 @@ class SearchAlertDialog extends StatefulWidget {
   const SearchAlertDialog({super.key, required this.onPressedSearch});
 
   final Function(bool isAdvertiser) onPressedSearch;
+
   @override
   State<StatefulWidget> createState() {
     return _SearchAlertDialogState();
@@ -16,7 +17,6 @@ class SearchAlertDialog extends StatefulWidget {
 }
 
 class _SearchAlertDialogState extends State<SearchAlertDialog> {
-
   bool isSelect = true;
 
   String? selectedCity = 'الرياض';
@@ -64,7 +64,7 @@ class _SearchAlertDialogState extends State<SearchAlertDialog> {
                       },
                     ),
                     ButtonFromSearchInHome(
-                      isSelect: isSelect== false,
+                      isSelect: isSelect == false,
                       title: "معلن",
                       onPressed: () {
                         setState(() {
@@ -123,7 +123,7 @@ class _SearchAlertDialogState extends State<SearchAlertDialog> {
                   ),
                 ),
                 Visibility(
-                  visible: isSelect== false,
+                  visible: isSelect == false,
                   child: buildTextField(hint: 'إسم ', label: "إسم المعلن"),
                 ),
                 Visibility(

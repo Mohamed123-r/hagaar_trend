@@ -28,6 +28,7 @@ class OwnerServiceFollowItemDetailsView extends StatelessWidget {
     required this.commission,
     this.isFollow = false,
   });
+
   final bool isFollow;
   final bool showFavourite;
   final String image;
@@ -43,36 +44,45 @@ class OwnerServiceFollowItemDetailsView extends StatelessWidget {
       textDirection: direction,
       child: Scaffold(
         extendBodyBehindAppBar: true,
-        appBar: customAppBar(context, title: "تحليل عقاراتي",showBack: true),
+        appBar: customAppBar(context, title: "تحليل عقاراتي", showBack: true),
         body: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 100,),
+              SizedBox(height: 100),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal:  12.0),
+                padding: const EdgeInsets.symmetric(horizontal: 12.0),
                 child: Column(
                   spacing: 12,
                   children: [
-                    OwnerServiceItem(title: 'عدد الزيارات :',value:  "324",),
+                    OwnerServiceItem(title: 'عدد الزيارات :', value: "324"),
 
-                    OwnerServiceItem(title: 'عدد الإستفسارات :',value:  "24", onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => InquiriesView(),
-                        ),
-                      );
-                    }),
+                    OwnerServiceItem(
+                      title: 'عدد الإستفسارات :',
+                      value: "24",
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => InquiriesView(),
+                          ),
+                        );
+                      },
+                    ),
 
-                    OwnerServiceItem(title: 'عدد طلبات الشراء الجاد :',value:  "4", onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => SeriousPurchaseInquiriesView(),
-                        ),
-                      );
-                    }),
+                    OwnerServiceItem(
+                      title: 'عدد طلبات الشراء الجاد :',
+                      value: "4",
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder:
+                                (context) => SeriousPurchaseInquiriesView(),
+                          ),
+                        );
+                      },
+                    ),
                     Visibility(
                       visible: !isFollow,
                       child: Container(
@@ -83,18 +93,19 @@ class OwnerServiceFollowItemDetailsView extends StatelessWidget {
                         ),
                         child: StatusSelector(),
                       ),
-                    ),],
+                    ),
+                  ],
                 ),
               ),
-              SizedBox(height: 24,),
+              SizedBox(height: 24),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     "بيانات العقار",
-                    style: AppTextStyles.style16W800(context).copyWith(
-                        color: AppColors.green
-                    ),
+                    style: AppTextStyles.style16W800(
+                      context,
+                    ).copyWith(color: AppColors.green),
                   ),
                 ],
               ),

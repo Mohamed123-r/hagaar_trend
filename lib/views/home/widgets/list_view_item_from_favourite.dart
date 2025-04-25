@@ -15,13 +15,15 @@ class ListViewItemFromFavourite extends StatelessWidget {
     required this.location,
     required this.type,
     required this.area,
-    required this.status, required this.commission,
+    required this.status,
+    required this.commission,
   });
 
   final String image;
   final String name;
   final String price;
-  final String commission ;
+  final String commission;
+
   final String location;
   final String type;
   final String area;
@@ -30,7 +32,7 @@ class ListViewItemFromFavourite extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all( 12),
+      padding: const EdgeInsets.all(12),
       child: Column(
         spacing: 8,
         children: [
@@ -66,9 +68,7 @@ class ListViewItemFromFavourite extends StatelessWidget {
                   SvgPicture.asset(Assets.imagesHouse, width: 16, height: 16),
                 ],
               ),
-              SizedBox(
-                width: 8,
-              ),
+              SizedBox(width: 8),
               Row(
                 spacing: 3,
                 children: [
@@ -80,14 +80,13 @@ class ListViewItemFromFavourite extends StatelessWidget {
                   ),
                 ],
               ),
-
             ],
           ),
           Row(
             spacing: 12,
             children: [
               Text(
-                 "السعر :  $price",
+                "السعر :  $price",
                 style: AppTextStyles.style13W400(
                   context,
                 ).copyWith(color: AppColors.green),

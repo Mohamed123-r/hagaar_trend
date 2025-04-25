@@ -18,19 +18,19 @@ class NotificationView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBodyBehindAppBar: true ,
-      appBar: customAppBar(context, title: "إشعارات",showBack: false),
+      extendBodyBehindAppBar: true,
+      appBar: customAppBar(context, title: "إشعارات", showBack: false),
       body: ListView.separated(
         itemCount: registrations.length,
         separatorBuilder: (context, index) => Divider(color: Colors.grey[300]),
         itemBuilder: (context, index) {
           return Padding(
             padding:
-            index == registrations.length - 1
-                ? const EdgeInsets.only(bottom: 90)
-                : EdgeInsets.zero,
+                index == registrations.length - 1
+                    ? const EdgeInsets.only(bottom: 90)
+                    : EdgeInsets.zero,
             child: InkWell(
-              onTap: (){
+              onTap: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -40,7 +40,7 @@ class NotificationView extends StatelessWidget {
               },
 
               child: ListTile(
-                leading:Container(
+                leading: Container(
                   width: 40,
                   height: 40,
                   decoration: BoxDecoration(
@@ -56,9 +56,9 @@ class NotificationView extends StatelessWidget {
                 ),
                 subtitle: Text(
                   registrations[index],
-                  style: AppTextStyles.style12W400(context).copyWith(
-                    color: AppColors.grey
-                  ),
+                  style: AppTextStyles.style12W400(
+                    context,
+                  ).copyWith(color: AppColors.grey),
                 ),
               ),
             ),

@@ -25,7 +25,7 @@ class _ProfileViewState extends State<ProfileView> {
   final List<Map<String, String>> properties = [
     {
       "imageUrl":
-          "https://images.pexels.com/photos/7031400/pexels-photo-7031400.jpeg",
+      "https://images.pexels.com/photos/7031400/pexels-photo-7031400.jpeg",
       "name": "فيلا فاخرة بإطلالة بحرية",
       "location": "جدة، السعودية",
       "price": "1,500,000 ريال",
@@ -36,63 +36,63 @@ class _ProfileViewState extends State<ProfileView> {
     },
     {
       "imageUrl":
-          "https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg",
+      "https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg",
       "name": "شقة راقية في برج سكني",
       "location": "الرياض، السعودية",
       "price": "750,000 ريال",
       "type": "شقة",
       "area": "180 م²",
-      "status": "متاح للإيجار",   "commission": "500 ريال",
+      "status": "متاح للإيجار", "commission": "500 ريال",
     },
     {
       "imageUrl":
-          "https://images.pexels.com/photos/2089698/pexels-photo-2089698.jpeg",
+      "https://images.pexels.com/photos/2089698/pexels-photo-2089698.jpeg",
       "name": "دور مستقل مع حديقة",
       "location": "الدمام، السعودية",
       "price": "1,200,000 ريال",
       "type": "دور سكني",
       "area": "300 م²",
-      "status": "متاح للبيع",   "commission": "500 ريال",
+      "status": "متاح للبيع", "commission": "500 ريال",
     },
     {
       "imageUrl":
-          "https://images.pexels.com/photos/210617/pexels-photo-210617.jpeg",
+      "https://images.pexels.com/photos/210617/pexels-photo-210617.jpeg",
       "name": "فيلا حديثة بتصميم عصري",
       "location": "المدينة المنورة، السعودية",
       "price": "1,800,000 ريال",
       "type": "فيلا",
       "area": "400 م²",
-      "status": "متاح للبيع",   "commission": "500 ريال",
+      "status": "متاح للبيع", "commission": "500 ريال",
     },
     {
       "imageUrl":
-          "https://images.pexels.com/photos/323705/pexels-photo-323705.jpeg",
+      "https://images.pexels.com/photos/323705/pexels-photo-323705.jpeg",
       "name": "شقة فندقية  ",
       "location": "مكة المكرمة، السعودية",
       "price": "950,000 ريال",
       "type": "شقة",
       "area": "160 م²",
-      "status": "متاح للإيجار",   "commission": "500 ريال",
+      "status": "متاح للإيجار", "commission": "500 ريال",
     },
     {
       "imageUrl":
-          "https://images.pexels.com/photos/1643389/pexels-photo-1643389.jpeg",
+      "https://images.pexels.com/photos/1643389/pexels-photo-1643389.jpeg",
       "name": "شقة مفروشة بالكامل",
       "location": "الخبر، السعودية",
       "price": "500,000 ريال",
       "type": "شقة",
       "area": "140 م²",
-      "status": "متاح للإيجار",   "commission": "500 ريال",
+      "status": "متاح للإيجار", "commission": "500 ريال",
     },
     {
       "imageUrl":
-          "https://images.pexels.com/photos/259588/pexels-photo-259588.jpeg",
+      "https://images.pexels.com/photos/259588/pexels-photo-259588.jpeg",
       "name": "فيلا بتصميم أوروبي",
       "location": "الطائف، السعودية",
       "price": "2,000,000 ريال",
       "type": "فيلا",
       "area": "450 م²",
-      "status": "متاح للبيع",   "commission": "500 ريال",
+      "status": "متاح للبيع", "commission": "500 ريال",
     },
   ];
 
@@ -219,13 +219,15 @@ class _ProfileViewState extends State<ProfileView> {
                         showDialog(
                           context: context,
                           builder:
-                              (_) => AppAlertDialog2(
+                              (_) =>
+                              AppAlertDialog2(
                                 title: "هل تريد تسجيل الخروج من حسابك ؟!",
                                 onPressedOk: () {
                                   showDialog(
                                     context: context,
                                     builder:
-                                        (_) => CustomSuccessAlertDialog(
+                                        (_) =>
+                                        CustomSuccessAlertDialog(
                                           title: "تم تسجيل الخروج بنجاح",
                                           onPressedOk: () {},
                                         ),
@@ -247,16 +249,17 @@ class _ProfileViewState extends State<ProfileView> {
                 itemBuilder: (context, index) {
                   return Padding(
                     padding:
-                        index == properties.length - 1
-                            ? const EdgeInsets.only(bottom: 100)
-                            : EdgeInsets.zero,
+                    index == properties.length - 1
+                        ? const EdgeInsets.only(bottom: 100)
+                        : EdgeInsets.zero,
                     child: GestureDetector(
                       onTap: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
                             builder:
-                                (context) => ItemDetailsView(
+                                (context) =>
+                                ItemDetailsView(
                                   image: properties[index]['imageUrl']!,
                                   name: properties[index]['name']!,
                                   location: properties[index]['location']!,
@@ -273,7 +276,8 @@ class _ProfileViewState extends State<ProfileView> {
                         price: properties[index]['price']!,
                         type: properties[index]['type']!,
                         area: properties[index]['area']!,
-                        status: properties[index]['status']!, commission:properties[index]['commission']! ,
+                        status: properties[index]['status']!,
+                        commission: properties[index]['commission']!,
                       ),
                     ),
                   );

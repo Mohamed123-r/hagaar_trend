@@ -123,191 +123,191 @@ class _OwnerServiceAddPropertyViewState
                     ),
                   ],
                 )
+              else if (showBody == "Second Body")
+                Column(
+                  children: [
+                    AppInputTextFormField(labelText: "إضافة عنوان للعقار"),
+
+                    AppInputTextFormField(
+                      maxLines: 5,
+                      labelText: "إضافة وصف للعقار",
+                    ),
+                    SizedBox(height: 16),
+                    Stack(
+                      alignment: Alignment.bottomRight,
+                      children: [
+                        Container(
+                          height: 160,
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            color: AppColors.white,
+                            borderRadius: BorderRadius.circular(16),
+                            border: Border.all(color: AppColors.border),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: Text(
+                              "إضافة صور للعقار",
+                              style: AppTextStyles.style14W400(
+                                context,
+                              ).copyWith(color: AppColors.grey),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: GestureDetector(
+                            onTap: () {},
+                            child: Image.asset(
+                              Assets.imagesOwnerServiceAdd,
+                              width: 24,
+                              height: 24,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                )
               else
-                if (showBody == "Second Body")
-                  Column(
-                    children: [
-                      AppInputTextFormField(labelText: "إضافة عنوان للعقار"),
+                Column(
+                  children: [
+                    AppInputTextFormField(
+                      labelText: "تحديد سعر العقار ( ريال )",
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: AppInputTextFormField(
+                            labelText: "السعر قابل للتفاوض",
+                          ),
+                        ),
+                        SizedBox(width: 12),
+                        Expanded(
+                          child: AppInputTextFormField(
+                            labelText: "السعر غير قابل للتفاوض",
+                          ),
+                        ),
+                      ],
+                    ),
+                    AppInputTextFormField(
+                      labelText: "تحديد مساحة العقار ( m2 )",
+                    ),
 
-                      AppInputTextFormField(
-                        maxLines: 5,
-                        labelText: "إضافة وصف للعقار",
-                      ),
-                      SizedBox(height: 16),
-                      Stack(
-                        alignment: Alignment.bottomRight,
-                        children: [
-                          Container(
-                            height: 160,
-                            width: double.infinity,
-                            decoration: BoxDecoration(
-                              color: AppColors.white,
-                              borderRadius: BorderRadius.circular(16),
-                              border: Border.all(color: AppColors.border),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(16.0),
-                              child: Text(
-                                "إضافة صور للعقار",
-                                style: AppTextStyles.style14W400(
-                                  context,
-                                ).copyWith(color: AppColors.grey),
-                              ),
-                            ),
+                    SizedBox(height: 16),
+                    Stack(
+                      alignment: Alignment.bottomRight,
+                      children: [
+                        Container(
+                          height: 160,
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            color: AppColors.white,
+                            borderRadius: BorderRadius.circular(16),
+                            border: Border.all(color: AppColors.border),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: GestureDetector(
-                              onTap: () {},
-                              child: Image.asset(
-                                Assets.imagesOwnerServiceAdd,
-                                width: 24,
-                                height: 24,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  )
-                else
-                  Column(
-                    children: [
-                      AppInputTextFormField(
-                        labelText: "تحديد سعر العقار ( ريال )",
-                      ),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: AppInputTextFormField(
-                              labelText: "السعر قابل للتفاوض",
-                            ),
-                          ),
-                          SizedBox(
-                            width: 12,
-                          ),
-                          Expanded(child: AppInputTextFormField(
-                            labelText: "السعر غير قابل للتفاوض",)),
-                        ],
-                      ),
-                      AppInputTextFormField(
-                        labelText: "تحديد مساحة العقار ( m2 )",
-                      ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: Column(
+                              spacing: 12,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "إضافة مميزات إضافية للعقار للعقار",
+                                  style: AppTextStyles.style14W400(
+                                    context,
+                                  ).copyWith(color: AppColors.grey),
+                                ),
 
-                      SizedBox(height: 16),
-                      Stack(
-                        alignment: Alignment.bottomRight,
-                        children: [
-                          Container(
-                            height: 160,
-                            width: double.infinity,
-                            decoration: BoxDecoration(
-                              color: AppColors.white,
-                              borderRadius: BorderRadius.circular(16),
-                              border: Border.all(color: AppColors.border),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(16.0),
-                              child: Column(
-                                spacing: 12,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "إضافة مميزات إضافية للعقار للعقار",
-                                    style: AppTextStyles.style14W400(
-                                      context,
-                                    ).copyWith(color: AppColors.grey),
+                                Container(
+                                  height: 32,
+                                  width: 120,
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 8,
                                   ),
-
-                                  Container(
-                                    height: 32,
-                                    width: 120,
-                                    padding: const EdgeInsets.symmetric(
-                                      horizontal: 8,
-                                    ),
-                                    decoration: BoxDecoration(
-                                      color: Color(0xffEEEEEE),
-                                      borderRadius: BorderRadius.circular(8),
-                                    ),
-                                    child: Center(
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          GestureDetector(
-                                            onTap: () {
-                                              Navigator.pop(context);
-                                            },
-                                            child: Icon(
-                                              Icons.close,
-                                              color: Colors.red,
-                                              size: 14,
-                                            ),
+                                  decoration: BoxDecoration(
+                                    color: Color(0xffEEEEEE),
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  child: Center(
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        GestureDetector(
+                                          onTap: () {
+                                            Navigator.pop(context);
+                                          },
+                                          child: Icon(
+                                            Icons.close,
+                                            color: Colors.red,
+                                            size: 14,
                                           ),
-                                          SizedBox(width: 8),
-                                          Text(
-                                            "تحديد موقعك",
-                                            style: AppTextStyles.style12W400(
-                                              context,
-                                            ).copyWith(color: AppColors.grey),
-                                          ),
-                                        ],
-                                      ),
+                                        ),
+                                        SizedBox(width: 8),
+                                        Text(
+                                          "تحديد موقعك",
+                                          style: AppTextStyles.style12W400(
+                                            context,
+                                          ).copyWith(color: AppColors.grey),
+                                        ),
+                                      ],
                                     ),
                                   ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: GestureDetector(
-                              onTap: () {},
-                              child: Image.asset(
-                                Assets.imagesOwnerServiceAdd,
-                                width: 24,
-                                height: 24,
-                              ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: GestureDetector(
+                            onTap: () {},
+                            child: Image.asset(
+                              Assets.imagesOwnerServiceAdd,
+                              width: 24,
+                              height: 24,
                             ),
                           ),
-                        ],
-                      ),
-                      SizedBox(height: 16),
-                      Stack(
-                        alignment: Alignment.bottomRight,
-                        children: [
-                          Container(
-                            height: 160,
-                            width: double.infinity,
-                            decoration: BoxDecoration(
-                              color: AppColors.white,
-                              borderRadius: BorderRadius.circular(16),
-                              border: Border.all(color: AppColors.border),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(16.0),
-                              child: Text(
-                                "إضافة نموذج عقد إلكتروني",
-                                style: AppTextStyles.style14W400(
-                                  context,
-                                ).copyWith(color: AppColors.grey),
-                              ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 16),
+                    Stack(
+                      alignment: Alignment.bottomRight,
+                      children: [
+                        Container(
+                          height: 160,
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            color: AppColors.white,
+                            borderRadius: BorderRadius.circular(16),
+                            border: Border.all(color: AppColors.border),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: Text(
+                              "إضافة نموذج عقد إلكتروني",
+                              style: AppTextStyles.style14W400(
+                                context,
+                              ).copyWith(color: AppColors.grey),
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: GestureDetector(
-                              onTap: () {},
-                              child: Image.asset(
-                                Assets.imagesOwnerServiceAdd,
-                                width: 24,
-                                height: 24,
-                              ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: GestureDetector(
+                            onTap: () {},
+                            child: Image.asset(
+                              Assets.imagesOwnerServiceAdd,
+                              width: 24,
+                              height: 24,
                             ),
                           ),
-                        ],
-                      ),
-                    ],
-                  ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               Expanded(child: const SizedBox(height: 12)),
               MaterialButton(
                 height: 44,
@@ -323,10 +323,13 @@ class _OwnerServiceAddPropertyViewState
                       : showBody = "Final Body";
 
                   if (showBody == "Final Body") {
-                    showDialog(context: context, builder: (context) =>
-                        AppAlertDialog2(
+                    showDialog(
+                      context: context,
+                      builder:
+                          (context) => AppAlertDialog2(
                             title: "تم إنشاء طلبك بنجاح سيتم التواصل معك قريبت",
-                            onPressedOk: () {}),
+                            onPressedOk: () {},
+                          ),
                     );
                   }
                   setState(() {});
@@ -379,25 +382,25 @@ class DropdownField extends StatelessWidget {
           items: [
             DropdownMenuItem(
               alignment:
-              direction == TextDirection.rtl
-                  ? Alignment.centerRight
-                  : Alignment.centerLeft,
+                  direction == TextDirection.rtl
+                      ? Alignment.centerRight
+                      : Alignment.centerLeft,
               value: 'Option 1',
               child: Text('Option 1'),
             ),
             DropdownMenuItem(
               alignment:
-              direction == TextDirection.rtl
-                  ? Alignment.centerRight
-                  : Alignment.centerLeft,
+                  direction == TextDirection.rtl
+                      ? Alignment.centerRight
+                      : Alignment.centerLeft,
               value: 'Option 2',
               child: Text('Option 2'),
             ),
             DropdownMenuItem(
               alignment:
-              direction == TextDirection.rtl
-                  ? Alignment.centerRight
-                  : Alignment.centerLeft,
+                  direction == TextDirection.rtl
+                      ? Alignment.centerRight
+                      : Alignment.centerLeft,
               value: 'Option 3',
               child: Text('Option 3'),
             ),

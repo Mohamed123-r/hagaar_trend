@@ -14,13 +14,11 @@ class NotificationDetailsView extends StatelessWidget {
     return Directionality(
       textDirection: direction,
       child: Scaffold(
-        appBar: customAppBar(context, title: "إشعاراتك" ,showBack: true),
+        appBar: customAppBar(context, title: "إشعاراتك", showBack: true),
         body: Stack(
           children: [
             ListView(
-              padding: const EdgeInsets.all(
-                16
-              ),
+              padding: const EdgeInsets.all(16),
               children: [
                 NotificationBubble(
                   date: "24 / 3 / 2025",
@@ -59,8 +57,6 @@ class NotificationDetailsView extends StatelessWidget {
                 ),
               ],
             ),
-
-
           ],
         ),
       ),

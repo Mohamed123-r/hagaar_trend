@@ -81,8 +81,7 @@ class ItemDetailsView extends StatelessWidget {
                             context: context,
                             builder:
                                 (_) => AppAlertDialog2(
-                                  title:
-                                      "تم إرسال طلبك بنجاح",
+                                  title: "تم إرسال طلبك بنجاح",
                                   onPressedOk: () {},
                                 ),
                           );
