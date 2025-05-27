@@ -42,6 +42,8 @@ class Assets {
   static const String imagesShap2 = 'assets/images/shap2.png';
   static const String imagesShapes = 'assets/images/shapes.png';
   static const String imagesShapes2 = 'assets/images/shapes2.png';
+  static const String imagesShapes4 = 'assets/images/shapes4.png';
+  static const String imagesShapes5 = 'assets/images/shapes5.png';
   static const String imagesSplash = 'assets/images/splash.png';
   static const String imagesSplashAndroid12Logo = 'assets/images/splash_android12_logo.png';
   static const String imagesSuccess = 'assets/images/success.png';

@@ -65,3 +65,25 @@ AppBar customAppBar(
     ),
   );
 }
+
+
+AppBar customWibAppBar(
+    BuildContext context, ) {
+  return AppBar(
+    leadingWidth: 0,
+    elevation: 0,
+    toolbarHeight: 100 ,
+    backgroundColor: AppColors.white,
+    surfaceTintColor: AppColors.white,
+    title: Directionality(
+      textDirection: direction,
+      child: Row(
+        children: [
+          Image.asset(Assets.imagesShapes4,height: 105, ),
+          Spacer(),
+          Image.asset(Assets.imagesShapes5,height: 105, ),
+        ],
+      ),
+    ),
+  );
+}

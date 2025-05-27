@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hagaar_trend/components/app_form_filed.dart';
+import 'package:hagaar_trend/components/app_alert_dialog.dart';
 import 'package:hagaar_trend/components/custom_app_bar.dart';
 import 'package:hagaar_trend/generated/assets.dart';
 import 'package:hagaar_trend/views/notification/notification_details_view.dart';
@@ -19,7 +19,10 @@ class NotificationView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: customAppBar(context, title: "إشعارات", showBack: false),
+      appBar:
+          MediaQuery.of(context).size.width > 800
+              ? customWibAppBar(context)
+              : customAppBar(context, title: "إشعارات", showBack: false),
       body: ListView.separated(
         itemCount: registrations.length,
         separatorBuilder: (context, index) => Divider(color: Colors.grey[300]),
@@ -31,12 +34,29 @@ class NotificationView extends StatelessWidget {
                     : EdgeInsets.zero,
             child: InkWell(
               onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => NotificationDetailsView(),
-                  ),
-                );
+                MediaQuery.of(context).size.width > 800
+                    ? showDialog(
+                      context: context,
+                      builder:
+                          (context) => AppShowAlertDialog(
+                            body: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                NotificationBubble(
+                                  date: "24 / 3 / 2025",
+                                  message:
+                                      "مرحباً بك في تطبيق زد العقار\nيمكنك إيجاد عقارك المطلوب ببحث منظم ودقيق معنا في زد العقارات",
+                                ),
+                              ],
+                            ),
+                          ),
+                    )
+                    : Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => NotificationDetailsView(),
+                      ),
+                    );
               },
 
               child: ListTile(

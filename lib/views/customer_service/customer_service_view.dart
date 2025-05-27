@@ -18,11 +18,14 @@ class CustomerServiceView extends StatelessWidget {
       textDirection: direction,
       child: Scaffold(
         extendBodyBehindAppBar: true,
-        appBar: customAppBar(
-          context,
-          title: isSendComplaints ? "الشكاوي" : "خدمة العملاء",
-          showBack: isSendComplaints ? true : false,
-        ),
+        appBar:
+            MediaQuery.of(context).size.width > 800
+                ? customWibAppBar(context)
+                : customAppBar(
+                  context,
+                  title: isSendComplaints ? "الشكاوي" : "خدمة العملاء",
+                  showBack: isSendComplaints ? true : false,
+                ),
         body: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(24.0),
@@ -55,7 +58,16 @@ class CustomerServiceView extends StatelessWidget {
                     context,
                   ).copyWith(color: AppColors.green),
                 ),
-                AppInputTextFormField(maxLines: 5, labelText: "أدخل الشكوي"),
+                SizedBox(
+                  width:
+                      MediaQuery.of(context).size.width > 800
+                          ? 400
+                          : MediaQuery.of(context).size.width - 48,
+                  child: AppInputTextFormField(
+                    maxLines: 5,
+                    labelText: "أدخل الشكوي",
+                  ),
+                ),
                 SizedBox(height: 32),
                 MaterialButton(
                   height: 44,

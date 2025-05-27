@@ -25,11 +25,7 @@ class MainViewState extends State<MainView> {
   int _currentIndex = 0;
   final PageController pageController = PageController();
 
-  @override
-  void initState() {
-    super.initState();
-    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-  }
+
 
   @override
   void dispose() {

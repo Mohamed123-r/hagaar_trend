@@ -126,7 +126,37 @@ class AppAlertDialog2 extends StatelessWidget {
     );
   }
 }
+class AppShowAlertDialog extends StatelessWidget {
+  const AppShowAlertDialog({
+    super.key,
+    required this.body,
+  });
 
+  final Widget body;
+
+  @override
+  Widget build(BuildContext context) {
+    return Directionality(
+      textDirection: direction,
+      child: AlertDialog(
+        backgroundColor: AppColors.white,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        titlePadding: EdgeInsets.zero,
+        title: Align(
+          alignment:
+          direction == TextDirection.rtl
+              ? Alignment.topRight
+              : Alignment.topLeft,
+          child: IconButton(
+            onPressed: () => Navigator.pop(context),
+            icon: const Icon(Icons.close),
+          ),
+        ),
+        content: body,
+      ),
+    );
+  }
+}
 // class AdImagePicker extends StatefulWidget {
 //   final Function() onPressedOk;
 //
