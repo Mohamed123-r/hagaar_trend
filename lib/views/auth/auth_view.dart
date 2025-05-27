@@ -22,13 +22,21 @@ class AuthView extends StatelessWidget {
             Stack(
               alignment: Alignment.topCenter,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Image.asset(Assets.imagesShap2),
-                    Image.asset(Assets.imagesShap1),
-                  ],
-                ),
+                MediaQuery.of(context).size.width > 800
+                    ? Row(
+                      children: [
+                        Image.asset(Assets.imagesShapes4, height: 105),
+                        Spacer(),
+                        Image.asset(Assets.imagesShapes5, height: 105),
+                      ],
+                    )
+                    : Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Image.asset(Assets.imagesShap2),
+                        Image.asset(Assets.imagesShap1),
+                      ],
+                    ),
                 Positioned(
                   top: 40,
                   right: direction == TextDirection.rtl ? 16 : null,
@@ -66,88 +74,94 @@ class AuthView extends StatelessWidget {
                 ),
               ],
             ),
-            Expanded(
-              child: SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  child: Column(
-                    children: [
-                      SizedBox(height: 32),
-                      Text(
-                        "أدخل بياناتك لتبدء",
-                        style: AppTextStyles.style16W400(context),
-                      ),
-                      AppInputTextFormField(
-                        labelText: "رقم الهاتف",
-                        suffixIcon: Icon(Icons.phone_outlined, size: 20),
-                      ),
+            SizedBox(
+              width:
+                  MediaQuery.of(context).size.width > 800
+                      ? 530
+                      : MediaQuery.of(context).size.width - 48,
+              child: Expanded(
+                child: SingleChildScrollView(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                    child: Column(
+                      children: [
+                        SizedBox(height: 32),
+                        Text(
+                          "أدخل بياناتك لتبدء",
+                          style: AppTextStyles.style16W400(context),
+                        ),
+                        AppInputTextFormField(
+                          labelText: "رقم الهاتف",
+                          suffixIcon: Icon(Icons.phone_outlined, size: 20),
+                        ),
 
-                      AppPassInputTextFormField(labelText: "كلمة المرور"),
-                      TextButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => ForgetPasswordView(),
+                        AppPassInputTextFormField(labelText: "كلمة المرور"),
+                        TextButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ForgetPasswordView(),
+                              ),
+                            );
+                          },
+                          child: Text(
+                            "هل نسيت كلمة المرور",
+                            style: AppTextStyles.style12W400(context).copyWith(
+                              color: AppColors.accentColor,
+                              decoration: TextDecoration.underline,
+                              decorationColor: AppColors.accentColor,
                             ),
-                          );
-                        },
-                        child: Text(
-                          "هل نسيت كلمة المرور",
-                          style: AppTextStyles.style12W400(context).copyWith(
-                            color: AppColors.accentColor,
-                            decoration: TextDecoration.underline,
-                            decorationColor: AppColors.accentColor,
                           ),
                         ),
-                      ),
-                      SizedBox(height: 60),
-                      MaterialButton(
-                        height: 44,
-                        minWidth: double.infinity,
-                        padding: EdgeInsets.zero,
-                        color: AppColors.green,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16),
+                        SizedBox(height: 60),
+                        MaterialButton(
+                          height: 44,
+                          minWidth: double.infinity,
+                          padding: EdgeInsets.zero,
+                          color: AppColors.green,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          onPressed: () {},
+                          child: Text(
+                            "تسجيل الدخول",
+                            style: AppTextStyles.style12W700(
+                              context,
+                            ).copyWith(color: AppColors.white),
+                          ),
                         ),
-                        onPressed: () {},
-                        child: Text(
-                          "تسجيل الدخول",
-                          style: AppTextStyles.style12W700(
-                            context,
-                          ).copyWith(color: AppColors.white),
-                        ),
-                      ),
-                      SizedBox(height: 32),
-                      Text(
-                        "إنشاء حساب جديد",
-                        style: AppTextStyles.style16W400(context),
-                      ),
-                      SizedBox(height: 16),
-                      MaterialButton(
-                        height: 44,
-                        minWidth: double.infinity,
-                        padding: EdgeInsets.zero,
-                        color: AppColors.black,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => MembershipView(),
-                            ),
-                          );
-                        },
-                        child: Text(
+                        SizedBox(height: 32),
+                        Text(
                           "إنشاء حساب جديد",
-                          style: AppTextStyles.style12W700(
-                            context,
-                          ).copyWith(color: AppColors.white),
+                          style: AppTextStyles.style16W400(context),
                         ),
-                      ),
-                    ],
+                        SizedBox(height: 16),
+                        MaterialButton(
+                          height: 44,
+                          minWidth: double.infinity,
+                          padding: EdgeInsets.zero,
+                          color: AppColors.black,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => MembershipView(),
+                              ),
+                            );
+                          },
+                          child: Text(
+                            "إنشاء حساب جديد",
+                            style: AppTextStyles.style12W700(
+                              context,
+                            ).copyWith(color: AppColors.white),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),

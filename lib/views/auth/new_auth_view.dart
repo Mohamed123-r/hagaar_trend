@@ -23,6 +23,16 @@ class NewAuthView extends StatelessWidget {
             Stack(
               alignment: Alignment.topCenter,
               children: [
+                MediaQuery.of(context).size.width > 800
+                    ? Row(
+                        children: [
+                          Image.asset(Assets.imagesShapes4, height: 105),
+                          Spacer(),
+                          Image.asset(Assets.imagesShapes5, height: 105),
+                        ],
+                      )
+                    :
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -69,55 +79,60 @@ class NewAuthView extends StatelessWidget {
             ),
             Expanded(
               child: SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  child: Column(
-                    children: [
-                      SizedBox(height: 32),
-                      Text(
-                        "أدخل بياناتك لتبدء",
-                        style: AppTextStyles.style16W400(context),
-                      ),
-                      AppInputTextFormField(
-                        labelText: "الاسم ",
-                      ),
-                      AppInputTextFormField(
-                        labelText: "رقم الهاتف",
-                        suffixIcon: Icon(Icons.phone_outlined, size: 20),
-                      ),
-                      AppInputTextFormField(
-                        labelText: "أدخل المدينة ",
-                      ),AppInputTextFormField(
-                        labelText: "أدخل المنطقة ",
-                      ),
-                      AppPassInputTextFormField(labelText: "كلمة المرور"),
-                      AppPassInputTextFormField(labelText: "تأكيد كلمة المرور"),
-
-
-                      SizedBox(height: 32),
-                      MaterialButton(
-                        height: 44,
-                        padding: EdgeInsets.zero,
-                        color: AppColors.black,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(160),
+                child: SizedBox(
+                  width: MediaQuery.of(context).size.width > 800
+                      ? 530
+                      : MediaQuery.of(context).size.width,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                    child: Column(
+                      children: [
+                        SizedBox(height: 32),
+                        Text(
+                          "أدخل بياناتك لتبدء",
+                          style: AppTextStyles.style16W400(context),
                         ),
-                        onPressed: () {    Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => ConfirmAuth(),
+                        AppInputTextFormField(
+                          labelText: "الاسم ",
+                        ),
+                        AppInputTextFormField(
+                          labelText: "رقم الهاتف",
+                          suffixIcon: Icon(Icons.phone_outlined, size: 20),
+                        ),
+                        AppInputTextFormField(
+                          labelText: "أدخل المدينة ",
+                        ),AppInputTextFormField(
+                          labelText: "أدخل المنطقة ",
+                        ),
+                        AppPassInputTextFormField(labelText: "كلمة المرور"),
+                        AppPassInputTextFormField(labelText: "تأكيد كلمة المرور"),
+
+
+                        SizedBox(height: 32),
+                        MaterialButton(
+                          height: 44,
+                          padding: EdgeInsets.zero,
+                          color: AppColors.black,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(160),
                           ),
-                        );},
-                        child: Text(
-                          "التالي",
-                          style: AppTextStyles.style12W700(
+                          onPressed: () {    Navigator.push(
                             context,
-                          ).copyWith(color: AppColors.white),
+                            MaterialPageRoute(
+                              builder: (context) => ConfirmAuth(),
+                            ),
+                          );},
+                          child: Text(
+                            "التالي",
+                            style: AppTextStyles.style12W700(
+                              context,
+                            ).copyWith(color: AppColors.white),
+                          ),
                         ),
-                      ),
-                      SizedBox(height: 32),
+                        SizedBox(height: 32),
 
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),

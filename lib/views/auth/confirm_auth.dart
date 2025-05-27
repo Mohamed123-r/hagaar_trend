@@ -21,6 +21,15 @@ class ConfirmAuth extends StatelessWidget {
             Stack(
               alignment: Alignment.topCenter,
               children: [
+                MediaQuery.of(context).size.width > 800
+                    ? Row(
+                        children: [
+                          Image.asset(Assets.imagesShapes4, height: 105),
+                          Spacer(),
+                          Image.asset(Assets.imagesShapes5, height: 105),
+                        ],
+                      )
+                    :
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -65,81 +74,86 @@ class ConfirmAuth extends StatelessWidget {
                 ),
               ],
             ),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.all(32),
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      const SizedBox(height: 40),
-                      Text(
-                        'أدخل رقم تأكيد الحساب',
-                        style: AppTextStyles.style16W400(context),
-                      ),
-                      const SizedBox(height: 5),
-                      Divider(indent: 150, endIndent: 150),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SizedBox(
-                            height: 250,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                PinInputStyles.buildPinInput(
-                                  length: 4,
-                                  onCompleted: (pin) {
+            SizedBox(
+              width: MediaQuery.of(context).size.width > 800
+                  ? 530
+                  : MediaQuery.of(context).size.width,
+              child: Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.all(32),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        const SizedBox(height: 40),
+                        Text(
+                          'أدخل رقم تأكيد الحساب',
+                          style: AppTextStyles.style16W400(context),
+                        ),
+                        const SizedBox(height: 5),
 
-                                    //  print("User entered PIN: $pin");
-                                  },
-                                ),
-                                SizedBox(height: 12),
-                                TextButton(
-                                  onPressed: () {},
-                                  child: Text(
-                                    "إعادة إرسال الكود",
-                                    style: AppTextStyles.style10W400(
-                                      context,
-                                    ).copyWith(
-                                      color: AppColors.accentColor,
-                                      decoration: TextDecoration.underline,
-                                      decorationColor: AppColors.accentColor,
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SizedBox(
+                              height: 250,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  PinInputStyles.buildPinInput(
+                                    length: 4,
+                                    onCompleted: (pin) {
+
+                                      //  print("User entered PIN: $pin");
+                                    },
+                                  ),
+                                  SizedBox(height: 12),
+                                  TextButton(
+                                    onPressed: () {},
+                                    child: Text(
+                                      "إعادة إرسال الكود",
+                                      style: AppTextStyles.style10W400(
+                                        context,
+                                      ).copyWith(
+                                        color: AppColors.accentColor,
+                                        decoration: TextDecoration.underline,
+                                        decorationColor: AppColors.accentColor,
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
-                          ),
-                          MaterialButton(
-                            height: 44,
-                            minWidth: 100,
-                            padding: EdgeInsets.zero,
-                            color: AppColors.black,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(80),
+                            MaterialButton(
+                              height: 44,
+                              minWidth: 100,
+                              padding: EdgeInsets.zero,
+                              color: AppColors.black,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(80),
+                              ),
+                              onPressed: () {
+                                showDialog(
+                                  context: context,
+                                  builder:
+                                      (context) =>
+                                          CustomSuccessAlertDialog(
+                                            title:
+                                                "تم تفعيل حسابك بنجاح",
+                                            onPressedOk: (){},
+                                          ),
+                                );
+                              },
+                              child: Text(
+                                "موافق",
+                                style: AppTextStyles.style12W700(
+                                  context,
+                                ).copyWith(color: AppColors.white),
+                              ),
                             ),
-                            onPressed: () {
-                              showDialog(
-                                context: context,
-                                builder:
-                                    (context) =>
-                                        CustomSuccessAlertDialog(
-                                          title:
-                                              "تم تفعيل حسابك بنجاح",
-                                          onPressedOk: (){},
-                                        ),
-                              );
-                            },
-                            child: Text(
-                              "موافق",
-                              style: AppTextStyles.style12W700(
-                                context,
-                              ).copyWith(color: AppColors.white),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),

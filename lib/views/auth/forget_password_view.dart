@@ -34,6 +34,17 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
             Stack(
               alignment: Alignment.topCenter,
               children: [
+                MediaQuery.of(context).size.width > 800
+                    ? Row(
+                        children: [
+                          Image.asset(Assets.imagesShapes4, height: 105),
+                          Spacer(),
+                          Image.asset(Assets.imagesShapes5, height: 105),
+                        ],
+                      )
+                    :
+
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -78,118 +89,123 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
                 ),
               ],
             ),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.all(32),
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      const SizedBox(height: 40),
-                      Text(
-                        step == 1
-                            ? 'أدخل رقم الهاتف'
-                            : step == 2
-                            ? 'أدخل رقم تأكيد الحساب'
-                            : 'ادخل كلمة المرور',
-                        style: AppTextStyles.style16W400(context),
-                      ),
-                      const SizedBox(height: 5),
-                      Divider(indent: 150, endIndent: 150),
-                      Form(
-                        key: _formKey,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            SizedBox(
-                              height: 250,
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  if (step == 1) ...[
-                                    AppInputTextFormField(
-                                      labelText: 'رقم الهاتف',
-                                      suffixIcon: Icon(Icons.phone_outlined),
-                                      keyboardType: TextInputType.phone,
-                                      controller: emailController,
-                                    ),
-                                  ],
-                                  if (step == 2) ...[
-                                    PinInputStyles.buildPinInput(
-                                      onCompleted: (pin) {
-                                        //  print("User entered PIN: $pin");
-                                      },
-                                    ),
-                                    SizedBox(height: 12),
-                                    TextButton(
-                                      onPressed: () {
+            SizedBox(
+              width: MediaQuery.of(context).size.width > 800
+                  ? 530
+                  : MediaQuery.of(context).size.width - 48,
+              child: Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.all(32),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        const SizedBox(height: 40),
+                        Text(
+                          step == 1
+                              ? 'أدخل رقم الهاتف'
+                              : step == 2
+                              ? 'أدخل رقم تأكيد الحساب'
+                              : 'ادخل كلمة المرور',
+                          style: AppTextStyles.style16W400(context),
+                        ),
+                        const SizedBox(height: 5),
 
-                                      },
-                                      child: Text(
-                                        "إعادة إرسال الكود",
-                                        style: AppTextStyles.style10W400(
-                                          context,
-                                        ).copyWith(
-                                          color: AppColors.accentColor,
-                                          decoration: TextDecoration.underline,
-                                          decorationColor:
-                                              AppColors.accentColor,
+                        Form(
+                          key: _formKey,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              SizedBox(
+                                height: 250,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    if (step == 1) ...[
+                                      AppInputTextFormField(
+                                        labelText: 'رقم الهاتف',
+                                        suffixIcon: Icon(Icons.phone_outlined),
+                                        keyboardType: TextInputType.phone,
+                                        controller: emailController,
+                                      ),
+                                    ],
+                                    if (step == 2) ...[
+                                      PinInputStyles.buildPinInput(
+                                        onCompleted: (pin) {
+                                          //  print("User entered PIN: $pin");
+                                        },
+                                      ),
+                                      SizedBox(height: 12),
+                                      TextButton(
+                                        onPressed: () {
+
+                                        },
+                                        child: Text(
+                                          "إعادة إرسال الكود",
+                                          style: AppTextStyles.style10W400(
+                                            context,
+                                          ).copyWith(
+                                            color: AppColors.accentColor,
+                                            decoration: TextDecoration.underline,
+                                            decorationColor:
+                                                AppColors.accentColor,
+                                          ),
                                         ),
                                       ),
-                                    ),
+                                    ],
+                                    if (step == 3) ...[
+                                      AppPassInputTextFormField(
+                                        labelText: "كلمة المرور",
+                                        controller: passwordController,
+                                      ),
+                                      AppPassInputTextFormField(
+                                        labelText: "كلمة المرور",
+                                        controller: confirmPasswordController,
+                                      ),
+                                    ],
                                   ],
-                                  if (step == 3) ...[
-                                    AppPassInputTextFormField(
-                                      labelText: "كلمة المرور",
-                                      controller: passwordController,
-                                    ),
-                                    AppPassInputTextFormField(
-                                      labelText: "كلمة المرور",
-                                      controller: confirmPasswordController,
-                                    ),
-                                  ],
-                                ],
+                                ),
                               ),
-                            ),
-                            MaterialButton(
-                              height: 44,
-                              minWidth: 100,
-                              padding: EdgeInsets.zero,
-                              color: AppColors.black,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(80),
+                              MaterialButton(
+                                height: 44,
+                                minWidth: 100,
+                                padding: EdgeInsets.zero,
+                                color: AppColors.black,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(80),
+                                ),
+                                onPressed: () {
+                                  if (_formKey.currentState?.validate() ??
+                                      false) {
+                                    setState(() {
+                                      if (step == 1) {
+                                        step = 2;
+                                      } else if (step == 2) {
+                                        step = 3;
+                                      } else {
+                                        showDialog(
+                                          context: context,
+                                          builder:
+                                              (context) => AppAlertDialog2(
+                                                title: 'تمت العملية بنجاح',
+                                                onPressedOk: () {},
+                                              ),
+                                        );
+                                      }
+                                    });
+                                  }
+                                },
+                                child: Text(
+                                  step == 1 || step == 2 ? "التالي" : "موافق",
+                                  style: AppTextStyles.style12W700(
+                                    context,
+                                  ).copyWith(color: AppColors.white),
+                                ),
                               ),
-                              onPressed: () {
-                                if (_formKey.currentState?.validate() ??
-                                    false) {
-                                  setState(() {
-                                    if (step == 1) {
-                                      step = 2;
-                                    } else if (step == 2) {
-                                      step = 3;
-                                    } else {
-                                      showDialog(
-                                        context: context,
-                                        builder:
-                                            (context) => AppAlertDialog2(
-                                              title: 'تمت العملية بنجاح',
-                                              onPressedOk: () {},
-                                            ),
-                                      );
-                                    }
-                                  });
-                                }
-                              },
-                              child: Text(
-                                step == 1 || step == 2 ? "التالي" : "موافق",
-                                style: AppTextStyles.style12W700(
-                                  context,
-                                ).copyWith(color: AppColors.white),
-                              ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),

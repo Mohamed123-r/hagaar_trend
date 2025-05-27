@@ -25,6 +25,15 @@ class MembershipView extends StatelessWidget {
             Stack(
               alignment: Alignment.topCenter,
               children: [
+                MediaQuery.of(context).size.width > 800
+                    ? Row(
+                        children: [
+                          Image.asset(Assets.imagesShapes4, height: 105),
+                          Spacer(),
+                          Image.asset(Assets.imagesShapes5, height: 105),
+                        ],
+                      )
+                    :
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

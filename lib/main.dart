@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:hagaar_trend/views/auth/auth_view.dart';
 import 'package:hagaar_trend/views/customer_service/customer_service_view.dart';
 import 'package:hagaar_trend/views/home/home_owner_view.dart';
 import 'package:hagaar_trend/views/main/main_view.dart';
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
         primaryColor: AppColors.black,
         scaffoldBackgroundColor: AppColors.white,
       ),
-      home: NotificationView()
+      home: AuthView()
 
       //service == 'owner' ? HomeOwnerView() : MainView(),
     );
