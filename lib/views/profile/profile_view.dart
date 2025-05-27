@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:hagaar_trend/components/app_alert_dialog.dart';
 import 'package:hagaar_trend/components/app_text_styles.dart';
 import 'package:hagaar_trend/components/custom_success_alert_dialog.dart';
@@ -10,8 +11,11 @@ import 'package:hagaar_trend/views/profile/widgets/profile_item.dart';
 import 'package:hagaar_trend/views/profile/widgets/switch_profile_button.dart';
 
 import '../../components/app_colors.dart';
+import '../../components/app_form_filed.dart';
 import '../../generated/assets.dart';
 import '../home/item_details_view.dart';
+import '../main/widgets/size_config.dart';
+import 'change_location.dart';
 import 'change_password_view.dart';
 
 class ProfileView extends StatefulWidget {
@@ -25,7 +29,7 @@ class _ProfileViewState extends State<ProfileView> {
   final List<Map<String, String>> properties = [
     {
       "imageUrl":
-      "https://images.pexels.com/photos/7031400/pexels-photo-7031400.jpeg",
+          "https://images.pexels.com/photos/7031400/pexels-photo-7031400.jpeg",
       "name": "فيلا فاخرة بإطلالة بحرية",
       "location": "جدة، السعودية",
       "price": "1,500,000 ريال",
@@ -36,63 +40,69 @@ class _ProfileViewState extends State<ProfileView> {
     },
     {
       "imageUrl":
-      "https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg",
+          "https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg",
       "name": "شقة راقية في برج سكني",
       "location": "الرياض، السعودية",
       "price": "750,000 ريال",
       "type": "شقة",
       "area": "180 م²",
-      "status": "متاح للإيجار", "commission": "500 ريال",
+      "status": "متاح للإيجار",
+      "commission": "500 ريال",
     },
     {
       "imageUrl":
-      "https://images.pexels.com/photos/2089698/pexels-photo-2089698.jpeg",
+          "https://images.pexels.com/photos/2089698/pexels-photo-2089698.jpeg",
       "name": "دور مستقل مع حديقة",
       "location": "الدمام، السعودية",
       "price": "1,200,000 ريال",
       "type": "دور سكني",
       "area": "300 م²",
-      "status": "متاح للبيع", "commission": "500 ريال",
+      "status": "متاح للبيع",
+      "commission": "500 ريال",
     },
     {
       "imageUrl":
-      "https://images.pexels.com/photos/210617/pexels-photo-210617.jpeg",
+          "https://images.pexels.com/photos/210617/pexels-photo-210617.jpeg",
       "name": "فيلا حديثة بتصميم عصري",
       "location": "المدينة المنورة، السعودية",
       "price": "1,800,000 ريال",
       "type": "فيلا",
       "area": "400 م²",
-      "status": "متاح للبيع", "commission": "500 ريال",
+      "status": "متاح للبيع",
+      "commission": "500 ريال",
     },
     {
       "imageUrl":
-      "https://images.pexels.com/photos/323705/pexels-photo-323705.jpeg",
+          "https://images.pexels.com/photos/323705/pexels-photo-323705.jpeg",
       "name": "شقة فندقية  ",
       "location": "مكة المكرمة، السعودية",
       "price": "950,000 ريال",
       "type": "شقة",
       "area": "160 م²",
-      "status": "متاح للإيجار", "commission": "500 ريال",
+      "status": "متاح للإيجار",
+      "commission": "500 ريال",
     },
     {
       "imageUrl":
-      "https://images.pexels.com/photos/1643389/pexels-photo-1643389.jpeg",
+          "https://images.pexels.com/photos/1643389/pexels-photo-1643389.jpeg",
       "name": "شقة مفروشة بالكامل",
       "location": "الخبر، السعودية",
       "price": "500,000 ريال",
       "type": "شقة",
       "area": "140 م²",
-      "status": "متاح للإيجار", "commission": "500 ريال",
+      "status": "متاح للإيجار",
+      "commission": "500 ريال",
     },
     {
       "imageUrl":
-      "https://images.pexels.com/photos/259588/pexels-photo-259588.jpeg",
+          "https://images.pexels.com/photos/259588/pexels-photo-259588.jpeg",
       "name": "فيلا بتصميم أوروبي",
       "location": "الطائف، السعودية",
       "price": "2,000,000 ريال",
       "type": "فيلا",
       "area": "450 م²",
-      "status": "متاح للبيع", "commission": "500 ريال",
+      "status": "متاح للبيع",
+      "commission": "500 ريال",
     },
   ];
 
@@ -100,6 +110,7 @@ class _ProfileViewState extends State<ProfileView> {
 
   @override
   Widget build(BuildContext context) {
+    AppSizes().init(context);
     return Directionality(
       textDirection: direction,
       child: Column(
@@ -108,184 +119,413 @@ class _ProfileViewState extends State<ProfileView> {
           Stack(
             alignment: Alignment.topCenter,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Image.asset(Assets.imagesShap2),
-                  Image.asset(Assets.imagesShap1),
-                ],
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 64.0),
-                child: Column(
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => AuthView()),
-                        );
-                      },
-                      child: CircleAvatar(
-                        radius: 85,
-                        backgroundColor: AppColors.grey,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(500),
-                          child: Image.network(
-                            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkAJEkJQ1WumU0hXNpXdgBt9NUKc0QDVIiaw&s",
-                            width: 170,
-                            height: 170,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 16),
-                    Text(
-                      "محمد علي عبد القادر",
-                      style: AppTextStyles.style16W800(context),
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      "+20 0109282735242",
-                      style: AppTextStyles.style12W400(context),
-                    ),
-                  ],
+              MediaQuery.of(context).size.width > 800
+                  ? Row(
+                    children: [
+                      Image.asset(Assets.imagesShapes4, height: 105),
+                      Spacer(),
+                      Image.asset(Assets.imagesShapes5, height: 105),
+                    ],
+                  )
+                  : Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Image.asset(Assets.imagesShap2),
+                      Image.asset(Assets.imagesShap1),
+                    ],
+                  ),
+              Visibility(
+                visible: AppSizes.screenWidth < 800,
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 64.0),
+                  child: DataOfProfileView(),
                 ),
               ),
             ],
           ),
           const SizedBox(height: 20),
-          Row(
-            spacing: 24,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SwitchProfileButton(
-                title: "صفقاتي",
-                image: Assets.imagesBuildings,
-                isBlack: showMyItems,
-                onPressed: () {
-                  setState(() {
-                    showMyItems = true;
-                  });
-                },
-              ),
-              Container(width: 1, height: 35, color: AppColors.border),
-              SwitchProfileButton(
-                title: 'تعديل بياناتي',
-                image: Assets.imagesUser,
-                isBlack: !showMyItems,
-                onPressed: () {
-                  setState(() {
-                    showMyItems = false;
-                  });
-                },
-              ),
-            ],
+          Visibility(
+            visible: AppSizes.screenWidth < 800,
+            child: Row(
+              spacing: 24,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SwitchProfileButton(
+                  title: "صفقاتي",
+                  image: Assets.imagesBuildings,
+                  isBlack: showMyItems,
+                  onPressed: () {
+                    setState(() {
+                      showMyItems = true;
+                    });
+                  },
+                ),
+                Container(width: 1, height: 35, color: AppColors.border),
+                SwitchProfileButton(
+                  title: 'تعديل بياناتي',
+                  image: Assets.imagesUser,
+                  isBlack: !showMyItems,
+                  onPressed: () {
+                    setState(() {
+                      showMyItems = false;
+                    });
+                  },
+                ),
+              ],
+            ),
           ),
-          SingleChildScrollView(
-            child: Visibility(
-              visible: !showMyItems,
-              child: Padding(
-                padding: const EdgeInsets.all(32.0),
-                child: Column(
-                  spacing: 16,
-                  children: [
-                    SizedBox(height: 16),
-                    EditDataButton(
-                      title: 'تحديث معلوماتي',
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (_) => EditProfileView()),
-                        );
-                      },
-                    ),
-                    EditDataButton(
-                      title: 'تغير كلمة المرور',
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (_) => ChangePasswordView(),
-                          ),
-                        );
-                      },
-                    ),
-                    EditDataButton(
-                      title: 'تسجيل الخروج',
-                      isDisabled: true,
-                      onPressed: () {
-                        showDialog(
-                          context: context,
-                          builder:
-                              (_) =>
-                              AppAlertDialog2(
-                                title: "هل تريد تسجيل الخروج من حسابك ؟!",
-                                onPressedOk: () {
-                                  showDialog(
-                                    context: context,
-                                    builder:
-                                        (_) =>
-                                        CustomSuccessAlertDialog(
-                                          title: "تم تسجيل الخروج بنجاح",
-                                          onPressedOk: () {},
-                                        ),
-                                  );
-                                },
-                              ),
-                        );
-                      },
-                    ),
-                  ],
+          Visibility(
+            visible: AppSizes.screenWidth < 800,
+            child: SingleChildScrollView(
+              child: Visibility(
+                visible: !showMyItems,
+                child: ButtonsProfileView(),
+              ),
+            ),
+          ),
+          Visibility(
+            visible: AppSizes.screenWidth < 800,
+            child: Expanded(
+              child: Visibility(
+                visible: showMyItems,
+                child: ListView.separated(
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding:
+                          index == properties.length - 1
+                              ? const EdgeInsets.only(bottom: 100)
+                              : EdgeInsets.zero,
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder:
+                                  (context) => ItemDetailsView(
+                                    image: properties[index]['imageUrl']!,
+                                    name: properties[index]['name']!,
+                                    location: properties[index]['location']!,
+                                    price: properties[index]['price']!,
+                                    commission:
+                                        properties[index]['commission']!,
+                                  ),
+                            ),
+                          );
+                        },
+                        child: ProfileItem(
+                          image: properties[index]['imageUrl']!,
+                          name: properties[index]['name']!,
+                          location: properties[index]['location']!,
+                          price: properties[index]['price']!,
+                          type: properties[index]['type']!,
+                          area: properties[index]['area']!,
+                          status: properties[index]['status']!,
+                          commission: properties[index]['commission']!,
+                        ),
+                      ),
+                    );
+                  },
+                  separatorBuilder: (context, index) => SizedBox(height: 16),
+                  itemCount: properties.length,
                 ),
               ),
             ),
           ),
-          Expanded(
-            child: Visibility(
-              visible: showMyItems,
-              child: ListView.separated(
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding:
-                    index == properties.length - 1
-                        ? const EdgeInsets.only(bottom: 100)
-                        : EdgeInsets.zero,
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder:
-                                (context) =>
-                                ItemDetailsView(
-                                  image: properties[index]['imageUrl']!,
-                                  name: properties[index]['name']!,
-                                  location: properties[index]['location']!,
-                                  price: properties[index]['price']!,
-                                  commission: properties[index]['commission']!,
-                                ),
-                          ),
-                        );
-                      },
-                      child: ProfileItem(
-                        image: properties[index]['imageUrl']!,
-                        name: properties[index]['name']!,
-                        location: properties[index]['location']!,
-                        price: properties[index]['price']!,
-                        type: properties[index]['type']!,
-                        area: properties[index]['area']!,
-                        status: properties[index]['status']!,
-                        commission: properties[index]['commission']!,
-                      ),
-                    ),
-                  );
-                },
-                separatorBuilder: (context, index) => SizedBox(height: 16),
-                itemCount: properties.length,
+          Visibility(
+            visible: AppSizes.screenWidth > 800,
+            child: Row(
+              children: [
+                SizedBox(
+                  width: 370,
+                  child: Column(
+                    children: [DataOfProfileView(), ButtonsProfileView()],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class DataOfProfileView extends StatelessWidget {
+  const DataOfProfileView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => AuthView()),
+            );
+          },
+          child: CircleAvatar(
+            radius: 85,
+            backgroundColor: AppColors.grey,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(500),
+              child: Image.network(
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkAJEkJQ1WumU0hXNpXdgBt9NUKc0QDVIiaw&s",
+                width: 170,
+                height: 170,
+                fit: BoxFit.cover,
               ),
             ),
+          ),
+        ),
+        const SizedBox(height: 16),
+        Text("محمد علي عبد القادر", style: AppTextStyles.style16W800(context)),
+        const SizedBox(height: 8),
+        Text("+20 0109282735242", style: AppTextStyles.style12W400(context)),
+      ],
+    );
+  }
+}
+
+class ButtonsProfileView extends StatefulWidget {
+  const ButtonsProfileView({super.key});
+
+  @override
+  State<ButtonsProfileView> createState() => _ButtonsProfileViewState();
+}
+
+class _ButtonsProfileViewState extends State<ButtonsProfileView> {
+  final TextEditingController nameController = TextEditingController(
+    text: "محمد علي",
+  );
+  final TextEditingController phoneController = TextEditingController(
+    text: "+20 0108376546221",
+  );
+  final TextEditingController emailController = TextEditingController(
+    text: "kh@led5367gyedv@gmail.com",
+  );
+  final TextEditingController locationController = TextEditingController(
+    text: "السعودية - الرياض - حي الشارقة",
+  );
+  final TextEditingController membershipController = TextEditingController(
+    text: "باحث عن عقار",
+  );
+
+  @override
+  void dispose() {
+    super.dispose();
+    nameController.dispose();
+    phoneController.dispose();
+    membershipController.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(32.0),
+      child: Column(
+        spacing: 16,
+        children: [
+          SizedBox(height: 16),
+          EditDataButton(
+            title: 'تحديث معلوماتي',
+            onPressed: () {
+              AppSizes.screenWidth > 800
+                  ? showDialog(
+                    context: context,
+                    builder:
+                        (context) => AppAlertDialog2(
+                          title: "تحديث معلوماتي",
+                          body: Directionality(
+                            textDirection: direction,
+                            child: SingleChildScrollView(
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 24,
+                                ),
+                                child: Column(
+                                  spacing: 16,
+                                  children: [
+                                    SizedBox(height: 24, width: 400),
+                                    Stack(
+                                      children: [
+                                        Container(
+                                          width: 164,
+                                          height: 164,
+                                          decoration: BoxDecoration(
+                                            color: Color(0xffEEEEEE),
+                                            borderRadius: BorderRadius.circular(
+                                              240,
+                                            ),
+                                          ),
+                                          child: Center(
+                                            child: SvgPicture.asset(
+                                              Assets.imagesUser,
+                                              color: AppColors.black,
+                                              width: 24,
+                                            ),
+                                          ),
+                                        ),
+                                        Positioned(
+                                          bottom: 4,
+                                          right:
+                                              direction == TextDirection.rtl
+                                                  ? 12
+                                                  : null,
+                                          left:
+                                              direction == TextDirection.ltr
+                                                  ? 12
+                                                  : null,
+                                          child: Container(
+                                            width: 32,
+                                            height: 32,
+                                            decoration: BoxDecoration(
+                                              color: AppColors.white,
+                                              borderRadius:
+                                                  BorderRadius.circular(240),
+                                              border: Border.all(
+                                                width: 1,
+                                                color: AppColors.border,
+                                              ),
+                                            ),
+                                            child: Center(
+                                              child: SvgPicture.asset(
+                                                Assets.imagesCamera,
+                                                width: 16,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    AppInputTextFormField(
+                                      title: "الاسم",
+                                      controller: nameController,
+                                      keyboardType: TextInputType.name,
+                                    ),
+
+                                    AppInputTextFormField(
+                                      title: "رقم الهاتف",
+                                      controller: phoneController,
+                                      keyboardType: TextInputType.phone,
+                                    ),
+                                    AppInputTextFormField(
+                                      title: "العنوان",
+                                      controller: locationController,
+                                      keyboardType: TextInputType.name,
+                                      suffixIcon: SizedBox(
+                                        width: 100,
+                                        child: Center(
+                                          child: TextButton(
+                                            onPressed: () {
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder:
+                                                      (_) => ChangeLocation(),
+                                                ),
+                                              );
+                                            },
+                                            child: Text(
+                                              "تغير الموقع",
+                                              style: AppTextStyles.style12W400(
+                                                context,
+                                              ).copyWith(
+                                                color: AppColors.green,
+                                                decoration:
+                                                    TextDecoration.underline,
+                                                decorationColor:
+                                                    AppColors.green,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+
+                                    const SizedBox(height: 16),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+
+                          onPressedOk: () {},
+                        ),
+                  )
+                  : Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => EditProfileView()),
+                  );
+            },
+          ),
+          EditDataButton(
+            title: 'تغير كلمة المرور',
+            onPressed: () {
+              AppSizes.screenWidth > 800
+                  ? showDialog(
+                    context: context,
+                    builder:
+                        (context) => AppAlertDialog2(
+                          title: "إعادة تعيين كلمة المرور",
+                          body: Directionality(
+                            textDirection: direction,
+                            child: SingleChildScrollView(
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 32.0,
+                                ),
+                                child: Column(
+                                  spacing: 24,
+                                  children: [
+                                    SizedBox(height: 24, width: 400),
+                                    PasswordTextForm(
+                                      title: 'كلمة المرور الحالية',
+                                    ),
+                                    PasswordTextForm(
+                                      title: 'كلمة المرور الجديدة',
+                                    ),
+                                    PasswordTextForm(
+                                      title: 'تأكيد كلمة المرور الجديدة',
+                                    ),
+                                    const SizedBox(height: 24),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+
+                          onPressedOk: () {},
+                        ),
+                  )
+                  : Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => ChangePasswordView()),
+                  );
+            },
+          ),
+          EditDataButton(
+            title: 'تسجيل الخروج',
+            isDisabled: true,
+            onPressed: () {
+              showDialog(
+                context: context,
+                builder:
+                    (_) => AppAlertDialog2(
+                      title: "هل تريد تسجيل الخروج من حسابك ؟!",
+                      onPressedOk: () {
+                        showDialog(
+                          context: context,
+                          builder:
+                              (_) => CustomSuccessAlertDialog(
+                                title: "تم تسجيل الخروج بنجاح",
+                                onPressedOk: () {},
+                              ),
+                        );
+                      },
+                    ),
+              );
+            },
           ),
         ],
       ),

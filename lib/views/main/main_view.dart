@@ -26,7 +26,6 @@ class MainViewState extends State<MainView> {
   final PageController pageController = PageController();
 
 
-
   @override
   void dispose() {
     pageController.dispose();

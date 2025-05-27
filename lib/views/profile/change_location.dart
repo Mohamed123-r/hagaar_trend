@@ -18,7 +18,9 @@ class ChangeLocation extends StatelessWidget {
           alignment: Alignment.topCenter,
           children: [
             Image.asset(
-              Assets.imagesTest3,
+              MediaQuery.of(context).size.width > 800
+                  ? Assets.imagesTest7
+                  : Assets.imagesTest3,
               width: double.infinity,
               height: double.infinity,
               fit: BoxFit.cover,
@@ -55,167 +57,308 @@ class ChangeLocation extends StatelessWidget {
                 ),
               ),
             ),
-            Positioned(
-              bottom: 32,
-              child: MaterialButton(
-                height: 44,
-                minWidth: 100,
-                padding: EdgeInsets.zero,
-                color: AppColors.black,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(80),
-                ),
-                onPressed: () {
-                  showModalBottomSheet(
-                    context: context,
-                    isScrollControlled: true,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.vertical(
-                        top: Radius.circular(16),
+            Visibility(
+              visible: MediaQuery.of(context).size.width < 800,
+              child: Positioned(
+                bottom: 32,
+                child: MaterialButton(
+                  height: 44,
+                  minWidth: 100,
+                  padding: EdgeInsets.zero,
+                  color: AppColors.black,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(80),
+                  ),
+                  onPressed: () {
+                    showModalBottomSheet(
+                      context: context,
+                      isScrollControlled: true,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.vertical(
+                          top: Radius.circular(16),
+                        ),
                       ),
-                    ),
-                    builder:
-                        (context) => Padding(
-                          padding: EdgeInsets.only(
-                            bottom: MediaQuery.of(context).viewInsets.bottom,
-                          ),
-                          child: Container(
-                            padding: EdgeInsets.all(16),
-                            decoration: BoxDecoration(
-                              color: AppColors.white,
-                              borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(16),
-                                topRight: Radius.circular(16),
+                      builder:
+                          (context) => Padding(
+                            padding: EdgeInsets.only(
+                              bottom: MediaQuery.of(context).viewInsets.bottom,
+                            ),
+                            child: Container(
+                              padding: EdgeInsets.all(16),
+                              decoration: BoxDecoration(
+                                color: AppColors.white,
+                                borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(16),
+                                  topRight: Radius.circular(16),
+                                ),
+                              ),
+                              width: double.infinity,
+
+                              child: Directionality(
+                                textDirection: direction,
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Align(
+                                      alignment:
+                                          direction == TextDirection.rtl
+                                              ? Alignment.topRight
+                                              : Alignment.topLeft,
+
+                                      child: GestureDetector(
+                                        onTap: () => Navigator.pop(context),
+
+                                        child: const Icon(Icons.close),
+                                      ),
+                                    ),
+                                    SizedBox(height: 16),
+
+                                    Text(
+                                      "الدولة",
+                                      style: AppTextStyles.style14W700(context),
+                                    ),
+                                    SizedBox(height: 8),
+                                    TextField(
+                                      readOnly: true,
+                                      decoration: InputDecoration(
+                                        hintText: "المملكة العربية السعودية",
+                                        hintStyle: AppTextStyles.style12W400(
+                                          context,
+                                        ),
+                                        filled: true,
+                                        fillColor: AppColors.white,
+                                        border: OutlineInputBorder(
+                                          borderRadius: BorderRadius.circular(16),
+                                          borderSide: BorderSide(
+                                            color: AppColors.border,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(height: 16),
+
+                                    // المدينة
+                                    Text(
+                                      "المدينة",
+                                      style: AppTextStyles.style14W700(context),
+                                    ),
+                                    SizedBox(height: 8),
+                                    TextField(
+                                      readOnly: true,
+                                      decoration: InputDecoration(
+                                        hintText: "الرياض",
+                                        hintStyle: AppTextStyles.style12W400(
+                                          context,
+                                        ),
+                                        filled: true,
+                                        fillColor: AppColors.white,
+                                        border: OutlineInputBorder(
+                                          borderRadius: BorderRadius.circular(16),
+                                          borderSide: BorderSide(
+                                            color: AppColors.border,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(height: 16),
+
+                                    // الحي
+                                    Text(
+                                      "الحي",
+                                      style: AppTextStyles.style14W700(context),
+                                    ),
+                                    SizedBox(height: 8),
+                                    TextField(
+                                      readOnly: true,
+                                      decoration: InputDecoration(
+                                        hintText: "حي الشرفه",
+                                        hintStyle: AppTextStyles.style12W400(
+                                          context,
+                                        ),
+                                        filled: true,
+                                        fillColor: AppColors.white,
+                                        border: OutlineInputBorder(
+                                          borderRadius: BorderRadius.circular(16),
+                                          borderSide: BorderSide(
+                                            color: AppColors.border,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(height: 24),
+
+                                    // زر موافق
+                                    Center(
+                                      child: MaterialButton(
+                                        height: 44,
+                                        minWidth: 100,
+                                        padding: EdgeInsets.zero,
+                                        color: AppColors.black,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(80),
+                                        ),
+                                        onPressed: () {},
+                                        child: Text(
+                                          "موافق",
+                                          style: AppTextStyles.style12W700(
+                                            context,
+                                          ).copyWith(color: AppColors.white),
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(height: 12),
+                                  ],
+                                ),
                               ),
                             ),
-                            width: double.infinity,
+                          ),
+                    );
+                  },
+                  child: Text(
+                    "موافق",
+                    style: AppTextStyles.style12W700(
+                      context,
+                    ).copyWith(color: AppColors.white),
+                  ),
+                ),
+              ),
+            ),
+            Visibility(
+              visible: MediaQuery.of(context).size.width > 800,
+              child: Positioned(
+                right: 0,
+                top: 150 ,
+                bottom: 140 ,
+                child: Container(
+                  width: 430,
+                  padding: EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: AppColors.white,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(16),
+                      topRight: Radius.circular(16),
+                    ),
+                  ),
 
-                            child: Directionality(
-                              textDirection: direction,
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Align(
-                                    alignment:
-                                        direction == TextDirection.rtl
-                                            ? Alignment.topRight
-                                            : Alignment.topLeft,
 
-                                    child: GestureDetector(
-                                      onTap: () => Navigator.pop(context),
+                  child: Directionality(
+                    textDirection: direction,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Align(
+                          alignment:
+                          direction == TextDirection.rtl
+                              ? Alignment.topRight
+                              : Alignment.topLeft,
 
-                                      child: const Icon(Icons.close),
-                                    ),
-                                  ),
-                                  SizedBox(height: 16),
+                          child: GestureDetector(
+                            onTap: () => Navigator.pop(context),
 
-                                  Text(
-                                    "الدولة",
-                                    style: AppTextStyles.style14W700(context),
-                                  ),
-                                  SizedBox(height: 8),
-                                  TextField(
-                                    readOnly: true,
-                                    decoration: InputDecoration(
-                                      hintText: "المملكة العربية السعودية",
-                                      hintStyle: AppTextStyles.style12W400(
-                                        context,
-                                      ),
-                                      filled: true,
-                                      fillColor: AppColors.white,
-                                      border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(16),
-                                        borderSide: BorderSide(
-                                          color: AppColors.border,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(height: 16),
+                            child: const Icon(Icons.close),
+                          ),
+                        ),
+                        SizedBox(height: 16),
 
-                                  // المدينة
-                                  Text(
-                                    "المدينة",
-                                    style: AppTextStyles.style14W700(context),
-                                  ),
-                                  SizedBox(height: 8),
-                                  TextField(
-                                    readOnly: true,
-                                    decoration: InputDecoration(
-                                      hintText: "الرياض",
-                                      hintStyle: AppTextStyles.style12W400(
-                                        context,
-                                      ),
-                                      filled: true,
-                                      fillColor: AppColors.white,
-                                      border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(16),
-                                        borderSide: BorderSide(
-                                          color: AppColors.border,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(height: 16),
-
-                                  // الحي
-                                  Text(
-                                    "الحي",
-                                    style: AppTextStyles.style14W700(context),
-                                  ),
-                                  SizedBox(height: 8),
-                                  TextField(
-                                    readOnly: true,
-                                    decoration: InputDecoration(
-                                      hintText: "حي الشرفه",
-                                      hintStyle: AppTextStyles.style12W400(
-                                        context,
-                                      ),
-                                      filled: true,
-                                      fillColor: AppColors.white,
-                                      border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(16),
-                                        borderSide: BorderSide(
-                                          color: AppColors.border,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(height: 24),
-
-                                  // زر موافق
-                                  Center(
-                                    child: MaterialButton(
-                                      height: 44,
-                                      minWidth: 100,
-                                      padding: EdgeInsets.zero,
-                                      color: AppColors.black,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(80),
-                                      ),
-                                      onPressed: () {},
-                                      child: Text(
-                                        "موافق",
-                                        style: AppTextStyles.style12W700(
-                                          context,
-                                        ).copyWith(color: AppColors.white),
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(height: 12),
-                                ],
+                        Text(
+                          "الدولة",
+                          style: AppTextStyles.style14W700(context),
+                        ),
+                        SizedBox(height: 8),
+                        TextField(
+                          readOnly: true,
+                          decoration: InputDecoration(
+                            hintText: "المملكة العربية السعودية",
+                            hintStyle: AppTextStyles.style12W400(
+                              context,
+                            ),
+                            filled: true,
+                            fillColor: AppColors.white,
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(16),
+                              borderSide: BorderSide(
+                                color: AppColors.border,
                               ),
                             ),
                           ),
                         ),
-                  );
-                },
-                child: Text(
-                  "موافق",
-                  style: AppTextStyles.style12W700(
-                    context,
-                  ).copyWith(color: AppColors.white),
+                        SizedBox(height: 16),
+
+                        // المدينة
+                        Text(
+                          "المدينة",
+                          style: AppTextStyles.style14W700(context),
+                        ),
+                        SizedBox(height: 8),
+                        TextField(
+                          readOnly: true,
+                          decoration: InputDecoration(
+                            hintText: "الرياض",
+                            hintStyle: AppTextStyles.style12W400(
+                              context,
+                            ),
+                            filled: true,
+                            fillColor: AppColors.white,
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(16),
+                              borderSide: BorderSide(
+                                color: AppColors.border,
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 16),
+
+                        // الحي
+                        Text(
+                          "الحي",
+                          style: AppTextStyles.style14W700(context),
+                        ),
+                        SizedBox(height: 8),
+                        TextField(
+                          readOnly: true,
+                          decoration: InputDecoration(
+                            hintText: "حي الشرفه",
+                            hintStyle: AppTextStyles.style12W400(
+                              context,
+                            ),
+                            filled: true,
+                            fillColor: AppColors.white,
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(16),
+                              borderSide: BorderSide(
+                                color: AppColors.border,
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 24),
+
+                        // زر موافق
+                        Center(
+                          child: MaterialButton(
+                            height: 44,
+                            minWidth: 100,
+                            padding: EdgeInsets.zero,
+                            color: AppColors.black,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(80),
+                            ),
+                            onPressed: () {},
+                            child: Text(
+                              "موافق",
+                              style: AppTextStyles.style12W700(
+                                context,
+                              ).copyWith(color: AppColors.white),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 12),
+                      ],
+                    ),
+                  ),
                 ),
               ),
             ),

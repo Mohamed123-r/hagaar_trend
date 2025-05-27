@@ -67,10 +67,12 @@ class AppAlertDialog2 extends StatelessWidget {
   const AppAlertDialog2({
     super.key,
     required this.title,
+    this.body,
     required this.onPressedOk,
   });
 
   final String title;
+  final Widget? body;
   final Function() onPressedOk;
 
   @override
@@ -91,36 +93,33 @@ class AppAlertDialog2 extends StatelessWidget {
             icon: const Icon(Icons.close),
           ),
         ),
-        content: SizedBox(
-          height: 120,
-          width: 300,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                title,
-                textAlign: TextAlign.center,
-                style: AppTextStyles.style14W400(context),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              title,
+              textAlign: TextAlign.center,
+              style: AppTextStyles.style20W400(context),
+            ),
+            body?? SizedBox(),
+            MaterialButton(
+              height: 44,
+              minWidth: 100,
+              padding: EdgeInsets.zero,
+              color: AppColors.black,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(80),
               ),
-              MaterialButton(
-                height: 44,
-                minWidth: 100,
-                padding: EdgeInsets.zero,
-                color: AppColors.black,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(80),
-                ),
-                onPressed: onPressedOk,
-                child: Text(
-                  "موافق",
-                  style: AppTextStyles.style12W700(
-                    context,
-                  ).copyWith(color: AppColors.white),
-                ),
+              onPressed: onPressedOk,
+              child: Text(
+                "موافق",
+                style: AppTextStyles.style12W700(
+                  context,
+                ).copyWith(color: AppColors.white),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
