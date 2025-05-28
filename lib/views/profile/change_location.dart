@@ -100,18 +100,6 @@ class ChangeLocation extends StatelessWidget {
                                   mainAxisSize: MainAxisSize.min,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Align(
-                                      alignment:
-                                          direction == TextDirection.rtl
-                                              ? Alignment.topRight
-                                              : Alignment.topLeft,
-
-                                      child: GestureDetector(
-                                        onTap: () => Navigator.pop(context),
-
-                                        child: const Icon(Icons.close),
-                                      ),
-                                    ),
                                     SizedBox(height: 16),
 
                                     Text(
@@ -129,7 +117,9 @@ class ChangeLocation extends StatelessWidget {
                                         filled: true,
                                         fillColor: AppColors.white,
                                         border: OutlineInputBorder(
-                                          borderRadius: BorderRadius.circular(16),
+                                          borderRadius: BorderRadius.circular(
+                                            16,
+                                          ),
                                           borderSide: BorderSide(
                                             color: AppColors.border,
                                           ),
@@ -154,7 +144,9 @@ class ChangeLocation extends StatelessWidget {
                                         filled: true,
                                         fillColor: AppColors.white,
                                         border: OutlineInputBorder(
-                                          borderRadius: BorderRadius.circular(16),
+                                          borderRadius: BorderRadius.circular(
+                                            16,
+                                          ),
                                           borderSide: BorderSide(
                                             color: AppColors.border,
                                           ),
@@ -179,10 +171,29 @@ class ChangeLocation extends StatelessWidget {
                                         filled: true,
                                         fillColor: AppColors.white,
                                         border: OutlineInputBorder(
-                                          borderRadius: BorderRadius.circular(16),
+                                          borderRadius: BorderRadius.circular(
+                                            16,
+                                          ),
                                           borderSide: BorderSide(
                                             color: AppColors.border,
                                           ),
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(height: 16),
+                                    // المنطة
+                                    Text("المنطة", style: AppTextStyles.style14W700(context)),
+                                    SizedBox(height: 8),
+                                    TextField(
+                                      readOnly: true,
+                                      decoration: InputDecoration(
+                                        hintText: "خربتها",
+                                        hintStyle: AppTextStyles.style12W400(context),
+                                        filled: true,
+                                        fillColor: AppColors.white,
+                                        border: OutlineInputBorder(
+                                          borderRadius: BorderRadius.circular(16),
+                                          borderSide: BorderSide(color: AppColors.border),
                                         ),
                                       ),
                                     ),
@@ -196,7 +207,9 @@ class ChangeLocation extends StatelessWidget {
                                         padding: EdgeInsets.zero,
                                         color: AppColors.black,
                                         shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(80),
+                                          borderRadius: BorderRadius.circular(
+                                            80,
+                                          ),
                                         ),
                                         onPressed: () {},
                                         child: Text(
@@ -228,8 +241,8 @@ class ChangeLocation extends StatelessWidget {
               visible: MediaQuery.of(context).size.width > 800,
               child: Positioned(
                 right: 0,
-                top: 150 ,
-                bottom: 140 ,
+                top: 150,
+                bottom: 140,
                 child: Container(
                   width: 430,
                   padding: EdgeInsets.all(16),
@@ -241,25 +254,12 @@ class ChangeLocation extends StatelessWidget {
                     ),
                   ),
 
-
                   child: Directionality(
                     textDirection: direction,
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Align(
-                          alignment:
-                          direction == TextDirection.rtl
-                              ? Alignment.topRight
-                              : Alignment.topLeft,
-
-                          child: GestureDetector(
-                            onTap: () => Navigator.pop(context),
-
-                            child: const Icon(Icons.close),
-                          ),
-                        ),
                         SizedBox(height: 16),
 
                         Text(
@@ -271,16 +271,12 @@ class ChangeLocation extends StatelessWidget {
                           readOnly: true,
                           decoration: InputDecoration(
                             hintText: "المملكة العربية السعودية",
-                            hintStyle: AppTextStyles.style12W400(
-                              context,
-                            ),
+                            hintStyle: AppTextStyles.style12W400(context),
                             filled: true,
                             fillColor: AppColors.white,
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(16),
-                              borderSide: BorderSide(
-                                color: AppColors.border,
-                              ),
+                              borderSide: BorderSide(color: AppColors.border),
                             ),
                           ),
                         ),
@@ -296,41 +292,48 @@ class ChangeLocation extends StatelessWidget {
                           readOnly: true,
                           decoration: InputDecoration(
                             hintText: "الرياض",
-                            hintStyle: AppTextStyles.style12W400(
-                              context,
-                            ),
+                            hintStyle: AppTextStyles.style12W400(context),
                             filled: true,
                             fillColor: AppColors.white,
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(16),
-                              borderSide: BorderSide(
-                                color: AppColors.border,
-                              ),
+                              borderSide: BorderSide(color: AppColors.border),
                             ),
                           ),
                         ),
                         SizedBox(height: 16),
 
                         // الحي
-                        Text(
-                          "الحي",
-                          style: AppTextStyles.style14W700(context),
-                        ),
+                        Text("الحي", style: AppTextStyles.style14W700(context)),
                         SizedBox(height: 8),
                         TextField(
                           readOnly: true,
                           decoration: InputDecoration(
                             hintText: "حي الشرفه",
-                            hintStyle: AppTextStyles.style12W400(
-                              context,
-                            ),
+                            hintStyle: AppTextStyles.style12W400(context),
                             filled: true,
                             fillColor: AppColors.white,
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(16),
-                              borderSide: BorderSide(
-                                color: AppColors.border,
-                              ),
+                              borderSide: BorderSide(color: AppColors.border),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 16),
+
+                        // المنطة
+                        Text("المنطة", style: AppTextStyles.style14W700(context)),
+                        SizedBox(height: 8),
+                        TextField(
+                          readOnly: true,
+                          decoration: InputDecoration(
+                            hintText: "خربتها",
+                            hintStyle: AppTextStyles.style12W400(context),
+                            filled: true,
+                            fillColor: AppColors.white,
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(16),
+                              borderSide: BorderSide(color: AppColors.border),
                             ),
                           ),
                         ),

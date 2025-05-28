@@ -181,51 +181,57 @@ class ShowSearchView extends StatelessWidget {
                   ? Alignment.topCenter
                   : Alignment.bottomCenter,
           children: [
-            Directionality(
-              textDirection: direction,
-              child: Row(
-                children: [
-                  Image.asset(Assets.imagesShapes4, height: 105),
-                  Spacer(),
-                  Image.asset(Assets.imagesShapes5, height: 105),
-                ],
-              ),
-            ),
-            Positioned(
-              top: 16,
-
-              child: Container(
-                height: 48,
-                width: 230,
-                decoration: BoxDecoration(
-                  color: AppColors.white,
-                  borderRadius: BorderRadius.circular(16),
-                  border: Border.all(color: AppColors.grey, width: 1),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.1),
-                      blurRadius: 10,
-                      offset: Offset(0, 2),
-                    ),
+            Visibility(
+              visible: MediaQuery.of(context).size.width >= 800,
+              child: Directionality(
+                textDirection: direction,
+                child: Row(
+                  children: [
+                    Image.asset(Assets.imagesShapes4, height: 105),
+                    Spacer(),
+                    Image.asset(Assets.imagesShapes5, height: 105),
                   ],
                 ),
-                child: Center(
-                  child: Row(
-                    children: [
-                      IconButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        icon: Icon(Icons.close, color: Colors.red, size: 18),
+              ),
+            ),
+            Visibility(
+              visible: MediaQuery.of(context).size.width >= 800,
+              child: Positioned(
+                top: 16,
+
+                child: Container(
+                  height: 48,
+                  width: 230,
+                  decoration: BoxDecoration(
+                    color: AppColors.white,
+                    borderRadius: BorderRadius.circular(16),
+                    border: Border.all(color: AppColors.grey, width: 1),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.1),
+                        blurRadius: 10,
+                        offset: Offset(0, 2),
                       ),
-                      Spacer(),
-                      Text(
-                        "نتيجة البحث",
-                        style: AppTextStyles.style16W400(context),
-                      ),
-                      Spacer(),
-                      Spacer(),
                     ],
+                  ),
+                  child: Center(
+                    child: Row(
+                      children: [
+                        IconButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          icon: Icon(Icons.close, color: Colors.red, size: 18),
+                        ),
+                        Spacer(),
+                        Text(
+                          "نتيجة البحث",
+                          style: AppTextStyles.style16W400(context),
+                        ),
+                        Spacer(),
+                        Spacer(),
+                      ],
+                    ),
                   ),
                 ),
               ),

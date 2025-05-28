@@ -100,18 +100,7 @@ class LocationView extends StatelessWidget {
                               mainAxisSize: MainAxisSize.min,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Align(
-                                  alignment:
-                                  direction == TextDirection.rtl
-                                      ? Alignment.topRight
-                                      : Alignment.topLeft,
 
-                                  child: GestureDetector(
-                                    onTap: () => Navigator.pop(context),
-
-                                    child: const Icon(Icons.close),
-                                  ),
-                                ),
                                 SizedBox(height: 16),
 
                                 Text(
@@ -248,18 +237,7 @@ class LocationView extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
-                        Align(
-                          alignment:
-                          direction == TextDirection.ltr
-                              ? Alignment.topRight
-                              : Alignment.topLeft,
 
-                          child: GestureDetector(
-                            onTap: () => Navigator.pop(context),
-
-                            child: const Icon(Icons.close),
-                          ),
-                        ),
                         SizedBox(height: 16),
 
                         Text(

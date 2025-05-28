@@ -117,6 +117,16 @@ class MembershipView extends StatelessWidget {
                               Assets.imagesMembership4,
                               "شركة عقارية",
                             ),
+                            _membershipItem(
+                              context: context,
+                              Assets.imagesMembership5,
+                              "مكتب عقاري",
+                            ),
+                            _membershipItem(
+                              context: context,
+                              Assets.imagesMembership6,
+                              "موظف بنكي",
+                            ),
                           ],
                         ),
                       ],

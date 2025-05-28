@@ -162,6 +162,7 @@ class _ProfileViewState extends State<ProfileView> {
               const SizedBox(height: 20),
               if (screenWidth < 800)
                 Row(
+                  spacing: 12,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     SwitchProfileButton(
@@ -388,6 +389,7 @@ class _ButtonsProfileViewState extends State<ButtonsProfileView> {
     return Padding(
       padding: EdgeInsets.all(padding),
       child: Column(
+        spacing: 16,
         mainAxisSize: MainAxisSize.min,
         children: [
           const SizedBox(height: 16),

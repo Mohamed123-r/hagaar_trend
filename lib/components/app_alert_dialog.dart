@@ -100,9 +100,12 @@ class AppAlertDialog2 extends StatelessWidget {
             Text(
               title,
               textAlign: TextAlign.center,
-              style: AppTextStyles.style20W400(context),
+              style: AppTextStyles.style16W400(context),
             ),
             body?? SizedBox(),
+            SizedBox(
+              height: 16,
+            ),
             MaterialButton(
               height: 44,
               minWidth: 100,
