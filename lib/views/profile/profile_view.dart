@@ -14,6 +14,7 @@ import '../../components/app_colors.dart';
 import '../../components/app_form_filed.dart';
 import '../../generated/assets.dart';
 import '../home/item_details_view.dart';
+import '../home/widgets/list_view_item_from_show_list.dart';
 import '../main/widgets/size_config.dart';
 import 'change_location.dart';
 import 'change_password_view.dart';
@@ -74,7 +75,7 @@ class _ProfileViewState extends State<ProfileView> {
     {
       "imageUrl":
           "https://images.pexels.com/photos/323705/pexels-photo-323705.jpeg",
-      "name": "شقة فندقية  ",
+      "name": "شقة فندقية",
       "location": "مكة المكرمة، السعودية",
       "price": "950,000 ريال",
       "type": "شقة",
@@ -111,140 +112,195 @@ class _ProfileViewState extends State<ProfileView> {
   @override
   Widget build(BuildContext context) {
     AppSizes().init(context);
+    double screenWidth = MediaQuery.of(context).size.width;
     return Directionality(
       textDirection: direction,
-      child: Column(
-        children: [
-          SizedBox(height: 8),
-          Stack(
-            alignment: Alignment.topCenter,
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          return Column(
             children: [
-              MediaQuery.of(context).size.width > 800
-                  ? Row(
-                    children: [
-                      Image.asset(Assets.imagesShapes4, height: 105),
-                      Spacer(),
-                      Image.asset(Assets.imagesShapes5, height: 105),
-                    ],
-                  )
-                  : Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Image.asset(Assets.imagesShap2),
-                      Image.asset(Assets.imagesShap1),
-                    ],
+              SizedBox(height: 8),
+              Stack(
+                alignment: Alignment.topCenter,
+                children: [
+                  screenWidth > 800
+                      ? Row(
+                        children: [
+                          Image.asset(
+                            Assets.imagesShapes4,
+                            height: screenWidth * 0.07,
+                          ),
+                          Spacer(),
+                          Image.asset(
+                            Assets.imagesShapes5,
+                            height: screenWidth * 0.07,
+                          ),
+                        ],
+                      )
+                      : Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Image.asset(
+                            Assets.imagesShap2,
+                            width: screenWidth * 0.3,
+                          ),
+                          Image.asset(
+                            Assets.imagesShap1,
+                            width: screenWidth * 0.3,
+                          ),
+                        ],
+                      ),
+                  Visibility(
+                    visible: screenWidth < 800,
+                    child: Padding(
+                      padding: EdgeInsets.only(top: screenWidth * 0.16),
+                      child: DataOfProfileView(),
+                    ),
                   ),
-              Visibility(
-                visible: AppSizes.screenWidth < 800,
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 64.0),
-                  child: DataOfProfileView(),
-                ),
+                ],
               ),
-            ],
-          ),
-          const SizedBox(height: 20),
-          Visibility(
-            visible: AppSizes.screenWidth < 800,
-            child: Row(
-              spacing: 24,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SwitchProfileButton(
-                  title: "صفقاتي",
-                  image: Assets.imagesBuildings,
-                  isBlack: showMyItems,
-                  onPressed: () {
-                    setState(() {
-                      showMyItems = true;
-                    });
-                  },
+              const SizedBox(height: 20),
+              if (screenWidth < 800)
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SwitchProfileButton(
+                      title: "صفقاتي",
+                      image: Assets.imagesBuildings,
+                      isBlack: showMyItems,
+                      onPressed: () {
+                        setState(() {
+                          showMyItems = true;
+                        });
+                      },
+                    ),
+                    Container(width: 1, height: 35, color: AppColors.border),
+                    SwitchProfileButton(
+                      title: 'تعديل بياناتي',
+                      image: Assets.imagesUser,
+                      isBlack: !showMyItems,
+                      onPressed: () {
+                        setState(() {
+                          showMyItems = false;
+                        });
+                      },
+                    ),
+                  ],
                 ),
-                Container(width: 1, height: 35, color: AppColors.border),
-                SwitchProfileButton(
-                  title: 'تعديل بياناتي',
-                  image: Assets.imagesUser,
-                  isBlack: !showMyItems,
-                  onPressed: () {
-                    setState(() {
-                      showMyItems = false;
-                    });
-                  },
+              if (screenWidth < 800 && !showMyItems)
+                SingleChildScrollView(child: ButtonsProfileView()),
+              if (screenWidth < 800 && showMyItems)
+                Expanded(
+                  child: ListView.separated(
+                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding:
+                            index == properties.length - 1
+                                ? EdgeInsets.only(bottom: screenWidth * 0.25)
+                                : EdgeInsets.zero,
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder:
+                                    (context) => ItemDetailsView(
+                                      image: properties[index]['imageUrl']!,
+                                      name: properties[index]['name']!,
+                                      location: properties[index]['location']!,
+                                      price: properties[index]['price']!,
+                                      commission:
+                                          properties[index]['commission']!,
+                                    ),
+                              ),
+                            );
+                          },
+                          child: ProfileItem(
+                            image: properties[index]['imageUrl']!,
+                            name: properties[index]['name']!,
+                            location: properties[index]['location']!,
+                            price: properties[index]['price']!,
+                            type: properties[index]['type']!,
+                            area: properties[index]['area']!,
+                            status: properties[index]['status']!,
+                            commission: properties[index]['commission']!,
+                          ),
+                        ),
+                      );
+                    },
+                    separatorBuilder: (context, index) => SizedBox(height: 16),
+                    itemCount: properties.length,
+                  ),
                 ),
-              ],
-            ),
-          ),
-          Visibility(
-            visible: AppSizes.screenWidth < 800,
-            child: SingleChildScrollView(
-              child: Visibility(
-                visible: !showMyItems,
-                child: ButtonsProfileView(),
-              ),
-            ),
-          ),
-          Visibility(
-            visible: AppSizes.screenWidth < 800,
-            child: Expanded(
-              child: Visibility(
-                visible: showMyItems,
-                child: ListView.separated(
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding:
-                          index == properties.length - 1
-                              ? const EdgeInsets.only(bottom: 100)
-                              : EdgeInsets.zero,
-                      child: GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder:
-                                  (context) => ItemDetailsView(
-                                    image: properties[index]['imageUrl']!,
-                                    name: properties[index]['name']!,
-                                    location: properties[index]['location']!,
-                                    price: properties[index]['price']!,
-                                    commission:
-                                        properties[index]['commission']!,
-                                  ),
-                            ),
-                          );
-                        },
-                        child: ProfileItem(
-                          image: properties[index]['imageUrl']!,
-                          name: properties[index]['name']!,
-                          location: properties[index]['location']!,
-                          price: properties[index]['price']!,
-                          type: properties[index]['type']!,
-                          area: properties[index]['area']!,
-                          status: properties[index]['status']!,
-                          commission: properties[index]['commission']!,
+              if (screenWidth > 800)
+                Expanded(
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        width: screenWidth > 1200 ? 400 : screenWidth * 0.3,
+                        child: Column(
+                          children: [DataOfProfileView(), ButtonsProfileView()],
                         ),
                       ),
-                    );
-                  },
-                  separatorBuilder: (context, index) => SizedBox(height: 16),
-                  itemCount: properties.length,
-                ),
-              ),
-            ),
-          ),
-          Visibility(
-            visible: AppSizes.screenWidth > 800,
-            child: Row(
-              children: [
-                SizedBox(
-                  width: 370,
-                  child: Column(
-                    children: [DataOfProfileView(), ButtonsProfileView()],
+                      const SizedBox(width: 32),
+                      Expanded(
+                        child: GridView.builder(
+                          itemBuilder: (context, index) {
+                            return GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder:
+                                        (context) => ItemDetailsView(
+                                          showFavourite: true,
+                                          image: properties[index]['imageUrl']!,
+                                          name: properties[index]['name']!,
+                                          location:
+                                              properties[index]['location']!,
+                                          price: properties[index]['price']!,
+                                          commission:
+                                              properties[index]['commission']!,
+                                        ),
+                                  ),
+                                );
+                              },
+                              child: ListViewItemFromShowList(
+                                image: properties[index]['imageUrl']!,
+                                name: properties[index]['name']!,
+                                location: properties[index]['location']!,
+                                price: properties[index]['price']!,
+                                type: properties[index]['type']!,
+                                area: properties[index]['area']!,
+                                status: properties[index]['status']!,
+                                commission: properties[index]['commission']!,
+                              ),
+                            );
+                          },
+                          itemCount: properties.length,
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount:
+                                    screenWidth <= 1000
+                                        ? 2
+                                        : screenWidth <= 1200
+                                        ? 3
+                                        : 3,
+                                childAspectRatio:
+                                    screenWidth > 1200 ? 1.2 : 1.0,
+                                crossAxisSpacing: 16,
+                                mainAxisSpacing: 16,
+                              ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-              ],
-            ),
-          ),
-        ],
+            ],
+          );
+        },
       ),
     );
   }
@@ -255,6 +311,7 @@ class DataOfProfileView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
     return Column(
       children: [
         GestureDetector(
@@ -265,14 +322,14 @@ class DataOfProfileView extends StatelessWidget {
             );
           },
           child: CircleAvatar(
-            radius: 85,
+            radius: screenWidth > 800 ? 100 : 85,
             backgroundColor: AppColors.grey,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(500),
               child: Image.network(
                 "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkAJEkJQ1WumU0hXNpXdgBt9NUKc0QDVIiaw&s",
-                width: 170,
-                height: 170,
+                width: screenWidth > 800 ? 200 : 170,
+                height: screenWidth > 800 ? 200 : 170,
                 fit: BoxFit.cover,
               ),
             ),
@@ -308,200 +365,207 @@ class _ButtonsProfileViewState extends State<ButtonsProfileView> {
     text: "السعودية - الرياض - حي الشارقة",
   );
   final TextEditingController membershipController = TextEditingController(
-    text: "باحث عن عقار",
+    text: "باحتر عن عقار",
   );
 
   @override
   void dispose() {
-    super.dispose();
     nameController.dispose();
     phoneController.dispose();
+    emailController.dispose();
+    locationController.dispose();
     membershipController.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double padding = screenWidth > 800 ? 40 : 32;
+    double dialogWidth =
+        screenWidth > 800 ? screenWidth * 0.4 : screenWidth * 0.9;
+
     return Padding(
-      padding: const EdgeInsets.all(32.0),
+      padding: EdgeInsets.all(padding),
       child: Column(
-        spacing: 16,
+        mainAxisSize: MainAxisSize.min,
         children: [
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           EditDataButton(
             title: 'تحديث معلوماتي',
             onPressed: () {
-              AppSizes.screenWidth > 800
-                  ? showDialog(
-                    context: context,
-                    builder:
-                        (context) => AppAlertDialog2(
-                          title: "تحديث معلوماتي",
-                          body: Directionality(
-                            textDirection: direction,
-                            child: SingleChildScrollView(
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 24,
-                                ),
-                                child: Column(
-                                  spacing: 16,
-                                  children: [
-                                    SizedBox(height: 24, width: 400),
-                                    Stack(
-                                      children: [
-                                        Container(
-                                          width: 164,
-                                          height: 164,
+              if (screenWidth > 800) {
+                showDialog(
+                  context: context,
+                  builder:
+                      (context) => AppAlertDialog2(
+                        title: "تحديث معلوماتي",
+                        body: Directionality(
+                          textDirection: direction,
+                          child: SingleChildScrollView(
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: padding,
+                              ),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  SizedBox(height: 24, width: dialogWidth),
+                                  Stack(
+                                    children: [
+                                      Container(
+                                        width: dialogWidth * 0.4,
+                                        height: dialogWidth * 0.4,
+                                        decoration: BoxDecoration(
+                                          color: Color(0xffEEEEEE),
+                                          borderRadius: BorderRadius.circular(
+                                            240,
+                                          ),
+                                        ),
+                                        child: Center(
+                                          child: SvgPicture.asset(
+                                            Assets.imagesUser,
+                                            color: AppColors.black,
+                                            width: dialogWidth * 0.06,
+                                          ),
+                                        ),
+                                      ),
+                                      Positioned(
+                                        bottom: 4,
+                                        right:
+                                            direction == TextDirection.rtl
+                                                ? 12
+                                                : null,
+                                        left:
+                                            direction == TextDirection.ltr
+                                                ? 12
+                                                : null,
+                                        child: Container(
+                                          width: 32,
+                                          height: 32,
                                           decoration: BoxDecoration(
-                                            color: Color(0xffEEEEEE),
+                                            color: AppColors.white,
                                             borderRadius: BorderRadius.circular(
                                               240,
+                                            ),
+                                            border: Border.all(
+                                              width: 1,
+                                              color: AppColors.border,
                                             ),
                                           ),
                                           child: Center(
                                             child: SvgPicture.asset(
-                                              Assets.imagesUser,
-                                              color: AppColors.black,
-                                              width: 24,
+                                              Assets.imagesCamera,
+                                              width: 16,
                                             ),
                                           ),
                                         ),
-                                        Positioned(
-                                          bottom: 4,
-                                          right:
-                                              direction == TextDirection.rtl
-                                                  ? 12
-                                                  : null,
-                                          left:
-                                              direction == TextDirection.ltr
-                                                  ? 12
-                                                  : null,
-                                          child: Container(
-                                            width: 32,
-                                            height: 32,
-                                            decoration: BoxDecoration(
-                                              color: AppColors.white,
-                                              borderRadius:
-                                                  BorderRadius.circular(240),
-                                              border: Border.all(
-                                                width: 1,
-                                                color: AppColors.border,
+                                      ),
+                                    ],
+                                  ),
+                                  AppInputTextFormField(
+                                    title: "الاسم",
+                                    controller: nameController,
+                                    keyboardType: TextInputType.name,
+                                  ),
+                                  AppInputTextFormField(
+                                    title: "رقم الهاتف",
+                                    controller: phoneController,
+                                    keyboardType: TextInputType.phone,
+                                  ),
+                                  AppInputTextFormField(
+                                    title: "العنوان",
+                                    controller: locationController,
+                                    keyboardType: TextInputType.name,
+                                    suffixIcon: SizedBox(
+                                      width: 100,
+                                      child: Center(
+                                        child: TextButton(
+                                          onPressed: () {
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder:
+                                                    (_) => ChangeLocation(),
                                               ),
-                                            ),
-                                            child: Center(
-                                              child: SvgPicture.asset(
-                                                Assets.imagesCamera,
-                                                width: 16,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    AppInputTextFormField(
-                                      title: "الاسم",
-                                      controller: nameController,
-                                      keyboardType: TextInputType.name,
-                                    ),
-
-                                    AppInputTextFormField(
-                                      title: "رقم الهاتف",
-                                      controller: phoneController,
-                                      keyboardType: TextInputType.phone,
-                                    ),
-                                    AppInputTextFormField(
-                                      title: "العنوان",
-                                      controller: locationController,
-                                      keyboardType: TextInputType.name,
-                                      suffixIcon: SizedBox(
-                                        width: 100,
-                                        child: Center(
-                                          child: TextButton(
-                                            onPressed: () {
-                                              Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                  builder:
-                                                      (_) => ChangeLocation(),
-                                                ),
-                                              );
-                                            },
-                                            child: Text(
-                                              "تغير الموقع",
-                                              style: AppTextStyles.style12W400(
-                                                context,
-                                              ).copyWith(
-                                                color: AppColors.green,
-                                                decoration:
-                                                    TextDecoration.underline,
-                                                decorationColor:
-                                                    AppColors.green,
-                                              ),
+                                            );
+                                          },
+                                          child: Text(
+                                            "تغير الموقع",
+                                            style: AppTextStyles.style12W400(
+                                              context,
+                                            ).copyWith(
+                                              color: AppColors.green,
+                                              decoration:
+                                                  TextDecoration.underline,
+                                              decorationColor: AppColors.green,
                                             ),
                                           ),
                                         ),
                                       ),
                                     ),
-
-                                    const SizedBox(height: 16),
-                                  ],
-                                ),
+                                  ),
+                                  const SizedBox(height: 16),
+                                ],
                               ),
                             ),
                           ),
-
-                          onPressedOk: () {},
                         ),
-                  )
-                  : Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (_) => EditProfileView()),
-                  );
+                        onPressedOk: () {},
+                      ),
+                );
+              } else {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => EditProfileView()),
+                );
+              }
             },
           ),
           EditDataButton(
             title: 'تغير كلمة المرور',
             onPressed: () {
-              AppSizes.screenWidth > 800
-                  ? showDialog(
-                    context: context,
-                    builder:
-                        (context) => AppAlertDialog2(
-                          title: "إعادة تعيين كلمة المرور",
-                          body: Directionality(
-                            textDirection: direction,
-                            child: SingleChildScrollView(
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 32.0,
-                                ),
-                                child: Column(
-                                  spacing: 24,
-                                  children: [
-                                    SizedBox(height: 24, width: 400),
-                                    PasswordTextForm(
-                                      title: 'كلمة المرور الحالية',
-                                    ),
-                                    PasswordTextForm(
-                                      title: 'كلمة المرور الجديدة',
-                                    ),
-                                    PasswordTextForm(
-                                      title: 'تأكيد كلمة المرور الجديدة',
-                                    ),
-                                    const SizedBox(height: 24),
-                                  ],
-                                ),
+              if (screenWidth > 800) {
+                showDialog(
+                  context: context,
+                  builder:
+                      (context) => AppAlertDialog2(
+                        title: "إعادة تعيين كلمة المرور",
+                        body: Directionality(
+                          textDirection: direction,
+                          child: SingleChildScrollView(
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: padding,
+                              ),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  SizedBox(height: 24, width: dialogWidth),
+                                  PasswordTextForm(
+                                    title: 'كلمة المرور الحالية',
+                                  ),
+                                  PasswordTextForm(
+                                    title: 'كلمة المرور الجديدة',
+                                  ),
+                                  PasswordTextForm(
+                                    title: 'تأكيد كلمة المرور الجديدة',
+                                  ),
+                                  const SizedBox(height: 24),
+                                ],
                               ),
                             ),
                           ),
-
-                          onPressedOk: () {},
                         ),
-                  )
-                  : Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (_) => ChangePasswordView()),
-                  );
+                        onPressedOk: () {},
+                      ),
+                );
+              } else {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => ChangePasswordView()),
+                );
+              }
             },
           ),
           EditDataButton(

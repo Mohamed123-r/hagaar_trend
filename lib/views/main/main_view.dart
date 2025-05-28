@@ -25,7 +25,6 @@ class MainViewState extends State<MainView> {
   int _currentIndex = 0;
   final PageController pageController = PageController();
 
-
   @override
   void dispose() {
     pageController.dispose();
@@ -44,11 +43,12 @@ class MainViewState extends State<MainView> {
   Widget build(BuildContext context) {
     AppSizes().init(context);
     return Scaffold(
-      //appBar: customAppBar(context),
       body: Directionality(
         textDirection: direction,
         child: Stack(
-          alignment: Alignment.bottomCenter,
+          alignment: MediaQuery.of(context).size.width >= 800
+              ? Alignment.topCenter
+              : Alignment.bottomCenter,
           children: [
             PageView(
               onPageChanged: (value) {
@@ -62,13 +62,20 @@ class MainViewState extends State<MainView> {
                 HomeView(),
                 ProfileView(),
                 NotificationView(),
-                service == 'customer'
-                    ? CustomerServiceView()
-                    : OwnerServiceView(),
+                service == 'customer' ? CustomerServiceView() : OwnerServiceView(),
               ],
             ),
             Padding(
-              padding: const EdgeInsets.only(bottom: 16, right: 16, left: 16),
+              padding: EdgeInsets.only(
+                top: MediaQuery.of(context).size.width >= 800 ? 24 : 0,
+                bottom: MediaQuery.of(context).size.width >= 800 ? 0 : 16,
+                right: MediaQuery.of(context).size.width >= 800
+                    ? MediaQuery.of(context).size.width * 0.12 // نسبة 12%
+                    : 16,
+                left: MediaQuery.of(context).size.width >= 800
+                    ? MediaQuery.of(context).size.width * 0.12
+                    : 16,
+              ),
               child: bottomNav(),
             ),
           ],
@@ -78,6 +85,9 @@ class MainViewState extends State<MainView> {
   }
 
   Widget bottomNav() {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double navWidth = screenWidth >= 800 ? screenWidth * 0.76 : screenWidth - 32; // 76% من الشاشة الكبيرة
+    double itemWidth = navWidth / 4;
     return Directionality(
       textDirection: direction,
       child: Material(
@@ -85,73 +95,74 @@ class MainViewState extends State<MainView> {
         color: Colors.transparent,
         elevation: 6,
         child: Container(
-          height: AppSizes.blockSizeHorizontal * 18,
-          width: MediaQuery.of(context).size.width,
+          height: screenWidth >= 800 ? 56 : 75,
+          width: double.infinity,
           decoration: BoxDecoration(
-            color: AppColors.black,
-            borderRadius: BorderRadius.circular(30),
+            color: screenWidth >= 800 ? Color(0xffF9FAFC) : AppColors.black,
+            borderRadius: BorderRadius.circular(16),
           ),
           child: Stack(
+            alignment: Alignment.center,
             children: [
-              Positioned(
-                top: 0,
-                bottom: 0,
-                left: AppSizes.blockSizeHorizontal * 3,
-                right: AppSizes.blockSizeHorizontal * 3,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    BottomNavBTN(
-                      title: "الرئيسية",
-                      onPressed: (val) {
-                        animateToPage(val);
-                      },
-                      icon: Assets.imagesHouseLine,
-                      currentIndex: _currentIndex,
-                      index: 0,
-                    ),
-                    BottomNavBTN(
-                      title: "حسابي",
-                      onPressed: (val) {
-                        animateToPage(val);
-                      },
-                      icon: Assets.imagesUser,
-                      currentIndex: _currentIndex,
-                      index: 1,
-                    ),
-
-                    BottomNavBTN(
-                      title: "الإشعارات",
-                      onPressed: (val) {
-                        animateToPage(val);
-                      },
-                      icon: Assets.imagesBell,
-                      currentIndex: _currentIndex,
-                      index: 2,
-                    ),
-                    BottomNavBTN(
-                      title: "الخدمات",
-                      onPressed: (val) {
-                        animateToPage(val);
-                      },
-                      icon: Assets.imagesHeadset,
-                      currentIndex: _currentIndex,
-                      index: 3,
-                    ),
-                  ],
+              Visibility(
+                visible: screenWidth >= 800,
+                child: Positioned(
+                  left: 16,
+                  child: Image.asset(Assets.imagesLogo, height: 56),
                 ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  BottomNavBTN(
+                    title: "الرئيسية",
+                    onPressed: (val) {
+                      animateToPage(val);
+                    },
+                    icon: Assets.imagesHouseLine,
+                    currentIndex: _currentIndex,
+                    index: 0,
+                  ),
+                  BottomNavBTN(
+                    title: "حسابي",
+                    onPressed: (val) {
+                      animateToPage(val);
+                    },
+                    icon: Assets.imagesUser,
+                    currentIndex: _currentIndex,
+                    index: 1,
+                  ),
+                  BottomNavBTN(
+                    title: "الإشعارات",
+                    onPressed: (val) {
+                      animateToPage(val);
+                    },
+                    icon: Assets.imagesBell,
+                    currentIndex: _currentIndex,
+                    index: 2,
+                  ),
+                  BottomNavBTN(
+                    title: "الخدمات",
+                    onPressed: (val) {
+                      animateToPage(val);
+                    },
+                    icon: Assets.imagesHeadset,
+                    currentIndex: _currentIndex,
+                    index: 3,
+                  ),
+                ],
               ),
               AnimatedPositioned(
                 duration: const Duration(milliseconds: 300),
                 curve: Curves.decelerate,
                 top: 0,
-                left: animatedPositionedLeftValue(_currentIndex),
+                left: animatedPositionedLeftValue(_currentIndex, navWidth),
                 child: Column(
                   children: [
                     Container(
-                      height: AppSizes.blockSizeHorizontal * 1,
-                      width: AppSizes.blockSizeHorizontal * 12,
+                      height: 4,
+                      width: itemWidth * 0.6, // 60% من عرض العنصر
                       decoration: BoxDecoration(
                         color: AppColors.orange,
                         borderRadius: BorderRadius.circular(10),
@@ -168,24 +179,31 @@ class MainViewState extends State<MainView> {
   }
 }
 
-double animatedPositionedLeftValue(int currentIndex) {
+double animatedPositionedLeftValue(int currentIndex, double navWidth) {
+  double itemWidth = navWidth / 4; // عرض كل عنصر
+  double indicatorWidth = itemWidth * 0.6; // عرض المؤشر (60% من العنصر)
+  double offset = (itemWidth - indicatorWidth) / 2; // لتوسيط المؤشر داخل العنصر
+
   switch (currentIndex) {
     case 0:
       return direction == TextDirection.ltr
-          ? AppSizes.blockSizeHorizontal * 7.5
-          : AppSizes.blockSizeHorizontal * 72;
+          ? offset // بداية الصفحة الأولى من اليسار
+          : navWidth - itemWidth + offset; // بداية الصفحة الأولى من اليمين
     case 1:
       return direction == TextDirection.ltr
-          ? AppSizes.blockSizeHorizontal * 30
-          : AppSizes.blockSizeHorizontal * 51;
+          ? itemWidth + offset // الصفحة الثانية
+          : navWidth - (itemWidth * 2) + offset;
     case 2:
       return direction == TextDirection.ltr
-          ? AppSizes.blockSizeHorizontal * 51
-          : AppSizes.blockSizeHorizontal * 30;
-
+          ? (itemWidth * 2) + offset // الصفحة الثالثة
+          : navWidth - (itemWidth * 3) + offset;
+    case 3:
+      return direction == TextDirection.ltr
+          ? (itemWidth * 3) + offset // الصفحة الرابعة
+          : offset;
     default:
       return direction == TextDirection.ltr
-          ? AppSizes.blockSizeHorizontal * 72
-          : AppSizes.blockSizeHorizontal * 7.5;
+          ? offset
+          : navWidth - itemWidth + offset;
   }
 }

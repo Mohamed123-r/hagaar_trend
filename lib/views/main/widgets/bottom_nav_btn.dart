@@ -3,8 +3,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import 'size_config.dart';
 
-
-
 class BottomNavBTN extends StatelessWidget {
   final Function(int) onPressed;
   final String icon;
@@ -17,7 +15,8 @@ class BottomNavBTN extends StatelessWidget {
     required this.icon,
     required this.onPressed,
     required this.index,
-    required this.currentIndex, required this.title,
+    required this.currentIndex,
+    required this.title,
   });
 
   @override
@@ -28,27 +27,34 @@ class BottomNavBTN extends StatelessWidget {
         onPressed(index);
       },
       child: Container(
-        height: AppSizes.blockSizeHorizontal * 13,
-        width: AppSizes.blockSizeHorizontal * 17,
-        decoration: const BoxDecoration(
-          color: Colors.transparent,
-        ),
+        height: MediaQuery.of(context).size.width >= 800 ? 20 : 50,
+        decoration: const BoxDecoration(color: Colors.transparent),
         child: Stack(
           alignment: Alignment.center,
           children: [
-
             AnimatedOpacity(
               opacity: (currentIndex == index) ? 1 : 0.2,
               duration: const Duration(milliseconds: 300),
               curve: Curves.easeIn,
               child: Column(
                 children: [
-                  SvgPicture.asset(icon),
+                  Visibility(
+                    visible: MediaQuery.of(context).size.width < 800,
+                    child: SvgPicture.asset(icon),
+                  ),
 
                   Text(
                     title,
-                    style: TextStyle(fontSize: 12, fontWeight: FontWeight.w700,color: Colors.white),
-                  )
+                    style: TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w700,
+
+                      color:
+                          MediaQuery.of(context).size.width >= 800
+                              ? Colors.black
+                              : Colors.white,
+                    ),
+                  ),
                 ],
               ),
             ),
