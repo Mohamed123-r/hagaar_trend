@@ -12,7 +12,18 @@ class HomeOwnerView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: Image.asset(Assets.imagesHomeBackground),
+      bottomNavigationBar: Container(
+        width: MediaQuery.of(context).size.width ,
+        height: MediaQuery.of(context).size.width >= 600 ? 190 : null,
+        child: Image.asset(
+          Assets.imagesHomeBackground,
+
+          width:
+              MediaQuery.of(context).size.width >= 600
+                  ? 440
+                  : MediaQuery.of(context).size.width,
+        ),
+      ),
       body: Column(
         children: [
           SizedBox(height: 16),

@@ -4,6 +4,8 @@ import 'package:hagaar_trend/components/app_text_styles.dart';
 import 'package:hagaar_trend/generated/assets.dart';
 import 'package:hagaar_trend/views/home/widgets/home_owner_details_item_view.dart';
 
+import '../../components/custom_app_bar.dart';
+import '../../constant.dart';
 import '../customer_service/owner_service_follow_item_details_view.dart';
 import '../main/main_view.dart';
 import '../profile/widgets/profile_item.dart';
@@ -94,85 +96,150 @@ class HomeOwnerDetailsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
+
       body: Column(
         children: [
           SizedBox(height: 16),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Image.asset(Assets.imagesLogo, height: 54, width: 64),
-                Spacer(),
-                MaterialButton(
-                  color: AppColors.green,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(200),
-                  ),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => MainView()),
-                    );
-                  },
-                  child: Text(
-                    "تخطي",
-                    style: AppTextStyles.style12W400(
-                      context,
-                    ).copyWith(color: AppColors.white),
-                  ),
+          Stack(
+            children: [
+              MediaQuery.of(context).size.width >= 800
+                  ?Directionality(
+                textDirection: direction,
+                child: Row(
+                  children: [
+                    Image.asset(Assets.imagesShapes4,height: 105, ),
+                    Spacer(),
+                    Image.asset(Assets.imagesShapes5,height: 105, ),
+                  ],
                 ),
-              ],
-            ),
+              ) : SizedBox() ,
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Image.asset(Assets.imagesLogo, height: 54, width: 64),
+                    Spacer(),
+                    MaterialButton(
+                      color: AppColors.green,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(200),
+                      ),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => MainView()),
+                        );
+                      },
+                      child: Text(
+                        "تخطي",
+                        style: AppTextStyles.style12W400(
+                          context,
+                        ).copyWith(color: AppColors.white),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
           Expanded(
             child: Stack(
               alignment: Alignment.bottomCenter,
               children: [
-                ListView.separated(
-                  padding: EdgeInsets.zero,
+                MediaQuery.of(context).size.width >= 800
+                    ? GridView.builder(
                   itemBuilder: (context, index) {
-                    return Padding(
-                      padding:
-                          index == properties.length - 1
-                              ? const EdgeInsets.only(bottom: 80)
-                              : EdgeInsets.zero,
-                      child: GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder:
-                                  (context) =>
-                                      OwnerServiceFollowItemDetailsView(
-                                        image: properties[index]['imageUrl']!,
-                                        name: properties[index]['name']!,
-                                        location:
-                                            properties[index]['location']!,
-                                        price: properties[index]['price']!,
-                                        commission:
-                                            properties[index]['commission']!,
-                                      ),
+      return GestureDetector(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder:
+                  (context) =>
+                  OwnerServiceFollowItemDetailsView(
+                    image: properties[index]['imageUrl']!,
+                    name: properties[index]['name']!,
+                    location:
+                    properties[index]['location']!,
+                    price: properties[index]['price']!,
+                    commission:
+                    properties[index]['commission']!,
+                  ),
+            ),
+          );
+        },
+        child: HomeOwnerDetailsItemView(
+          image: properties[index]['imageUrl']!,
+          name: properties[index]['name']!,
+          location: properties[index]['location']!,
+          price: properties[index]['price']!,
+          type: properties[index]['type']!,
+          area: properties[index]['area']!,
+          status: properties[index]['status']!,
+          commission: properties[index]['commission']!,
+        ),
+      )
+;},
+                  itemCount: properties.length,
+                  gridDelegate:
+                  SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount:
+                    screenWidth <= 1000
+                        ? 2
+                        : screenWidth <= 1500
+                        ? 3
+                        : 4,
+                    childAspectRatio: 1.5,
+                    crossAxisSpacing: 16,
+                    mainAxisSpacing: 16,
+                  ),
+                )
+                    : ListView.separated(
+            padding: EdgeInsets.zero,
+            itemBuilder: (context, index) {
+              return Padding(
+                padding:
+                index == properties.length - 1
+                    ? const EdgeInsets.only(bottom: 80)
+                    : EdgeInsets.zero,
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder:
+                            (context) =>
+                            OwnerServiceFollowItemDetailsView(
+                              image: properties[index]['imageUrl']!,
+                              name: properties[index]['name']!,
+                              location:
+                              properties[index]['location']!,
+                              price: properties[index]['price']!,
+                              commission:
+                              properties[index]['commission']!,
                             ),
-                          );
-                        },
-                        child: HomeOwnerDetailsItemView(
-                          image: properties[index]['imageUrl']!,
-                          name: properties[index]['name']!,
-                          location: properties[index]['location']!,
-                          price: properties[index]['price']!,
-                          type: properties[index]['type']!,
-                          area: properties[index]['area']!,
-                          status: properties[index]['status']!,
-                          commission: properties[index]['commission']!,
-                        ),
                       ),
                     );
                   },
-                  separatorBuilder: (context, index) => SizedBox(height: 12),
-                  itemCount: properties.length,
+                  child: HomeOwnerDetailsItemView(
+                    image: properties[index]['imageUrl']!,
+                    name: properties[index]['name']!,
+                    location: properties[index]['location']!,
+                    price: properties[index]['price']!,
+                    type: properties[index]['type']!,
+                    area: properties[index]['area']!,
+                    status: properties[index]['status']!,
+                    commission: properties[index]['commission']!,
+                  ),
                 ),
+              );
+            },
+            separatorBuilder: (context, index) => SizedBox(height: 12),
+            itemCount: properties.length,
+          ),
                 Positioned(
                   bottom: 20,
 
