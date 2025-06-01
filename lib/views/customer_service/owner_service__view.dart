@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hagaar_trend/components/app_alert_dialog.dart';
 import 'package:hagaar_trend/components/app_form_filed.dart';
 import 'package:hagaar_trend/components/custom_app_bar.dart';
 import 'package:hagaar_trend/generated/assets.dart';
@@ -22,124 +23,328 @@ class OwnerServiceView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: customAppBar(
-        context,
-        title: "خدمات مالك العقار",
-        showBack: false,
-      ),
+      appBar:
+          MediaQuery.of(context).size.width > 800
+              ? customWibAppBar(context)
+              : customAppBar(
+                context,
+                title: "خدمات مالك العقار",
+                showBack: false,
+              ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              InkWell(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder:
-                          (context) =>
-                              CustomerServiceView(isSendComplaints: true),
-                    ),
-                  );
-                },
-                child: Container(
-                  padding: EdgeInsets.all(12),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    border: Border.all(color: AppColors.middleGreen),
-                  ),
-                  child: Row(
-                    spacing: 12,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SvgPicture.asset(
-                        Assets.imagesHeadset,
-                        width: 18,
-                        height: 18,
-                        color: AppColors.green,
+          child: Align(
+            alignment: Alignment.center,
+            child: SizedBox(
+              width:
+                  MediaQuery.of(context).size.width >= 1000
+                      ? 1000
+                      : MediaQuery.of(context).size.width,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  InkWell(
+                    onTap: () {
+                      MediaQuery.of(context).size.width >= 800
+                          ? showDialog(
+                            context: context,
+                            builder:
+                                (context) => AppAlertDialog(
+                                  body: SingleChildScrollView(
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(24.0),
+                                      child: Column(
+                                        children: [
+                                          SizedBox(height: 100),
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Text(
+                                                "مرحبا بك",
+                                                style:
+                                                    AppTextStyles.style18W800(
+                                                      context,
+                                                    ).copyWith(
+                                                      color: AppColors.green,
+                                                    ),
+                                              ),
+                                              SizedBox(width: 8),
+                                              Image.asset(
+                                                Assets.imagesHand,
+                                                width: 32,
+                                                height: 32,
+                                              ),
+                                            ],
+                                          ),
+                                          Text(
+                                            "كيف نقدر نساعدك ؟!",
+                                            style: AppTextStyles.style18W800(
+                                              context,
+                                            ).copyWith(color: AppColors.green),
+                                          ),
+                                          SizedBox(height: 56),
+                                          Text(
+                                            "نرد عليك في خلال 24 ساعة !",
+                                            style: AppTextStyles.style14W400(
+                                              context,
+                                            ).copyWith(color: AppColors.green),
+                                          ),
+                                          SizedBox(
+                                            width:
+                                                MediaQuery.of(
+                                                          context,
+                                                        ).size.width >
+                                                        800
+                                                    ? 400
+                                                    : MediaQuery.of(
+                                                          context,
+                                                        ).size.width -
+                                                        48,
+                                            child: AppInputTextFormField(
+                                              maxLines: 5,
+                                              labelText: "أدخل الشكوي",
+                                            ),
+                                          ),
+                                          SizedBox(height: 32),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  onPressedOk: () {},
+                                ),
+                          )
+                          : Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder:
+                                  (context) => CustomerServiceView(
+                                    isSendComplaints: true,
+                                  ),
+                            ),
+                          );
+                    },
+                    child: Container(
+                      padding: EdgeInsets.all(12),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        border: Border.all(color: AppColors.middleGreen),
                       ),
-                      Text(
-                        "أكتب لنا شكوتك",
-                        style: AppTextStyles.style14W400(
-                          context,
-                        ).copyWith(color: AppColors.green),
+                      child: Row(
+                        spacing: 12,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SvgPicture.asset(
+                            Assets.imagesHeadset,
+                            width: 18,
+                            height: 18,
+                            color: AppColors.green,
+                          ),
+                          Text(
+                            "أكتب لنا شكوتك",
+                            style: AppTextStyles.style14W400(
+                              context,
+                            ).copyWith(color: AppColors.green),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 8),
+                  Row(
+                    spacing: 8,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      OwnerTopServiceCard(
+                        onTap: () {
+                          MediaQuery.of(context).size.width >= 800
+                              ? showDialog(
+                                context: context,
+                                builder:
+                                    (context) => AppAlertDialog(
+                                      body: Expanded(
+                                        child: SingleChildScrollView(
+                                          child:
+                                              OwnerServiceAddPropertyBodyView(
+                                                showBody: "Main Body",
+                                              ),
+                                        ),
+                                      ),
+                                      showButton: false,
+                                      onPressedOk: () {},
+                                    ),
+                              )
+                              : Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder:
+                                      (context) =>
+                                          OwnerServiceAddPropertyView(),
+                                ),
+                              );
+                        },
+                        title: 'إضافة عقار',
+                        image: Assets.imagesOwnerServiceAdd,
+                      ),
+                      OwnerTopServiceCard(
+                        onTap: () {
+                          MediaQuery.of(context).size.width >= 800
+                              ? showDialog(
+                                context: context,
+                                builder:
+                                    (context) => AppAlertDialog(
+                                      body: OwnerServiceRequestBodyView(),
+                                      showButton: false,
+                                      onPressedOk: () {},
+                                    ),
+                              )
+                              : Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder:
+                                      (context) => OwnerServiceRequestView(),
+                                ),
+                              );
+                        },
+                        title: 'طلب شراء أرض',
+                        image: Assets.imagesOwnerServiceRecust,
+                      ),
+                      OwnerTopServiceCard(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => OwnerServiceFollowView(),
+                            ),
+                          );
+                        },
+                        title: 'متابعة عقاراتي',
+                        image: Assets.imagesOwnerServiceFollow,
                       ),
                     ],
                   ),
-                ),
-              ),
-              SizedBox(height: 8),
-              Row(
-                spacing: 8,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  OwnerTopServiceCard(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => OwnerServiceAddPropertyView(),
-                        ),
-                      );
-                    },
-                    title: 'إضافة عقار',
-                    image: Assets.imagesOwnerServiceAdd,
-                  ),
-                  OwnerTopServiceCard(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => OwnerServiceRequestView(),
-                        ),
-                      );
-                    },
-                    title: 'طلب شراء أرض',
-                    image: Assets.imagesOwnerServiceRecust,
-                  ),
-                  OwnerTopServiceCard(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => OwnerServiceFollowView(),
-                        ),
-                      );
-                    },
-                    title: 'متابعة عقاراتي',
-                    image: Assets.imagesOwnerServiceFollow,
+                  const SizedBox(height: 32),
+                  Align(
+                    alignment: Alignment.center,
+                    child: SizedBox(
+                      width:
+                          MediaQuery.of(context).size.width >= 1000
+                              ? 500
+                              : MediaQuery.of(context).size.width,
+                      child: Column(
+                        spacing: 16,
+                        crossAxisAlignment:
+                            MediaQuery.of(context).size.width > 1000
+                                ? CrossAxisAlignment.center
+                                : CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "خدماتي :",
+                            style: AppTextStyles.style16W800(context),
+                          ),
+                          const SizedBox(height: 16),
+                          Visibility(
+                            visible: service == 'owner',
+                            child: OwnerServiceItem(
+                              title: 'الإتفاقات',
+                              onTap: () {
+                                MediaQuery.of(context).size.width >= 800
+                                    ? showDialog(
+                                      context: context,
+                                      builder:
+                                          (context) => AppShowAlertDialog(
+                                            body: SizedBox(
+                                              width: 500,
+                                              height: 600,
+                                              child: Column(
+                                                children: [
+                                                  Text(
+                                                    "الإتفاقات",
+                                                    style: AppTextStyles.style24W800(
+                                                      context,
+                                                    ).copyWith(
+                                                      color: AppColors.green,
+                                                    ),
+                                                  ),
+                                                  const SizedBox(height: 8),
+                                                  Expanded(
+                                                    child: AgreementBodyView(
+                                                      items: [
+                                                        'شقة',
+                                                        'دور سكني',
+                                                        'فيلا',
+                                                        'عمائر',
+                                                        'أراضي',
+                                                        'مجمع سكني',
+                                                        'صالات عرض',
+                                                        'مكاتب',
+                                                        'سكن عمال',
+                                                        'مستودعات',
+                                                        'معارض',
+                                                        'مصانع',
+                                                        'مزارع',
+                                                        'شاليهات',
+                                                        'استراحات',
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                    )
+                                    : Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => AgreementView(),
+                                      ),
+                                    );
+                              },
+                            ),
+                          ),
+
+                          Visibility(
+                            visible: service == 'owner',
+                            child: OwnerServiceItem(
+                              title: 'الإشتراكات',
+                              onTap: () {
+                                MediaQuery.of(context).size.width >= 800
+                                    ? showDialog(
+                                  context: context,
+                                  builder:
+                                      (context) => AppShowAlertDialog(
+                                    body: SizedBox(
+                                      width: 500,
+                                      height: 600,
+                                      child: Column(
+                                        children: [
+
+                                          Expanded(
+                                            child: SubscriptionBodyView(),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                )
+                                    :
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => SubscriptionView(),
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
                 ],
               ),
-              const SizedBox(height: 32),
-              Text("خدماتي :", style: AppTextStyles.style16W800(context)),
-              const SizedBox(height: 16),
-              Visibility(
-                visible: service == 'owner',
-                child: OwnerServiceItem(title: 'الإتفاقات', onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => AgreementView(),
-                    ),
-                  );
-                }),
-              ),
-
-              Visibility(
-                visible: service != 'owner',
-                child: OwnerServiceItem(title: 'الإشتراكات', onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => SubscriptionView(),
-                    ),
-                  );
-                }),
-              ),
-            ],
+            ),
           ),
         ),
       ),

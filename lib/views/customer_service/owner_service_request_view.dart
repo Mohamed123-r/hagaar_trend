@@ -22,126 +22,138 @@ class OwnerServiceRequestView extends StatefulWidget {
 }
 
 class _OwnerServiceRequestPropertyView extends State<OwnerServiceRequestView> {
-
-
   @override
   Widget build(BuildContext context) {
     return Directionality(
       textDirection: direction,
       child: Scaffold(
         appBar: customAppBar(context, title: "طلب أرض", showBack: true),
-        body: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
+        body: OwnerServiceRequestBodyView(),
+      ),
+    );
+  }
+}
+
+class OwnerServiceRequestBodyView extends StatelessWidget {
+  const OwnerServiceRequestBodyView({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              Text(
+                'تحديد نوع الأرض',
+                style: AppTextStyles.style16W800(context),
+              ),
+               SizedBox(height: 16,
+                 width: MediaQuery.of(context).size.width > 800
+                     ? 400
+                     : MediaQuery.of(context).size.width - 48,
+               ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                spacing: 8,
                 children: [
-                  Text(
-                    'تحديد نوع الأرض',
-                    style: AppTextStyles.style16W800(context),
+                  OwnerTopServiceCard(
+                    title: 'أرض \nتجارية',
+                    showImage: false,
                   ),
-                  const SizedBox(height: 16),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    spacing: 8,
-                    children: [
-                      OwnerTopServiceCard(
-                        title: 'أرض \nتجارية',
-                        showImage: false,
-                      ),
-                      OwnerTopServiceCard(
-                        title: 'أرض \nسكنية',
-                        showImage: false,
-                      ),
-                      OwnerTopServiceCard(
-                        title: 'أرض \nزراعية',
-                        showImage: false,
-                      ),
-                    ],
+                  OwnerTopServiceCard(
+                    title: 'أرض \nسكنية',
+                    showImage: false,
                   ),
-                  const SizedBox(height: 24),
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 12),
-                    decoration: BoxDecoration(
-                      border: Border.all(color: AppColors.border),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "تحديد موقع العقار",
-                          style: AppTextStyles.style14W400(
-                            context,
-                          ).copyWith(color: AppColors.grey),
-                        ),
-                        TextButton(
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (_) => ChangeLocation(),
-                              ),
-                            );
-                          },
-                          child: Text(
-                            "تغيير الموقع",
-                            style: AppTextStyles.style14W400(
-                              context,
-                            ).copyWith(
-                              color: AppColors.green,
-                              decoration: TextDecoration.underline,
-                              decorationColor: AppColors.green,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: AppInputTextFormField(
-                          labelText: "السعر الأدني",
-                        ),
-                      ),
-                      SizedBox(
-                        width: 12,
-                      ),
-                      Expanded(child: AppInputTextFormField(
-                        labelText: "السعر الأعلي",)),
-                    ],
+                  OwnerTopServiceCard(
+                    title: 'أرض \nزراعية',
+                    showImage: false,
                   ),
                 ],
               ),
-              Expanded(child: const SizedBox(height: 12)),
-              MaterialButton(
-                height: 44,
-                minWidth: 100,
-                padding: EdgeInsets.zero,
-                color: AppColors.black,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(80),
+              const SizedBox(height: 24),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 12),
+                decoration: BoxDecoration(
+                  border: Border.all(color: AppColors.border),
+                  borderRadius: BorderRadius.circular(12),
                 ),
-                onPressed: () {
-                  showDialog(context: context, builder: (context) =>
-                      AppAlertDialog2(
-                          title: "تم إنشاء طلبك بنجاح سيتم التواصل معك قريبت",
-                          onPressedOk: () {}),
-                  );
-                },
-                child: Text(
-                  "إتمام الطلب",
-                  style: AppTextStyles.style12W700(
-                    context,
-                  ).copyWith(color: AppColors.white),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "تحديد موقع العقار",
+                      style: AppTextStyles.style14W400(
+                        context,
+                      ).copyWith(color: AppColors.grey),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => ChangeLocation(),
+                          ),
+                        );
+                      },
+                      child: Text(
+                        "تغيير الموقع",
+                        style: AppTextStyles.style14W400(context).copyWith(
+                          color: AppColors.green,
+                          decoration: TextDecoration.underline,
+                          decorationColor: AppColors.green,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
-              const SizedBox(height: 12),
+              Row(
+                children: [
+                  Expanded(
+                    child: AppInputTextFormField(labelText: "السعر الأدني"),
+                  ),
+                  SizedBox(width: 12),
+                  Expanded(
+                    child: AppInputTextFormField(labelText: "السعر الأعلي"),
+                  ),
+                ],
+              ),
             ],
           ),
-        ),
+          const SizedBox(height: 12),
+          MaterialButton(
+            height: 44,
+            minWidth: 100,
+            padding: EdgeInsets.zero,
+            color: AppColors.black,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(80),
+            ),
+            onPressed: () {
+              showDialog(
+                context: context,
+                builder:
+                    (context) => AppAlertDialog2(
+                      title: "تم إنشاء طلبك بنجاح سيتم التواصل معك قريبت",
+                      onPressedOk: () {},
+                    ),
+              );
+            },
+            child: Text(
+              "إتمام الطلب",
+              style: AppTextStyles.style12W700(
+                context,
+              ).copyWith(color: AppColors.white),
+            ),
+          ),
+          const SizedBox(height: 12),
+        ],
       ),
     );
   }
@@ -179,25 +191,25 @@ class DropdownField extends StatelessWidget {
           items: [
             DropdownMenuItem(
               alignment:
-              direction == TextDirection.rtl
-                  ? Alignment.centerRight
-                  : Alignment.centerLeft,
+                  direction == TextDirection.rtl
+                      ? Alignment.centerRight
+                      : Alignment.centerLeft,
               value: 'Option 1',
               child: Text('Option 1'),
             ),
             DropdownMenuItem(
               alignment:
-              direction == TextDirection.rtl
-                  ? Alignment.centerRight
-                  : Alignment.centerLeft,
+                  direction == TextDirection.rtl
+                      ? Alignment.centerRight
+                      : Alignment.centerLeft,
               value: 'Option 2',
               child: Text('Option 2'),
             ),
             DropdownMenuItem(
               alignment:
-              direction == TextDirection.rtl
-                  ? Alignment.centerRight
-                  : Alignment.centerLeft,
+                  direction == TextDirection.rtl
+                      ? Alignment.centerRight
+                      : Alignment.centerLeft,
               value: 'Option 3',
               child: Text('Option 3'),
             ),

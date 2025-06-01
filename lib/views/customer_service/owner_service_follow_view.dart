@@ -106,7 +106,70 @@ class OwnerServiceFollowView extends StatelessWidget {
     return Directionality(
       textDirection: direction,
       child: Scaffold(
-        appBar: customAppBar(context, title: "متابعة عقاراتي", showBack: true),
+        appBar:
+            MediaQuery.of(context).size.width > 800
+                ? AppBar(
+                  leadingWidth: 0,
+                  elevation: 0,
+                  toolbarHeight: 100,
+                  leading: SizedBox(),
+                  backgroundColor: AppColors.white,
+                  surfaceTintColor: AppColors.white,
+                  title: Directionality(
+                    textDirection: direction,
+                    child: Stack(
+                      children: [
+                        Row(
+                          children: [
+                            Image.asset(Assets.imagesShapes4, height: 105),
+                            Spacer(),
+                            Image.asset(Assets.imagesShapes5, height: 105),
+                          ],
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Row(
+                            spacing: 16,
+                            children: [
+                              InkWell(
+                                borderRadius: BorderRadius.circular(80),
+                                onTap: () {
+                                  Navigator.pop(context);
+                                },
+                                child: Container(
+                                  width: 32,
+                                  height: 32,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8),
+                                    color: AppColors.middleGreen,
+                                  ),
+                                  child: GestureDetector(
+                                    child: Icon(
+                                      Icons.arrow_back_ios_new,
+                                      color: AppColors.white,
+                                      size: 16,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Spacer(),
+                              Text(
+                                "متابعة عقاراتي",
+                                style: AppTextStyles.style20W400(context),
+                              ),
+                              Spacer(),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                )
+                : customAppBar(
+                  context,
+                  title: "متابعة عقاراتي",
+                  showBack: true,
+                ),
 
         body: Column(
           children: [
@@ -205,41 +268,97 @@ class OwnerServiceFollowView extends StatelessWidget {
             ),
             SizedBox(height: 12),
             Expanded(
-              child: ListView.separated(
-                itemBuilder: (context, index) {
-                  return GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder:
-                              (context) => OwnerServiceFollowItemDetailsView(
-                                isFollow: true,
-                                image: properties[index]['imageUrl']!,
-                                name: properties[index]['name']!,
-                                location: properties[index]['location']!,
-                                price: properties[index]['price']!,
-                                commission: properties[index]['commission']!,
-                              ),
+              child:
+                  MediaQuery.of(context).size.width >= 800
+                      ? GridView.builder(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: MediaQuery.of(context).size.width > 800 ? 24 : 0,
                         ),
-                      );
-                    },
-                    child: HomeOwnerDetailsItemView(
-                      isFollow: true,
-                      image: properties[index]['imageUrl']!,
-                      name: properties[index]['name']!,
-                      location: properties[index]['location']!,
-                      price: properties[index]['price']!,
-                      type: properties[index]['type']!,
-                      area: properties[index]['area']!,
-                      status: properties[index]['status']!,
-                      commission: properties[index]['commission']!,
-                    ),
-                  );
-                },
-                separatorBuilder: (context, index) => SizedBox(height: 12),
-                itemCount: properties.length,
-              ),
+                        itemBuilder: (context, index) {
+                          return GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder:
+                                      (
+                                        context,
+                                      ) => OwnerServiceFollowItemDetailsView(
+                                        isFollow: true,
+                                        image: properties[index]['imageUrl']!,
+                                        name: properties[index]['name']!,
+                                        location:
+                                            properties[index]['location']!,
+                                        price: properties[index]['price']!,
+                                        commission:
+                                            properties[index]['commission']!,
+                                      ),
+                                ),
+                              );
+                            },
+                            child: HomeOwnerDetailsItemView(
+                              isFollow: true,
+                              image: properties[index]['imageUrl']!,
+                              name: properties[index]['name']!,
+                              location: properties[index]['location']!,
+                              price: properties[index]['price']!,
+                              type: properties[index]['type']!,
+                              area: properties[index]['area']!,
+                              status: properties[index]['status']!,
+                              commission: properties[index]['commission']!,
+                            ),
+                          );
+                        },
+                        itemCount: properties.length,
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount:
+                              MediaQuery.of(context).size.width <= 1000 ? 2 : 3,
+                          mainAxisSpacing: 16,
+                          crossAxisSpacing: 16,
+
+                          childAspectRatio: 2.2,
+                        ),
+                      )
+                      : ListView.separated(
+                        itemBuilder: (context, index) {
+                          return GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder:
+                                      (
+                                        context,
+                                      ) => OwnerServiceFollowItemDetailsView(
+                                        isFollow: true,
+                                        image: properties[index]['imageUrl']!,
+                                        name: properties[index]['name']!,
+                                        location:
+                                            properties[index]['location']!,
+                                        price: properties[index]['price']!,
+                                        commission:
+                                            properties[index]['commission']!,
+                                      ),
+                                ),
+                              );
+                            },
+                            child: HomeOwnerDetailsItemView(
+                              isFollow: true,
+                              image: properties[index]['imageUrl']!,
+                              name: properties[index]['name']!,
+                              location: properties[index]['location']!,
+                              price: properties[index]['price']!,
+                              type: properties[index]['type']!,
+                              area: properties[index]['area']!,
+                              status: properties[index]['status']!,
+                              commission: properties[index]['commission']!,
+                            ),
+                          );
+                        },
+                        separatorBuilder:
+                            (context, index) => SizedBox(height: 12),
+                        itemCount: properties.length,
+                      ),
             ),
           ],
         ),

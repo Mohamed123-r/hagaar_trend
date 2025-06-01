@@ -6,6 +6,7 @@ import '../../components/app_alert_dialog.dart';
 import '../../components/app_colors.dart';
 import '../../components/app_form_filed.dart';
 import '../../components/app_text_styles.dart';
+import '../../generated/assets.dart';
 import 'inquiry_chat_view.dart';
 
 class SeriousPurchaseInquiriesView extends StatelessWidget {
@@ -28,7 +29,69 @@ class SeriousPurchaseInquiriesView extends StatelessWidget {
       textDirection: direction,
       child: Scaffold(
         extendBodyBehindAppBar: true,
-        appBar: customAppBar(
+        appBar:
+        MediaQuery.of(context).size.width > 800
+            ?
+        AppBar(
+          leadingWidth: 0,
+          elevation: 0,
+          toolbarHeight: 100,
+          leading: SizedBox(),
+          backgroundColor: AppColors.white,
+          surfaceTintColor: AppColors.white,
+          title: Directionality(
+            textDirection: direction,
+            child: Stack(
+              children: [
+                Row(
+                  children: [
+                    Image.asset(Assets.imagesShapes4, height: 105),
+                    Spacer(),
+                    Image.asset(Assets.imagesShapes5, height: 105),
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Row(
+                    spacing: 16,
+                    children: [
+                      InkWell(
+                        borderRadius: BorderRadius.circular(80),
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: Container(
+                          width: 32,
+                          height: 32,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            color: AppColors.middleGreen,
+                          ),
+                          child: GestureDetector(
+                            child: Icon(
+                              Icons.arrow_back_ios_new,
+                              color: AppColors.white,
+                              size: 16,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Spacer(),
+                      Text(
+                        "طلبات الشراء الجاد",
+                        style: AppTextStyles.style20W400(context),
+                      ),
+                      Spacer(),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        )
+            :
+
+        customAppBar(
           context,
           title: "طلبات الشراء الجاد",
           showBack: true,

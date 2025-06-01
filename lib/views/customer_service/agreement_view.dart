@@ -30,54 +30,68 @@ class AgreementView extends StatelessWidget {
       textDirection: direction,
       child: Scaffold(
         appBar: customAppBar(context, title: "الإتفاقات", showBack: true),
-        body: Padding(
-          padding: const EdgeInsets.all(12.0),
-          child: GridView.builder(
-            itemCount: items.length,
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 3,
-              childAspectRatio: 3 / 3.5,
-              crossAxisSpacing: 12,
-              mainAxisSpacing: 12,
-            ),
-            itemBuilder: (context, index) {
-              return Card(
-                color: AppColors.white,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16),
-                  side: BorderSide(color: AppColors.border),
-                ),
-                elevation: 1,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        items[index],
-                        style: AppTextStyles.style12W400(context),
-                      ),
-                      const SizedBox(height: 16),
-                      Text(
-                        "1132 ريال",
-                        style: AppTextStyles.style14W700(
-                          context,
-                        ).copyWith(color: AppColors.green),
-                      ),
-                      const SizedBox(height: 4),
-                      Text(
-                        "لكل وحدة",
-                        style: AppTextStyles.style10W400(
-                          context,
-                        ).copyWith(color: AppColors.grey),
-                      ),
-                    ],
-                  ),
-                ),
-              );
-            },
-          ),
+        body: AgreementBodyView(items: items),
+      ),
+    );
+  }
+}
+
+class AgreementBodyView extends StatelessWidget {
+  const AgreementBodyView({
+    super.key,
+    required this.items,
+  });
+
+  final List<String> items;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(12.0),
+      child: GridView.builder(
+        itemCount: items.length,
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 3,
+          childAspectRatio: 3 / 3.5,
+          crossAxisSpacing: 12,
+          mainAxisSpacing: 12,
         ),
+        itemBuilder: (context, index) {
+          return Card(
+            color: AppColors.white,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16),
+              side: BorderSide(color: AppColors.border),
+            ),
+            elevation: 1,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    items[index],
+                    style: AppTextStyles.style12W400(context),
+                  ),
+                  const SizedBox(height: 16),
+                  Text(
+                    "1132 ريال",
+                    style: AppTextStyles.style14W700(
+                      context,
+                    ).copyWith(color: AppColors.green),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    "لكل وحدة",
+                    style: AppTextStyles.style10W400(
+                      context,
+                    ).copyWith(color: AppColors.grey),
+                  ),
+                ],
+              ),
+            ),
+          );
+        },
       ),
     );
   }

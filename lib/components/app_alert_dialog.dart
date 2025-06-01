@@ -8,11 +8,12 @@ class AppAlertDialog extends StatelessWidget {
   const AppAlertDialog({
     super.key,
     required this.body,
-    required this.onPressedOk,
+    required this.onPressedOk,  this.showButton = true,
   });
 
   final Widget body;
   final Function() onPressedOk;
+  final bool showButton ;
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +41,7 @@ class AppAlertDialog extends StatelessWidget {
             SizedBox(
               height: 16,
             ),
-            MaterialButton(
+        showButton ?    MaterialButton(
               height: 44,
               minWidth: 100,
               padding: EdgeInsets.zero,
@@ -55,7 +56,7 @@ class AppAlertDialog extends StatelessWidget {
                   context,
                 ).copyWith(color: AppColors.white),
               ),
-            ),
+            ) : SizedBox(),
           ],
         ),
       ),

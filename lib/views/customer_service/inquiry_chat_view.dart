@@ -5,6 +5,7 @@ import 'package:hagaar_trend/components/app_text_styles.dart';
 import 'package:hagaar_trend/constant.dart';
 
 import '../../components/custom_app_bar.dart';
+import '../../generated/assets.dart';
 
 class InquiryChatView extends StatelessWidget {
   const InquiryChatView({super.key});
@@ -14,7 +15,67 @@ class InquiryChatView extends StatelessWidget {
     return Directionality(
       textDirection: direction,
       child: Scaffold(
-        appBar: customAppBar(
+        appBar:
+        MediaQuery.of(context).size.width > 800
+            ?
+        AppBar(
+          leadingWidth: 0,
+          elevation: 0,
+          toolbarHeight: 100,
+          leading: SizedBox(),
+          backgroundColor: AppColors.white,
+          surfaceTintColor: AppColors.white,
+          title: Directionality(
+            textDirection: direction,
+            child: Stack(
+              children: [
+                Row(
+                  children: [
+                    Image.asset(Assets.imagesShapes4, height: 105),
+                    Spacer(),
+                    Image.asset(Assets.imagesShapes5, height: 105),
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Row(
+                    spacing: 16,
+                    children: [
+                      InkWell(
+                        borderRadius: BorderRadius.circular(80),
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: Container(
+                          width: 32,
+                          height: 32,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            color: AppColors.middleGreen,
+                          ),
+                          child: GestureDetector(
+                            child: Icon(
+                              Icons.arrow_back_ios_new,
+                              color: AppColors.white,
+                              size: 16,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Spacer(),
+                      Text(
+                        "إستفسارات العملاء",
+                        style: AppTextStyles.style20W400(context),
+                      ),
+                      Spacer(),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        )
+            :customAppBar(
           context,
           title: "إستفسارات العملاء",
           showBack: true,

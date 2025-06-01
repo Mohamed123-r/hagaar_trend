@@ -73,6 +73,7 @@ AppBar customWibAppBar(
     leadingWidth: 0,
     elevation: 0,
     toolbarHeight: 100 ,
+    leading: SizedBox(),
     backgroundColor: AppColors.white,
     surfaceTintColor: AppColors.white,
     title: Directionality(
