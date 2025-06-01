@@ -28,7 +28,117 @@ class SubscriptionBodyView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return           service == 'banker' ? Column(
+      children: [
+        SizedBox(height: 24),
+        Text(
+          "الإشتراك الخاص بك",
+          style: AppTextStyles.style20W400(context),
+        ),
+        Container(
+          margin: const EdgeInsets.all(16),
+          padding: const EdgeInsets.all(24),
+          decoration: BoxDecoration(
+            color: Color(0xffC3E5CF),
+            borderRadius: BorderRadius.circular(16),
+          ),
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  CircularPercentIndicator(
+                    radius: 35,
+                    percent: 0.77,
+                    progressColor: Colors.green,
+                    center: const Text("77%"),
+                  ),
+                  Column(
+                    children: [
+                      Text(
+                        "المتبقي",
+                        style: AppTextStyles.style12W700(context),
+                      ),
+                      SizedBox(height: 4),
+                      Text(
+                        "21 يوم",
+                        style: AppTextStyles.style14W700(
+                          context,
+                        ).copyWith(color: AppColors.green),
+                      ),
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      Text(
+                        "المدة",
+                        style: AppTextStyles.style12W700(context),
+                      ),
+                      SizedBox(height: 4),
+                      Text(
+                        "30 يوم",
+                        style: AppTextStyles.style14W700(
+                          context,
+                        ).copyWith(color: AppColors.green),
+                      ),
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      Text(
+                        "السعر",
+                        style: AppTextStyles.style12W700(context),
+                      ),
+                      SizedBox(height: 4),
+                      Text(
+                        "1132 ريال",
+                        style: AppTextStyles.style14W700(
+                          context,
+                        ).copyWith(color: AppColors.green),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              SizedBox(height: 56),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  MaterialButton(
+                    height: 40,
+                    padding: EdgeInsets.zero,
+                    color: AppColors.middleGreen,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    onPressed: () {},
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          "تجديد  إشتراك",
+                          style: AppTextStyles.style12W700(
+                            context,
+                          ).copyWith(color: AppColors.white),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Text(
+                    "34 طلب سلفة",
+                    style: AppTextStyles.style16W400(
+                      context,
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+
+      ],
+    ): Column(
       children: [
         SizedBox(height: 24),
         Text(

@@ -13,6 +13,7 @@ import 'package:hagaar_trend/views/customer_service/widgets/owner_top_service_ca
 import '../../components/app_colors.dart';
 import '../../components/app_text_styles.dart';
 import '../../constant.dart';
+import 'advance_requests_view.dart';
 import 'agreement_view.dart';
 import 'customer_service_view.dart';
 import 'owner_service_follow_view.dart';
@@ -233,7 +234,6 @@ class OwnerServiceView extends StatelessWidget {
                               ? 500
                               : MediaQuery.of(context).size.width,
                       child: Column(
-                        spacing: 16,
                         crossAxisAlignment:
                             MediaQuery.of(context).size.width > 1000
                                 ? CrossAxisAlignment.center
@@ -303,9 +303,11 @@ class OwnerServiceView extends StatelessWidget {
                               },
                             ),
                           ),
-
+                          SizedBox(
+                            height: 16,
+                          ),
                           Visibility(
-                            visible: service == 'owner',
+                            visible: service != 'owner',
                             child: OwnerServiceItem(
                               title: 'الإشتراكات',
                               onTap: () {
@@ -333,6 +335,24 @@ class OwnerServiceView extends StatelessWidget {
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) => SubscriptionView(),
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
+                          SizedBox(
+                            height: 16,
+                          ),
+                          Visibility(
+                            visible: service == 'banker',
+                            child: OwnerServiceItem(
+                              title: 'طلبات السلفة',
+                              onTap: () {
+
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => AdvanceRequestsView(),
                                   ),
                                 );
                               },

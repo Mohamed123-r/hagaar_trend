@@ -146,6 +146,67 @@ class _EditProfileViewState extends State<EditProfileView> {
                         controller: phoneController,
                         keyboardType: TextInputType.phone,
                       ),
+                      Visibility(
+                        visible: service == "banker",
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text("البنك التابع له", style: AppTextStyles.style14W700(context)),
+                            SizedBox(height: 12),
+                            DropdownButtonFormField<String>(
+                              value: null,
+                              hint: Text(
+                                " اختر البنك",
+                                style: AppTextStyles.style14W400(
+                                  context,
+                                ).copyWith(color: AppColors.grey),
+                              ),
+                              dropdownColor: AppColors.white,
+                              icon: Icon(Icons.keyboard_arrow_down_rounded),
+                              decoration: InputDecoration(
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(18),
+                                  borderSide: BorderSide(color: AppColors.border, width: 1),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(18),
+                                  borderSide: BorderSide(color: AppColors.border, width: 1),
+                                ),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(18),
+                                  borderSide: BorderSide(color: AppColors.border, width: 1),
+                                ),
+                              ),
+                              items:
+                              [
+                                "البنك الأهلي",
+                                "البنك العربي",
+                                "البنك السعودي الفرنسي",
+                                "البنك الأول",
+                                "البنك السعودي للاستثمار",
+                              ]
+                                  .map(
+                                    (item) => DropdownMenuItem(
+                                  alignment:
+                                  direction == TextDirection.rtl
+                                      ? Alignment.centerRight
+                                      : Alignment.centerLeft,
+                                  value: item,
+                                  child: Text(
+                                    item,
+                                    style: AppTextStyles.style14W400(context),
+                                  ),
+                                ),
+                              )
+                                  .toList(),
+                              onChanged: (newValue) {
+
+                              },
+                            ),
+                            SizedBox(height: 10),
+                          ],
+                        ),
+                      ),
                       AppInputTextFormField(
                         title: "العنوان",
                         controller: locationController,

@@ -91,15 +91,85 @@ class NewAuthOwnerView2 extends StatelessWidget {
                           "أدخل بياناتك لتبدء",
                           style: AppTextStyles.style16W400(context),
                         ),
-                        AppInputTextFormField(
-                          labelText: "رقم السجل التجاري",
+                        Visibility(
+                          visible: service != 'banker' ,
+                          child: AppInputTextFormField(
+                            labelText: "رقم السجل التجاري",
+                          ),
                         ),
-                        AppInputTextFormField(
-                          labelText: "رقم رخصة فال",
+                        Visibility(
+                          visible: service != 'banker' ,
+                          child: AppInputTextFormField(
+                            labelText: "رقم رخصة فال",
+                          ),
                         ),
+                        Visibility(
+                          visible: service == "banker",
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(
+                                height: 24,
+                              ),
+                              DropdownButtonFormField<String>(
+                                value: null,
+                                hint: Text(
+                                  " اختر البنك",
+                                  style: AppTextStyles.style14W400(
+                                    context,
+                                  ).copyWith(color: AppColors.grey),
+                                ),
+                                dropdownColor: AppColors.white,
+                                icon: Icon(Icons.keyboard_arrow_down_rounded),
+                                decoration: InputDecoration(
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(18),
+                                    borderSide: BorderSide(color: AppColors.border, width: 1),
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(18),
+                                    borderSide: BorderSide(color: AppColors.border, width: 1),
+                                  ),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(18),
+                                    borderSide: BorderSide(color: AppColors.border, width: 1),
+                                  ),
+                                ),
+                                items:
+                                [
+                                  "البنك الأهلي",
+                                  "البنك العربي",
+                                  "البنك السعودي الفرنسي",
+                                  "البنك الأول",
+                                  "البنك السعودي للاستثمار",
+                                ]
+                                    .map(
+                                      (item) => DropdownMenuItem(
+                                    alignment:
+                                    direction == TextDirection.rtl
+                                        ? Alignment.centerRight
+                                        : Alignment.centerLeft,
+                                    value: item,
+                                    child: Text(
+                                      item,
+                                      style: AppTextStyles.style14W400(context),
+                                    ),
+                                  ),
+                                )
+                                    .toList(),
+                                onChanged: (newValue) {
 
-                        AppInputTextFormField(
-                          labelText: "رقم رخصة نفاذ",
+                                },
+                              ),
+
+                            ],
+                          ),
+                        ),
+                        Visibility(
+                          visible: service != "banker",
+                          child: AppInputTextFormField(
+                            labelText: "رقم رخصة نفاذ",
+                          ),
                         ),
                         AppPassInputTextFormField(labelText: "كلمة المرور"),
                         AppPassInputTextFormField(labelText: "تأكيد كلمة المرور"),

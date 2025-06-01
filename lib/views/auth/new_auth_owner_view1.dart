@@ -92,11 +92,23 @@ class NewAuthOwnerView1 extends StatelessWidget {
                           "أدخل بياناتك لتبدء",
                           style: AppTextStyles.style16W400(context),
                         ),
-                        AppInputTextFormField(
-                          labelText: "إسم الشركة / المكتب العقاري",
+                        Visibility(
+                          visible: service != "banker",
+                          child: AppInputTextFormField(
+                            labelText: "إسم الشركة / المكتب العقاري",
+                          ),
                         ),
-                        AppInputTextFormField(
-                          labelText: "إسم مالك المكتب / الشركة",
+                        Visibility(
+                          visible: service != "banker",
+                          child: AppInputTextFormField(
+                            labelText: "إسم مالك المكتب / الشركة",
+                          ),
+                        ),
+                        Visibility(
+                          visible: service == "banker",
+                          child: AppInputTextFormField(
+                            labelText: "الاسم",
+                          ),
                         ),
                         AppInputTextFormField(
                           labelText: "رقم الهاتف",
@@ -106,6 +118,9 @@ class NewAuthOwnerView1 extends StatelessWidget {
                           labelText: "أدخل المدينة ",
                         ),AppInputTextFormField(
                           labelText: "أدخل المنطقة ",
+                        ),
+                        AppInputTextFormField(
+                          labelText: "أدخل الحي ",
                         ),
 
                         SizedBox(height: 32),

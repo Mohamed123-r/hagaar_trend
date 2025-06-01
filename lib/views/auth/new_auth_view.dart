@@ -104,6 +104,9 @@ class NewAuthView extends StatelessWidget {
                         ),AppInputTextFormField(
                           labelText: "أدخل المنطقة ",
                         ),
+                        AppInputTextFormField(
+                          labelText: "أدخل الحي ",
+                        ),
                         AppPassInputTextFormField(labelText: "كلمة المرور"),
                         AppPassInputTextFormField(labelText: "تأكيد كلمة المرور"),
 

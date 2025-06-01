@@ -21,10 +21,12 @@ class ItemDetailsView extends StatelessWidget {
     required this.price,
     required this.location,
     this.showFavourite = false,
+    this.showAdvanceRequests = true,
     required this.commission,
   });
 
   final bool showFavourite;
+  final bool showAdvanceRequests;
   final String image;
   final String name;
   final String price;
@@ -69,40 +71,63 @@ class ItemDetailsView extends StatelessWidget {
                 ),
               ),
               Spacer(),
-              InkWell(
-                borderRadius: BorderRadius.circular(8),
-                onTap: () {
-                  showDialog(
-                    context: context,
-                    builder: (context) {
-                      return AskForRealEstateAlartDialog(
-                        onPressedSearch: () {
-                          showDialog(
-                            context: context,
-                            builder:
-                                (_) => AppAlertDialog2(
-                                  title: "تم إرسال طلبك بنجاح",
-                                  onPressedOk: () {},
-                                ),
-                          );
-                        },
-                      );
-                    },
-                  );
-                },
-                child: Container(
-                  width: 140,
-                  height: 32,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    color: AppColors.middleGreen,
-                  ),
-                  child: Center(
-                    child: Text(
-                      "طلب شراء جاد",
-                      style: AppTextStyles.style12W400(
-                        context,
-                      ).copyWith(color: AppColors.white),
+              Visibility(
+                visible: showAdvanceRequests,
+                child: InkWell(
+                  borderRadius: BorderRadius.circular(8),
+                  onTap: () {
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AskForRealEstateAlartDialog(
+                          onPressedSearch: () {
+                            showDialog(
+                              context: context,
+                              builder:
+                                  (_) => AskForRealEstateAlartDialog2(
+                                    onPressedSearch: () {
+                                      showDialog(
+                                        context: context,
+                                        builder:
+                                            (_) => AppAlertDialog2(
+                                              title:
+                                                  "تم إنشاء طلب الشراء بنجاح سيتم التواصل معك قريبا",
+                                              onPressedOk: () {},
+                                            ),
+                                      );
+                                    },
+                                    onPressedSearch2: () {
+                                      showDialog(
+                                        context: context,
+                                        builder:
+                                            (_) => AppAlertDialog2(
+                                              title:
+                                                  "تم إنشاء طلب الشراء بنجاح سيتم التواصل معك قريبا",
+                                              onPressedOk: () {},
+                                            ),
+                                      );
+                                    },
+                                  ),
+                            );
+                          },
+                        );
+                      },
+                    );
+                  },
+                  child: Container(
+                    width: 140,
+                    height: 32,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      color: AppColors.middleGreen,
+                    ),
+                    child: Center(
+                      child: Text(
+                        "طلب شراء جاد",
+                        style: AppTextStyles.style12W400(
+                          context,
+                        ).copyWith(color: AppColors.white),
+                      ),
                     ),
                   ),
                 ),
@@ -132,204 +157,286 @@ class ItemDetailsView extends StatelessWidget {
             ],
           ),
         ),
-        body: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Stack(
-                alignment: Alignment.bottomRight,
-                children: <Widget>[
-                  AspectRatio(
-                    aspectRatio: 1,
-                    child: Image.network(image, fit: BoxFit.cover),
+        body: Stack(
+          alignment: Alignment.bottomCenter,
+          children: [
+            SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Stack(
+                    alignment: Alignment.bottomRight,
+                    children: <Widget>[
+                      AspectRatio(
+                        aspectRatio: 1,
+                        child: Image.network(image, fit: BoxFit.cover),
+                      ),
+                      Positioned(
+                        bottom: 20,
+                        right: -50,
+                        child: Transform.rotate(
+                          angle: -0.785398,
+                          child: Container(
+                            width: 160,
+                            padding: EdgeInsets.symmetric(vertical: 5),
+                            color: Colors.orange,
+                            alignment: Alignment.center,
+                            child: Text(
+                              "قابل للبيع",
+                              style: AppTextStyles.style12W400(
+                                context,
+                              ).copyWith(color: AppColors.white),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                  Positioned(
-                    bottom: 20,
-                    right: -50,
-                    child: Transform.rotate(
-                      angle: -0.785398,
-                      child: Container(
-                        width: 160,
-                        padding: EdgeInsets.symmetric(vertical: 5),
-                        color: Colors.orange,
-                        alignment: Alignment.center,
-                        child: Text(
-                          "قابل للبيع",
-                          style: AppTextStyles.style12W400(
-                            context,
-                          ).copyWith(color: AppColors.white),
+                  SizedBox(height: 12),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 12),
+                    child: Column(
+                      spacing: 8,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            Text(
+                              name,
+                              style: AppTextStyles.style16W400(context),
+                            ),
+                            Spacer(),
+                            Text(
+                              "السعر :  ",
+                              style: AppTextStyles.style13W400(context),
+                            ),
+                            Text(
+                              price,
+                              style: AppTextStyles.style13W400(
+                                context,
+                              ).copyWith(color: AppColors.green),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Text(
+                              location,
+                              style: AppTextStyles.style14W400(
+                                context,
+                              ).copyWith(color: AppColors.grey),
+                            ),
+                            Spacer(),
+                            Text(
+                              "العمولة :  ",
+                              style: AppTextStyles.style13W400(context),
+                            ),
+                            Text(
+                              commission,
+                              style: AppTextStyles.style13W400(
+                                context,
+                              ).copyWith(color: AppColors.green),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 16),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                    child: Text(
+                      "معلومات العقار",
+                      style: AppTextStyles.style16W800(context),
+                    ),
+                  ),
+                  SizedBox(height: 12),
+                  DataFromItemDetailsView(
+                    title: "قسم العقار :",
+                    image: Assets.imagesDoorOpen,
+                    value: "للبيع",
+                    isGreen: true,
+                  ),
+                  DataFromItemDetailsView(
+                    title: "نوع العقار :",
+                    image: Assets.imagesHouse,
+                    value: "فيلا",
+                  ),
+                  DataFromItemDetailsView(
+                    title: "مساحة العقار :",
+                    image: Assets.imagesVectorTwo,
+                    value: "312 متر مربع",
+                    isGreen: true,
+                  ),
+                  DataFromItemDetailsView(
+                    title: "السعر :",
+                    image: Assets.imagesVectorTwo,
+                    value: "890 ألف ريال / غير قابل للتفاوض",
+                  ),
+                  DataFromItemDetailsView(
+                    title: "ال  id للعقار :",
+                    image: Assets.imagesChartPie,
+                    value: "873562143",
+                    isGreen: true,
+                  ),
+                  SizedBox(height: 32),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                    child: Text(
+                      "مميزات العقار",
+                      style: AppTextStyles.style16W800(context),
+                    ),
+                  ),
+                  SizedBox(height: 12),
+                  FeaturesFromItemDetailsView(value1: "دوبلكس", isGreen: true),
+                  FeaturesFromItemDetailsView(value1: "8 غرفة للدور"),
+                  FeaturesFromItemDetailsView(value1: "قبو", isGreen: true),
+                  FeaturesFromItemDetailsView(value1: "مسبح"),
+                  FeaturesFromItemDetailsView(
+                    value1: "مدخل سيارة",
+                    isGreen: true,
+                  ),
+                  FeaturesFromItemDetailsView(value1: "حديقة خاصة"),
+                  SizedBox(height: 16),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                    child: Text(
+                      "وصف العقار",
+                      style: AppTextStyles.style16W800(context),
+                    ),
+                  ),
+                  SizedBox(height: 12),
+                  SizedBox(
+                    width:
+                        MediaQuery.of(context).size.width > 800 ? 1000 : null,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                      child: Text(
+                        """
+            تشكل فيلاّ ديستي في تيوفولي بقصرها وحديقتها شهادة من الشهادات الأكثر بروزًا وكمالاً على ثقافة عصر النهضة الأوروبية بما فيها من عناصر نقية. وفيلاّ ديستي بتصميمها المبدِع والعبقرية في الأعمال الهندسية في حديقتها (بِرك، وأحوض، إلخ)، هي مثل لا مثيل له عن الحديقة الإيطالية في القرن السادس عشر. وشكلت فيلاّ ديستي، وهي إحدى حدائق الروائع الأولى، نموذجًا مبكرًا لتطور الحدائق في أوروبا.""",
+                        style: AppTextStyles.style14W400(
+                          context,
+                        ).copyWith(color: AppColors.grey),
+                      ),
+                    ),
+                  ),
+
+                  Align(
+                    alignment: Alignment.center,
+                    child: SizedBox(
+                      width:
+                          MediaQuery.of(context).size.width > 800 ? 800 : null,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                        child: AppInputTextFormField(
+                          maxLines: 5,
+                          labelText: "أكتب إستفسارك",
                         ),
                       ),
                     ),
                   ),
+                  SizedBox(height: 16),
+
+                  if (MediaQuery.of(context).size.width > 800)
+                    Row(
+                      children: [
+                        Expanded(child: LocationSection()),
+
+                        Expanded(
+                          child: Column(
+                            children: [
+                              ElectronicContractSection(),
+                              SizedBox(height: 16),
+                              RealEstateMarketerSection(),
+                            ],
+                          ),
+                        ),
+                      ],
+                    )
+                  else
+                    Column(
+                      children: [
+                        LocationSection(),
+                        SizedBox(height: 16),
+                        ElectronicContractSection(),
+                        SizedBox(height: 16),
+                        RealEstateMarketerSection(),
+                      ],
+                    ),
+                  SizedBox(height: 16),
                 ],
               ),
-              SizedBox(height: 12),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 12),
-                child: Column(
-                  spacing: 8,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Text(name, style: AppTextStyles.style16W400(context)),
-                        Spacer(),
-                        Text(
-                          "السعر :  ",
-                          style: AppTextStyles.style13W400(context),
-                        ),
-                        Text(
-                          price,
-                          style: AppTextStyles.style13W400(
-                            context,
-                          ).copyWith(color: AppColors.green),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Text(
-                          location,
-                          style: AppTextStyles.style14W400(
-                            context,
-                          ).copyWith(color: AppColors.grey),
-                        ),
-                        Spacer(),
-                        Text(
-                          "العمولة :  ",
-                          style: AppTextStyles.style13W400(context),
-                        ),
-                        Text(
-                          commission,
-                          style: AppTextStyles.style13W400(
-                            context,
-                          ).copyWith(color: AppColors.green),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(height: 16),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                child: Text(
-                  "معلومات العقار",
-                  style: AppTextStyles.style16W800(context),
-                ),
-              ),
-              SizedBox(height: 12),
-              DataFromItemDetailsView(
-                title: "قسم العقار :",
-                image: Assets.imagesDoorOpen,
-                value: "للبيع",
-                isGreen: true,
-              ),
-              DataFromItemDetailsView(
-                title: "نوع العقار :",
-                image: Assets.imagesHouse,
-                value: "فيلا",
-              ),
-              DataFromItemDetailsView(
-                title: "مساحة العقار :",
-                image: Assets.imagesVectorTwo,
-                value: "312 متر مربع",
-                isGreen: true,
-              ),
-              DataFromItemDetailsView(
-                title: "السعر :",
-                image: Assets.imagesVectorTwo,
-                value: "890 ألف ريال / غير قابل للتفاوض",
-              ),
-              DataFromItemDetailsView(
-                title: "ال  id للعقار :",
-                image: Assets.imagesChartPie,
-                value: "873562143",
-                isGreen: true,
-              ),
-              SizedBox(height: 32),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                child: Text(
-                  "مميزات العقار",
-                  style: AppTextStyles.style16W800(context),
-                ),
-              ),
-              SizedBox(height: 12),
-              FeaturesFromItemDetailsView(value1: "دوبلكس", isGreen: true),
-              FeaturesFromItemDetailsView(value1: "8 غرفة للدور"),
-              FeaturesFromItemDetailsView(value1: "قبو", isGreen: true),
-              FeaturesFromItemDetailsView(value1: "مسبح"),
-              FeaturesFromItemDetailsView(value1: "مدخل سيارة", isGreen: true),
-              FeaturesFromItemDetailsView(value1: "حديقة خاصة"),
-              SizedBox(height: 16),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                child: Text(
-                  "وصف العقار",
-                  style: AppTextStyles.style16W800(context),
-                ),
-              ),
-              SizedBox(height: 12),
-              SizedBox(
-                width: MediaQuery.of(context).size.width > 800 ? 1000 : null,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                  child: Text(
-                    """
-تشكل فيلاّ ديستي في تيوفولي بقصرها وحديقتها شهادة من الشهادات الأكثر بروزًا وكمالاً على ثقافة عصر النهضة الأوروبية بما فيها من عناصر نقية. وفيلاّ ديستي بتصميمها المبدِع والعبقرية في الأعمال الهندسية في حديقتها (بِرك، وأحوض، إلخ)، هي مثل لا مثيل له عن الحديقة الإيطالية في القرن السادس عشر. وشكلت فيلاّ ديستي، وهي إحدى حدائق الروائع الأولى، نموذجًا مبكرًا لتطور الحدائق في أوروبا.""",
-                    style: AppTextStyles.style14W400(
-                      context,
-                    ).copyWith(color: AppColors.grey),
-                  ),
-                ),
-              ),
-
-              Align(
-                alignment: Alignment.center,
+            ),
+            Visibility(
+              visible: !showAdvanceRequests,
+              child: Padding(
+                padding: const EdgeInsets.all(24.0),
                 child: SizedBox(
-                  width: MediaQuery.of(context).size.width > 800 ? 800 : null,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                    child: AppInputTextFormField(
-                      maxLines: 5,
-                      labelText: "أكتب إستفسارك",
-                    ),
+                  width: MediaQuery.of(context).size.width > 400 ? 400 : MediaQuery.of(context).size.width,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: MaterialButton(
+                          height: 44,
+                          minWidth: double.infinity,
+                          padding: EdgeInsets.zero,
+                          color: AppColors.green,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          onPressed: () {
+                            showDialog(
+                              context: context,
+                              builder:
+                                  (_) => AppAlertDialog2(
+                                    title:
+                                        "تم قبول طلب السلفة سيتم التواصل معك قريبا",
+                                    onPressedOk: () {},
+                                  ),
+                            );
+                          },
+                          child: Text(
+                            "قبول طلب السلفة",
+                            style: AppTextStyles.style12W700(
+                              context,
+                            ).copyWith(color: AppColors.white),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 16),
+                      Expanded(
+                        child: MaterialButton(
+                          height: 44,
+                          minWidth: double.infinity,
+                          padding: EdgeInsets.zero,
+                          color: AppColors.black,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          onPressed: () {
+                            showDialog(
+                              context: context,
+                              builder:
+                                  (_) => AppAlertDialog2(
+                                    title: "تم رفض طلب السلفة",
+                                    onPressedOk: () {},
+                                  ),
+                            );
+                          },
+                          child: Text(
+                            "رفض طلب السلفة",
+                            style: AppTextStyles.style12W700(
+                              context,
+                            ).copyWith(color: AppColors.white),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
-              SizedBox(height: 16),
-
-              if (MediaQuery.of(context).size.width > 800)
-                Row(
-                  children: [
-                    Expanded(child: LocationSection()),
-
-                    Expanded(
-                      child: Column(
-                        children: [
-                          ElectronicContractSection(),
-                          SizedBox(height: 16),
-                          RealEstateMarketerSection(),
-                        ],
-                      ),
-                    ),
-                  ],
-                )
-              else
-                Column(
-                  children: [
-                    LocationSection(),
-                    SizedBox(height: 16),
-                    ElectronicContractSection(),
-                    SizedBox(height: 16),
-                    RealEstateMarketerSection(),
-                  ],
-                ),
-              SizedBox(height: 16),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
