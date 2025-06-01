@@ -725,17 +725,8 @@ class _HomeViewState extends State<HomeView> {
                   Visibility(
                     visible: !showMarketersSearch && !showSearch,
                     child: Positioned(
-                      right:
-                          MediaQuery.of(context).size.width >= 1000
-                              ? null
-                              : MediaQuery.of(context).size.width >= 800
-                              ? AppSizes.blockSizeHorizontal * 12
-                              : 20,
-                      left:
-                          MediaQuery.of(context).size.width >= 800
-                              ? AppSizes.blockSizeHorizontal * 12
-                              : 20,
-                      top: MediaQuery.of(context).size.width >= 800 ? 90 : 26,
+
+                      top: MediaQuery.of(context).size.width >= 800 ? 160 : 26,
                       child: Container(
                         height: 64,
                         width:
@@ -903,11 +894,9 @@ class _HomeViewState extends State<HomeView> {
                               : 20,
 
                       left:
-                          MediaQuery.of(context).size.width >= 1000
-                              ? null
-                              : MediaQuery.of(context).size.width >= 800
-                              ? AppSizes.blockSizeHorizontal * 12
-                              : 20,
+                      MediaQuery.of(context).size.width >= 800
+                          ? AppSizes.blockSizeHorizontal * 12
+                          : 20,
 
                       top:
                           MediaQuery.of(context).size.width >= 1000
@@ -920,7 +909,7 @@ class _HomeViewState extends State<HomeView> {
                         height: 45,
 
                         width:
-                            MediaQuery.of(context).size.width >= 800
+                            MediaQuery.of(context).size.width >= 1800
                                 ? MediaQuery.of(context).size.width -
                                     2 * AppSizes.blockSizeHorizontal * 12 -
                                     430
@@ -963,6 +952,36 @@ class _HomeViewState extends State<HomeView> {
                               ButtonFromSearchInHome(
                                 isSelect: true,
                                 title: "الكل",
+                                onPressed: () {},
+                              ),
+                              ButtonFromSearchInHome(
+                                isSelect: false,
+                                title: "فلل وقصور",
+                                onPressed: () {},
+                              ),
+                              ButtonFromSearchInHome(
+                                isSelect: false,
+                                title: "دور سكني",
+                                onPressed: () {},
+                              ),
+                              ButtonFromSearchInHome(
+                                isSelect: false,
+                                title: "فلل وقصور",
+                                onPressed: () {},
+                              ),
+                              ButtonFromSearchInHome(
+                                isSelect: false,
+                                title: "دور سكني",
+                                onPressed: () {},
+                              ),
+                              ButtonFromSearchInHome(
+                                isSelect: false,
+                                title: "فلل وقصور",
+                                onPressed: () {},
+                              ),
+                              ButtonFromSearchInHome(
+                                isSelect: false,
+                                title: "دور سكني",
                                 onPressed: () {},
                               ),
                               ButtonFromSearchInHome(
