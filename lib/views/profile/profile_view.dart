@@ -247,53 +247,92 @@ class _ProfileViewState extends State<ProfileView> {
                       ),
                       const SizedBox(width: 32),
                       Expanded(
-                        child: GridView.builder(
-                          itemBuilder: (context, index) {
-                            return GestureDetector(
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder:
-                                        (context) => ItemDetailsView(
-                                          showFavourite: true,
-                                          image: properties[index]['imageUrl']!,
-                                          name: properties[index]['name']!,
-                                          location:
-                                              properties[index]['location']!,
-                                          price: properties[index]['price']!,
-                                          commission:
-                                              properties[index]['commission']!,
-                                        ),
+                        child: Container(
+                          padding: EdgeInsets.all(12),
+                          margin: EdgeInsets.all(16),
+                          decoration: BoxDecoration(
+                            color: AppColors.white,
+                            borderRadius: BorderRadius.circular(16),
+                            border: Border.all(
+                              color: AppColors.border,
+                              width: 1,
+                            ),
+                          ),
+                          child: Column(
+                            children: [
+                              Row(
+                               spacing:12 ,
+                                children: [
+                                  SvgPicture.asset(Assets.imagesBuildings,
+                                  fit: BoxFit.scaleDown ,
+                                    color: AppColors.black ,
+                                    width: 24,
+                                    height: 24,
                                   ),
-                                );
-                              },
-                              child: ListViewItemFromShowList(
-                                image: properties[index]['imageUrl']!,
-                                name: properties[index]['name']!,
-                                location: properties[index]['location']!,
-                                price: properties[index]['price']!,
-                                type: properties[index]['type']!,
-                                area: properties[index]['area']!,
-                                status: properties[index]['status']!,
-                                commission: properties[index]['commission']!,
+                                  Text(
+                                    "صفقاتي",
+                                    style: AppTextStyles.style20W400(context),
+                                  ),
+                                ],
                               ),
-                            );
-                          },
-                          itemCount: properties.length,
-                          gridDelegate:
-                              SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount:
-                                    screenWidth <= 1000
-                                        ? 2
-                                        : screenWidth <= 1200
-                                        ? 3
-                                        : 3,
-                                childAspectRatio:
-                                    screenWidth > 1200 ? 1.2 : 1.0,
-                                crossAxisSpacing: 16,
-                                mainAxisSpacing: 16,
+                              Divider(color: AppColors.border, thickness: 1),
+                              Expanded(
+                                child: GridView.builder(
+                                  itemBuilder: (context, index) {
+                                    return GestureDetector(
+                                      onTap: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder:
+                                                (context) => ItemDetailsView(
+                                                  showFavourite: true,
+                                                  image:
+                                                      properties[index]['imageUrl']!,
+                                                  name:
+                                                      properties[index]['name']!,
+                                                  location:
+                                                      properties[index]['location']!,
+                                                  price:
+                                                      properties[index]['price']!,
+                                                  commission:
+                                                      properties[index]['commission']!,
+                                                ),
+                                          ),
+                                        );
+                                      },
+                                      child: ListViewItemFromShowList(
+                                        image: properties[index]['imageUrl']!,
+                                        name: properties[index]['name']!,
+                                        location:
+                                            properties[index]['location']!,
+                                        price: properties[index]['price']!,
+                                        type: properties[index]['type']!,
+                                        area: properties[index]['area']!,
+                                        status: properties[index]['status']!,
+                                        commission:
+                                            properties[index]['commission']!,
+                                      ),
+                                    );
+                                  },
+                                  itemCount: properties.length,
+                                  gridDelegate:
+                                      SliverGridDelegateWithFixedCrossAxisCount(
+                                        crossAxisCount:
+                                            screenWidth <= 1000
+                                                ? 2
+                                                : screenWidth <= 1200
+                                                ? 3
+                                                : 3,
+                                        childAspectRatio:
+                                            screenWidth > 1200 ? 1.2 : 1.0,
+                                        crossAxisSpacing: 16,
+                                        mainAxisSpacing: 16,
+                                      ),
+                                ),
                               ),
+                            ],
+                          ),
                         ),
                       ),
                     ],
@@ -402,113 +441,116 @@ class _ButtonsProfileViewState extends State<ButtonsProfileView> {
                   builder:
                       (context) => AppAlertDialog2(
                         title: "تحديث معلوماتي",
-                        body: Directionality(
-                          textDirection: direction,
+                        body: Expanded(
                           child: SingleChildScrollView(
-                            child: Padding(
-                              padding: EdgeInsets.symmetric(
-                                horizontal: padding,
-                              ),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  SizedBox(height: 24, width: dialogWidth),
-                                  Stack(
-                                    children: [
-                                      Container(
-                                        width: dialogWidth * 0.4,
-                                        height: dialogWidth * 0.4,
-                                        decoration: BoxDecoration(
-                                          color: Color(0xffEEEEEE),
-                                          borderRadius: BorderRadius.circular(
-                                            240,
-                                          ),
-                                        ),
-                                        child: Center(
-                                          child: SvgPicture.asset(
-                                            Assets.imagesUser,
-                                            color: AppColors.black,
-                                            width: dialogWidth * 0.06,
-                                          ),
-                                        ),
-                                      ),
-                                      Positioned(
-                                        bottom: 4,
-                                        right:
-                                            direction == TextDirection.rtl
-                                                ? 12
-                                                : null,
-                                        left:
-                                            direction == TextDirection.ltr
-                                                ? 12
-                                                : null,
-                                        child: Container(
-                                          width: 32,
-                                          height: 32,
+                            child: Directionality(
+                              textDirection: direction,
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: padding,
+                                ),
+                                child: Column(
+                                  spacing: 16,
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    SizedBox(height: 24, width: dialogWidth),
+                                    Stack(
+                                      children: [
+                                        Container(
+                                          width: dialogWidth * 0.4,
+                                          height: dialogWidth * 0.4,
                                           decoration: BoxDecoration(
-                                            color: AppColors.white,
+                                            color: Color(0xffEEEEEE),
                                             borderRadius: BorderRadius.circular(
                                               240,
-                                            ),
-                                            border: Border.all(
-                                              width: 1,
-                                              color: AppColors.border,
                                             ),
                                           ),
                                           child: Center(
                                             child: SvgPicture.asset(
-                                              Assets.imagesCamera,
-                                              width: 16,
+                                              Assets.imagesUser,
+                                              color: AppColors.black,
+                                              width: dialogWidth * 0.06,
                                             ),
                                           ),
                                         ),
-                                      ),
-                                    ],
-                                  ),
-                                  AppInputTextFormField(
-                                    title: "الاسم",
-                                    controller: nameController,
-                                    keyboardType: TextInputType.name,
-                                  ),
-                                  AppInputTextFormField(
-                                    title: "رقم الهاتف",
-                                    controller: phoneController,
-                                    keyboardType: TextInputType.phone,
-                                  ),
-                                  AppInputTextFormField(
-                                    title: "العنوان",
-                                    controller: locationController,
-                                    keyboardType: TextInputType.name,
-                                    suffixIcon: SizedBox(
-                                      width: 100,
-                                      child: Center(
-                                        child: TextButton(
-                                          onPressed: () {
-                                            Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                builder:
-                                                    (_) => ChangeLocation(),
+                                        Positioned(
+                                          bottom: 4,
+                                          right:
+                                              direction == TextDirection.rtl
+                                                  ? 12
+                                                  : null,
+                                          left:
+                                              direction == TextDirection.ltr
+                                                  ? 12
+                                                  : null,
+                                          child: Container(
+                                            width: 32,
+                                            height: 32,
+                                            decoration: BoxDecoration(
+                                              color: AppColors.white,
+                                              borderRadius:
+                                                  BorderRadius.circular(240),
+                                              border: Border.all(
+                                                width: 1,
+                                                color: AppColors.border,
                                               ),
-                                            );
-                                          },
-                                          child: Text(
-                                            "تغير الموقع",
-                                            style: AppTextStyles.style12W400(
-                                              context,
-                                            ).copyWith(
-                                              color: AppColors.green,
-                                              decoration:
-                                                  TextDecoration.underline,
-                                              decorationColor: AppColors.green,
+                                            ),
+                                            child: Center(
+                                              child: SvgPicture.asset(
+                                                Assets.imagesCamera,
+                                                width: 16,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    AppInputTextFormField(
+                                      title: "الاسم",
+                                      controller: nameController,
+                                      keyboardType: TextInputType.name,
+                                    ),
+                                    AppInputTextFormField(
+                                      title: "رقم الهاتف",
+                                      controller: phoneController,
+                                      keyboardType: TextInputType.phone,
+                                    ),
+                                    AppInputTextFormField(
+                                      title: "العنوان",
+                                      controller: locationController,
+                                      keyboardType: TextInputType.name,
+                                      suffixIcon: SizedBox(
+                                        width: 100,
+                                        child: Center(
+                                          child: TextButton(
+                                            onPressed: () {
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder:
+                                                      (_) => ChangeLocation(),
+                                                ),
+                                              );
+                                            },
+                                            child: Text(
+                                              "تغير الموقع",
+                                              style: AppTextStyles.style12W400(
+                                                context,
+                                              ).copyWith(
+                                                color: AppColors.green,
+                                                decoration:
+                                                    TextDecoration.underline,
+                                                decorationColor:
+                                                    AppColors.green,
+                                              ),
                                             ),
                                           ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                  const SizedBox(height: 16),
-                                ],
+                                    const SizedBox(height: 16),
+                                  ],
+                                ),
                               ),
                             ),
                           ),

@@ -242,7 +242,7 @@ class ChangeLocation extends StatelessWidget {
               child: Positioned(
                 right: 0,
                 top: 150,
-                bottom: 140,
+
                 child: Container(
                   width: 430,
                   padding: EdgeInsets.all(16),
@@ -250,7 +250,7 @@ class ChangeLocation extends StatelessWidget {
                     color: AppColors.white,
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(16),
-                      topRight: Radius.circular(16),
+                      bottomLeft: Radius.circular(16),
                     ),
                   ),
 

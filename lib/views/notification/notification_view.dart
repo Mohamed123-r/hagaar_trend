@@ -47,6 +47,7 @@ class NotificationView extends StatelessWidget {
                                   message:
                                       "مرحباً بك في تطبيق زد العقار\nيمكنك إيجاد عقارك المطلوب ببحث منظم ودقيق معنا في زد العقارات",
                                 ),
+                                const SizedBox(height: 16),
                               ],
                             ),
                           ),

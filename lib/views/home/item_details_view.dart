@@ -129,16 +129,6 @@ class ItemDetailsView extends StatelessWidget {
                   ),
                 ),
               ),
-              // Positioned(
-              //   top: 16,
-              //   right: direction == TextDirection.rtl ? 16 : null,
-              //   left: direction == TextDirection.ltr ? 16 : null,
-              //   child: CircleAvatar(
-              //     radius: 15,
-              //     backgroundColor: Color(0xffADADAD),
-              //     child: SvgPicture.asset(Assets.imagesHeart),
-              //   ),
-              // ),
             ],
           ),
         ),
@@ -282,235 +272,291 @@ class ItemDetailsView extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 12),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                child: Text(
-                  "تشكل فيلاّ ديستي في تيوفولي بقصرها وحديقتها شهادة من الشهادات الأكثر بروزًا وكمالاً على ثقافة عصر النهضة الأوروبية بما فيها من عناصر نقية. وفيلاّ ديستي بتصميمها المبدِع والعبقرية في الأعمال الهندسية في حديقتها (بِرك، وأحوض، إلخ)، هي مثل لا مثيل له عن الحديقة الإيطالية في القرن السادس عشر. وشكلت فيلاّ ديستي، وهي إحدى حدائق الروائع الأولى، نموذجًا مبكرًا لتطور الحدائق في أوروبا.",
-                  style: AppTextStyles.style14W400(
-                    context,
-                  ).copyWith(color: AppColors.grey),
+              SizedBox(
+                width: MediaQuery.of(context).size.width > 800 ? 1000 : null,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                  child: Text(
+                    """
+تشكل فيلاّ ديستي في تيوفولي بقصرها وحديقتها شهادة من الشهادات الأكثر بروزًا وكمالاً على ثقافة عصر النهضة الأوروبية بما فيها من عناصر نقية. وفيلاّ ديستي بتصميمها المبدِع والعبقرية في الأعمال الهندسية في حديقتها (بِرك، وأحوض، إلخ)، هي مثل لا مثيل له عن الحديقة الإيطالية في القرن السادس عشر. وشكلت فيلاّ ديستي، وهي إحدى حدائق الروائع الأولى، نموذجًا مبكرًا لتطور الحدائق في أوروبا.""",
+                    style: AppTextStyles.style14W400(
+                      context,
+                    ).copyWith(color: AppColors.grey),
+                  ),
                 ),
               ),
 
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                child: AppInputTextFormField(
-                  maxLines: 5,
-                  labelText: "أكتب إستفسارك",
-                ),
-              ),
-              SizedBox(height: 16),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (_) => LocationView()),
-                    );
-                  },
-                  child: Container(
-                    height: 160,
-                    decoration: BoxDecoration(
-                      color: AppColors.white,
-                      borderRadius: BorderRadius.circular(8),
-                      border: Border.all(color: AppColors.border),
-                    ),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.all(16.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Text(
-                                  "الموقع",
-                                  style: AppTextStyles.style16W800(context),
-                                ),
-                                Row(
-                                  children: [
-                                    Text(
-                                      "المنطقة :",
-                                      style: AppTextStyles.style12W400(
-                                        context,
-                                      ).copyWith(color: AppColors.grey),
-                                    ),
-                                    Spacer(),
-                                    Text(
-                                      "منطقة الرياض",
-                                      style: AppTextStyles.style12W400(context),
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    Text(
-                                      "المدينة :",
-                                      style: AppTextStyles.style12W400(
-                                        context,
-                                      ).copyWith(color: AppColors.grey),
-                                    ),
-                                    Spacer(),
-                                    Text(
-                                      "الرياض",
-                                      style: AppTextStyles.style12W400(context),
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    Text(
-                                      "الحي :",
-                                      style: AppTextStyles.style12W400(
-                                        context,
-                                      ).copyWith(color: AppColors.grey),
-                                    ),
-                                    Spacer(),
-                                    Text(
-                                      "حي الهدا",
-                                      style: AppTextStyles.style12W400(context),
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    Text(
-                                      "الرمز البريدي :",
-                                      style: AppTextStyles.style12W400(
-                                        context,
-                                      ).copyWith(color: AppColors.grey),
-                                    ),
-                                    Spacer(),
-                                    Text(
-                                      "12725",
-                                      style: AppTextStyles.style12W400(context),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        Image.asset(Assets.imagesMap),
-                      ],
+              Align(
+                alignment: Alignment.center,
+                child: SizedBox(
+                  width: MediaQuery.of(context).size.width > 800 ? 800 : null,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                    child: AppInputTextFormField(
+                      maxLines: 5,
+                      labelText: "أكتب إستفسارك",
                     ),
                   ),
                 ),
               ),
               SizedBox(height: 16),
-              Container(
-                padding: const EdgeInsets.all(12),
-                margin: EdgeInsets.symmetric(horizontal: 16),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(16),
-                  border: Border.all(color: AppColors.border),
-                ),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Expanded(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "العقد الإلكتروني :",
-                            style: AppTextStyles.style14W400(context),
-                          ),
 
-                          TextButton(
-                            onPressed: () {},
-                            child: Text(
-                              "negotate.pdf",
-                              style: AppTextStyles.style14W400(
-                                context,
-                              ).copyWith(color: AppColors.middleGreen),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(height: 16),
-              Container(
-                padding: const EdgeInsets.all(12),
-                margin: EdgeInsets.symmetric(horizontal: 16),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(16),
-                  border: Border.all(color: AppColors.border),
-                ),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+              if (MediaQuery.of(context).size.width > 800)
+                Row(
                   children: [
+                    Expanded(child: LocationSection()),
+
                     Expanded(
                       child: Column(
-                        crossAxisAlignment:
-                            direction == TextDirection.ltr
-                                ? CrossAxisAlignment.end
-                                : CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            "المسوق العقاري :",
-                            style: AppTextStyles.style16W800(context),
-                          ),
-                          const SizedBox(height: 4),
-                          Text(
-                            "أ / محمد علي عبد القادر",
-                            style: AppTextStyles.style12W400(context),
-                          ),
-                          const SizedBox(height: 12),
-                          Row(
-                            mainAxisAlignment:
-                                direction == TextDirection.ltr
-                                    ? MainAxisAlignment.end
-                                    : MainAxisAlignment.start,
-                            children: [
-                              Text(
-                                "+20 0109287363542",
-                                style: AppTextStyles.style14W700(
-                                  context,
-                                ).copyWith(color: Color(0xff29A71A)),
-                              ),
-                              const SizedBox(width: 6),
-                              SvgPicture.asset(
-                                Assets.imagesWhatsappLogo,
-                                color: Color(0xff29A71A),
-                              ),
-                            ],
-                          ),
+                          ElectronicContractSection(),
+                          SizedBox(height: 16),
+                          RealEstateMarketerSection(),
                         ],
                       ),
                     ),
-                    const SizedBox(width: 12),
-
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(50),
-                        child: CircleAvatar(
-                          radius: 32,
-                          backgroundColor: AppColors.grey,
-                          child: Image.network(
-                            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkAJEkJQ1WumU0hXNpXdgBt9NUKc0QDVIiaw&s",
-                            width: 64,
-                            height: 64,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                    ),
+                  ],
+                )
+              else
+                Column(
+                  children: [
+                    LocationSection(),
+                    SizedBox(height: 16),
+                    ElectronicContractSection(),
+                    SizedBox(height: 16),
+                    RealEstateMarketerSection(),
                   ],
                 ),
-              ),
               SizedBox(height: 16),
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class LocationSection extends StatelessWidget {
+  const LocationSection({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 12.0),
+      child: GestureDetector(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (_) => LocationView()),
+          );
+        },
+        child: Container(
+          height: 160,
+          decoration: BoxDecoration(
+            color: AppColors.white,
+            borderRadius: BorderRadius.circular(8),
+            border: Border.all(color: AppColors.border),
+          ),
+          child: Row(
+            children: [
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Text("الموقع", style: AppTextStyles.style16W800(context)),
+                      Row(
+                        children: [
+                          Text(
+                            "المنطقة :",
+                            style: AppTextStyles.style12W400(
+                              context,
+                            ).copyWith(color: AppColors.grey),
+                          ),
+                          Spacer(),
+                          Text(
+                            "منطقة الرياض",
+                            style: AppTextStyles.style12W400(context),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Text(
+                            "المدينة :",
+                            style: AppTextStyles.style12W400(
+                              context,
+                            ).copyWith(color: AppColors.grey),
+                          ),
+                          Spacer(),
+                          Text(
+                            "الرياض",
+                            style: AppTextStyles.style12W400(context),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Text(
+                            "الحي :",
+                            style: AppTextStyles.style12W400(
+                              context,
+                            ).copyWith(color: AppColors.grey),
+                          ),
+                          Spacer(),
+                          Text(
+                            "حي الهدا",
+                            style: AppTextStyles.style12W400(context),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Text(
+                            "الرمز البريدي :",
+                            style: AppTextStyles.style12W400(
+                              context,
+                            ).copyWith(color: AppColors.grey),
+                          ),
+                          Spacer(),
+                          Text(
+                            "12725",
+                            style: AppTextStyles.style12W400(context),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Image.asset(Assets.imagesMap),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class RealEstateMarketerSection extends StatelessWidget {
+  const RealEstateMarketerSection({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(12),
+      margin: EdgeInsets.symmetric(horizontal: 16),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: AppColors.border),
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Expanded(
+            child: Column(
+              crossAxisAlignment:
+                  direction == TextDirection.ltr
+                      ? CrossAxisAlignment.end
+                      : CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "المسوق العقاري :",
+                  style: AppTextStyles.style16W800(context),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  "أ / محمد علي عبد القادر",
+                  style: AppTextStyles.style12W400(context),
+                ),
+                const SizedBox(height: 12),
+                Row(
+                  mainAxisAlignment:
+                      direction == TextDirection.ltr
+                          ? MainAxisAlignment.end
+                          : MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      "+20 0109287363542",
+                      style: AppTextStyles.style14W700(
+                        context,
+                      ).copyWith(color: Color(0xff29A71A)),
+                    ),
+                    const SizedBox(width: 6),
+                    SvgPicture.asset(
+                      Assets.imagesWhatsappLogo,
+                      color: Color(0xff29A71A),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(width: 12),
+
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(50),
+              child: CircleAvatar(
+                radius: 32,
+                backgroundColor: AppColors.grey,
+                child: Image.network(
+                  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkAJEkJQ1WumU0hXNpXdgBt9NUKc0QDVIiaw&s",
+                  width: 64,
+                  height: 64,
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class ElectronicContractSection extends StatelessWidget {
+  const ElectronicContractSection({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(12),
+      margin: EdgeInsets.symmetric(horizontal: 16),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: AppColors.border),
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Expanded(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "العقد الإلكتروني :",
+                  style: AppTextStyles.style14W400(context),
+                ),
+
+                TextButton(
+                  onPressed: () {},
+                  child: Text(
+                    "negotate.pdf",
+                    style: AppTextStyles.style14W400(
+                      context,
+                    ).copyWith(color: AppColors.middleGreen),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
