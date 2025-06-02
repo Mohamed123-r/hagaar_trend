@@ -13,6 +13,7 @@ import '../../components/app_alert_dialog.dart';
 import '../../components/app_colors.dart';
 import '../../components/app_form_filed.dart';
 import '../../components/app_text_styles.dart';
+import '../../components/footer_widget.dart';
 import '../../generated/assets.dart';
 import '../home/item_details_view.dart';
 import '../home/widgets/home_owner_details_item_view.dart';
@@ -313,19 +314,27 @@ class OwnerServiceFollowItemDetailsView extends StatelessWidget {
               SizedBox(height: 16),
 
               if (MediaQuery.of(context).size.width > 800)
-                Row(
+                Column(
                   children: [
-                    Expanded(child: LocationSection()),
+                    Row(
+                      children: [
+                        Expanded(child: LocationSection()),
 
-                    Expanded(
-                      child: Column(
-                        children: [
-                          ElectronicContractSection(),
-                          SizedBox(height: 16),
-                          RealEstateMarketerSection(),
-                        ],
-                      ),
+                        Expanded(
+                          child: Column(
+                            children: [
+                              ElectronicContractSection(),
+                              SizedBox(height: 16),
+                              RealEstateMarketerSection(),
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
+                    SizedBox(
+                      height: 16,
+                    ),
+                    FooterWidget(),
                   ],
                 )
               else
@@ -336,9 +345,10 @@ class OwnerServiceFollowItemDetailsView extends StatelessWidget {
                     ElectronicContractSection(),
                     SizedBox(height: 16),
                     RealEstateMarketerSection(),
+                    SizedBox(height: 16),
                   ],
                 ),
-              SizedBox(height: 16),
+
             ],
           ),
         ),

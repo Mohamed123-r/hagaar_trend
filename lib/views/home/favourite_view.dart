@@ -5,6 +5,7 @@ import 'package:hagaar_trend/views/home/widgets/list_view_item_from_favourite.da
 
 import '../../components/app_colors.dart';
 import '../../components/app_text_styles.dart';
+import '../../components/footer_widget.dart';
 import '../../generated/assets.dart';
 import 'item_details_view.dart';
 import 'widgets/list_view_item_from_show_list.dart';
@@ -160,48 +161,61 @@ class FavouriteView extends StatelessWidget {
                         ],
                       ),
                     ),
-                    GridView.builder(
-                      padding: EdgeInsets.only(
-                        top: MediaQuery.of(context).size.width > 800 ? 74 : 0,
-                      ),
-                      itemBuilder: (context, index) {
-                        return GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder:
-                                    (context) => ItemDetailsView(
-                                      image: properties[index]['imageUrl']!,
-                                      name: properties[index]['name']!,
-                                      location: properties[index]['location']!,
-                                      price: properties[index]['price']!,
-                                      commission:
-                                          properties[index]['commission']!,
-                                    ),
-                              ),
-                            );
-                          },
-                          child: ListViewItemFromFavourite(
-                            image: properties[index]['imageUrl']!,
-                            name: properties[index]['name']!,
-                            location: properties[index]['location']!,
-                            price: properties[index]['price']!,
-                            type: properties[index]['type']!,
-                            area: properties[index]['area']!,
-                            status: properties[index]['status']!,
-                            commission: properties[index]['commission']!,
-                          ),
-                        );
-                      },
-                      itemCount: properties.length,
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount:
-                            MediaQuery.of(context).size.width <= 1000 ? 3 : 4,
+                    Padding(
+                      padding: const EdgeInsets.only(top: 74),
+                      child: ListView(
 
-                        childAspectRatio: 1.2,
+                        children: [
+                          GridView.builder(
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
+                            itemBuilder: (context, index) {
+                              return GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder:
+                                          (context) => ItemDetailsView(
+                                            image: properties[index]['imageUrl']!,
+                                            name: properties[index]['name']!,
+                                            location:
+                                                properties[index]['location']!,
+                                            price: properties[index]['price']!,
+                                            commission:
+                                                properties[index]['commission']!,
+                                          ),
+                                    ),
+                                  );
+                                },
+                                child: ListViewItemFromFavourite(
+                                  image: properties[index]['imageUrl']!,
+                                  name: properties[index]['name']!,
+                                  location: properties[index]['location']!,
+                                  price: properties[index]['price']!,
+                                  type: properties[index]['type']!,
+                                  area: properties[index]['area']!,
+                                  status: properties[index]['status']!,
+                                  commission: properties[index]['commission']!,
+                                ),
+                              );
+                            },
+                            itemCount: properties.length,
+                            gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount:
+                                      MediaQuery.of(context).size.width <= 1000
+                                          ? 3
+                                          : 4,
+
+                                  childAspectRatio: 1.2,
+                                ),
+                          ),
+                          FooterWidget(),
+                        ],
                       ),
                     ),
+
                   ],
                 )
                 : ListView.builder(
