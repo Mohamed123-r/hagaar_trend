@@ -57,7 +57,6 @@ class OwnerServiceView extends StatelessWidget {
                                       padding: const EdgeInsets.all(24.0),
                                       child: Column(
                                         children: [
-                                          SizedBox(height: 100),
                                           Row(
                                             mainAxisAlignment:
                                                 MainAxisAlignment.center,
@@ -163,7 +162,7 @@ class OwnerServiceView extends StatelessWidget {
                               ? showDialog(
                                 context: context,
                                 builder:
-                                    (context) => AppAlertDialog(
+                                    (context) => AppAlertDialog2(
                                       body: Expanded(
                                         child: SingleChildScrollView(
                                           child:
@@ -174,6 +173,7 @@ class OwnerServiceView extends StatelessWidget {
                                       ),
                                       showButton: false,
                                       onPressedOk: () {},
+                                      title: 'إضافة عقار',
                                     ),
                               )
                               : Navigator.push(
@@ -194,10 +194,11 @@ class OwnerServiceView extends StatelessWidget {
                               ? showDialog(
                                 context: context,
                                 builder:
-                                    (context) => AppAlertDialog(
+                                    (context) => AppAlertDialog2(
                                       body: OwnerServiceRequestBodyView(),
                                       showButton: false,
                                       onPressedOk: () {},
+                                      title: 'طلب شراء أرض',
                                     ),
                               )
                               : Navigator.push(
@@ -261,11 +262,13 @@ class OwnerServiceView extends StatelessWidget {
                                                 children: [
                                                   Text(
                                                     "الإتفاقات",
-                                                    style: AppTextStyles.style24W800(
-                                                      context,
-                                                    ).copyWith(
-                                                      color: AppColors.green,
-                                                    ),
+                                                    style:
+                                                        AppTextStyles.style24W800(
+                                                          context,
+                                                        ).copyWith(
+                                                          color:
+                                                              AppColors.green,
+                                                        ),
                                                   ),
                                                   const SizedBox(height: 8),
                                                   Expanded(
@@ -303,9 +306,7 @@ class OwnerServiceView extends StatelessWidget {
                               },
                             ),
                           ),
-                          SizedBox(
-                            height: 16,
-                          ),
+                          SizedBox(height: 16),
                           Visibility(
                             visible: service != 'owner',
                             child: OwnerServiceItem(
@@ -313,42 +314,31 @@ class OwnerServiceView extends StatelessWidget {
                               onTap: () {
                                 MediaQuery.of(context).size.width >= 800
                                     ? showDialog(
-                                  context: context,
-                                  builder:
-                                      (context) => AppShowAlertDialog(
-                                    body: SizedBox(
-                                      width: 500,
-                                      height: 600,
-                                      child: Column(
-                                        children: [
-
-                                          Expanded(
-                                            child: SubscriptionBodyView(),
+                                      context: context,
+                                      builder:
+                                          (context) => AppShowAlertDialog(
+                                            body: SizedBox(
+                                              width: 500,
+                                              child: SubscriptionBodyView(),
+                                            ),
                                           ),
-                                        ],
+                                    )
+                                    : Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder:
+                                            (context) => SubscriptionView(),
                                       ),
-                                    ),
-                                  ),
-                                )
-                                    :
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => SubscriptionView(),
-                                  ),
-                                );
+                                    );
                               },
                             ),
                           ),
-                          SizedBox(
-                            height: 16,
-                          ),
+                          SizedBox(height: 16),
                           Visibility(
                             visible: service == 'banker',
                             child: OwnerServiceItem(
                               title: 'طلبات السلفة',
                               onTap: () {
-
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(

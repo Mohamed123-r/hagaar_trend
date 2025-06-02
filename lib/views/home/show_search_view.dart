@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:hagaar_trend/components/app_alert_dialog.dart';
 import 'package:hagaar_trend/components/custom_app_bar.dart';
 import 'package:hagaar_trend/constant.dart';
-
 import '../../components/app_colors.dart';
 import '../../components/app_text_styles.dart';
+import '../../components/footer_widget.dart';
 import '../../generated/assets.dart';
 import '../main/widgets/size_config.dart';
 import 'item_details_view.dart';
@@ -19,8 +19,7 @@ class ShowSearchView extends StatelessWidget {
 
   final List<Map<String, String>> properties = [
     {
-      "imageUrl":
-          "https://images.pexels.com/photos/7031400/pexels-photo-7031400.jpeg",
+      "imageUrl": "https://images.pexels.com/photos/7031400/pexels-photo-7031400.jpeg",
       "name": "فيلا فاخرة بإطلالة بحرية",
       "location": "جدة، السعودية",
       "price": "1,500,000 ريال",
@@ -30,8 +29,7 @@ class ShowSearchView extends StatelessWidget {
       "commission": "500 ريال",
     },
     {
-      "imageUrl":
-          "https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg",
+      "imageUrl": "https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg",
       "name": "شقة راقية في برج سكني",
       "location": "الرياض، السعودية",
       "price": "750,000 ريال",
@@ -41,8 +39,7 @@ class ShowSearchView extends StatelessWidget {
       "commission": "500 ريال",
     },
     {
-      "imageUrl":
-          "https://images.pexels.com/photos/2089698/pexels-photo-2089698.jpeg",
+      "imageUrl": "https://images.pexels.com/photos/2089698/pexels-photo-2089698.jpeg",
       "name": "دور مستقل مع حديقة",
       "location": "الدمام، السعودية",
       "price": "1,200,000 ريال",
@@ -52,8 +49,7 @@ class ShowSearchView extends StatelessWidget {
       "commission": "500 ريال",
     },
     {
-      "imageUrl":
-          "https://images.pexels.com/photos/210617/pexels-photo-210617.jpeg",
+      "imageUrl": "https://images.pexels.com/photos/210617/pexels-photo-210617.jpeg",
       "name": "فيلا حديثة بتصميم عصري",
       "location": "المدينة المنورة، السعودية",
       "price": "1,800,000 ريال",
@@ -63,8 +59,7 @@ class ShowSearchView extends StatelessWidget {
       "commission": "500 ريال",
     },
     {
-      "imageUrl":
-          "https://images.pexels.com/photos/323705/pexels-photo-323705.jpeg",
+      "imageUrl": "https://images.pexels.com/photos/323705/pexels-photo-323705.jpeg",
       "name": "شقة فندقية بإطلالة بانورامية",
       "location": "مكة المكرمة، السعودية",
       "price": "950,000 ريال",
@@ -74,8 +69,7 @@ class ShowSearchView extends StatelessWidget {
       "commission": "500 ريال",
     },
     {
-      "imageUrl":
-          "https://images.pexels.com/photos/1643389/pexels-photo-1643389.jpeg",
+      "imageUrl": "https://images.pexels.com/photos/1643389/pexels-photo-1643389.jpeg",
       "name": "شقة مفروشة بالكامل",
       "location": "الخبر، السعودية",
       "price": "500,000 ريال",
@@ -85,8 +79,7 @@ class ShowSearchView extends StatelessWidget {
       "commission": "500 ريال",
     },
     {
-      "imageUrl":
-          "https://images.pexels.com/photos/259588/pexels-photo-259588.jpeg",
+      "imageUrl": "https://images.pexels.com/photos/259588/pexels-photo-259588.jpeg",
       "name": "فيلا بتصميم أوروبي",
       "location": "الطائف، السعودية",
       "price": "2,000,000 ريال",
@@ -96,8 +89,7 @@ class ShowSearchView extends StatelessWidget {
       "commission": "1,000 ريال",
     },
     {
-      "imageUrl":
-          "https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg",
+      "imageUrl": "https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg",
       "name": "شقة راقية في برج سكني",
       "location": "الرياض، السعودية",
       "price": "750,000 ريال",
@@ -107,8 +99,7 @@ class ShowSearchView extends StatelessWidget {
       "commission": "500 ريال",
     },
     {
-      "imageUrl":
-          "https://images.pexels.com/photos/2089698/pexels-photo-2089698.jpeg",
+      "imageUrl": "https://images.pexels.com/photos/2089698/pexels-photo-2089698.jpeg",
       "name": "دور مستقل مع حديقة",
       "location": "الدمام، السعودية",
       "price": "1,200,000 ريال",
@@ -118,8 +109,7 @@ class ShowSearchView extends StatelessWidget {
       "commission": "500 ريال",
     },
     {
-      "imageUrl":
-          "https://images.pexels.com/photos/210617/pexels-photo-210617.jpeg",
+      "imageUrl": "https://images.pexels.com/photos/210617/pexels-photo-210617.jpeg",
       "name": "فيلا حديثة بتصميم عصري",
       "location": "المدينة المنورة، السعودية",
       "price": "1,800,000 ريال",
@@ -129,8 +119,7 @@ class ShowSearchView extends StatelessWidget {
       "commission": "500 ريال",
     },
     {
-      "imageUrl":
-          "https://images.pexels.com/photos/323705/pexels-photo-323705.jpeg",
+      "imageUrl": "https://images.pexels.com/photos/323705/pexels-photo-323705.jpeg",
       "name": "شقة فندقية بإطلالة بانورامية",
       "location": "مكة المكرمة، السعودية",
       "price": "950,000 ريال",
@@ -140,8 +129,7 @@ class ShowSearchView extends StatelessWidget {
       "commission": "500 ريال",
     },
     {
-      "imageUrl":
-          "https://images.pexels.com/photos/1643389/pexels-photo-1643389.jpeg",
+      "imageUrl": "https://images.pexels.com/photos/1643389/pexels-photo-1643389.jpeg",
       "name": "شقة مفروشة بالكامل",
       "location": "الخبر، السعودية",
       "price": "500,000 ريال",
@@ -151,8 +139,7 @@ class ShowSearchView extends StatelessWidget {
       "commission": "500 ريال",
     },
     {
-      "imageUrl":
-          "https://images.pexels.com/photos/259588/pexels-photo-259588.jpeg",
+      "imageUrl": "https://images.pexels.com/photos/259588/pexels-photo-259588.jpeg",
       "name": "فيلا بتصميم أوروبي",
       "location": "الطائف، السعودية",
       "price": "2,000,000 ريال",
@@ -171,15 +158,13 @@ class ShowSearchView extends StatelessWidget {
       textDirection: direction,
       child: Scaffold(
         extendBodyBehindAppBar: true,
-        appBar:
-            MediaQuery.of(context).size.width >= 800
-                ? null
-                : customAppBar(context, title: "نتيجة البحث", showBack: true),
+        appBar: MediaQuery.of(context).size.width >= 800
+            ? null
+            : customAppBar(context, title: "نتيجة البحث", showBack: true),
         body: Stack(
-          alignment:
-              MediaQuery.of(context).size.width >= 800
-                  ? Alignment.topCenter
-                  : Alignment.bottomCenter,
+          alignment: MediaQuery.of(context).size.width >= 800
+              ? Alignment.topCenter
+              : Alignment.bottomCenter,
           children: [
             Visibility(
               visible: MediaQuery.of(context).size.width >= 800,
@@ -198,7 +183,6 @@ class ShowSearchView extends StatelessWidget {
               visible: MediaQuery.of(context).size.width >= 800,
               child: Positioned(
                 top: 16,
-
                 child: Container(
                   height: 48,
                   width: 230,
@@ -218,9 +202,7 @@ class ShowSearchView extends StatelessWidget {
                     child: Row(
                       children: [
                         IconButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
+                          onPressed: () => Navigator.pop(context),
                           icon: Icon(Icons.close, color: Colors.red, size: 18),
                         ),
                         Spacer(),
@@ -238,67 +220,26 @@ class ShowSearchView extends StatelessWidget {
             ),
             MediaQuery.of(context).size.width >= 800
                 ? Padding(
-                  padding: const EdgeInsets.only(top: 74.0),
-                  child: GridView.builder(
-                    itemBuilder: (context, index) {
-                      return GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder:
-                                  (context) => ItemDetailsView(
-                                    showFavourite: true,
-                                    image: properties[index]['imageUrl']!,
-                                    name: properties[index]['name']!,
-                                    location: properties[index]['location']!,
-                                    price: properties[index]['price']!,
-                                    commission:
-                                        properties[index]['commission']!,
-                                  ),
-                            ),
-                          );
-                        },
-                        child: ListViewItemFromShowList(
-                          image: properties[index]['imageUrl']!,
-                          name: properties[index]['name']!,
-                          location: properties[index]['location']!,
-                          price: properties[index]['price']!,
-                          type: properties[index]['type']!,
-                          area: properties[index]['area']!,
-                          status: properties[index]['status']!,
-                          commission: properties[index]['commission']!,
-                        ),
-                      );
-                    },
-                    itemCount: properties.length,
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount:
-                          MediaQuery.of(context).size.width <= 1000 ? 3 : 4,
-
-                      childAspectRatio: 1.2,
-                    ),
-                  ),
-                )
-                : ListView.builder(
-                  itemBuilder: (context, index) {
-                    return GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder:
-                                (context) => ItemDetailsView(
-                                  showFavourite: true,
-                                  image: properties[index]['imageUrl']!,
-                                  name: properties[index]['name']!,
-                                  location: properties[index]['location']!,
-                                  price: properties[index]['price']!,
-                                  commission: properties[index]['commission']!,
-                                ),
+              padding: const EdgeInsets.only(top: 74.0),
+                  child: ListView(
+                                children: [
+                  GridView.builder(
+                    shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
+                    itemBuilder: (context, index) => GestureDetector(
+                      onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ItemDetailsView(
+                            showFavourite: true,
+                            image: properties[index]['imageUrl']!,
+                            name: properties[index]['name']!,
+                            location: properties[index]['location']!,
+                            price: properties[index]['price']!,
+                            commission: properties[index]['commission']!,
                           ),
-                        );
-                      },
+                        ),
+                      ),
                       child: ListViewItemFromShowList(
                         image: properties[index]['imageUrl']!,
                         name: properties[index]['name']!,
@@ -309,10 +250,48 @@ class ShowSearchView extends StatelessWidget {
                         status: properties[index]['status']!,
                         commission: properties[index]['commission']!,
                       ),
-                    );
-                  },
+                    ),
+                    itemCount: properties.length,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: MediaQuery.of(context).size.width <= 1000 ? 3 : 4,
+                      childAspectRatio: 1.2,
+                    ),
+                  ),
+                  FooterWidget(),
+                                ],
+                              ),
+                )
+                :
+                ListView.builder(
+                  itemBuilder: (context, index) => GestureDetector(
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ItemDetailsView(
+                          showFavourite: true,
+                          image: properties[index]['imageUrl']!,
+                          name: properties[index]['name']!,
+                          location: properties[index]['location']!,
+                          price: properties[index]['price']!,
+                          commission: properties[index]['commission']!,
+                        ),
+                      ),
+                    ),
+                    child: ListViewItemFromShowList(
+                      image: properties[index]['imageUrl']!,
+                      name: properties[index]['name']!,
+                      location: properties[index]['location']!,
+                      price: properties[index]['price']!,
+                      type: properties[index]['type']!,
+                      area: properties[index]['area']!,
+                      status: properties[index]['status']!,
+                      commission: properties[index]['commission']!,
+                    ),
+                  ),
                   itemCount: properties.length,
                 ),
+
+
             Visibility(
               visible: isSearch,
               child: Positioned(
@@ -336,18 +315,15 @@ class ShowSearchView extends StatelessWidget {
                         onPressed: () {
                           showDialog(
                             context: context,
-                            builder:
-                                (context) => AppAlertDialog2(
-                                  title: "تم حفظ الفلترة في فلترتك",
-                                  onPressedOk: () {},
-                                ),
+                            builder: (context) => AppAlertDialog2(
+                              title: "تم حفظ الفلترة في فلترتك",
+                              onPressedOk: () {},
+                            ),
                           );
                         },
                         child: Text(
                           "حفظ نتيجة الفلترة",
-                          style: AppTextStyles.style12W700(
-                            context,
-                          ).copyWith(color: AppColors.white),
+                          style: AppTextStyles.style12W700(context).copyWith(color: AppColors.white),
                         ),
                       ),
                     ),
@@ -359,14 +335,10 @@ class ShowSearchView extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(80),
                       ),
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
+                      onPressed: () => Navigator.pop(context),
                       child: Text(
                         "عرض خريطة العقارات",
-                        style: AppTextStyles.style12W700(
-                          context,
-                        ).copyWith(color: AppColors.white),
+                        style: AppTextStyles.style12W700(context).copyWith(color: AppColors.white),
                       ),
                     ),
                   ],

@@ -527,7 +527,7 @@ class _HomeViewState extends State<HomeView> {
                             ),
                             Spacer(),
                             Text(
-                              "تحديد موقعك",
+                              "نتيجه البحث",
                               style: AppTextStyles.style16W400(context),
                             ),
                             Spacer(),

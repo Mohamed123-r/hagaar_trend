@@ -29,6 +29,7 @@ class SubscriptionBodyView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return           service == 'banker' ? Column(
+      mainAxisSize: MainAxisSize.min ,
       children: [
         SizedBox(height: 24),
         Text(
@@ -43,6 +44,7 @@ class SubscriptionBodyView extends StatelessWidget {
             borderRadius: BorderRadius.circular(16),
           ),
           child: Column(
+            mainAxisSize: MainAxisSize.min,
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -139,6 +141,7 @@ class SubscriptionBodyView extends StatelessWidget {
 
       ],
     ): Column(
+      mainAxisSize: MainAxisSize.min ,
       children: [
         SizedBox(height: 24),
         Text(

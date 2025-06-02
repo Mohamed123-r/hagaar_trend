@@ -8,12 +8,13 @@ class AppAlertDialog extends StatelessWidget {
   const AppAlertDialog({
     super.key,
     required this.body,
-    required this.onPressedOk,  this.showButton = true,
+    required this.onPressedOk,
+    this.showButton = true,
   });
 
   final Widget body;
   final Function() onPressedOk;
-  final bool showButton ;
+  final bool showButton;
 
   @override
   Widget build(BuildContext context) {
@@ -38,25 +39,25 @@ class AppAlertDialog extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             body,
-            SizedBox(
-              height: 16,
-            ),
-        showButton ?    MaterialButton(
-              height: 44,
-              minWidth: 100,
-              padding: EdgeInsets.zero,
-              color: AppColors.black,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(80),
-              ),
-              onPressed: onPressedOk,
-              child: Text(
-                "موافق",
-                style: AppTextStyles.style12W700(
-                  context,
-                ).copyWith(color: AppColors.white),
-              ),
-            ) : SizedBox(),
+            SizedBox(height: 16),
+            showButton
+                ? MaterialButton(
+                  height: 44,
+                  minWidth: 100,
+                  padding: EdgeInsets.zero,
+                  color: AppColors.black,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(80),
+                  ),
+                  onPressed: onPressedOk,
+                  child: Text(
+                    "موافق",
+                    style: AppTextStyles.style12W700(
+                      context,
+                    ).copyWith(color: AppColors.white),
+                  ),
+                )
+                : SizedBox(),
           ],
         ),
       ),
@@ -70,11 +71,13 @@ class AppAlertDialog2 extends StatelessWidget {
     required this.title,
     this.body,
     required this.onPressedOk,
+    this.showButton = true,
   });
 
   final String title;
   final Widget? body;
   final Function() onPressedOk;
+  final bool showButton;
 
   @override
   Widget build(BuildContext context) {
@@ -101,39 +104,40 @@ class AppAlertDialog2 extends StatelessWidget {
             Text(
               title,
               textAlign: TextAlign.center,
-              style: AppTextStyles.style16W400(context),
+              style:
+                  MediaQuery.of(context).size.width > 800
+                      ? AppTextStyles.style20W400(context)
+                      : AppTextStyles.style16W400(context),
             ),
-            body?? SizedBox(),
-            SizedBox(
-              height: 16,
-            ),
-            MaterialButton(
-              height: 44,
-              minWidth: 100,
-              padding: EdgeInsets.zero,
-              color: AppColors.black,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(80),
-              ),
-              onPressed: onPressedOk,
-              child: Text(
-                "موافق",
-                style: AppTextStyles.style12W700(
-                  context,
-                ).copyWith(color: AppColors.white),
-              ),
-            ),
+            body ?? SizedBox(),
+            SizedBox(height: 16),
+            showButton
+                ? MaterialButton(
+                  height: 44,
+                  minWidth: 100,
+                  padding: EdgeInsets.zero,
+                  color: AppColors.black,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(80),
+                  ),
+                  onPressed: onPressedOk,
+                  child: Text(
+                    "موافق",
+                    style: AppTextStyles.style12W700(
+                      context,
+                    ).copyWith(color: AppColors.white),
+                  ),
+                )
+                : SizedBox(),
           ],
         ),
       ),
     );
   }
 }
+
 class AppShowAlertDialog extends StatelessWidget {
-  const AppShowAlertDialog({
-    super.key,
-    required this.body,
-  });
+  const AppShowAlertDialog({super.key, required this.body});
 
   final Widget body;
 
@@ -147,9 +151,9 @@ class AppShowAlertDialog extends StatelessWidget {
         titlePadding: EdgeInsets.zero,
         title: Align(
           alignment:
-          direction == TextDirection.rtl
-              ? Alignment.topRight
-              : Alignment.topLeft,
+              direction == TextDirection.rtl
+                  ? Alignment.topRight
+                  : Alignment.topLeft,
           child: IconButton(
             onPressed: () => Navigator.pop(context),
             icon: const Icon(Icons.close),
@@ -160,6 +164,7 @@ class AppShowAlertDialog extends StatelessWidget {
     );
   }
 }
+
 // class AdImagePicker extends StatefulWidget {
 //   final Function() onPressedOk;
 //
