@@ -15,7 +15,13 @@ class Assets {
   static const String imagesCrosshair = 'assets/images/Crosshair.svg';
   static const String imagesDoor = 'assets/images/door.png';
   static const String imagesDoorOpen = 'assets/images/DoorOpen.svg';
+  static const String imagesFacebook1 = 'assets/images/facebook1.png';
+  static const String imagesFacebook2 = 'assets/images/facebook2.png';
+  static const String imagesFacebook3 = 'assets/images/facebook3.png';
   static const String imagesFilter = 'assets/images/filter.png';
+  static const String imagesFooterButtonAndroid = 'assets/images/footerButtonAndroid.png';
+  static const String imagesFooterButtonIOSpng = 'assets/images/footerButtonIOSpng.png';
+  static const String imagesFooterLogo = 'assets/images/footerLogo.png';
   static const String imagesHand = 'assets/images/hand.png';
   static const String imagesHeadset = 'assets/images/Headset.svg';
   static const String imagesHeart = 'assets/images/Heart.svg';
