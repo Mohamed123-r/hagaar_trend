@@ -261,11 +261,12 @@ class _ProfileViewState extends State<ProfileView> {
                           child: Column(
                             children: [
                               Row(
-                               spacing:12 ,
+                                spacing: 12,
                                 children: [
-                                  SvgPicture.asset(Assets.imagesBuildings,
-                                  fit: BoxFit.scaleDown ,
-                                    color: AppColors.black ,
+                                  SvgPicture.asset(
+                                    Assets.imagesBuildings,
+                                    fit: BoxFit.scaleDown,
+                                    color: AppColors.black,
                                     width: 24,
                                     height: 24,
                                   ),
@@ -408,6 +409,20 @@ class _ButtonsProfileViewState extends State<ButtonsProfileView> {
     text: "باحتر عن عقار",
   );
 
+  final TextEditingController name2Controller = TextEditingController(
+    text: "شركة صلاح سالم",
+  );
+  final TextEditingController number1Controller = TextEditingController(
+    text: "3456789023",
+  );
+
+  final TextEditingController number2Controller = TextEditingController(
+    text: "3456789023",
+  );
+
+  final TextEditingController number3Controller = TextEditingController(
+    text: "3456789023",
+  );
   @override
   void dispose() {
     nameController.dispose();
@@ -442,126 +457,63 @@ class _ButtonsProfileViewState extends State<ButtonsProfileView> {
                       (context) => AppAlertDialog2(
                         title: "تحديث معلوماتي",
                         body: Expanded(
-                          child: SingleChildScrollView(
-                            child: Directionality(
-                              textDirection: direction,
-                              child: Padding(
-                                padding: EdgeInsets.symmetric(
-                                  horizontal: padding,
+                          child: EditProfileBody(
+                            nameController: nameController,
+                            phoneController: phoneController,
+                            locationController: locationController,
+                            onPressed: () {
+                              service == "owner"
+                                  ? showDialog(
+                                context: context,
+                                builder:
+                                    (context) => AppAlertDialog2(
+                                  title: "تحديث معلوماتي",
+                                  body: Expanded(
+                                    child: EditOwnerProfileViewBody(
+                                      nameController: name2Controller,
+                                      number1Controller: number1Controller,
+                                      number2Controller: number2Controller,
+                                      number3Controller: number3Controller,
+                                      onPressed: () {},
+                                    ),
+                                  ),
+                                  showButton: false,
+
+                                  onPressedOk: () {},
                                 ),
-                                child: Column(
-                                  spacing: 16,
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    SizedBox(height: 24, width: dialogWidth),
-                                    Stack(
-                                      children: [
-                                        Container(
-                                          width: dialogWidth * 0.4,
-                                          height: dialogWidth * 0.4,
-                                          decoration: BoxDecoration(
-                                            color: Color(0xffEEEEEE),
-                                            borderRadius: BorderRadius.circular(
-                                              240,
-                                            ),
-                                          ),
-                                          child: Center(
-                                            child: SvgPicture.asset(
-                                              Assets.imagesUser,
-                                              color: AppColors.black,
-                                              width: dialogWidth * 0.06,
-                                            ),
-                                          ),
-                                        ),
-                                        Positioned(
-                                          bottom: 4,
-                                          right:
-                                              direction == TextDirection.rtl
-                                                  ? 12
-                                                  : null,
-                                          left:
-                                              direction == TextDirection.ltr
-                                                  ? 12
-                                                  : null,
-                                          child: Container(
-                                            width: 32,
-                                            height: 32,
-                                            decoration: BoxDecoration(
-                                              color: AppColors.white,
-                                              borderRadius:
-                                                  BorderRadius.circular(240),
-                                              border: Border.all(
-                                                width: 1,
-                                                color: AppColors.border,
-                                              ),
-                                            ),
-                                            child: Center(
-                                              child: SvgPicture.asset(
-                                                Assets.imagesCamera,
-                                                width: 16,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    AppInputTextFormField(
-                                      title: "الاسم",
-                                      controller: nameController,
-                                      keyboardType: TextInputType.name,
-                                    ),
-                                    AppInputTextFormField(
-                                      title: "رقم الهاتف",
-                                      controller: phoneController,
-                                      keyboardType: TextInputType.phone,
-                                    ),
-                                    AppInputTextFormField(
-                                      title: "العنوان",
-                                      controller: locationController,
-                                      keyboardType: TextInputType.name,
-                                      suffixIcon: SizedBox(
-                                        width: 100,
-                                        child: Center(
-                                          child: TextButton(
-                                            onPressed: () {
-                                              Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                  builder:
-                                                      (_) => ChangeLocation(),
-                                                ),
-                                              );
-                                            },
-                                            child: Text(
-                                              "تغير الموقع",
-                                              style: AppTextStyles.style12W400(
-                                                context,
-                                              ).copyWith(
-                                                color: AppColors.green,
-                                                decoration:
-                                                    TextDecoration.underline,
-                                                decorationColor:
-                                                    AppColors.green,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    const SizedBox(height: 16),
-                                  ],
-                                ),
-                              ),
-                            ),
+                              )
+                                  : Navigator.pop(context);
+                            },
                           ),
                         ),
-                        onPressedOk: () {},
+                        showButton: false,
+
+                        onPressedOk: () {
+
+                        },
                       ),
                 );
               } else {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (_) => EditProfileView()),
+                  MaterialPageRoute(
+                    builder:
+                        (_) => EditProfileView(
+                          onPressed: () {
+                            service == "owner"
+                                ? Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder:
+                                        (_) => EditOwnerProfileView(
+                                          onPressed: () {},
+                                        ),
+                                  ),
+                                )
+                                : null;
+                          },
+                        ),
+                  ),
                 );
               }
             },

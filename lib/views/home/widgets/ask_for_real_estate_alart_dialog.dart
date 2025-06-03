@@ -47,7 +47,9 @@ class _AskForRealEstateAlartDialogDialogState
         contentPadding: EdgeInsets.zero,
         content: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12.0),
+            padding: EdgeInsets.symmetric(
+              horizontal: MediaQuery.of(context).size.width >= 800 ? 54 : 12.0,
+            ),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               spacing: 12,
@@ -212,7 +214,9 @@ class _AskForRealEstateAlartDialogDialogState2
         contentPadding: EdgeInsets.zero,
         content: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12.0),
+            padding: EdgeInsets.symmetric(
+              horizontal: MediaQuery.of(context).size.width >= 800 ? 54 : 12.0,
+            ),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               spacing: 12,
@@ -223,14 +227,44 @@ class _AskForRealEstateAlartDialogDialogState2
                       "هل ترغب في إنشاء طلب سلفة ؟!",
                       style: AppTextStyles.style14W700(context),
                     ),
-                    buildDropdown( hint: "حدد البنك", options:  [
-                      "البنك الأهلي",
-                      "البنك العربي",
-                      "البنك السعودي الفرنسي",
-                      "البنك الأول",
-                      "البنك السعودي للاستثمار",
-                    ]),
+                    buildDropdown(
+                      hint: "حدد البنك",
+                      options: [
+                        "البنك الأهلي",
+                        "البنك العربي",
+                        "البنك السعودي الفرنسي",
+                        "البنك الأول",
+                        "البنك السعودي للاستثمار",
+                      ],
+                    ),
                     buildTextField(hint: "مقدار السلفة"),
+                    buildTextField(hint: "الراتب الصافي"),
+                    Stack(
+                      alignment: Alignment.centerLeft,
+                      children: [
+                        buildTextField(hint: "تاريخ الميلاد"),
+                        Positioned(
+                          left: 16,
+                          bottom: 6,
+                          child: IconButton(
+                            icon: Icon(
+                              Icons.calendar_month,
+                              color: AppColors.grey,
+                            ),
+                            onPressed: () {
+                              showDatePicker(
+                                context: context,
+                                initialDate: DateTime.now(),
+                                firstDate: DateTime(2000),
+                                lastDate: DateTime.now(),
+                              );
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                    buildTextField(hint: "الحالة الإجتماعية"),
+                    buildTextField(hint: "الإلتزامات", maxLines: 5),
                   ],
                 ),
                 SizedBox(width: 500),
@@ -338,13 +372,18 @@ class _AskForRealEstateAlartDialogDialogState2
     );
   }
 
-  Widget buildTextField({required String hint, String? label}) {
+  Widget buildTextField({
+    required String hint,
+    String? label,
+    int maxLines = 1,
+  }) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(label ?? "", style: AppTextStyles.style16W800(context)),
         SizedBox(height: 12),
         TextField(
+          maxLines: maxLines,
           decoration: InputDecoration(
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(18),
