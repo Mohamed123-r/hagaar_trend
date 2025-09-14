@@ -4,6 +4,8 @@
 
 ![4](https://github.com/user-attachments/assets/a66e1b5f-f1ba-45d5-affc-45ade41a2ca0)
 ![6](https://github.com/user-attachments/assets/d2a3ea3a-b8bf-420d-a634-d8ab971ab281)
+***for more photos scroll down***
+
 
 Hagaar Trend is a comprehensive real estate application built with Flutter. It serves as a multi-functional platform for property seekers, owners, marketers, and banking professionals, with a user interface designed for Right-to-Left (RTL) languages. The application facilitates property searches, listings management, customer service interactions, and financial requests related to real estate.
 
